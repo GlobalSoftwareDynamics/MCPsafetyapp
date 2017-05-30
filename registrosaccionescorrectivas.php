@@ -19,9 +19,11 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/Formularios.css" rel="stylesheet">
+    <link href="css/Tablas.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
     <script>
         function getinputbusqueda(val) {
@@ -40,8 +42,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-    <nav>
-    </nav>
+    <?php
+    include_once('navbarmainAdmin.php');
+    ?>
 </header>
 <?php
 if (isset($_POST['crearacse'])){
@@ -89,13 +92,13 @@ if (isset($_POST['actualizarestado'])){
 ?>
 <section class="container">
     <div>
-        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal">
-            <div class="form-group">
-                <div>
-                    <label for="columna">Conlumna:</label>
+        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-12">
+            <div class="form-group col-sm-4">
+                <div class="col-sm-4">
+                    <label for="columna" class="formlabels col-sm-12">Columna:</label>
                 </div>
-                <div>
-                    <select id="columna" name="columna" onchange="getinputbusqueda(this.value)">
+                <div class="col-sm-8">
+                    <select id="columna" class="ddselect-12 form-control" name="columna" onchange="getinputbusqueda(this.value)">
                         <option>Seleccionar</option>
                         <option value="fecharegistro">Fecha</option>
                         <option value="fuente">Fuente</option>
@@ -105,30 +108,30 @@ if (isset($_POST['actualizarestado'])){
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <div>
-                    <label for="detalle">Busqueda:</label>
+            <div class="form-group col-sm-4">
+                <div class="col-sm-4">
+                    <label for="detalle" class="formlabels col-sm-12">Busqueda:</label>
                 </div>
-                <div id="busqueda">
-                    <input type="text" name="busqueda" id="detalle">
+                <div id="busqueda" class="col-sm-8">
+                    <input type="text" class="textinput-12 col-sm-12" name="busqueda" id="detalle">
                 </div>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-success" name="filtrar" value="Filtrar Tabla">
-                <input type="submit" class="btn btn-success" name="eliminarFiltro" value="Quitar Filtro">
+            <div class="form-group col-sm-4">
+                <input type="submit" class="btn btn-success col-sm-5 col-sm-offset-1 boton" name="filtrar" value="Filtrar Tabla">
+                <input type="submit" class="btn btn-default col-sm-5 col-sm-offset-1 boton" name="eliminarFiltro" value="Quitar Filtro">
             </div>
         </form>
     </div>
 </section>
 <section class="container">
-    <form method="post" class="form-horizontal">
+    <form method="post" class="form-horizontal col-sm-12">
         <div class="form-group">
-            <input type="submit" formaction="crearnuevaAC.php" value="Registrar Nueva Acción Correctiva" class="btn btn-primary">
+            <input type="submit" formaction="crearnuevaAC.php" value="Registrar Nueva Acción Correctiva" class="btn btn-primary col-sm-4 col-sm-offset-4">
         </div>
     </form>
 </section>
 <hr>
-<section class="container">
+<section class="container-fluid">
     <div>
         <table class="table table-hover">
             <thead>
@@ -201,7 +204,7 @@ if (isset($_POST['actualizarestado'])){
                                 }
                             }
                             echo "
-                                <td>".$fila['descripcion']."</td>
+                                <td class='descripcion'>".$fila['descripcion']."</td>
                                 <td>".$fila0['nombre']." ".$fila0['apellidos']."</td>
                                 <td>".$fila['fechaPlan']."</td>
                                 <td>".$fila['fechaReal']."</td>
@@ -212,7 +215,7 @@ if (isset($_POST['actualizarestado'])){
                                 <td>
                                     <form method='post'>
                                         <input type='hidden' value='".$fila['idAccionesCorrectivas']."' name='idAC'>
-                                        <input type='submit' class='btn btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
+                                        <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
                                     </form>
                                 </td>
                             ";
@@ -273,7 +276,7 @@ if (isset($_POST['actualizarestado'])){
                             }
                         }
                         echo "
-                            <td>".$fila0['descripcion']."</td>
+                            <td class='descripcion'>".$fila0['descripcion']."</td>
                         ";
                         $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
                         while ($fila3=mysqli_fetch_array($result3)){
@@ -291,7 +294,7 @@ if (isset($_POST['actualizarestado'])){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idAccionesCorrectivas']."' name='idAC'>
-                                    <input type='submit' class='btn btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
+                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
                                 </form>
                             </td>
                         ";
@@ -352,7 +355,7 @@ if (isset($_POST['actualizarestado'])){
                         }
                     }
                     echo "
-                            <td>".$fila0['descripcion']."</td>
+                            <td class='descripcion'>".$fila0['descripcion']."</td>
                         ";
                     $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
                     while ($fila3=mysqli_fetch_array($result3)){
@@ -370,7 +373,7 @@ if (isset($_POST['actualizarestado'])){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idAccionesCorrectivas']."' name='idAC'>
-                                    <input type='submit' class='btn btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
+                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
                                 </form>
                             </td>
                         ";
@@ -388,6 +391,9 @@ if (isset($_POST['actualizarestado'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+    <div class="container col-sm-6 col-sm-offset-3 text-center">
+        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
+    </div>
 </footer>
 </body>
 

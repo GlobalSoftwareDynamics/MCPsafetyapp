@@ -36,8 +36,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-    <nav>
-    </nav>
+    <?php
+    include_once('mainnavbarSupervisor.php');
+    ?>
 </header>
 <?php
 if (isset($_POST['siguiente'])){

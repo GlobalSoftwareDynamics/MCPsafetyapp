@@ -20,22 +20,26 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/Formularios.css" rel="stylesheet">
+    <link href="css/Tablas.css" rel="stylesheet">
 </head>
 
 <body>
-<header id="navmainadmin">
+<header>
     <?php
     include_once('navbarmainAdmin.php');
     ?>
 </header>
 
 <section class="container">
-    <div class="col-sm-6 col-sm-offset-3">
-        <h3 class="h3 h3operario">Bienvenido a (PLACEHOLDER)</h3>
-    </div>
-    <div>
-
-    </div>
+    <form class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+        <div class="col-sm-12">
+            <h3 class="h3 h3operario">Contenido en desarrollo</h3>
+        </div>
+        <hr>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default col-sm-8 col-sm-offset-2" name="regresar" value="Regresar" formaction="mainAdmin.php">
+        </div>
+    </form>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

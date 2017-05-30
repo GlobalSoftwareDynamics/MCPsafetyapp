@@ -19,22 +19,25 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/Formularios.css" rel="stylesheet">
 </head>
 
 <body>
-<header id="navmainadmin">
+<header>
     <?php
-    include_once('navbarmainAdmin.php');
+    include_once('mainnavbarSupervisor.php');
     ?>
 </header>
 
 <section class="container">
-    <div class="col-sm-6 col-sm-offset-3">
-        <h3 class="h3 h3operario">Bienvenido a (PLACEHOLDER)</h3>
+    <div>
+        <h3>Contenido en desarrollo</h3>
     </div>
     <div>
-
+        <form class="form-horizontal">
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" name="regresar" value="Regresar" formaction="mainSupervisor.php">
+            </div>
+        </form>
     </div>
 </section>
 
@@ -42,9 +45,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
 </footer>
 </body>
 

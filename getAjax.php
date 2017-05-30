@@ -28,27 +28,27 @@ if(!empty($_POST["registrosSEcolumna"])) {
                      $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
                 });
             </script>
-            <input type='text' value='dd/mm/yyyy' id='datepicker' name='busqueda'>
+            <input type='text' class='textinput-12 form-control' placeholder='dd/mm/yyyy' id='datepicker' name='busqueda'>
         ";
     }
     if ($_POST["registrosSEcolumna"]==="anoFiscal"){
         echo "
-            <input type='text' value='FYxx' id='detalle' name='busqueda'>
+            <input type='text' class='textinput-12 form-control' placeholder='FYxx' id='detalle' name='busqueda'>
         ";
     }
     if ($_POST["registrosSEcolumna"]==="idSafetyEyes"){
         echo "
-            <input type='text' id='detalle' name='busqueda'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda'>
         ";
     }
     if ($_POST["registrosSEcolumna"]==="lider"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Apellido'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Apellido'>
         ";
     }
     if ($_POST["registrosSEcolumna"]==="planta"){
         echo "
-            <select name='busqueda' id='detalle'>
+            <select name='busqueda' id='detalle' class='ddselect-12 form-control' >
                 <option>Seleccionar</option> 
         ";
         $planta =mysqli_query($link,"SELECT * FROM planta WHERE estado='1'");
@@ -63,7 +63,7 @@ if(!empty($_POST["registrosSEcolumna"])) {
     }
     if ($_POST["registrosSEcolumna"]==="idUbicacion"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Ubicación'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Ubicación'>
         ";
     }
 }
@@ -71,12 +71,12 @@ if(!empty($_POST["registrosSEcolumna"])) {
 if(!empty($_POST["registrosobservSEcolumna"])) {
     if ($_POST["registrosobservSEcolumna"]==="idObservacionesSE"||$_POST["registrosobservSEcolumna"]==="idSafetyEyes"){
         echo "
-            <input type='text' id='detalle' name='busqueda'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda'>
         ";
     }
     if ($_POST["registrosobservSEcolumna"]==="idCategoria"){
         echo "
-            <select name='busqueda' id='detalle'>
+            <select name='busqueda' id='detalle' class='ddselect-12 form-control' >
                 <option>Seleccionar</option> 
         ";
         $planta =mysqli_query($link,"SELECT * FROM categoria");
@@ -91,7 +91,7 @@ if(!empty($_POST["registrosobservSEcolumna"])) {
     }
     if ($_POST["registrosobservSEcolumna"]==="idClase"){
         echo "
-            <select name='busqueda' id='detalle'>
+            <select name='busqueda' id='detalle' class='ddselect-12 form-control' >
                 <option>Seleccionar</option> 
         ";
         $planta =mysqli_query($link,"SELECT * FROM clase WHERE categoria='SE'");
@@ -106,12 +106,12 @@ if(!empty($_POST["registrosobservSEcolumna"])) {
     }
     if ($_POST["registrosobservSEcolumna"]==="descripcion"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Descripción o Fragmento'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Descripción o Fragmento'>
         ";
     }
     if ($_POST["registrosobservSEcolumna"]==="idCOPs"){
         echo "
-            <select name='busqueda' id='detalle'>
+            <select name='busqueda' id='detalle' class='ddselect-12 form-control' >
                 <option>Seleccionar</option> 
         ";
         $planta =mysqli_query($link,"SELECT * FROM cops");
@@ -135,12 +135,12 @@ if(!empty($_POST["registrosACcolumna"])) {
                      $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
                 });
             </script>
-            <input type='text' value='dd/mm/yyyy' id='datepicker' name='busqueda'>
+            <input type='text' class='textinput-12 form-control' placeholder='dd/mm/yyyy' id='datepicker' name='busqueda'>
         ";
     }
     if ($_POST["registrosACcolumna"]==="fuente"){
         echo "
-            <select id='detalle' name='busqueda'>
+            <select id='detalle' name='busqueda' class='ddselect-12 form-control' >
                 <option>Seleccionar</option>
                 <option value='SE'>Safety Eyes</option>
                 <option value='OC'>Reporte de Ocurrencia</option>
@@ -150,17 +150,17 @@ if(!empty($_POST["registrosACcolumna"])) {
     }
     if ($_POST["registrosACcolumna"]==="dni"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Apellido'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Apellido'>
         ";
     }
     if ($_POST["registrosACcolumna"]==="descripcion"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Descripción o Fragmento'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Descripción o Fragmento'>
         ";
     }
     if ($_POST["registrosACcolumna"]==="estado"){
         echo "
-            <select id='detalle' name='busqueda'>
+            <select id='detalle' name='busqueda' class='ddselect-12 form-control' >
                 <option>Seleccionar</option>
                 <option>En Proceso</option>
                 <option>Completa</option>
@@ -178,12 +178,12 @@ if(!empty($_POST["registrosAIcolumna"])) {
                      $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
                 });
             </script>
-            <input type='text' value='dd/mm/yyyy' id='datepicker' name='busqueda'>
+            <input type='text' class='textinput-12 form-control' placeholder='dd/mm/yyyy' id='datepicker' name='busqueda'>
         ";
     }
     if ($_POST["registrosAIcolumna"]==="fuente"){
         echo "
-            <select id='detalle' name='busqueda'>
+            <select id='detalle' name='busqueda' class='ddselect-12 form-control' >
                 <option>Seleccionar</option>
                 <option value='SE'>Safety Eyes</option>
                 <option value='OC'>Reporte de Ocurrencia</option>
@@ -193,12 +193,12 @@ if(!empty($_POST["registrosAIcolumna"])) {
     }
     if ($_POST["registrosAIcolumna"]==="dni"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Apellido'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Apellido'>
         ";
     }
     if ($_POST["registrosAIcolumna"]==="descripcion"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Descripción o Fragmento'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Descripción o Fragmento'>
         ";
     }
 }
@@ -211,12 +211,12 @@ if(!empty($_POST["registrosMScolumna"])) {
                      $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
                 });
             </script>
-            <input type='text' value='dd/mm/yyyy' id='datepicker' name='busqueda'>
+            <input type='text' class='textinput-12 form-control' placeholder='dd/mm/yyyy' id='datepicker' name='busqueda'>
         ";
     }
     if ($_POST["registrosMScolumna"]==="fuente"){
         echo "
-            <select id='detalle' name='busqueda'>
+            <select id='detalle' name='busqueda' class='ddselect-12 form-control' >
                 <option>Seleccionar</option>
                 <option value='SE'>Safety Eyes</option>
                 <option value='OC'>Reporte de Ocurrencia</option>
@@ -225,17 +225,17 @@ if(!empty($_POST["registrosMScolumna"])) {
     }
     if ($_POST["registrosMScolumna"]==="dni"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Apellido'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Apellido'>
         ";
     }
     if ($_POST["registrosMScolumna"]==="descripcion"){
         echo "
-            <input type='text' id='detalle' name='busqueda' value='Descripción o Fragmento'>
+            <input type='text' class='textinput-12 form-control' id='detalle' name='busqueda' placeholder='Descripción o Fragmento'>
         ";
     }
     if ($_POST["registrosMScolumna"]==="estado"){
         echo "
-            <select id='detalle' name='busqueda'>
+            <select id='detalle' name='busqueda' class='ddselect-12 form-control' >
                 <option>Seleccionar</option>
                 <option>Pendiente</option>
                 <option>En Proceso</option>
@@ -248,12 +248,12 @@ if(!empty($_POST["registrosMScolumna"])) {
 if(!empty($_POST["crearnuevaACtiporeporte"])) {
     if ($_POST['crearnuevaACtiporeporte']==="SE"){
         echo "
-            <input type='submit' name='provieneSE' value='Siguiente'>
+            <input type='submit' class='btn btn-primary' name='provieneSE' value='Siguiente'>
         ";
     }
     if ($_POST['crearnuevaACtiporeporte']==="OC"){
         echo "
-            <input type='submit' name='provieneOC' value='Siguiente'>
+            <input type='submit' class='btn btn-primary' name='provieneOC' value='Siguiente'>
         ";
     }
 }

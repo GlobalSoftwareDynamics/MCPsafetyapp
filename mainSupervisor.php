@@ -23,8 +23,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-    <nav>
-    </nav>
+    <?php
+    include_once('mainnavbarSupervisor.php');
+    ?>
 </header>
 
 <section class="container">
@@ -34,13 +35,13 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <div>
         <form class="form-horizontal">
             <div class="form-group">
-                <input type="submit" name="safetyeyes" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php">
+                <input type="submit" class="btn btn-success" name="safetyeyes" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php">
             </div>
             <div class="form-group">
-                <input type="submit" name="safetyeyes" value="Registrar Ocurrencia" formaction="regocurrencia1.php">
+                <input type="submit" class="btn btn-success" name="safetyeyes" value="Registrar Ocurrencia" formaction="regocurrencia1.php">
             </div>
             <div class="form-group">
-                <input type="submit" name="safetyeyes" value="Registrar CAP" formaction="regcap1.php">
+                <input type="submit" class="btn btn-success" name="safetyeyes" value="Registrar CAP" formaction="regcap1.php">
             </div>
         </form>
     </div>

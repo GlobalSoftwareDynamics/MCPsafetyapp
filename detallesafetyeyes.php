@@ -23,8 +23,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-    <nav>
-    </nav>
+    <?php
+    include_once('navbarmainAdmin.php');
+    ?>
 </header>
 <?php
 if (isset($_POST['aprobar'])){
@@ -492,6 +493,9 @@ while ($fila=mysqli_fetch_array($result)) {
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+    <div class="container col-sm-6 col-sm-offset-3 text-center">
+        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
+    </div>
 </footer>
 </body>
 

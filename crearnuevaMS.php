@@ -21,8 +21,8 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script>
         $(function() {
             $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -54,8 +54,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-    <nav>
-    </nav>
+    <?php
+    include_once('navbarmainAdmin.php');
+    ?>
 </header>
 <?php
 if(isset($_POST['provieneSEconidMS'])){
@@ -225,6 +226,9 @@ if(isset($_POST['provieneSEconidMS'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+    <div class="container col-sm-6 col-sm-offset-3 text-center">
+        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
+    </div>
 </footer>
 </body>
 
