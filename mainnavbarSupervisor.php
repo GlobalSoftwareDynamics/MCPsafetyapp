@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="mainSupervisor.php"><img src="image/Moly-Cop.jpg" height="60"></a>
+                <a href="mainSupervisor.php"><img src="image/Logo.png" height="50"></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
