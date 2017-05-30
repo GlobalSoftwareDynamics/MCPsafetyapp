@@ -20,6 +20,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/Formularios.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -90,7 +91,7 @@ if (isset($_POST['provieneSE'])){
 ?>
     <section class="container">
         <div>
-            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal">
+            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <script>
                     $(function() {
                         $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -109,52 +110,50 @@ if (isset($_POST['provieneSE'])){
                 ";
                 ?>
                 <div class="form-group">
-                    <div>
-                        <label for="datepicker">Fecha de Registro:</label>
+                    <div class="col-sm-12">
+                        <label for="datepicker" class="formlabels1 col-sm-12">Fecha de Registro:</label>
                     </div>
-                    <div>
-                        <input id="datepicker" name="fecha" onchange="getsafetyeyes(this.value)">
+                    <div class="col-sm-12">
+                        <input id="datepicker" class="ddselect-12 form-control" name="fecha" onchange="getsafetyeyes(this.value)">
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="codigose">Codigo del Safety Eyes:</label>
+                    <div class="col-sm-12">
+                        <label for="codigose" class="formlabels1 col-sm-12">Codigo del Safety Eyes:</label>
                     </div>
-                    <div>
-                        <select id="codigose" name="idSE" onchange="getobservacionesse(this.value)">
+                    <div class="col-sm-12">
+                        <select id="codigose" class="ddselect-12 form-control" name="idSE" onchange="getobservacionesse(this.value)">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="obsse">Observaciones del Safety Eyes:</label>
+                    <div class="col-sm-12">
+                        <label for="obsse" class="formlabels1 col-sm-12">Observaciones del Safety Eyes:</label>
                     </div>
-                    <div>
-                        <select id="obsse" name="observaciones" onchange="getdescobservaciones(this.value)">
+                    <div class="col-sm-12">
+                        <select id="obsse" class="ddselect-12 form-control" name="observaciones" onchange="getdescobservaciones(this.value)">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
+                <div class="form-group" id="descripcion">
+
+                </div>
                 <div class="form-group">
-                    <div>
-                        <p id="descripcion"></p>
+                    <div class="col-sm-12">
+                        <label for="desc" class="formlabels1 col-sm-12">Descripción:</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <textarea rows="3" class="textinput-12 form-control" name="descripcionac" id="desc"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="desc">Descripción:</label>
+                    <div class="col-sm-12">
+                        <label for="puesto" class="formlabels1 col-sm-12">Puesto del Responsable:</label>
                     </div>
-                    <div>
-                        <textarea rows="3" name="descripcionac" id="desc"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div>
-                        <label for="puesto">Puesto del Responsable:</label>
-                    </div>
-                    <div>
-                        <select id="puesto" name="puesto" onchange="getcolaboradores(this.value)">
+                    <div class="col-sm-12">
+                        <select id="puesto" class="ddselect-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
                             $result=mysqli_query($link,"SELECT * FROM puesto WHERE estado='1'");
@@ -168,41 +167,41 @@ if (isset($_POST['provieneSE'])){
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="resp">Responsable:</label>
+                    <div class="col-sm-12">
+                        <label for="resp" class="formlabels1 col-sm-12">Responsable:</label>
                     </div>
-                    <div>
-                        <select id="resp" name="responsable">
+                    <div class="col-sm-12">
+                        <select id="resp" class="ddselect-12 form-control" name="responsable">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="datepicker1">Fecha Planeada:</label>
+                    <div class="col-sm-12">
+                        <label for="datepicker1" class="formlabels1 col-sm-12">Fecha Planeada:</label>
                     </div>
-                    <div>
-                        <input id="datepicker1" name="fechaplaneada">
+                    <div class="col-sm-12">
+                        <input id="datepicker1" class="textinput-12 form-control" name="fechaplaneada">
                     </div>
                 </div>
+                <br>
                 <div class="form-group">
-                    <input type="submit" name="crearacse" value="Registrar Acción Correctiva">
+                    <div class="col-sm-6">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="crearnuevaAC.php" value="Regresar">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearacse" value="Registrar">
+                    </div>
                 </div>
             </form>
         </div>
-    </section>
-    <hr>
-    <section class="container">
-        <form action="crearnuevaAC.php">
-            <input type="submit" name="regresar" value="Regresar">
-        </form>
     </section>
 <?php
 }elseif(isset($_POST['provieneSEconidAC'])){
 ?>
     <section class="container">
         <div>
-            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal">
+            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <script>
                     $(function() {
                         $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -221,19 +220,19 @@ if (isset($_POST['provieneSE'])){
                 ";
                 ?>
                 <div class="form-group">
-                    <div>
-                        <label for="codigose">Codigo del Safety Eyes:</label>
+                    <div class="col-sm-12">
+                        <label for="codigose" class="formlabels1 col-sm-12">Codigo del Safety Eyes:</label>
                     </div>
-                    <div>
-                        <input for="codigose" type="text" name="idse" value="<?php echo $_POST['idSE']?>" readonly>
+                    <div class="col-sm-12">
+                        <input id="codigose" class="textinput-12 form-control" type="text" name="idse" value="<?php echo $_POST['idSE']?>" readonly>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="obsse">Observaciones del Safety Eyes:</label>
+                    <div class="col-sm-12">
+                        <label for="obsse" class="formlabels1 col-sm-12">Observaciones del Safety Eyes:</label>
                     </div>
-                    <div>
-                        <select id="obsse" name="observaciones" onchange="getdescobservaciones(this.value)">
+                    <div class="col-sm-12">
+                        <select id="obsse" class="ddselect-12 form-control" name="observaciones" onchange="getdescobservaciones(this.value)">
                             <option>Seleccionar</option>
                             <?php
                             $result=mysqli_query($link,"SELECT * FROM observacionesse WHERE idSafetyEyes='".$_POST['idSE']."'");
@@ -246,25 +245,23 @@ if (isset($_POST['provieneSE'])){
                         </select>
                     </div>
                 </div>
+                <div class="form-group" id="descripcion">
+
+                </div>
                 <div class="form-group">
-                    <div>
-                        <p id="descripcion"></p>
+                    <div class="col-sm-12">
+                        <label for="desc" class="formlabels1 col-sm-12">Descripción:</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <textarea rows="3" class="textinput-12 form-control"name="descripcionac" id="desc"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="desc">Descripción:</label>
+                    <div class="col-sm-12">
+                        <label for="puesto" class="formlabels1 col-sm-12">Puesto del Responsable:</label>
                     </div>
-                    <div>
-                        <textarea rows="3" name="descripcionac" id="desc"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div>
-                        <label for="puesto">Puesto del Responsable:</label>
-                    </div>
-                    <div>
-                        <select id="puesto" name="puesto" onchange="getcolaboradores(this.value)">
+                    <div class="col-sm-12">
+                        <select id="puesto" class="ddselect-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
                             $result=mysqli_query($link,"SELECT * FROM puesto WHERE estado='1'");
@@ -278,34 +275,34 @@ if (isset($_POST['provieneSE'])){
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="resp">Responsable:</label>
+                    <div class="col-sm-12">
+                        <label for="resp" class="formlabels1 col-sm-12">Responsable:</label>
                     </div>
-                    <div>
-                        <select id="resp" name="responsable">
+                    <div class="col-sm-12">
+                        <select id="resp" class="ddselect-12 form-control" name="responsable">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="datepicker1">Fecha Planeada:</label>
+                    <div class="col-sm-12">
+                        <label for="datepicker1" class="formlabels1 col-sm-12">Fecha Planeada:</label>
                     </div>
-                    <div>
-                        <input id="datepicker1" name="fechaplaneada">
+                    <div class="col-sm-12">
+                        <input id="datepicker1" class="textinput-12 form-control" name="fechaplaneada">
                     </div>
                 </div>
+                <br>
                 <div class="form-group">
-                    <input type="submit" name="crearacseconidse" value="Registrar Acción Correctiva">
+                    <div class="col-sm-6">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="crearnuevaAC.php" value="Regresar">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearacseconidse" value="Registrar">
+                    </div>
                 </div>
             </form>
         </div>
-    </section>
-    <hr>
-    <section class="container">
-        <form action="crearnuevaAC.php">
-            <input type="submit" name="regresar" value="Regresar">
-        </form>
     </section>
 <?php
 }elseif(isset($_POST['provieneOC'])){
@@ -315,14 +312,20 @@ if (isset($_POST['provieneSE'])){
 }else{
     ?>
     <section class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h4 class="h3operario">Nueva Acción Correctiva</h4>
+        </div>
+    </section>
+    <br>
+    <section class="container">
         <div>
-            <form action="crearnuevaAC.php" method="post" class="form-horizontal">
+            <form action="crearnuevaAC.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <div class="form-group">
-                    <div>
-                        <label for="tipo">Seleccione Proveniencia de la Acción Correctiva:</label>
+                    <div class="col-sm-12">
+                        <label for="tipo" class="formlabels1 col-sm-12">Seleccione Proveniencia de la Acción Correctiva:</label>
                     </div>
-                    <div>
-                        <select id="tipo" name="provienede" onchange="gettiporeporte(this.value)">
+                    <div class="col-sm-12">
+                        <select id="tipo" class="ddselect-12" name="provienede" onchange="gettiporeporte(this.value)">
                             <option>Seleccionar</option>
                             <option value="SE">Safety Eyes</option>
                             <option value="OC">Reporte de Ocurrencia</option>
@@ -336,8 +339,8 @@ if (isset($_POST['provieneSE'])){
     </section>
     <hr>
     <section class="container">
-        <form action="registrosaccionescorrectivas.php">
-            <input type="submit" name="regresar" value="Regresar">
+        <form action="registrosaccionescorrectivas.php" class="form-horizontal">
+            <input type="submit" class="btn btn-default col-sm-4 col-sm-offset-4" name="regresar" value="Regresar">
         </form>
     </section>
     <?php

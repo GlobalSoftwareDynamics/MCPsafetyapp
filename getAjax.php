@@ -248,12 +248,14 @@ if(!empty($_POST["registrosMScolumna"])) {
 if(!empty($_POST["crearnuevaACtiporeporte"])) {
     if ($_POST['crearnuevaACtiporeporte']==="SE"){
         echo "
-            <input type='submit' class='btn btn-primary' name='provieneSE' value='Siguiente'>
+            <br>
+            <input type='submit' class='btn btn-primary col-sm-6 col-sm-offset-3' name='provieneSE' value='Siguiente'>
         ";
     }
     if ($_POST['crearnuevaACtiporeporte']==="OC"){
         echo "
-            <input type='submit' class='btn btn-primary' name='provieneOC' value='Siguiente'>
+            <br>
+            <input type='submit' class='btn btn-primary col-sm-6 col-sm-offset-3' name='provieneOC' value='Siguiente'>
         ";
     }
 }
@@ -281,7 +283,13 @@ if(!empty($_POST["crearnuevaACobservaciones"])) {
 if(!empty($_POST["crearnuevaACdescobservaciones"])) {
     $result=mysqli_query($link,"SELECT * FROM observacionesse WHERE idObservacionesSE='".$_POST['crearnuevaACdescobservaciones']."'");
     while ($fila=mysqli_fetch_array($result)){
-        echo $fila['descripcion'];
+        echo "
+            <div class='col-sm-12'>
+                <div class='col-sm-12' style='border: 1px solid #b2b2b2; margin-left: 5px; background-color: white'>
+                    <p style='font-size: 15px'>" .$fila['descripcion']."</p>
+                </div>
+            </div>
+        ";
     }
 }
 
