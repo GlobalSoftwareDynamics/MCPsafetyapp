@@ -33,4 +33,12 @@ if(!empty($_POST["gestionUsuarios_tipoUsuario"])){
 		}
 	}
 }
+
+if(!empty($_POST['infoEmpresas_pais'])){
+	echo "<option>Seleccionar</option>";
+	$query = mysqli_query($link, "SELECT * FROM Ciudad WHERE idPais = '".$_POST['infoEmpresas_pais']."'");
+	while($row = mysqli_fetch_array($query)){
+		echo "<option value='".$row['idCiudad']."'>".$row['nombre']."</option>";
+	}
+}
 ?>

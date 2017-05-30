@@ -58,38 +58,143 @@ mysqli_query($link,"SET NAMES 'utf8'");
     </nav>
 </header>
 
-
-
 <section class="container">
     <div>
         <h3>Interfaz de Gestión de Usuarios</h3>
     </div>
     <hr>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>DNI</th>
-                    <th>Usuario</th>
-                    <th>Contraseña</th>
-                    <th>Tipo de Usuario</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                </tr>
-            </tbody>
-        </table>
+    <div class="col-sm-12">
+    <form method="post" action="#">
+        <div class="form-group col-sm-3">
+            <select class="form-control" name="filtro">
+                <option>Seleccione el tipo de filtro</option>
+                <option value="dni">Por DNI:</option>
+                <option value="usuario">Por Usuario:</option>
+                <option value="idTipoUsuario">Por ID Tipo de Usuario:</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-5">
+            <input type="text" class="form-control" name="valorFiltro">
+        </div>
+        <div class="form-group col-sm-4">
+            <input type="submit" name="submitFiltro" class="btn btn-success" value="Filtrar">
+            <input type="submit" name="reset" class="btn btn-danger col-sm-offset-1" value="Remover Filtros">
+        </div>
+    </form>
     </div>
 </section>
 
 <hr>
 
+<?php
+if(isset($_POST['submit'])){
+    $submit = mysqli_query($link,"UPDATE Colaboradores SET usuario = '".$_POST['Usuario']."', password = '".$_POST['Contraseña']."', idTipoUsuario = '".$_POST['tipoUsuario']."' WHERE dni = '".$_POST['dni']."'");
+}
+
+if(isset($_POST['modify'])){
+    $modify = mysqli_query($link, "UPDATE Colaboradores SET usuario = '".$_POST['usuario']."', password = '".$_POST['password']."', idTipoUsuario = '".$_POST['tipoUsuario']."' WHERE dni = '".$_POST['dni']."'");
+}
+
+if(isset($_POST['delete'])){
+    $delete = mysqli_query($link,"UPDATE Colaboradores SET usuario = null, password = null, idTipoUsuario = null WHERE dni = '".$_POST['dni']."'");
+}
+
+if(isset($_POST['submitFiltro'])){
+    echo '
+    <section class="container" id="filtered">
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">DNI</th>
+                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Contraseña</th>
+                    <th class="text-center">Tipo de Usuario</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+    ';
+                $query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE estado = 1 AND ".$_POST['filtro']." LIKE '".$_POST['valorFiltro']."%' AND usuario IS NOT NULL");
+                while($row = mysqli_fetch_array($query)){
+                    echo "<tr>";
+                    echo "<td class=\"text-center\">".$row['dni']."</td>";
+                    echo "<td class=\"text-center\">".$row['usuario']."</td>";
+                    echo "<td class=\"text-center\">".$row['password']."</td>";
+                    $query2 = mysqli_query($link,"SELECT * FROM TipoUsuario WHERE idTipoUsuario = '".$row['idTipoUsuario']."'");
+                    while($row2 = mysqli_fetch_array($query2)){
+                        echo "<td class=\"text-center\">".$row2['descripcion']."</td>";
+                    }
+                    echo "
+                                <form method='post' action='#' id='modify'>
+                                    <td class='text-center'><input type='submit' class='btn-link' value='Modificar' name='Modificar' formaction='modificarUsuarios.php'></td>
+                                    <input type='hidden' value='".$row['dni']."' name='dni'>
+                                </form>
+                                <form method='post' action='#'>
+                                    <td class=\"text-center\"><input type=\"submit\" class=\"btn-link\" value=\"Eliminar\" name='delete'></td>
+                                    <input type='hidden' value='".$row['dni']."' name='dni'>
+                                </form>
+                            </tr>";
+                }
+	echo '
+        </tbody>
+            </table>
+        </div>
+    </section>
+	';
+}else{
+    echo '
+    <section class="container">
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">DNI</th>
+                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Contraseña</th>
+                    <th class="text-center">Tipo de Usuario</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+    ';
+	$query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE estado = 1 AND usuario IS NOT NULL");
+	while($row = mysqli_fetch_array($query)){
+		echo "<tr>";
+		echo "<td class=\"text-center\">".$row['dni']."</td>";
+		echo "<td class=\"text-center\">".$row['usuario']."</td>";
+		echo "<td class=\"text-center\">".$row['password']."</td>";
+		$query2 = mysqli_query($link,"SELECT * FROM TipoUsuario WHERE idTipoUsuario = '".$row['idTipoUsuario']."'");
+		while($row2 = mysqli_fetch_array($query2)){
+			echo "<td class=\"text-center\">".$row2['descripcion']."</td>";
+		}
+		echo "
+					<form method='post' action='#' id='modify'>
+						<td class='text-center'><input type='submit' class='btn-link' value='Modificar' name='Modificar' formaction='modificarUsuarios.php'></td>
+						<input type='hidden' value='".$row['dni']."' name='dni'>
+					</form>
+					<form method='post' action='#'>
+						<td class=\"text-center\"><input type=\"submit\" class=\"btn-link\" value=\"Eliminar\" name='delete'></td>
+						<input type='hidden' value='".$row['dni']."' name='dni'>
+					</form>
+			    </tr>";
+	}
+	echo '
+        </tbody>
+            </table>
+        </div>
+    </section>
+	';
+}
+?>
+
+<hr>
+
 <section class="container">
     <div>
-        <form>
+        <form method="post" action="#">
             <div class="form-group">
                 <table class="table">
                     <thead>
@@ -103,10 +208,10 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     </thead>
                     <tbody>
                         <tr>
-                            <td><select class="form-control" onchange="getUsuario(this.value);getPassword(this.value);getTipoUsuario(this.value)">
+                            <td><select name="dni" id="dni" class="form-control" onchange="getUsuario(this.value);getPassword(this.value);getTipoUsuario(this.value)">
                                     <option selected="selected">Seleccionar</option>
                                     <?php
-                                    $query = mysqli_query($link,"SELECT * FROM Colaboradores ORDER BY apellidos");
+                                    $query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE usuario IS NULL ORDER BY apellidos");
                                     while($row = mysqli_fetch_array($query)){
                                         echo "<option value='".$row['dni']."'>".$row['apellidos']." ".$row['nombre']." - ".$row['dni']."</option>";
                                     }
@@ -114,7 +219,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                                 </select></td>
                                 <td><div id="usuario"><input type="text" class="form-control" name="Usuario" id="Usuario" value="Valor Automático" readonly></div></td>
                                 <td><div id="password"><input type="text" class="form-control" name="Contraseña" id="Contraseña" value="Valor Automático" readonly></div></td>
-                            <td><select class="form-control" id="tipoUsuario">
+                            <td><select class="form-control" id="tipoUsuario" name="tipoUsuario">
                                     <option>Seleccionar</option>
                                 </select></td>
                             <td><input type="submit" class="btn btn-success" name="submit" value="Agregar"></td>
