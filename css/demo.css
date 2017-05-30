@@ -1,0 +1,108 @@
+body{
+	min-height:100vh
+}
+.ex_grid{
+	margin-bottom:15px
+}
+.ex_grid span{
+	color:#333;
+	background-color:#ccc;
+	display:block;
+	text-align:center
+}
+.ex_grid span:hover{
+	background-color:#eee
+}
+.jumbotron{
+	color:#fff;
+	background-color:#026881;
+	padding: 0 20px 17px 20px!important;
+}
+.inner{
+	border-radius:4px;
+	border:1px solid #f3f3f3;
+	padding:15px
+}
+.inner>p{
+	color:#999
+}
+.inner:hover{
+	background:#333;
+	color:#ccc;
+	transition:all 0.75s
+}
+.inner:hover>h4{
+	color:#fff
+}
+pre{
+	margin:30px 0
+}
+.list-group-item{
+	padding:5px 15px
+}
+
+
+pre, code, pre>code {
+    direction: ltr!important;
+}
+
+#toTop {
+    position: fixed;
+    right: 15px;
+    bottom: 56px;
+    z-index: 10000;
+    color: #999;
+}
+
+.popover {font-variant: normal; font-family: inherit;}
+
+/*DEMO dashboard*/
+.dashboard .wrapp {padding: 15px;background: #fff;border: 1px solid #ccc;margin-bottom: 20px;}
+.dashboard .wrapp label {padding-left: 27px;}
+
+.dashboard .popover {min-width: 250px;}
+.dashboard .popover hr {margin-top: 0;margin-bottom: 5px;}
+.dashboard .swrapp {background: #fff;border: 1px solid #ccc;padding: 10px;margin: -10px;}
+.dashboard .swrapp h5{margin-top: 5px;font-size: 14px;}
+.dashboard .swrapp h5 i{border: 1px solid #ccc;border-radius: 3px;padding: 3px;font-size: 12px;width: 20px;height: 20px;text-align: center;}
+
+.dashboard .radio, .dashboard .checkbox {line-height: 30px;margin: 3px 0px 0px 0px !important;border-width: 1px;border-style: solid;border-color: transparent;padding-left: 10px;position: relative;}
+.dashboard .radio.disabled, .dashboard .checkbox.disabled {color: #ccc!important;}
+.dashboard .radio.disabled.item_checked {border-color: #ccc;}
+.dashboard .radio.disabled.item_checked label:before {color: #ccc;}
+
+.dashboard .radio>label, .dashboard .checkbox label {display: block;}
+.dashboard .radio>label:before, .dashboard .checkbox>label:before {content: "\f00d"; color: #bb0000; font-family: 'FontAwesome';font-size: 14px;line-height: 30px;width: 30px;height: 30px;text-align: center;vertical-align: middle;display: block;position: absolute;left: 0px;top: 0px;}
+.dashboard .radio>label>input, .dashboard .checkbox>label>input {opacity: 0;visibility: hidden;}
+
+.dashboard .color_box, .dashboard .color_box>label {padding: 0;}
+.dashboard .radio.color_box>label:before, .dashboard .checkbox.color_box>label:before {width: 100%;}
+
+
+.dashboard .item_checked {border-color: #bdc3c7;}
+/*.dashboard .item_checked label {color: #000!important;}*/
+.dashboard .item_checked label:before {content: "\f00c"; color: #00bb00;}
+
+/*SKINS*/
+.dashboard .navbar-blue-dark      {background: #2a4b5a; border-color: #223d49; color: #abcad8;}
+.dashboard .navbar-blue-light     {background: #dee9ed; border-color: #bdd3db; color: #487484;}
+.dashboard .navbar-brown-dark     {background: #5a2a2a; border-color: #492222; color: #d8abab;}
+.dashboard .navbar-brown-light    {background: #ede7de; border-color: #dbcfbd; color: #846c48;}
+.dashboard .navbar-default        {background: #f8f8f8; border-color: #dfdfdf; color: #797979;}
+.dashboard .navbar-green-dark     {background: #2a5a48; border-color: #22493a; color: #abd8c7;}
+.dashboard .navbar-green-light    {background: #e4edde; border-color: #c9dbbd; color: #608448;}
+.dashboard .navbar-grey-dark      {background: #777777; border-color: #6a6a6a; color: #f7f7f7;}
+.dashboard .navbar-grey-light     {background: #dddddd; border-color: #c4c4c4; color: #5e5e5e;}
+.dashboard .navbar-inverse        {background: #333333; border-color: #262626; color: #b3b3b3;}
+.dashboard .navbar-inverse-blue   {background: #333333; border-color: #36a2b6; color: #68cddf;}
+.dashboard .navbar-inverse-dark   {background: #1e1e1e; border-color: #111111; color: #9e9e9e;}
+.dashboard .navbar-inverse-green  {background: #333333; border-color: #7fbf58; color: #a6fa73;}
+.dashboard .navbar-inverse-light  {background: #555555; border-color: #484848; color: #d5d5d5;}
+.dashboard .navbar-inverse-orange {background: #333333; border-color: #e87503; color: #ff7f00;}
+.dashboard .navbar-olive-dark     {background: #525a2a; border-color: #424922; color: #d0d8ab;}
+.dashboard .navbar-pink-dark      {background: #5a2a4a; border-color: #49223c; color: #d8abc9;}
+.dashboard .navbar-pink-light     {background: #eddee9; border-color: #dbbdd3; color: #844874;}
+.dashboard .navbar-red-dark       {background: #5a2a2a; border-color: #492222; color: #d8abab;}
+.dashboard .navbar-red-light      {background: #eddede; border-color: #dbbdbd; color: #844848;}
+.dashboard .navbar-violet-dark    {background: #442a5a; border-color: #372249; color: #c3abd8;}
+.dashboard .navbar-violet-light   {background: #e6deed; border-color: #cdbddb; color: #684884;}
