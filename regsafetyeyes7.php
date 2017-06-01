@@ -40,13 +40,13 @@ if(isset($_POST['finalizar'])){
     if ( !empty( $error = mysql_error() ) ) {
         echo "
         <section class='container'>
-            <h4>Error al Registrar los Datos</h4>
+            <h4 class='text-center'>¡Error al Registrar los Datos!</h4>
         </section>
         ";
     }else{
         echo "
         <section class='container'>
-            <h4>¡Felicitaciones ha registrado el Safety Eyes con éxito</h4>
+            <h4 class='text-center'>¡Felicitaciones ha registrado el Safety Eyes con éxito!</h4>
         </section>
         ";
     }
@@ -56,7 +56,9 @@ if(isset($_POST['finalizar'])){
 <br>
 <section class="container">
     <form action="mainSupervisor.php" class="form-horizontal jumbotron col-xs-12">
-        <input class="btn btn-success col-xs-10 col-xs-offset-1" type="submit" value="Regresar al Men&uacute;">
+        <div class="form-group">
+            <input class="btn btn-success col-xs-12" type="submit" value="Regresar al Men&uacute;">
+        </div>
     </form>
 </section>
 

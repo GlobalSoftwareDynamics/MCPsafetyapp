@@ -31,37 +31,41 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 <section class="container">
     <div>
-        <h4>Paso 6: Personas y Duración</h4>
-    </div>
-    <div>
-        <form method="post" class="form-horizontal">
+        <form method="post" class="form-horizontal jumbotron col-xs-12">
+            <div class="col-xs-12">
+                <h4 class="text-left">Paso 6: Personas y Duración</h4>
+            </div>
+            <br>
             <div class="form-group">
-                <div>
-                    <label for="observados">Nro. Pers. Observadas:</label>
+                <div class="col-xs-12">
+                    <label for="observados" class="col-xs-12">Nro. Pers. Observadas:</label>
                 </div>
-                <div>
-                    <input type="text" name="persobs" id="observados">
+                <div class="col-xs-12">
+                    <input type="text" class="form-control col-xs-12" name="persobs" id="observados">
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="retroalim">Nro. Pers. Retroalimentadas:</label>
+                <div class="col-xs-12">
+                    <label for="retroalim" class="col-xs-12">Nro. Pers. Retroalimentadas:</label>
                 </div>
-                <div>
-                    <input type="text" id="retroalim" name="persretroalimentadas">
+                <div class="col-xs-12">
+                    <input type="text" class="form-control col-xs-12" id="retroalim" name="persretroalimentadas">
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="dura">Duración:</label>
+                <div class="col-xs-12">
+                    <label for="dura" class="col-xs-12">Duración:</label>
                 </div>
-                <div>
-                    <input type="text" name="duracion" id="dura">
+                <div class="col-xs-12">
+                    <input type="text" class="form-control col-xs-12" name="duracion" id="dura">
                 </div>
             </div>
+            <hr>
             <div class="form-group">
                 <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
-                <input type="submit" formaction="regsafetyeyes7.php" name="finalizar" value="Siguiente" class="btn btn-primary">
+                <div class="col-xs-12">
+                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes7.php" name="finalizar" value="Siguiente">
+                </div>
             </div>
         </form>
     </div>

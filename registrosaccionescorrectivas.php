@@ -140,7 +140,7 @@ if (isset($_POST['actualizarestado'])){
             <tr>
                 <th>Fecha de Registro</th>
                 <th>Fuente</th>
-                <th>Descripción</th>
+                <th style="width: 30%">Descripción</th>
                 <th>Responsable</th>
                 <th>Fecha Planeada</th>
                 <th>Fecha Real</th>

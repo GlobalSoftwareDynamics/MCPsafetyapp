@@ -62,29 +62,30 @@ if (isset($_POST['agregar'])){
 ?>
 <section class="container">
     <div>
-        <h4>Paso 5: Mejoras de Seguridad</h4>
-    </div>
-    <div>
-        <form method="post" class="form-horizontal">
+        <form method="post" class="form-horizontal jumbotron col-xs-12">
+            <div class="col-xs-12">
+                <h4 class="text-left">Paso 5: Mejoras de Seguridad</h4>
+            </div>
+            <br>
             <?php
             $clase="MS";
             $idMS=idgen($clase);
             echo "<input type='hidden' name='idMS' value='".$idMS."' readonly>";
             ?>
             <div class="form-group">
-                <div>
-                    <label for="desc">Descripción:</label>
+                <div class="col-xs-12">
+                    <label for="desc" class="col-xs-12">Descripción:</label>
                 </div>
-                <div>
-                    <textarea rows="3" name="descripcion" id="desc"></textarea>
+                <div class="col-xs-12">
+                    <textarea rows="3" class="form-control col-xs-12" name="descripcion" id="desc"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="emp">Empresa:</label>
+                <div class="col-xs-12">
+                    <label for="emp" class="col-xs-12">Empresa:</label>
                 </div>
-                <div>
-                    <select name="empresa" id="emp" onchange="gettrabajadores(this.value)">
+                <div class="col-xs-12">
+                    <select name="empresa" class="form-control col-xs-12" id="emp" onchange="gettrabajadores(this.value)">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM Empresa WHERE estado='1'");
@@ -97,19 +98,24 @@ if (isset($_POST['agregar'])){
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="prop">Propuesta por:</label>
+                <div class="col-xs-12">
+                    <label for="prop" class="col-xs-12">Propuesta por:</label>
                 </div>
-                <div>
-                    <select id="prop" name="proponente">
+                <div class="col-xs-12">
+                    <select id="prop" class="col-xs-12 form-control" name="proponente">
                         <option>Seleccionar</option>
                     </select>
                 </div>
             </div>
+            <hr>
             <div class="form-group">
                 <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
-                <input type="submit" formaction="regsafetyeyes5.php"name="agregar" value="Agregar" class="btn btn-success">
-                <input type="submit" formaction="regsafetyeyes6.php" name="siguiente" value="Siguiente" class="btn btn-primary">
+                <div class="col-xs-12">
+                    <input type="submit" class="btn btn-success col-xs-12" formaction="regsafetyeyes5.php"name="agregar" value="Agregar">
+                </div>
+                <div class="col-xs-12">
+                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes6.php" name="siguiente" value="Siguiente">
+                </div>
             </div>
         </form>
     </div>

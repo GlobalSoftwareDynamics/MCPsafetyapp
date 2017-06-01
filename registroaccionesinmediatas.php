@@ -89,7 +89,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
             <tr>
                 <th>Fecha de Registro</th>
                 <th>Fuente</th>
-                <th>Descripción</th>
+                <th style="width: 40%">Descripción</th>
                 <th>Responsable</th>
                 <th></th>
             </tr>

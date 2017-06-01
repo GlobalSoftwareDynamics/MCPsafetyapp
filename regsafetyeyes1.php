@@ -42,11 +42,16 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 
 <section class="container">
+
+</section>
+
+<section class="container">
     <div>
-        <h4>Paso 1: Datos Generales</h4>
-    </div>
-    <div>
-        <form action="regsafetyeyes2.php" method="post" class="form-horizontal">
+        <form action="regsafetyeyes2.php" method="post" class="form-horizontal jumbotron col-xs-12">
+            <div class="col-xs-12">
+                <h4 class="text-left">Paso 1: Datos Generales</h4>
+            </div>
+            <br>
             <?php
             $persona="46815198";
             /*$nombre =$_SESSION['nombre'];
@@ -72,11 +77,11 @@ mysqli_query($link,"SET NAMES 'utf8'");
             ";
             ?>
             <div class="form-group">
-                <div>
-                    <label for="plant">Planta:</label>
+                <div class="col-xs-12">
+                    <label for="plant" class="col-xs-12">Planta:</label>
                 </div>
-                <div>
-                    <select id="plant" name="planta" onchange="getubicaciones(this.value)">
+                <div class="col-xs-12">
+                    <select id="plant" name="planta" class="form-control col-xs-12" onchange="getubicaciones(this.value)">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM planta WHERE estado='1'");
@@ -89,25 +94,26 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="ubica">Ubicación:</label>
+                <div class="col-xs-12">
+                    <label for="ubica" class="col-xs-12">Ubicación:</label>
                 </div>
-                <div>
-                    <select id="ubica" name="ubicacion">
+                <div class="col-xs-12">
+                    <select id="ubica" class="form-control col-xs-12" name="ubicacion">
                         <option>Seleccionar</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="activ">Actividad:</label>
+                <div class="col-xs-12">
+                    <label for="activ" class="col-xs-12">Actividad:</label>
                 </div>
-                <div>
-                    <textarea name="actividad" rows="3" id="activ"></textarea>
+                <div class="col-xs-12">
+                    <textarea name="actividad" class="form-control col-xs-12" rows="3" id="activ"></textarea>
                 </div>
             </div>
+            <hr>
             <div class="form-group">
-                <input type="submit" name="siguiente" value="Siguiente" class="btn btn-primary">
+                <input type="submit" name="siguiente" value="Siguiente" class="btn btn-primary col-xs-12" style="font-weight: bold; font-size: 15px">
             </div>
         </form>
     </div>

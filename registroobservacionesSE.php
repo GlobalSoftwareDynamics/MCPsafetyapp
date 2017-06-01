@@ -100,7 +100,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 <th>Código SE</th>
                 <th>Categoría</th>
                 <th>Clase</th>
-                <th>Descripción</th>
+                <th style="width: 35%">Descripción</th>
                 <th>COP</th>
                 <th></th>
             </tr>

@@ -36,7 +36,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <br>
 <section class="container">
     <div class="col-sm-6 col-sm-offset-3 text-center">
-        <img src="image/Logo.png" width="280" height="250">
+        <img src="image/Logo.png" height="250">
     </div>
 </section>
 

@@ -30,12 +30,15 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <div>
-        <h3>Contenido en desarrollo</h3>
+        <h3 class="text-center">Contenido en desarrollo</h3>
     </div>
+</section>
+<br>
+<section class="container">
     <div>
-        <form class="form-horizontal">
+        <form class="form-horizontal jumbotron col-xs-12">
             <div class="form-group">
-                <input type="submit" class="btn btn-default" name="regresar" value="Regresar" formaction="mainSupervisor.php">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-default col-xs-12" name="regresar" value="Regresar" formaction="mainSupervisor.php">
             </div>
         </form>
     </div>

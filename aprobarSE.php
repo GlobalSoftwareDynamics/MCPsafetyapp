@@ -108,7 +108,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         $result=mysqli_query($link,"SELECT * FROM participantesse WHERE dni='".$fila0['dni']."' AND idTipoParticipante = '1'");
                         while ($fila=mysqli_fetch_array($result)){
-                            $result1=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSafetyEyes ='".$fila['idSafetyEyes']."' AND estado='Pendiente'");
+                            $result1=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSafetyEyes ='".$fila['idSafetyEyes']."' AND estado='Pendiente' ORDER BY fecha DESC");
                             while ($fila1=mysqli_fetch_array($result1)){
                                 echo "
                                     <td>".$fila1['fecha']."</td>
@@ -150,7 +150,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         $result1=mysqli_query($link,"SELECT * FROM ubicacion WHERE idPlanta='".$fila0['idPlanta']."'");
                         while ($fila1=mysqli_fetch_array($result1)){
-                            $result2=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idUbicacion ='".$fila1['idUbicacion']."'  AND estado='Pendiente'");
+                            $result2=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idUbicacion ='".$fila1['idUbicacion']."'  AND estado='Pendiente' ORDER BY fecha DESC");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                     <td>".$fila2['fecha']."</td>
@@ -192,7 +192,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     ";
                     $result0=mysqli_query($link,"SELECT * FROM ubicacion WHERE descripcion LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
-                        $result1=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idUbicacion ='".$fila0['idUbicacion']."'  AND estado='Pendiente'");
+                        $result1=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idUbicacion ='".$fila0['idUbicacion']."'  AND estado='Pendiente' ORDER BY fecha DESC");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                                 <td>".$fila1['fecha']."</td>
@@ -230,7 +230,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM safetyeyes WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'  AND estado='Pendiente'");
+                    $result0=mysqli_query($link,"SELECT * FROM safetyeyes WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'  AND estado='Pendiente' ORDER BY fecha DESC");
                     while ($fila0=mysqli_fetch_array($result0)){
                         echo "
                             <td>".$fila0['fecha']."</td>
@@ -273,7 +273,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 echo "
                         <tr>
                     ";
-                $result0=mysqli_query($link,"SELECT * FROM safetyeyes WHERE estado='Pendiente'");
+                $result0=mysqli_query($link,"SELECT * FROM safetyeyes WHERE estado='Pendiente' ORDER BY fecha DESC");
                 while ($fila0=mysqli_fetch_array($result0)){
                     echo "
                             <td>".$fila0['fecha']."</td>

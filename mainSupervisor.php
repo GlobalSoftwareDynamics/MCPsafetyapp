@@ -29,19 +29,22 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 
 <section class="container">
-    <div>
-        <h3>Bienvenido a (PLACEHOLDER) Reporte</h3>
+    <div class="col-xs-12">
+        <h3 class="text-center">Bienvenido a GSD-Safe@Work Reportes</h3>
     </div>
+</section>
+<br>
+<section class="container">
     <div>
-        <form class="form-horizontal">
+        <form class="form-horizontal jumbotron col-xs-12">
             <div class="form-group">
-                <input type="submit" class="btn btn-success" name="safetyeyes" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" name="safetyeyes" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php">
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-success" name="safetyeyes" value="Registrar Ocurrencia" formaction="regocurrencia1.php">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" name="safetyeyes" value="Registrar Ocurrencia" formaction="regocurrencia1.php">
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-success" name="safetyeyes" value="Registrar CAP" formaction="regcap1.php">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" name="safetyeyes" value="Registrar CAP" formaction="regcap1.php">
             </div>
         </form>
     </div>

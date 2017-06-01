@@ -47,24 +47,25 @@ if (isset($_POST['agregar'])){
 ?>
 <section class="container">
     <div>
-        <h4>Paso 3: Observaciones</h4>
-    </div>
-    <div>
-        <form method="post" class="form-horizontal">
+        <form method="post" class="form-horizontal jumbotron col-xs-12">
+            <div class="col-xs-12">
+                <h4 class="text-left">Paso 3: Observaciones</h4>
+            </div>
+            <br>
             <div class="form-group">
-                <div>
-                    <label for="desc">Descripción:</label>
+                <div class="col-xs-12">
+                    <label for="desc" class="col-xs-12">Descripción:</label>
                 </div>
-                <div>
-                    <textarea rows="3" name="descripcion" id="desc"></textarea>
+                <div class="col-xs-12">
+                    <textarea rows="3" class="col-xs-12 form-control" name="descripcion" id="desc"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="categ">Categoría:</label>
+                <div class="col-xs-12">
+                    <label for="categ" class="col-xs-12">Categoría:</label>
                 </div>
-                <div>
-                    <select id="categ" name="categoria">
+                <div class="col-xs-12">
+                    <select id="categ" class="col-xs-12 form-control" name="categoria">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM categoria");
@@ -77,11 +78,11 @@ if (isset($_POST['agregar'])){
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="class">Clase:</label>
+                <div class="col-xs-12">
+                    <label for="class" class="col-xs-12">Clase:</label>
                 </div>
-                <div>
-                    <select id="class" name="clase">
+                <div class="col-xs-12">
+                    <select id="class" class="col-xs-12 form-control" name="clase">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM clase WHERE categoria='SE'");
@@ -94,11 +95,11 @@ if (isset($_POST['agregar'])){
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="cop">COP:</label>
+                <div class="col-xs-12">
+                    <label for="cop" class="col-xs-12">COP:</label>
                 </div>
-                <div>
-                    <select id="cop" name="cop">
+                <div class="col-xs-12">
+                    <select id="cop" class="form-control col-xs-12" name="cop">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM COPs");
@@ -110,10 +111,15 @@ if (isset($_POST['agregar'])){
                     </select>
                 </div>
             </div>
+            <hr>
             <div class="form-group">
                 <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
-                <input type="submit" formaction="regsafetyeyes3.php"name="agregar" value="Agregar" class="btn btn-success">
-                <input type="submit" formaction="regsafetyeyes4.php" name="siguiente" value="Siguiente" class="btn btn-primary">
+                <div class="col-xs-12">
+                    <input type="submit" class="btn btn-success col-xs-12" formaction="regsafetyeyes3.php"name="agregar" value="Agregar">
+                </div>
+                <div class="col-xs-12">
+                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes4.php" name="siguiente" value="Siguiente">
+                </div>
             </div>
         </form>
     </div>

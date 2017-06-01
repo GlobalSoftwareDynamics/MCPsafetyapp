@@ -59,16 +59,17 @@ if (isset($_POST['agregar'])){
 ?>
 <section class="container">
     <div>
-        <h4>Paso 2: Observadores</h4>
-    </div>
-    <div>
-        <form method="post" class="form-horizontal">
+        <form method="post" class="form-horizontal jumbotron col-xs-12">
+            <div class="col-xs-12">
+                <h4 class="text-left">Paso 2: Observadores</h4>
+            </div>
+            <br>
             <div class="form-group">
-                <div>
-                    <label for="empre">Empresa:</label>
+                <div class="col-xs-12">
+                    <label for="empre" class="col-xs-12">Empresa:</label>
                 </div>
-                <div>
-                    <select id="empre" name="empresa" onchange="gettrabajadores(this.value)">
+                <div class="col-xs-12">
+                    <select id="empre" name="empresa" class="form-control col-xs-12" onchange="gettrabajadores(this.value)">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM Empresa WHERE estado='1'");
@@ -81,19 +82,24 @@ if (isset($_POST['agregar'])){
                 </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label for="trabaja">Personal:</label>
+                <div class="col-xs-12">
+                    <label for="trabaja" class="col-xs-12">Personal:</label>
                 </div>
-                <div>
-                    <select id="trabaja" name="observador">
+                <div class="col-xs-12">
+                    <select id="trabaja" class="col-xs-12 form-control" name="observador">
                         <option>Seleccionar</option>
                     </select>
                 </div>
             </div>
+            <hr>
             <div class="form-group">
                 <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
-                <input type="submit" formaction="regsafetyeyes2.php"name="agregar" value="Agregar" class="btn btn-success">
-                <input type="submit" formaction="regsafetyeyes3.php" name="siguiente" value="Siguiente" class="btn btn-primary">
+                <div class="col-xs-12">
+                    <input type="submit" class="btn btn-success col-xs-12" formaction="regsafetyeyes2.php"name="agregar" value="Agregar">
+                </div>
+                <div class="col-xs-12">
+                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes3.php" name="siguiente" value="Siguiente">
+                </div>
             </div>
         </form>
     </div>

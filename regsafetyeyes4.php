@@ -48,30 +48,32 @@ if (isset($_POST['agregar'])){
     }
 ?>
 <section class="container">
+
 <div>
-    <h4>Paso 4: Acciones Correctivas Inmediatas</h4>
-</div>
-<div>
-    <form method="post" class="form-horizontal">
+    <form method="post" class="form-horizontal jumbotron col-xs-12">
+        <div class="col-xs-12">
+            <h4 class="text-left">Paso 4: Acciones Correctivas Inmediatas</h4>
+        </div>
+        <br>
         <?php
         $clase="AI";
         $idAI=idgen($clase);
         echo "<input type='hidden' name='idAI' value='".$idAI."' readonly>";
         ?>
         <div class="form-group">
-            <div>
-                <label for="desc">Descripción:</label>
+            <div class="col-xs-12">
+                <label for="desc" class="col-xs-12">Descripción:</label>
             </div>
-            <div>
-                <textarea rows="3" name="descripcion" id="desc"></textarea>
+            <div class="col-xs-12">
+                <textarea rows="3" class="form-control col-xs-12" name="descripcion" id="desc"></textarea>
             </div>
         </div>
         <div class="form-group">
-            <div>
-                <label for="resp">Responsable:</label>
+            <div class="col-xs-12">
+                <label for="resp" class="col-xs-12">Responsable:</label>
             </div>
-            <div>
-                <select id="resp" name="responsable">
+            <div class="col-xs-12">
+                <select id="resp" class="form-control col-xs-12" name="responsable">
                     <option>Seleccionar</option>
                     <?php
                     $result1=mysqli_query($link,"SELECT * FROM colaboradores WHERE ruc='20100192064'");
@@ -83,10 +85,15 @@ if (isset($_POST['agregar'])){
                 </select>
             </div>
         </div>
+        <hr>
         <div class="form-group">
             <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
-            <input type="submit" formaction="regsafetyeyes4.php"name="agregar" value="Agregar" class="btn btn-success">
-            <input type="submit" formaction="regsafetyeyes5.php" name="siguiente" value="Siguiente" class="btn btn-primary">
+            <div class="col-xs-12">
+                <input type="submit" class="btn btn-success col-xs-12" formaction="regsafetyeyes4.php"name="agregar" value="Agregar">
+            </div>
+            <div class="col-xs-12">
+                <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes5.php" name="siguiente" value="Siguiente">
+            </div>
         </div>
     </form>
 </div>

@@ -126,7 +126,7 @@ if (isset($_POST['completar'])){
             <tr>
                 <th>Fecha de Registro</th>
                 <th>Fuente</th>
-                <th>Descripción</th>
+                <th style="width: 40%">Descripción</th>
                 <th>Proponente</th>
                 <th>Estado</th>
                 <th></th>
