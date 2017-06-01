@@ -30,10 +30,14 @@ html {
 
 body {
     margin: 0;
-    padding-top: 130px;
+    padding-top: 110px;
     padding-bottom: 120px;
 }
-
+@media (max-width: 768px) {
+  body{
+    padding-top: 100px;
+  }
+}
 article,
 aside,
 details,
@@ -5868,5 +5872,11 @@ footer>div>span>a:hover, footer>div>span>a:focus{
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+@media (max-width: 767px){
+  .btn {
+     font-size: 15px;
+     font-weight: bold;
+  }
 }
 /*# sourceMappingURL=bootstrap.css.map */
