@@ -19,7 +19,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/Formularios.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,10 +30,13 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <div class="col-sm-6 col-sm-offset-3">
-        <h3 class="text-center">Bienvenido a (PLACEHOLDER)</h3>
+        <h3 class="text-center">Bienvenido a GSD-Safe@Work</h3>
     </div>
-    <div>
-
+</section>
+<br>
+<section class="container">
+    <div class="col-sm-6 col-sm-offset-3 text-center">
+        <img src="image/Logo.png" width="280" height="250">
     </div>
 </section>
 
