@@ -19,8 +19,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/Formularios.css" rel="stylesheet">
-    <link href="css/Tablas.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,10 +30,10 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <form class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
-        <div class="col-sm-12">
-            <h3 class="h3 h3operario">Contenido en desarrollo</h3>
+        <div class="form-group">
+            <h3 class="text-center">Contenido en desarrollo</h3>
         </div>
-        <hr>
+        <br>
         <div class="form-group">
             <input type="submit" class="btn btn-default col-sm-8 col-sm-offset-2" name="regresar" value="Regresar" formaction="mainAdmin.php">
         </div>
@@ -46,9 +44,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 

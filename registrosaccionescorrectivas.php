@@ -19,8 +19,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/Formularios.css" rel="stylesheet">
-    <link href="css/Tablas.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -95,10 +93,10 @@ if (isset($_POST['actualizarestado'])){
         <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
-                    <label for="columna" class="formlabels col-sm-12">Columna:</label>
+                    <label for="columna" class="col-sm-12">Columna:</label>
                 </div>
                 <div class="col-sm-8">
-                    <select id="columna" class="ddselect-12 form-control" name="columna" onchange="getinputbusqueda(this.value)">
+                    <select id="columna" class="col-sm-12 form-control" name="columna" onchange="getinputbusqueda(this.value)">
                         <option>Seleccionar</option>
                         <option value="fecharegistro">Fecha</option>
                         <option value="fuente">Fuente</option>
@@ -110,15 +108,19 @@ if (isset($_POST['actualizarestado'])){
             </div>
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
-                    <label for="detalle" class="formlabels col-sm-12">Busqueda:</label>
+                    <label for="detalle" class="col-sm-12">Busqueda:</label>
                 </div>
                 <div id="busqueda" class="col-sm-8">
-                    <input type="text" class="textinput-12 col-sm-12" name="busqueda" id="detalle">
+                    <input type="text" class="form-control col-sm-12" name="busqueda" id="detalle">
                 </div>
             </div>
             <div class="form-group col-sm-4">
-                <input type="submit" class="btn btn-success col-sm-5 col-sm-offset-1 boton" name="filtrar" value="Filtrar Tabla">
-                <input type="submit" class="btn btn-default col-sm-5 col-sm-offset-1 boton" name="eliminarFiltro" value="Quitar Filtro">
+                <div class="col-sm-6">
+                    <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="filtrar" value="Filtrar Tabla">
+                </div>
+                <div class="col-sm-6">
+                    <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" name="eliminarFiltro" value="Quitar Filtro">
+                </div>
             </div>
         </form>
     </div>
@@ -133,7 +135,7 @@ if (isset($_POST['actualizarestado'])){
 <hr>
 <section class="container-fluid">
     <div>
-        <table class="table table-hover">
+        <table class="table table-hover text-center">
             <thead>
             <tr>
                 <th>Fecha de Registro</th>
@@ -204,7 +206,7 @@ if (isset($_POST['actualizarestado'])){
                                 }
                             }
                             echo "
-                                <td class='descripcion'>".$fila['descripcion']."</td>
+                                <td class='text-left'>".$fila['descripcion']."</td>
                                 <td>".$fila0['nombre']." ".$fila0['apellidos']."</td>
                                 <td>".$fila['fechaPlan']."</td>
                                 <td>".$fila['fechaReal']."</td>
@@ -276,7 +278,7 @@ if (isset($_POST['actualizarestado'])){
                             }
                         }
                         echo "
-                            <td class='descripcion'>".$fila0['descripcion']."</td>
+                            <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
                         $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
                         while ($fila3=mysqli_fetch_array($result3)){
@@ -355,7 +357,7 @@ if (isset($_POST['actualizarestado'])){
                         }
                     }
                     echo "
-                            <td class='descripcion'>".$fila0['descripcion']."</td>
+                            <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
                     $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
                     while ($fila3=mysqli_fetch_array($result3)){
@@ -391,9 +393,9 @@ if (isset($_POST['actualizarestado'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 

@@ -1,0 +1,20 @@
+/* Encabezado formatos */
+
+.titulo {
+    text-align: center;
+    font-weight: bold;
+}
+
+.desctitulo {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+bordes {
+    border: 1px solid black;
+}
+

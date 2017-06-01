@@ -19,8 +19,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/Formularios.css" rel="stylesheet">
-    <link href="css/Tablas.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -51,10 +49,10 @@ mysqli_query($link,"SET NAMES 'utf8'");
         <form action="aprobarSE.php" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
-                    <label for="columna" class="formlabels col-sm-12">Columna:</label>
+                    <label for="columna" class="col-sm-12">Columna:</label>
                 </div>
                 <div class="col-sm-8">
-                    <select id="columna" name="columna" class="ddselect-12 form-control" onchange="getinputbusqueda(this.value)">
+                    <select id="columna" name="columna" class="col-sm-12 form-control" onchange="getinputbusqueda(this.value)">
                         <option>Seleccionar</option>
                         <option value="fecha">Fecha</option>
                         <option value="anoFiscal">Año Fiscal</option>
@@ -67,22 +65,26 @@ mysqli_query($link,"SET NAMES 'utf8'");
             </div>
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
-                    <label for="detalle" class="formlabels col-sm-12">Busqueda:</label>
+                    <label for="detalle" class="col-sm-12">Busqueda:</label>
                 </div>
                 <div id="busqueda" class="col-sm-8">
-                    <input type="text" name="busqueda" id="detalle" class="textinput-12 form-control">
+                    <input type="text" name="busqueda" id="detalle" class="col-sm-12 form-control">
                 </div>
             </div>
             <div class="form-group col-sm-4">
-                <input type="submit" class="btn btn-success col-sm-5 col-sm-offset-1 boton" name="filtrar" value="Filtrar Tabla">
-                <input type="submit" class="btn btn-default col-sm-5 col-sm-offset-1 boton" name="eliminarFiltro" value="Quitar Filtro">
+                <div class="col-sm-6">
+                    <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="filtrar" value="Filtrar Tabla">
+                </div>
+                <div class="col-sm-6">
+                    <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" name="eliminarFiltro" value="Quitar Filtro">
+                </div>
             </div>
         </form>
 </section>
 <hr>
 <section class="container-fluid">
     <div>
-        <table class="table table-hover">
+        <table class="table table-hover text-center">
             <thead>
             <tr>
                 <th>Fecha</th>
@@ -110,7 +112,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             while ($fila1=mysqli_fetch_array($result1)){
                                 echo "
                                     <td>".$fila1['fecha']."</td>
-                                    <td>".$fila1['anoFiscal']."</td>
                                     <td>".$fila1['idSafetyEyes']."</td>
                                 ";
                                 $result2=mysqli_query($link,"SELECT * FROM ubicacion WHERE idUbicacion='".$fila1['idUbicacion']."'");
@@ -125,7 +126,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                                 echo "
                                     <td>".$fila1['nropersobservadas']."</td>
                                     <td>".$fila1['nropersretroalimentadas']."</td>
-                                    <td class='descripcion'>".$fila1['actividadObservada']."</td>
+                                    <td class='text-left'>".$fila1['actividadObservada']."</td>
                                 ";
                                 echo "
                                     <td>
@@ -153,7 +154,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                     <td>".$fila2['fecha']."</td>
-                                    <td>".$fila2['anoFiscal']."</td>
                                     <td>".$fila2['idSafetyEyes']."</td>
                                     <td>".$fila1['descripcion']."</td>
                                 ";
@@ -169,7 +169,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                                 echo "
                                     <td>".$fila2['nropersobservadas']."</td>
                                     <td>".$fila2['nropersretroalimentadas']."</td>
-                                    <td class='descripcion'>".$fila2['actividadObservada']."</td>
+                                    <td class='text-left'>".$fila2['actividadObservada']."</td>
                                 ";
                                 echo "
                                     <td>
@@ -196,7 +196,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                                 <td>".$fila1['fecha']."</td>
-                                <td>".$fila1['anoFiscal']."</td>
                                 <td>".$fila1['idSafetyEyes']."</td>
                                 <td>".$fila0['descripcion']."</td>
                             ";
@@ -212,7 +211,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             echo "
                                 <td>".$fila1['nropersobservadas']."</td>
                                 <td>".$fila1['nropersretroalimentadas']."</td>
-                                <td class='descripcion'>".$fila1['actividadObservada']."</td>
+                                <td class='text-left'>".$fila1['actividadObservada']."</td>
                             ";
                             echo "
                                 <td>
@@ -235,7 +234,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         echo "
                             <td>".$fila0['fecha']."</td>
-                            <td>".$fila0['anoFiscal']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
                         ";
                         $result1=mysqli_query($link,"SELECT * FROM ubicacion WHERE idUbicacion='".$fila0['idUbicacion']."'");
@@ -256,7 +254,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                         echo "
                             <td>".$fila0['nropersobservadas']."</td>
                             <td>".$fila0['nropersretroalimentadas']."</td>
-                            <td class='descripcion'>".$fila0['actividadObservada']."</td>
+                            <td class='text-left'>".$fila0['actividadObservada']."</td>
                         ";
                         echo "
                             <td>
@@ -279,7 +277,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 while ($fila0=mysqli_fetch_array($result0)){
                     echo "
                             <td>".$fila0['fecha']."</td>
-                            <td>".$fila0['anoFiscal']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
                         ";
                     $result1=mysqli_query($link,"SELECT * FROM ubicacion WHERE idUbicacion='".$fila0['idUbicacion']."'");
@@ -300,7 +297,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                             <td>".$fila0['nropersobservadas']."</td>
                             <td>".$fila0['nropersretroalimentadas']."</td>
-                            <td class='descripcion'>".$fila0['actividadObservada']."</td>
+                            <td class='text-left'>".$fila0['actividadObservada']."</td>
                         ";
                     echo "
                             <td>
@@ -324,9 +321,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 

@@ -44,17 +44,17 @@ if (isset($_POST['aprobar'])){
 }
 ?>
 <section class="container-fluid">
-    <div class="col-sm-4">
-        <div>
-            <img style="margin-top:25px" width="auto" height="70" src="image/Moly-Cop.jpg"/>
+    <div class="col-sm-8">
+        <div class="col-sm-12">
+            <img width="auto" height="100" src="image/Logo.png"/>
         </div>
     </div>
-    <div class="col-sm-8">
-        <div>
-            <h4>Formulario Safety Eyes</h4>
+    <div class="col-sm-4">
+        <div class="col-sm-12">
+            <h3 class="titulo text-center">Formulario Safety Eyes</h3>
         </div>
-        <div>
-            <h4><?php echo $_POST['idSE'];?></h4>
+        <div class="col-sm-12">
+            <h4 class="desctitulo text-center"><?php echo $_POST['idSE'];?></h4>
         </div>
     </div>
 </section>
@@ -63,7 +63,7 @@ if (isset($_POST['aprobar'])){
 $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSafetyEyes='".$_POST['idSE']."'");
 while ($fila=mysqli_fetch_array($result)) {
     ?>
-    <section class="container">
+    <section class="container bordes">
         <div>
             <h4>1. Datos de Ubicación</h4>
         </div>
@@ -493,9 +493,9 @@ while ($fila=mysqli_fetch_array($result)) {
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 

@@ -39,7 +39,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <div>
-        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal">
+        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
             <?php
             date_default_timezone_set('America/Lima');
             $fecha = date('d/m/Y');
@@ -48,24 +48,29 @@ mysqli_query($link,"SET NAMES 'utf8'");
             ";
             ?>
             <div class="form-group">
-                <div>
-                    <label for="idacc">Código Acción Correctiva:</label>
+                <div class="col-sm-12">
+                    <label for="idacc" class="col-sm-12">Código Acción Correctiva:</label>
                 </div>
-                <div>
-                    <input type="text" value="<?php echo $_POST['idAC'];?>" id="idacc" name="idAC" readonly>
-                </div>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label for="datepicker">Fecha de Cumplimiento:</label>
-                </div>
-                <div>
-                    <input type="text" id="datepicker" name="fechaReal">
+                <div class="col-sm-12">
+                    <input type="text" class="col-sm-12 form-control" value="<?php echo $_POST['idAC'];?>" id="idacc" name="idAC" readonly>
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" formaction="registrosaccionescorrectivas.php" name="regresar" value="Regresar" class="btn btn-default">
-                <input type="submit" name="actualizarestado" value="Registrar Cumplimiento" class="btn btn-primary">
+                <div class="col-sm-12">
+                    <label for="datepicker" class="col-sm-12">Fecha de Cumplimiento:</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" class="col-sm-12 form-control" id="datepicker" name="fechaReal">
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <input type="submit" formaction="registrosaccionescorrectivas.php" name="regresar" value="Regresar" class="btn btn-default col-sm-10 col-sm-offset-1">
+                </div>
+                <div class="col-sm-6">
+                    <input type="submit" name="actualizarestado" value="Registrar Cumplimiento" class="btn btn-success col-sm-10 col-sm-offset-1">
+                </div>
             </div>
         </form>
     </div>
@@ -74,9 +79,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 

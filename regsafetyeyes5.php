@@ -38,7 +38,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <body>
 <header>
     <?php
-    include_once('mainnavbarSupervisor.php');
+    include_once('navbarmainSupervisor.php');
     ?>
 </header>
 <?php
@@ -119,6 +119,9 @@ if (isset($_POST['agregar'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 

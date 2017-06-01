@@ -63,7 +63,7 @@ if(isset($_POST['provieneSEconidMS'])){
 ?>
     <section class="container">
         <div>
-            <form action="registromejorasseguridad.php" method="post" class="form-horizontal">
+            <form action="registromejorasseguridad.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <?php
                 $fecha = date('d/m/Y');
                 $clase="MS";
@@ -75,27 +75,27 @@ if(isset($_POST['provieneSEconidMS'])){
                 ?>
                 <input type="hidden" name="tiporeporte" value="SE" readonly>
                 <div class="form-group">
-                    <div>
-                        <label for="tiporep">Reporte Seleccionado:</label>
+                    <div class="col-sm-12">
+                        <label for="tiporep" class="col-sm-12">Reporte Seleccionado:</label>
                     </div>
-                    <div>
-                        <input type="text" id="tiporep" name="idreporte" value="<?php echo $_POST['idSE']?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div>
-                        <label for="desc">Descripción:</label>
-                    </div>
-                    <div>
-                        <textarea rows="3" name="descripcionms" id="desc"></textarea>
+                    <div class="col-sm-12">
+                        <input type="text" class="col-sm-12 form-control" id="tiporep" name="idreporte" value="<?php echo $_POST['idSE']?>">
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="puesto">Puesto del Responsable:</label>
+                    <div class="col-sm-12">
+                        <label for="desc" class="col-sm-12">Descripción:</label>
                     </div>
-                    <div>
-                        <select id="puesto" name="puesto" onchange="getcolaboradores(this.value)">
+                    <div class="col-sm-12">
+                        <textarea rows="3" class="col-sm-12 form-control" name="descripcionms" id="desc"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <label for="puesto" class="col-sm-12">Puesto del Responsable:</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <select id="puesto" class="col-sm-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
                             $result=mysqli_query($link,"SELECT * FROM puesto WHERE estado='1'");
@@ -109,17 +109,24 @@ if(isset($_POST['provieneSEconidMS'])){
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="resp">Responsable:</label>
+                    <div class="col-sm-12">
+                        <label for="resp" class="col-sm-12">Responsable:</label>
                     </div>
-                    <div>
-                        <select id="resp" name="responsable">
+                    <div class="col-sm-12">
+                        <select id="resp" class="col-sm-12 form-control" name="responsable">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
+                <br>
                 <div class="form-group">
-                    <input type="submit" name="crearmsconid" value="Registrar Mejora de Seguridad">
+                    <input type="hidden" name="idSE" value="<?php echo $_POST['idSE']?>">
+                    <div class="col-sm-6">
+                        <input type="submit" formaction="detallesafetyeyes.php" class="btn btn-default col-sm-10 col-sm-offset-1" name="regresar" value="Regresar">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearmsconid" value="Registrar">
+                    </div>
                 </div>
             </form>
         </div>
@@ -131,7 +138,7 @@ if(isset($_POST['provieneSEconidMS'])){
     ?>
     <section class="container">
         <div>
-            <form action="registromejorasseguridad.php" method="post" class="form-horizontal">
+            <form action="registromejorasseguridad.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <?php
                     $fecha = date('d/m/Y');
@@ -142,11 +149,11 @@ if(isset($_POST['provieneSEconidMS'])){
                         <input type='hidden' value='".$idMS."' name='idmejora'>
                     ";
                     ?>
-                    <div>
-                        <label for="tipo">Seleccione Proveniencia de la Mejora de Seguridad:</label>
+                    <div class="col-sm-12">
+                        <label for="tipo" class="col-sm-12">Seleccione Proveniencia de la Mejora de Seguridad:</label>
                     </div>
-                    <div>
-                        <select id="tipo" name="provienede" >
+                    <div class="col-sm-12">
+                        <select id="tipo" class="col-sm-12 form-control" name="provienede" >
                             <option>Seleccionar</option>
                             <option value="SE">Safety Eyes</option>
                             <option value="OC">Reporte de Ocurrencia</option>
@@ -154,37 +161,37 @@ if(isset($_POST['provieneSEconidMS'])){
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="datepicker">Seleccione Fecha de Registro:</label>
+                    <div class="col-sm-12">
+                        <label for="datepicker" class="col-sm-12">Seleccione Fecha de Registro:</label>
                     </div>
-                    <div id="date">
-                        <input type="text" value="dd/mm/yyyy" name="fechareporte" id="datepicker" onchange="gettiporeporte()">
+                    <div id="date" class="col-sm-12">
+                        <input type="text" class="col-sm-12 form-control" placeholder="dd/mm/yyyy" name="fechareporte" id="datepicker" onchange="gettiporeporte()">
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="tiporep">Seleccione Reporte:</label>
+                    <div class="col-sm-12">
+                        <label for="tiporep" class="col-sm-12">Seleccione Reporte:</label>
                     </div>
-                    <div>
-                        <select id="tiporep" name="idreporte">
+                    <div class="col-sm-12">
+                        <select id="tiporep" class="col-sm-12 form-control" name="idreporte">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="desc">Descripción:</label>
+                    <div class="col-sm-12">
+                        <label for="desc" class="col-sm-12">Descripción:</label>
                     </div>
-                    <div>
-                        <textarea rows="3" name="descripcionms" id="desc"></textarea>
+                    <div class="col-sm-12">
+                        <textarea rows="3" class="col-sm-12 form-control" name="descripcionms" id="desc"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="puesto">Puesto del Responsable:</label>
+                    <div class="col-sm-12">
+                        <label for="puesto" class="col-sm-12">Puesto del Responsable:</label>
                     </div>
-                    <div>
-                        <select id="puesto" name="puesto" onchange="getcolaboradores(this.value)">
+                    <div class="col-sm-12">
+                        <select id="puesto" class="col-sm-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
                             $result=mysqli_query($link,"SELECT * FROM puesto WHERE estado='1'");
@@ -198,17 +205,23 @@ if(isset($_POST['provieneSEconidMS'])){
                     </div>
                 </div>
                 <div class="form-group">
-                    <div>
-                        <label for="resp">Responsable:</label>
+                    <div class="col-sm-12">
+                        <label for="resp" class="col-sm-12">Responsable:</label>
                     </div>
-                    <div>
-                        <select id="resp" name="responsable">
+                    <div class="col-sm-12">
+                        <select id="resp" class="col-sm-12 form-control" name="responsable">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
+                <br>
                 <div class="form-group">
-                    <input type="submit" name="crearms" value="Registrar Mejora de Seguridad">
+                    <div class="col-sm-6">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="registromejorasseguridad.php" name="regresar" value="Regresar">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearms" value="Registrar">
+                    </div>
                 </div>
             </form>
         </div>
@@ -216,19 +229,14 @@ if(isset($_POST['provieneSEconidMS'])){
 <?php
 }
 ?>
-<hr>
-<section class="container">
-    <form action="registromejorasseguridad.php">
-        <input type="submit" name="regresar" value="Regresar">
-    </form>
-</section>
+
 
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 

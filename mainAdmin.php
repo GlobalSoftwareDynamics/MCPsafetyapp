@@ -31,7 +31,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <div class="col-sm-6 col-sm-offset-3">
-        <h3 class="h3 h3operario">Bienvenido a (PLACEHOLDER)</h3>
+        <h3 class="text-center">Bienvenido a (PLACEHOLDER)</h3>
     </div>
     <div>
 
@@ -42,9 +42,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 

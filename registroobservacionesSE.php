@@ -47,13 +47,13 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <div>
-        <form action="registroobservacionesSE.php" method="post" class="form-horizontal">
-            <div class="form-group">
-                <div>
-                    <label for="columna">Conlumna:</label>
+        <form action="registroobservacionesSE.php" method="post" class="form-horizontal jumbotron col-sm-12">
+            <div class="form-group col-sm-4">
+                <div class="col-sm-4">
+                    <label for="columna" class="col-sm-12">Conlumna:</label>
                 </div>
-                <div>
-                    <select id="columna" name="columna" onchange="getinputbusqueda(this.value)">
+                <div class="col-sm-8">
+                    <select id="columna" class="col-sm-12 form-control" name="columna" onchange="getinputbusqueda(this.value)">
                         <option>Seleccionar</option>
                         <option value="idObservacionesSE">Código Obs.</option>
                         <option value="idSafetyEyes">Código SE</option>
@@ -64,32 +64,36 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <div>
-                    <label for="detalle">Busqueda:</label>
+            <div class="form-group col-sm-4">
+                <div class="col-sm-4">
+                    <label for="detalle" class="col-sm-12">Busqueda:</label>
                 </div>
-                <div id="busqueda">
-                    <input type="text" name="busqueda" id="detalle">
+                <div id="busqueda" class="col-sm-8">
+                    <input type="text" class="form-control col-sm-12" name="busqueda" id="detalle">
                 </div>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-success" name="filtrar" value="Filtrar Tabla">
-                <input type="submit" class="btn btn-success" name="eliminarFiltro" value="Quitar Filtro">
+            <div class="form-group col-sm-4">
+                <div class="col-sm-6">
+                    <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="filtrar" value="Filtrar Tabla">
+                </div>
+                <div class="col-sm-6">
+                    <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" name="eliminarFiltro" value="Quitar Filtro">
+                </div>
             </div>
         </form>
     </div>
 </section>
 <section class="container">
-    <form method="post" class="form-horizontal">
+    <form method="post" class="form-horizontal col-sm-12">
         <div class="form-group">
-            <input type="submit" formaction="registrosSE.php" value="Regresar" class="btn btn-default">
+            <input type="submit" class="btn btn-default col-sm-4 col-sm-offset-4" formaction="registrosSE.php" value="Regresar" class="btn btn-default">
         </div>
     </form>
 </section>
 <hr>
-<section class="container">
+<section class="container-fluid">
     <div>
-        <table class="table table-hover">
+        <table class="table table-hover text-center">
             <thead>
             <tr>
                 <th>Código Obs.</th>
@@ -127,7 +131,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             ";
                         }
                         echo "
-                            <td>".$fila0['descripcion']."</td>
+                            <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
                         $result2=mysqli_query($link,"SELECT * FROM COPs WHERE idCOPs='".$fila0['idCOPs']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
@@ -139,7 +143,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idSafetyEyes']."' name='idSE'>
-                                    <input type='submit' class='btn btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
+                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
                                 </form>
                             </td>
                         ";
@@ -170,7 +174,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             ";
                         }
                         echo "
-                            <td>".$fila0['descripcion']."</td>
+                            <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
                         $result2=mysqli_query($link,"SELECT * FROM COPs WHERE idCOPs='".$fila0['idCOPs']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
@@ -182,7 +186,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idSafetyEyes']."' name='idSE'>
-                                    <input type='submit' class='btn btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
+                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
                                 </form>
                             </td>
                         ";
@@ -214,7 +218,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             ";
                     }
                     echo "
-                            <td>".$fila0['descripcion']."</td>
+                            <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
                     $result2=mysqli_query($link,"SELECT * FROM COPs WHERE idCOPs='".$fila0['idCOPs']."'");
                     while ($fila2=mysqli_fetch_array($result2)){
@@ -226,7 +230,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idSafetyEyes']."' name='idSE'>
-                                    <input type='submit' class='btn btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
+                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
                                 </form>
                             </td>
                         ";
@@ -244,9 +248,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
-    <div class="container col-sm-6 col-sm-offset-3 text-center">
-        <span>© 2017 by Global Software Dynamics.<br>Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
-    </div>
+    <?php
+    include_once('footercio.php');
+    ?>
 </footer>
 </body>
 
