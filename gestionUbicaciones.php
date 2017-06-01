@@ -22,8 +22,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-	<nav>
-	</nav>
+	<?php
+	include_once('navbarMainAdminSistema.php');
+	?>
 </header>
 
 <?php
@@ -81,41 +82,59 @@ if(isset($_POST['modify'])){
 	</table>
 </section>
 
-<section>
-	<div class="col-sm-6 col-sm-offset-3">
-		<form method="post" action="#">
-			<div class="form-group">
-				<table class="table">
-					<thead>
-					<tr>
-						<th class="text-center"><label for="planta">Planta</label></th>
-						<th class="text-center"><label for="descripcionUbicacion">Nueva Ubicación</label></th>
-						<th></th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<?php
-						$query = mysqli_query($link,"SELECT * FROM Planta WHERE estado = 1 AND idPlanta = '".$_POST['planta']."'");
-						while($row = mysqli_fetch_array($query)){
-							echo "<td class='col-sm-4'><input type='text' class='form-control' value='".$row['descripcion']."' readonly></td>";
-						}
-						?>
-						<td><input type="text" class="form-control" name="descripcionUbicacion" id="descripcionUbicacion"></td>
-						<td><input type="submit" class="btn btn-success" name="submit" value="Agregar"></td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-			<input type="hidden" name="planta" value="<?php echo $_POST['planta']?>">
-		</form>
-	</div>
+<section class="container">
+    <form method="post" action="gestionPlantas.php">
+        <input type="submit" class="btn btn-default col-sm-2 col-sm-offset-3" value="Regresar">
+        <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-2" data-toggle="modal" data-target="#myModal">Agregar Planta</button>
+    </form>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Puesto" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Nueva Planta</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="#">
+                        <div class="form-group">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center"><label for="planta">Planta</label></th>
+                                    <th class="text-center"><label for="descripcionUbicacion">Nueva Ubicación</label></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+					                <?php
+					                $query = mysqli_query($link,"SELECT * FROM Planta WHERE estado = 1 AND idPlanta = '".$_POST['planta']."'");
+					                while($row = mysqli_fetch_array($query)){
+						                echo "<td class='col-sm-4'><input type='text' class='form-control' value='".$row['descripcion']."' readonly></td>";
+					                }
+					                ?>
+                                    <td><input type="text" class="form-control" name="descripcionUbicacion" id="descripcionUbicacion"></td>
+                                    <td><input type="submit" class="btn btn-success" name="submit" value="Agregar"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <input type="hidden" name="planta" value="<?php echo $_POST['planta']?>">
+                        <div class="form-group">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-4">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-1">
+                            <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="container">
 	<div class="col-sm-12 col-sm-offset-5">
 		<form method="post" action="gestionPlantas.php">
-			<input type="submit" class="btn btn-danger" value="Regresar">
+
 		</form>
 	</div>
 </section>

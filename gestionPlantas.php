@@ -22,8 +22,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-	<nav>
-	</nav>
+	<?php
+	include_once('navbarMainAdminSistema.php');
+	?>
 </header>
 
 <?php
@@ -82,26 +83,39 @@ if(isset($_POST['delete'])){
 </section>
 
 <section class="container">
-	<div class="col-sm-6 col-sm-offset-3">
-		<form method="post" action="#">
-			<div class="form-group">
-				<table class="table">
-					<thead>
-					<tr>
-						<th class="text-center"><label for="descripcionPlanta">Nueva Planta</label></th>
-						<th></th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td><input type="text" class="form-control" name="descripcionPlanta" id="descripcionPlanta"></td>
-						<td><input type="submit" class="btn btn-success" name="submit" value="Agregar"></td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-		</form>
-	</div>
+    <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Planta</button>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Puesto" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Nueva Planta</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="#">
+                        <div class="form-group">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center"><label for="descripcionPlanta">Nombre de Planta</label></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="descripcionPlanta" id="descripcionPlanta"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-1">
+                            <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

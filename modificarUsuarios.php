@@ -18,12 +18,14 @@ mysqli_query($link,"SET NAMES 'utf8'");
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>             PLACEHOLDER         </title>
 	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/Formularios.css" rel="stylesheet">
 </head>
 
 <body>
 <header>
-	<nav>
-	</nav>
+	<?php
+	include_once('navbarMainAdminSistema.php');
+	?>
 </header>
 
 <section class="container">
@@ -73,7 +75,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 		</div>
 		<div class="form-group">
 			<input type="hidden" value="<?php echo $_POST['dni']?>" name="dni">
-			<input type="submit" class="btn btn-danger col-sm-offset-3" value="Regresar">
+			<input type="submit" class="btn btn-default col-sm-offset-3" value="Regresar">
 			<input type="submit" class="btn btn-success col-sm-offset-2" value="Aceptar" name="modify">
 		</div>
 	</form>

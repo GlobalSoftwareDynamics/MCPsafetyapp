@@ -22,8 +22,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-	<nav>
-	</nav>
+	<?php
+	include_once('navbarMainAdminRRHH.php');
+	?>
 </header>
 
 <section class="container">
@@ -32,21 +33,31 @@ mysqli_query($link,"SET NAMES 'utf8'");
 	</div>
 	<hr>
 	<div class="col-sm-12">
-		<form method="post" action="#">
-			<div class="form-group col-sm-3">
-				<select class="form-control" name="filtro">
-					<option>Seleccione el tipo de filtro</option>
-					<option value="ruc">Por RUC:</option>
-					<option value="razonSocial">Por Razón Social:</option>
-					<option value="idTipoEmpresa">Por Tipo de Contratista:</option>
-				</select>
+		<form method="post" action="#" class="form-horizontal jumbotron col-sm-12">
+			<div class="form-group col-sm-4">
+                <div class="col-sm-4">
+                    <label for="filtro">Columna:</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control" name="filtro" id="filtro">
+                        <option>Seleccione el tipo de filtro</option>
+                        <option value="ruc">Por RUC:</option>
+                        <option value="razonSocial">Por Razón Social:</option>
+                        <option value="idTipoEmpresa">Por Tipo de Contratista:</option>
+                    </select>
+                </div>
 			</div>
-			<div class="form-group col-sm-5">
-				<input type="text" class="form-control" name="valorFiltro">
+			<div class="form-group col-sm-4">
+                <div class="col-sm-4">
+                    <label for="valorFiltro">Búsqueda:</label>
+                </div>
+                <div class="col-sm-8">
+				    <input type="text" class="form-control" name="valorFiltro">
+                </div>
 			</div>
 			<div class="form-group col-sm-4">
 				<input type="submit" name="submitFiltro" class="btn btn-success" value="Filtrar">
-				<input type="submit" name="reset" class="btn btn-danger col-sm-offset-1" value="Remover Filtros">
+				<input type="submit" name="reset" class="btn btn-default col-sm-offset-1" value="Remover Filtros">
 			</div>
 		</form>
 	</div>
@@ -186,41 +197,78 @@ if(isset($_POST['submitFiltro'])){
 <hr>
 
 <section class="container">
+    <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Contratista</button>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Champion" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Nuevo Contratista</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="#">
+                        <div class="form-group">
+                            <div>
+                                <label for="ruc">RUC</label>
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" name="ruc">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="razonSocial">Razón Social</label>
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" name="razonSocial">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="siglas">Siglas</label>
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" name="siglas">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="tipoEmpresa">Tipo de Empresa</label>
+                            </div>
+                            <div>
+                                <select class="form-control" name="tipoEmpresa">
+                                                <option>Seleccionar</option>
+                                                <?php
+                                                $query = mysqli_query($link, "SELECT * FROM TipoEmpresa");
+                                                while($row = mysqli_fetch_array($query)){
+                                                    echo "<option value='".$row['idTipoEmpresa']."'>".$row['descripcion']."</option>";
+                                                }
+                                                ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="alcance">Descripción del Alcance</label>
+                            </div>
+                            <div>
+                                <textarea name="alcance" rows="5" cols="50" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-2">
+                            <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
 	<div>
-		<form method="post" action="#">
-			<div class="form-group">
-				<table class="table">
-					<thead>
-					<tr>
-						<th class="text-center"><label for="ruc">RUC</label></th>
-						<th class="text-center"><label for="razonSocial">Razón Social</label></th>
-						<th class="text-center"><label for="siglas">Siglas</label></th>
-						<th class="text-center"><label for="tipoEmpresa">Tipo de Empresa</label></th>
-						<th class="text-center"><label for="alcance">Descripción del Alcance</label></th>
-						<th></th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td><input type="text" class="form-control" name="ruc"></td>
-						<td><input type="text" class="form-control" name="razonSocial"></td>
-						<td><input type="text" class="form-control" name="siglas"></td>
-						<td><select class="form-control" name="tipoEmpresa">
-								<option>Seleccionar</option>
-								<?php
-								$query = mysqli_query($link, "SELECT * FROM TipoEmpresa");
-								while($row = mysqli_fetch_array($query)){
-									echo "<option value='".$row['idTipoEmpresa']."'>".$row['descripcion']."</option>";
-								}
-								?>
-							</select></td>
-						<td><textarea name="alcance" rows="5" cols="50" class="form-control"></textarea></td>
-						<td><input type="submit" class="btn btn-success" name="submit" value="Agregar"></td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-		</form>
+
 	</div>
 </section>
 

@@ -22,8 +22,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-	<nav>
-	</nav>
+	<?php
+	include_once('navbarMainAdminSistema.php');
+	?>
 </header>
 
 <?php
@@ -88,36 +89,53 @@ if(isset($_POST['delete'])){
 <hr>
 
 <section class="container">
-	<div class="col-sm-6 col-sm-offset-3">
-		<form method="post" action="#">
-			<div class="form-group">
-				<table class="table">
-					<thead>
-					<tr>
-						<th class="text-center"><label for="puesto">Nuevo Puesto</label></th>
-						<th class="text-center"><label for="tipoUsuario">Tipo de Usuario por Defecto</label></th>
-						<th></th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td><input type="text" class="form-control" name="puesto" id="puesto"></td>
-						<td><select class="form-control" id="tipoUsuario" name="tipoUsuario">
-								<option>Seleccionar</option>
-								<?php
-								$query = mysqli_query($link,"SELECT * FROM TipoUsuario ORDER BY descripcion");
-								while($row = mysqli_fetch_array($query)){
-									echo "<option value='".$row['idTipoUsuario']."'>".$row['descripcion']."</option>";
-								}
-								?>
-							</select></td>
-						<td><input type="submit" class="btn btn-success" name="submit" value="Agregar"></td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-		</form>
-	</div>
+    <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Puesto</button>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Puesto" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Nuevo Puesto</h5>
+                </div>
+                <div class="modal-body">
+                        <form method="post" action="#">
+                            <div class="form-group">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center"><label for="puesto">Nuevo Puesto</label></th>
+                                        <th class="text-center"><label for="tipoUsuario">Tipo de Usuario por Defecto</label></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-control" name="puesto" id="puesto"></td>
+                                        <td><select class="form-control" id="tipoUsuario" name="tipoUsuario">
+                                                <option>Seleccionar</option>
+								                <?php
+								                $query = mysqli_query($link,"SELECT * FROM TipoUsuario ORDER BY descripcion");
+								                while($row = mysqli_fetch_array($query)){
+									                echo "<option value='".$row['idTipoUsuario']."'>".$row['descripcion']."</option>";
+								                }
+								                ?>
+                                            </select></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="form-group">
+                                    <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
+                                    <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-1">
+                                    <br>
+                                </div>
+                            </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

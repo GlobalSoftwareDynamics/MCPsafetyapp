@@ -18,6 +18,8 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/Formularios.css" rel="stylesheet">
+    <link href="css/Tablas.css" rel="stylesheet">
     <script>
         function getUsuario(val) {
             $.ajax({
@@ -54,31 +56,46 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-    <nav>
-    </nav>
+	<?php
+	include_once('navbarMainAdminSistema.php');
+	?>
 </header>
 
 <section class="container">
     <div>
         <h3>Interfaz de Gestión de Usuarios</h3>
     </div>
-    <hr>
-    <div class="col-sm-12">
-    <form method="post" action="#">
-        <div class="form-group col-sm-3">
-            <select class="form-control" name="filtro">
-                <option>Seleccione el tipo de filtro</option>
-                <option value="dni">Por DNI:</option>
-                <option value="usuario">Por Usuario:</option>
-                <option value="idTipoUsuario">Por ID Tipo de Usuario:</option>
-            </select>
-        </div>
-        <div class="form-group col-sm-5">
-            <input type="text" class="form-control" name="valorFiltro">
+</section>
+
+<br>
+
+<section class="container">
+    <div>
+    <form method="post" action="#" class="form-horizontal jumbotron col-sm-12">
+        <div class="form-group col-sm-4">
+            <div class="col-sm-4">
+                <label for="filtro" class="formlabels col-sm-12">Columna:</label>
+            </div>
+            <div class="col-sm-8">
+                <select class="form-control ddselect-12" name="filtro" id="filtro">
+                    <option>Seleccione el tipo de filtro</option>
+                    <option value="dni">Por DNI:</option>
+                    <option value="usuario">Por Usuario:</option>
+                    <option value="idTipoUsuario">Por ID Tipo de Usuario:</option>
+                </select>
+            </div>
         </div>
         <div class="form-group col-sm-4">
-            <input type="submit" name="submitFiltro" class="btn btn-success" value="Filtrar">
-            <input type="submit" name="reset" class="btn btn-danger col-sm-offset-1" value="Remover Filtros">
+            <div class="col-sm-4">
+                <label for="valorFiltro" class="formlabels col-sm-12">Búsqueda:</label>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" class="textinput-12 form-control col-sm-12" name="valorFiltro" id="valorFiltro">
+            </div>
+        </div>
+        <div class="form-group col-sm-4">
+            <input type="submit" name="submitFiltro" class="btn btn-success col-sm-5 col-sm-offset-1 boton" value="Filtrar">
+            <input type="submit" name="reset" class="btn btn-default col-sm-5 col-sm-offset-1 boton" value="Quitar Filtros">
         </div>
     </form>
     </div>
@@ -193,40 +210,65 @@ if(isset($_POST['submitFiltro'])){
 <hr>
 
 <section class="container">
+    <button type="button" class="btn btn-primary col-sm-offset-5" data-toggle="modal" data-target="#myModal">
+        Agregar Contratista
+    </button>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Nuevo Usuario</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="#">
+                        <div class="form-group">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center"><label for="dni">DNI</label></th>
+                                    <th class="text-center"><label for="Usuario">Usuario</label></th>
+                                    <th class="text-center"><label for="Contraseña">Contraseña</label></th>
+                                    <th class="text-center"><label for="Tipo">Tipo de Usuario</label></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><select name="dni" id="dni" class="form-control" onchange="getUsuario(this.value);getPassword(this.value);getTipoUsuario(this.value)">
+                                            <option selected="selected">Seleccionar</option>
+						                    <?php
+						                    $query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE usuario IS NULL ORDER BY apellidos");
+						                    while($row = mysqli_fetch_array($query)){
+							                    echo "<option value='".$row['dni']."'>".$row['apellidos']." ".$row['nombre']." - ".$row['dni']."</option>";
+						                    }
+						                    ?>
+                                        </select></td>
+                                    <td><div id="usuario"><input type="text" class="form-control" name="Usuario" id="Usuario" value="Valor Automático" readonly></div></td>
+                                    <td><div id="password"><input type="text" class="form-control" name="Contraseña" id="Contraseña" value="Valor Automático" readonly></div></td>
+                                    <td><select class="form-control" id="tipoUsuario" name="tipoUsuario">
+                                            <option>Seleccionar</option>
+                                        </select></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-2">
+                            <br>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="container">
     <div>
         <form method="post" action="#">
-            <div class="form-group">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="text-center"><label for="dni">DNI</label></th>
-                            <th class="text-center"><label for="Usuario">Usuario</label></th>
-                            <th class="text-center"><label for="Contraseña">Contraseña</label></th>
-                            <th class="text-center"><label for="Tipo">Tipo de Usuario</label></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><select name="dni" id="dni" class="form-control" onchange="getUsuario(this.value);getPassword(this.value);getTipoUsuario(this.value)">
-                                    <option selected="selected">Seleccionar</option>
-                                    <?php
-                                    $query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE usuario IS NULL ORDER BY apellidos");
-                                    while($row = mysqli_fetch_array($query)){
-                                        echo "<option value='".$row['dni']."'>".$row['apellidos']." ".$row['nombre']." - ".$row['dni']."</option>";
-                                    }
-                                    ?>
-                                </select></td>
-                                <td><div id="usuario"><input type="text" class="form-control" name="Usuario" id="Usuario" value="Valor Automático" readonly></div></td>
-                                <td><div id="password"><input type="text" class="form-control" name="Contraseña" id="Contraseña" value="Valor Automático" readonly></div></td>
-                            <td><select class="form-control" id="tipoUsuario" name="tipoUsuario">
-                                    <option>Seleccionar</option>
-                                </select></td>
-                            <td><input type="submit" class="btn btn-success" name="submit" value="Agregar"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
         </form>
     </div>
 </section>

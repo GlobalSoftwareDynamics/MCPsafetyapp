@@ -23,16 +23,14 @@ mysqli_query($link,"SET NAMES 'utf8'");*/
 
     <body>
         <header>
-            <nav>
-            </nav>
+	        <?php
+	        include_once('navbarMainAdminSistema.php');
+	        ?>
         </header>
 
-        <section>
+        <section class="container">
             <div>
-                <h3>Bienvenido a la interfaz de administración del sistema</h3>
-            </div>
-            <hr>
-            <div>
+                <h3 class="text-center">Bienvenido a la interfaz de administración del sistema</h3>
             </div>
         </section>
 

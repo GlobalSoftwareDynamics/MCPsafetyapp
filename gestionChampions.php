@@ -22,8 +22,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-	<nav>
-	</nav>
+	<?php
+	include_once('navbarMainAdminRRHH.php');
+	?>
 </header>
 
 <?php
@@ -88,43 +89,56 @@ if(isset($_POST['delete'])){
 <hr>
 
 <section class="container">
-    <div>
-        <form method="post" action="#">
-            <div class="form-group">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th class="text-center"><label for="dni">DNI</label></th>
-                        <th class="text-center"><label for="idCOPs">Usuario</label></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><select name="dni" id="dni" class="form-control">
-                                <option selected="selected">Seleccionar</option>
-								<?php
-								$query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE estado = 1 ORDER BY apellidos");
-								while($row = mysqli_fetch_array($query)){
-									echo "<option value='".$row['dni']."'>".$row['apellidos']." ".$row['nombre']." - ".$row['dni']."</option>";
-								}
-								?>
-                            </select></td>
-                        <td><select name="idCOPs" id="idCOPs" class="form-control">
-                                <option selected="selected">Seleccionar</option>
-			                    <?php
-			                    $query = mysqli_query($link,"SELECT * FROM COPs ORDER BY descripcion");
-			                    while($row = mysqli_fetch_array($query)){
-				                    echo "<option value='".$row['idCOPs']."'>".$row['siglas']." - ".$row['descripcion']."</option>";
-			                    }
-			                    ?>
-                            </select></td>
-                        <td><input type="submit" class="btn btn-success" name="submit" value="Agregar"></td>
-                    </tr>
-                    </tbody>
-                </table>
+    <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Champion</button>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Champion" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Nuevo Champion</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="#">
+                        <div class="form-group">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center"><label for="dni">DNI</label></th>
+                                    <th class="text-center"><label for="idCOPs">Usuario</label></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><select name="dni" id="dni" class="form-control">
+                                            <option selected="selected">Seleccionar</option>
+							                <?php
+							                $query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE estado = 1 ORDER BY apellidos");
+							                while($row = mysqli_fetch_array($query)){
+								                echo "<option value='".$row['dni']."'>".$row['apellidos']." ".$row['nombre']." - ".$row['dni']."</option>";
+							                }
+							                ?>
+                                        </select></td>
+                                    <td><select name="idCOPs" id="idCOPs" class="form-control">
+                                            <option selected="selected">Seleccionar</option>
+							                <?php
+							                $query = mysqli_query($link,"SELECT * FROM COPs ORDER BY descripcion");
+							                while($row = mysqli_fetch_array($query)){
+								                echo "<option value='".$row['idCOPs']."'>".$row['siglas']." - ".$row['descripcion']."</option>";
+							                }
+							                ?>
+                                        </select></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-1">
+                            <br>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 </section>
 

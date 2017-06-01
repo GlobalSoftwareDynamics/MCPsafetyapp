@@ -22,8 +22,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-	<nav>
-	</nav>
+	<?php
+	include_once('navbarMainAdminSistema.php');
+	?>
 </header>
 
 <section class="container">
@@ -44,7 +45,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 		</div>
 		<div class="form-group">
 			<input type="hidden" value="<?php echo $_POST['planta']?>" name="planta">
-			<input type="submit" class="btn btn-danger col-sm-offset-3" value="Regresar">
+			<input type="submit" class="btn btn-default col-sm-offset-3" value="Regresar">
 			<input type="submit" class="btn btn-success col-sm-offset-2" value="Aceptar" name="modify">
 		</div>
 	</form>

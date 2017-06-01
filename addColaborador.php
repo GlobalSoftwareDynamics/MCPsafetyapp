@@ -22,8 +22,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-	<nav>
-	</nav>
+	<?php
+	include_once('navbarMainAdminRRHH.php');
+	?>
 </header>
 
 <section class="container">
@@ -117,7 +118,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 		</div>
 		<div class="form-group">
 			<div>
-				<input type="submit" value="Regresar" class="btn btn-danger col-sm-offset-3">
+				<input type="submit" value="Regresar" class="btn btn-default col-sm-offset-3">
 				<input type="submit" name="submit" value="Agregar" class="btn btn-success col-sm-offset-2">
 			</div>
 		</div>

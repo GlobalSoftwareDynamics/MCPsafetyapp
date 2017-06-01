@@ -22,8 +22,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <body>
 <header>
-    <nav>
-    </nav>
+	<?php
+	include_once('navbarMainAdminRRHH.php');
+	?>
 </header>
 
 <section class="container">
@@ -49,7 +50,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
             </div>
             <div class="form-group col-sm-4">
                 <input type="submit" name="submitFiltro" class="btn btn-success" value="Filtrar">
-                <input type="submit" name="reset" class="btn btn-danger col-sm-offset-1" value="Remover Filtros">
+                <input type="submit" name="reset" class="btn btn-default col-sm-offset-1" value="Remover Filtros">
             </div>
         </form>
     </div>
@@ -67,7 +68,13 @@ if(isset($_POST['submit'])){
 }
 
 if(isset($_POST['modify'])){
-	$modify = mysqli_query($link, "");
+	$modify = mysqli_query($link, "UPDATE Colaboradores SET nombre = '".$_POST['nombres']."', apellidos =  '".$_POST['apellidos']."', email = '".$_POST['email']."', ruc = '".$_POST['empresa']."', idPuesto = '".$_POST['puesto']."' WHERE dni = '".$_POST['dni']."'");
+	$modify = mysqli_query($link, "SET foreign_key_checks = 0");
+	$modify = mysqli_query($link, "UPDATE Telefono SET numero = '".$_POST['telefono']."' WHERE numero = '".$_POST['telefonoant']."'");
+	$modify = mysqli_query($link, "UPDATE Telefono SET numero = '".$_POST['celular']."' WHERE numero = '".$_POST['celularant']."'");
+	$modify = mysqli_query($link, "UPDATE TelefonoColaboradores SET numero = '".$_POST['telefono']."' WHERE dni = '".$_POST['dni']."' AND numero = '".$_POST['telefonoant']."'");
+	$modify = mysqli_query($link, "UPDATE TelefonoColaboradores SET numero = '".$_POST['celular']."' WHERE dni = '".$_POST['dni']."' AND numero = '".$_POST['celularant']."'");
+	$modify = mysqli_query($link, "SET foreign_key_checks = 1");
 }
 
 if(isset($_POST['delete'])){
@@ -263,7 +270,7 @@ if(isset($_POST['submitFiltro'])){
     <div>
         <form method="post" action="#">
             <div class="form-group col-sm-offset-3">
-                <input type="submit" class="btn btn-success" value="Agregar Colaborador" formaction="addColaborador.php">
+                <input type="submit" class="btn btn-success col-sm-offset-1" value="Agregar Colaborador" formaction="addColaborador.php">
                 <input type="submit" class="btn btn-primary col-sm-offset-2" value="Gestionar Champions" formaction="gestionChampions.php">
             </div>
         </form>
