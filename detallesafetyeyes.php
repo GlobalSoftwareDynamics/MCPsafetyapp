@@ -25,7 +25,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 <?php
 if (isset($_POST['aprobar'])){
-    $nombre =$_SESSION['login'];
+    $nombre ="Supervisor";/*$_SESSION['login'];*/
     $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE usuario ='".$nombre."'");
     while ($fila=mysqli_fetch_array($result)){
         $persona=$fila['dni'];

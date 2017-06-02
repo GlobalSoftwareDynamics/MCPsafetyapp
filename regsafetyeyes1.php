@@ -48,7 +48,7 @@ require ('funcionesApp.php');
             </div>
             <br>
             <?php
-            $nombre =$_SESSION['login'];
+            $nombre ="Supervisor";/*$_SESSION['login'];*/
             $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE usuario ='".$nombre."'");
             while ($fila=mysqli_fetch_array($result)){
                 $persona=$fila['dni'];
