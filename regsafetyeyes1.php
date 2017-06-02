@@ -3,22 +3,17 @@
 <html lang="es">
 
 <?php
-/*require('funciones.php');
-require('funcionesApp.php');
 session_start();
-if(isset($_SESSION['login'])){
-*/
-require('funcionesApp.php');
-$link = mysqli_connect("localhost", "root", "", "seapp");
-
+$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-
+require ('funcionesApp.php');
+/*if(isset($_SESSION['login'])){*/
 ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>             PLACEHOLDER         </title>
+    <title>GSD Safe@Work</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <script>
         function getubicaciones(val) {
@@ -53,15 +48,14 @@ mysqli_query($link,"SET NAMES 'utf8'");
             </div>
             <br>
             <?php
-            $persona="46815198";
-            /*$nombre =$_SESSION['nombre'];
-            $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE nombre ='".$nombre."'");
+            $nombre =$_SESSION['login'];
+            $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE usuario ='".$nombre."'");
             while ($fila=mysqli_fetch_array($result)){
                 $persona=$fila['dni'];
                 echo "
                     <input type='text' name='lider' value='".$persona."' readonly>
                 ";
-            }*/
+            }
             date_default_timezone_set('America/Lima');
             $hora = date('H:i:s');
             $fecha = date('d/m/Y');
@@ -129,7 +123,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </footer>
 </body>
 
-<?php
+    <?php
 /*}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
 }*/

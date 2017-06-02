@@ -3,21 +3,16 @@
 <html lang="es">
 
 <?php
-/*require('funciones.php');
-require('funcionesApp.php');
 session_start();
-if(isset($_SESSION['login'])){
-*/
-$link = mysqli_connect("localhost", "root", "", "seapp");
-
+$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-
+/*if(isset($_SESSION['login'])){*/
 ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>             PLACEHOLDER         </title>
+    <title>GSD Safe@Work</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/Formatos.css" rel="stylesheet">
 </head>
@@ -30,12 +25,11 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 <?php
 if (isset($_POST['aprobar'])){
-    $persona='46815198';
-    /*$nombre =$_SESSION['nombre'];
-            $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE nombre ='".$nombre."'");
-            while ($fila=mysqli_fetch_array($result)){
-                $persona=$fila['dni'];
-            }*/
+    $nombre =$_SESSION['login'];
+    $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE usuario ='".$nombre."'");
+    while ($fila=mysqli_fetch_array($result)){
+        $persona=$fila['dni'];
+    }
     $aprobar="UPDATE safetyeyes SET estado = 'Aprobado' WHERE idSafetyEyes = '".$_POST['idSE']."'";
     $query=mysqli_query($link,$aprobar);
     $revisor="INSERT INTO participantesse(dni, idSafetyEyes, idTipoParticipante) VALUES (

@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "seapp");
+$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
 /*require('funciones.php');
 require('funcionesApp.php')*/

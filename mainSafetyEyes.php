@@ -3,21 +3,16 @@
 <html lang="es">
 
 <?php
-/*require('funciones.php');
-require('funcionesApp.php');
 session_start();
-if(isset($_SESSION['login'])){
-*/
-$link = mysqli_connect("localhost", "root", "", "seapp");
-
+$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-
+/*if(isset($_SESSION['login'])){*/
 ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>             PLACEHOLDER         </title>
+    <title>GSD Safe@Work</title>
     <link href="css/bootstrap.css" rel="stylesheet">
 </head>
 
@@ -53,7 +48,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </footer>
 </body>
 
-<?php
+    <?php
 /*}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
 }*/
