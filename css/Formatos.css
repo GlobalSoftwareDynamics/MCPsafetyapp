@@ -14,7 +14,24 @@ h3 {
     font-weight: bold;
 }
 
-bordes {
+.bordes {
     border: 1px solid black;
+    border-collapse: collapse;
+}
+.bordeslados {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.middlealign {
+    vertical-align: middle;
+}
+section.container.bordes {
+    background-color: #e7e7e7;
+}
+div.container.descripcion {
+    border: 1px solid black;
+}
+ul.margenizquierdo {
+    margin-left: 140px;
 }
 
