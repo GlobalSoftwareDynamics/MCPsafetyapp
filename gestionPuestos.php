@@ -43,7 +43,7 @@ if(isset($_POST['delete'])){
 
 <section class="container">
 	<div>
-		<h3>Interfaz de Gestión de Puestos</h3>
+		<h3>Registro de Puestos/Posiciones de Trabajo</h3>
 	</div>
 	<hr>
 	<div>
@@ -89,7 +89,7 @@ if(isset($_POST['delete'])){
 <hr>
 
 <section class="container">
-    <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Puesto</button>
+    <button type="button" class="btn btn-success col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Puesto</button>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Puesto" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -142,6 +142,9 @@ if(isset($_POST['delete'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+	<?php
+	include_once('footercio.php');
+	?>
 </footer>
 </body>
 

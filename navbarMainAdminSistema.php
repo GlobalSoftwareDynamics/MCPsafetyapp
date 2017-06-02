@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-            <a href="mainSistemas.php"><img src="image/Logo.png" height="50"></a>
+            <a href="mainSistemas.php" class="navbar-brand"><img src="image/Logo.png" height="60"></a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">

@@ -3,15 +3,11 @@
 <html lang="es">
 
 <?php
-/*require('funciones.php');
 session_start();
-$link = mysqli_connect("localhost", "root", "", "")
+$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 
 if(isset($_SESSION['login'])){
-
-
-mysqli_query($link,"SET NAMES 'utf8'");*/
-
+mysqli_query($link,"SET NAMES 'utf8'");
     ?>
     <head>
         <meta charset="UTF-8">
@@ -38,13 +34,16 @@ mysqli_query($link,"SET NAMES 'utf8'");*/
         <script src="js/bootstrap.min.js"></script>
 
         <footer class="panel-footer navbar-fixed-bottom">
+	        <?php
+	        include_once('footercio.php');
+	        ?>
         </footer>
     </body>
 
     <?php
-/*}else{
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

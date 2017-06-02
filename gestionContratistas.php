@@ -29,10 +29,6 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
 	<div>
-		<h3>Interfaz de Gestión de Contratistas</h3>
-	</div>
-	<hr>
-	<div class="col-sm-12">
 		<form method="post" action="#" class="form-horizontal jumbotron col-sm-12">
 			<div class="form-group col-sm-4">
                 <div class="col-sm-4">
@@ -40,7 +36,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 </div>
                 <div class="col-sm-8">
                     <select class="form-control" name="filtro" id="filtro">
-                        <option>Seleccione el tipo de filtro</option>
+                        <option>Seleccionar</option>
                         <option value="ruc">Por RUC:</option>
                         <option value="razonSocial">Por Razón Social:</option>
                         <option value="idTipoEmpresa">Por Tipo de Contratista:</option>
@@ -56,8 +52,12 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 </div>
 			</div>
 			<div class="form-group col-sm-4">
-				<input type="submit" name="submitFiltro" class="btn btn-success" value="Filtrar">
-				<input type="submit" name="reset" class="btn btn-default col-sm-offset-1" value="Remover Filtros">
+                <div class="col-sm-6">
+				    <input type="submit" name="submitFiltro" class="btn btn-success col-sm-12" value="Filtrar">
+                </div>
+                <div class="col-sm-6">
+				    <input type="submit" name="reset" class="btn btn-default col-sm-12" value="Remover Filtros">
+                </div>
 			</div>
 		</form>
 	</div>
@@ -96,6 +96,10 @@ if(isset($_POST['submitFiltro'])){
     }
 	echo '
     <section class="container" id="filtered">
+    <div>
+		<h3>Registro de Contratistas</h3>
+	</div>
+	<hr>
     <div>
         <table class="table">
             <thead>
@@ -145,6 +149,10 @@ if(isset($_POST['submitFiltro'])){
 }else{
 	echo '
     <section class="container">
+    <div>
+		<h3>Registro de Contratistas</h3>
+	</div>
+	<hr>
     <div>
         <table class="table">
             <thead>
@@ -197,7 +205,7 @@ if(isset($_POST['submitFiltro'])){
 <hr>
 
 <section class="container">
-    <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Contratista</button>
+    <button type="button" class="btn btn-success col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Contratista</button>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Champion" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -276,6 +284,9 @@ if(isset($_POST['submitFiltro'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+	<?php
+	include_once('footercio.php');
+	?>
 </footer>
 </body>
 

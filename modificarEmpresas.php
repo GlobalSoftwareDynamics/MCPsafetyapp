@@ -91,7 +91,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 			</div>
 		</div>
 		<div class="form-group">
-			<input type="submit" class="btn btn-danger col-sm-offset-3" value="Regresar">
+			<input type="submit" class="btn btn-default col-sm-offset-3" value="Regresar">
 			<input type="submit" class="btn btn-success col-sm-offset-2" value="Aceptar" name="modify">
 		</div>
 	</form>
@@ -101,6 +101,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+	<?php
+	include_once('footercio.php');
+	?>
 </footer>
 </body>
 

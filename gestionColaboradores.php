@@ -29,28 +29,38 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <div>
-        <h3>Interfaz de Gestión de Colaboradores</h3>
-    </div>
-    <hr>
-    <div class="col-sm-12">
-        <form method="post" action="#">
-            <div class="form-group col-sm-3">
-                <select class="form-control" name="filtro">
-                    <option>Seleccione el tipo de filtro</option>
-                    <option value="dni">Por DNI:</option>
-                    <option value="apellidos">Por Apellidos:</option>
-                    <option value="idPuesto">Por Puesto:</option>
-                    <option value="idTipoUsuario">Por ID Tipo de Usuario:</option>
-                    <option value="ruc">Por Empresa:</option>
-                    <option value="estado">Por Estado:</option>
-                </select>
-            </div>
-            <div class="form-group col-sm-5">
-                <input type="text" class="form-control" name="valorFiltro">
+        <form method="post" action="#" class="jumbotron form-horizontal col-sm-12">
+            <div class="form-group col-sm-4">
+                <div class="col-sm-4">
+                    <label for="filtro">Columna:</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control" name="filtro" id="filtro">
+                        <option>Seleccionar</option>
+                        <option value="dni">Por DNI:</option>
+                        <option value="apellidos">Por Apellidos:</option>
+                        <option value="idPuesto">Por Puesto:</option>
+                        <option value="idTipoUsuario">Por ID Tipo de Usuario:</option>
+                        <option value="ruc">Por Empresa:</option>
+                        <option value="estado">Por Estado:</option>
+                    </select>
+                </div>
             </div>
             <div class="form-group col-sm-4">
-                <input type="submit" name="submitFiltro" class="btn btn-success" value="Filtrar">
-                <input type="submit" name="reset" class="btn btn-default col-sm-offset-1" value="Remover Filtros">
+                <div class="col-sm-4">
+                    <label for="valorFiltro">Búsqueda:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="valorFiltro" id="valorFiltro">
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <div class="col-sm-6">
+                    <input type="submit" name="submitFiltro" class="btn btn-success col-sm-12" value="Filtrar">
+                </div>
+                <div class="col-sm-6">
+                    <input type="submit" name="reset" class="btn btn-default col-sm-12" value="Remover Filtros">
+                </div>
             </div>
         </form>
     </div>
@@ -114,6 +124,14 @@ if(isset($_POST['submitFiltro'])){
 	echo '
     <section class="container">
     <div>
+        <h3>Registro de Colaboradores</h3>
+    </div>
+    </section>
+    
+    <hr>
+    
+    <section class="container">
+    <div>
         <table class="table">
             <thead>
                 <tr>
@@ -156,7 +174,7 @@ if(isset($_POST['submitFiltro'])){
         }
 		$query2 = mysqli_query($link, "SELECT * FROM Empresa WHERE ruc = '" . $row['ruc'] . "'");
 		while ($row2 = mysqli_fetch_array($query2)) {
-			echo "<td class=\"text-center\">" . $row2['razonSocial'] . "</td>";
+			echo "<td class=\"text-center\">" . $row2['siglas'] . "</td>";
 		}
 		echo "<td class=\"text-center\">" . $row['email'] . "</td>";
 		$query2 = mysqli_query($link, "SELECT * FROM TelefonoColaboradores WHERE dni = '" . $row['dni'] . "' AND estado = 1");
@@ -184,6 +202,14 @@ if(isset($_POST['submitFiltro'])){
 	}
 }else{
 	echo '
+    <section class="container">
+    <div>
+        <h3>Registro de Colaboradores</h3>
+    </div>
+    </section>
+    
+    <hr>
+    
     <section class="container">
     <div>
         <table class="table">
@@ -228,7 +254,7 @@ if(isset($_POST['submitFiltro'])){
         }
 		$query2 = mysqli_query($link,"SELECT * FROM Empresa WHERE ruc = '".$row['ruc']."'");
 		while($row2 = mysqli_fetch_array($query2)){
-			echo "<td class=\"text-center\">".$row2['razonSocial']."</td>";
+			echo "<td class=\"text-center\">".$row2['siglas']."</td>";
 		}
 		echo "<td class=\"text-center\">".$row['email']."</td>";
 		$query2 = mysqli_query($link,"SELECT * FROM TelefonoColaboradores WHERE dni = '".$row['dni']."' AND estado = 1");
@@ -281,6 +307,9 @@ if(isset($_POST['submitFiltro'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+	<?php
+	include_once('footercio.php');
+	?>
 </footer>
 </body>
 

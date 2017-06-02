@@ -42,6 +42,10 @@ if(isset($_POST['modify'])){
 ?>
 
 <section class="container">
+    <div>
+        <h3>Gestión de Ubicaciones</h3>
+    </div>
+    <hr>
 	<table class="table">
 		<thead>
 		<tr>
@@ -85,7 +89,7 @@ if(isset($_POST['modify'])){
 <section class="container">
     <form method="post" action="gestionPlantas.php">
         <input type="submit" class="btn btn-default col-sm-2 col-sm-offset-3" value="Regresar">
-        <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-2" data-toggle="modal" data-target="#myModal">Agregar Planta</button>
+        <button type="button" class="btn btn-success col-sm-2 col-sm-offset-2" data-toggle="modal" data-target="#myModal">Agregar Planta</button>
     </form>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Puesto" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -143,6 +147,9 @@ if(isset($_POST['modify'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+	<?php
+	include_once('footercio.php');
+	?>
 </footer>
 </body>
 

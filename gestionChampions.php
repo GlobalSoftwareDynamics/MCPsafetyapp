@@ -89,9 +89,9 @@ if(isset($_POST['delete'])){
 <hr>
 
 <section class="container">
-    <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Champion</button>
+    <button type="button" class="btn btn-success col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Champion</button>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Champion" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="titulo">Nuevo Champion</h5>
@@ -132,7 +132,7 @@ if(isset($_POST['delete'])){
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
-                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-1">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-2">
                             <br>
                         </div>
                     </form>
@@ -146,6 +146,9 @@ if(isset($_POST['delete'])){
 <script src="js/bootstrap.min.js"></script>
 
 <footer class="panel-footer navbar-fixed-bottom">
+	<?php
+	include_once('footercio.php');
+	?>
 </footer>
 </body>
 

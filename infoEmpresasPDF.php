@@ -1,85 +1,65 @@
-<!DOCTYPE html>
-
-<html lang="es">
-
 <?php
-/*require('funciones.php');
-session_start();
-if(isset($_SESSION['login'])){
-*/
+//session_start();
+
+require_once __DIR__ . '/lib/mpdf/mpdf.php';
+
 $link = mysqli_connect("localhost", "root", "", "seapp");
 
 mysqli_query($link,"SET NAMES 'utf8'");
 
-?>
-<head>
+//if(isset($_SESSION['login'])){
+
+$html='
+        <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>             PLACEHOLDER         </title>
 	<link href="css/bootstrap.css" rel="stylesheet">
-    <script>
-        function getCiudad(val) {
-            $.ajax({
-                type: "POST",
-                url: "getAjax.php",
-                data:'infoEmpresas_pais='+val,
-                success: function(data){
-                    $("#ciudad").html(data);
-                }
-            });
-        }
-    </script>
-</head>
-
-<body>
-<header>
-	<?php
-	include_once('navbarMainAdminRRHH.php');
-	?>
-</header>
-
-<?php
+    </head>
+    
+    <body>
+    ';
 if(isset($_POST['submit'])){
 	$insert = mysqli_query($link, "INSERT INTO Telefono VALUES ('".$_POST['telefono']."')");
-    $insert = mysqli_query($link, "INSERT INTO Sede(ruc,idCiudad,telefono,direccion,estado) VALUES ('".$_POST['ruc']."','".$_POST['ciudad']."','".$_POST['telefono']."','".$_POST['direccion']."',1)");
+	$insert = mysqli_query($link, "INSERT INTO Sede(ruc,idCiudad,telefono,direccion,estado) VALUES ('".$_POST['ruc']."','".$_POST['ciudad']."','".$_POST['telefono']."','".$_POST['direccion']."',1)");
 }
 
 if(isset($_POST['delete'])){
-    $delete = mysqli_query($link, "UPDATE Sede SET estado = 0 WHERE idSede = '".$_POST['idSede']."'");
+	$delete = mysqli_query($link, "UPDATE Sede SET estado = 0 WHERE idSede = '".$_POST['idSede']."'");
 }
 
 if(isset($_POST['modify'])){
 	$modify = mysqli_query($link, "SET foreign_key_checks = 0");
-    $modify = mysqli_query($link, "UPDATE Telefono SET numero = '".$_POST['telefono']."' WHERE numero = '".$_POST['telefonoant']."'");
-    $modify = mysqli_query($link, "UPDATE Sede SET direccion = '".$_POST['direccion']."', telefono = '".$_POST['telefono']."' WHERE idSede = '".$_POST['idSede']."'");
+	$modify = mysqli_query($link, "UPDATE Telefono SET numero = '".$_POST['telefono']."' WHERE numero = '".$_POST['telefonoant']."'");
+	$modify = mysqli_query($link, "UPDATE Sede SET direccion = '".$_POST['direccion']."', telefono = '".$_POST['telefono']."' WHERE idSede = '".$_POST['idSede']."'");
 	$modify = mysqli_query($link, "SET foreign_key_checks = 1");
 }
-?>
 
-<section class="container">
-    <div class="col-sm-4">
-        <div class="col-sm-8">
-            <h3 class="text-center">Ficha de Empresa</h3>
-        </div>
-        <div class="col-sm-12">
-	        <?php
-	        $query = mysqli_query($link,"SELECT * FROM Empresa WHERE ruc = '".$_POST['ruc']."'");
-	        while($row = mysqli_fetch_array($query)){
-		        $razonSocial = $row['razonSocial'];
-		        $siglas = $row['siglas'];
-		        $alcance = $row['detalleAlcance'];
-		        $estado = $row['estado'];
-		        $query2 = mysqli_query($link, "SELECT * FROM TipoEmpresa WHERE idTipoEmpresa = '".$row['idTipoEmpresa']."'");
-		        while($row2 = mysqli_fetch_array($query2)){
-			        $tipoEmpresa = $row2['descripcion'];
-		        }
-	        }
-	        ?>
-            <div>
-                <p>&nbsp;RUC: <?php echo $_POST['ruc'];?></p>
-                <p>&nbsp;Razón Social: <?php echo $razonSocial;?></p>
-                <p>&nbsp;Siglas: <?php echo $siglas;?></p>
+$html.='
+        <section class="container">
+            <div class="col-sm-4">
+                <div class="col-sm-8">
+                    <h3 class="text-center">Ficha de Empresa</h3>
+                </div>
+                <div class="col-sm-12">
+        ';
+$query = mysqli_query($link,"SELECT * FROM Empresa WHERE ruc = '".$_POST['ruc']."'");
+while($row = mysqli_fetch_array($query)){
+	$razonSocial = $row['razonSocial'];
+	$siglas = $row['siglas'];
+	$alcance = $row['detalleAlcance'];
+	$estado = $row['estado'];
+	$query2 = mysqli_query($link, "SELECT * FROM TipoEmpresa WHERE idTipoEmpresa = '".$row['idTipoEmpresa']."'");
+	while($row2 = mysqli_fetch_array($query2)){
+		$tipoEmpresa = $row2['descripcion'];
+	}
+}
+$html.='
+        <div>
+                <p>&nbsp;RUC: '.$_POST['ruc'].'</p>
+                <p>&nbsp;Razón Social: '. $razonSocial.'</p>
+                <p>&nbsp;Siglas: '.$siglas.'</p>
             </div>
         </div>
     </div>
@@ -114,14 +94,15 @@ if(isset($_POST['modify'])){
 				</tr>
 				</thead>
 				<tbody>
-				<?php
-				$query = mysqli_query($link, "SELECT * FROM Sede WHERE ruc = '".$_POST['ruc']."' AND estado = 1");
-				while($row = mysqli_fetch_array($query)){
-				    $query2 = mysqli_query($link,"SELECT * FROM Ciudad WHERE idCiudad = '".$row['idCiudad']."'");
-				    while($row2 = mysqli_fetch_array($query2)){
-				        $ciudad = $row2['nombre'];
-                    }
-					echo "
+        ';
+
+$query = mysqli_query($link, "SELECT * FROM Sede WHERE ruc = '".$_POST['ruc']."' AND estado = 1");
+while($row = mysqli_fetch_array($query)){
+	$query2 = mysqli_query($link,"SELECT * FROM Ciudad WHERE idCiudad = '".$row['idCiudad']."'");
+	while($row2 = mysqli_fetch_array($query2)){
+		$ciudad = $row2['nombre'];
+	}
+	$html.="
                         <tr>
 						<td class=\"text-center\">".$ciudad."</td>
 						<td class=\"text-center\">".$row['direccion']."</td>
@@ -138,16 +119,17 @@ if(isset($_POST['modify'])){
 						</form>
 						</tr>
 						";
-				}
-				?>
-				</tbody>
+}
+
+$html.='
+</tbody>
 			</table>
 		</div>
 	</div>
 </section>
 
 <section class="container">
-    <button type="button" class="btn btn-success col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Sede</button>
+    <button type="button" class="btn btn-primary col-sm-2 col-sm-offset-5" data-toggle="modal" data-target="#myModal">Agregar Sede</button>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nueva Sede" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -171,18 +153,18 @@ if(isset($_POST['modify'])){
                                 <tr>
                                     <td><select id="pais" name="ciudad" onchange="getCiudad(this.value);" class="form-control">
                                             <option>Seleccionar</option>
-							                <?php
-							                $query = mysqli_query($link,"SELECT * FROM Pais");
-							                while($row = mysqli_fetch_array($query)){
-								                echo "<option value='".$row['idPais']."'>".$row['nombre']."</option>";
-							                }
-							                ?>
-                                        </select></td>
+';
+$query = mysqli_query($link,"SELECT * FROM Pais");
+while($row = mysqli_fetch_array($query)){
+	$html.= "<option value='".$row['idPais']."'>".$row['nombre']."</option>";
+}
+$html.='
+</select></td>
                                     <td><select id="ciudad" name="ciudad" class="form-control">
                                         </select></td>
                                     <td><input type="text" class="form-control" name="direccion" id="direccion"></td>
                                     <td><input type="text" class="form-control" name="telefono" id="telefono"></td>
-                                    <input type="hidden" name="ruc" value="<?php echo $_POST['ruc']?>">
+                                    <input type="hidden" name="ruc" value="'.$_POST['ruc'].'">
                                 </tr>
                                 </tbody>
                             </table>
@@ -223,65 +205,84 @@ if(isset($_POST['modify'])){
 	                </tr>
 	            </thead>
 	            <tbody>
-				    <?php
-					$query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE ruc = '".$_POST['ruc']."'");
-					while($row = mysqli_fetch_array($query)) {
-						$aux = 0;
-						$aux2 = 0;
-						echo "<tr>";
-						echo "<td class=\"text-center\">" . $row['dni'] . "</td>";
-						echo "<td class=\"text-center\">" . $row['nombre'] . "</td>";
-						echo "<td class=\"text-center\">" . $row['apellidos'] . "</td>";
-						$query2 = mysqli_query($link, "SELECT * FROM Puesto WHERE idPuesto = '" . $row['idPuesto'] . "'");
-						while ($row2 = mysqli_fetch_array($query2)) {
-							echo "<td class=\"text-center\">" . $row2['descripcion'] . "</td>";
-						}
-						$query2 = mysqli_query($link, "SELECT * FROM TipoUsuario WHERE idTipoUsuario = '" . $row['idTipoUsuario'] . "'");
-						while ($row2 = mysqli_fetch_array($query2)) {
-							echo "<td class=\"text-center\">" . $row2['descripcion'] . "</td>";
-							$aux2 = 1;
-						}
-						if ($aux2 == 0) {
-							echo "<td class='text-center'>-</td>";
-						}
-						echo "<td class=\"text-center\">" . $row['email'] . "</td>";
-						$query2 = mysqli_query($link, "SELECT * FROM TelefonoColaboradores WHERE dni = '" . $row['dni'] . "' AND estado = 1");
-						while ($row2 = mysqli_fetch_array($query2)) {
-							if ($aux < 2) {
-								echo "<td class=\"text-center\">" . $row2['numero'] . "</td>";
-								$aux++;
-							}
-						}
-						echo "</tr>";
-					}
-				    ?>
-	            </tbody>
+';
+$query = mysqli_query($link,"SELECT * FROM Colaboradores WHERE ruc = '".$_POST['ruc']."'");
+while($row = mysqli_fetch_array($query)) {
+	$aux = 0;
+	$aux2 = 0;
+	$html.= "<tr>";
+	$html.= "<td class=\"text-center\">" . $row['dni'] . "</td>";
+	$html.= "<td class=\"text-center\">" . $row['nombre'] . "</td>";
+	$html.= "<td class=\"text-center\">" . $row['apellidos'] . "</td>";
+	$query2 = mysqli_query($link, "SELECT * FROM Puesto WHERE idPuesto = '" . $row['idPuesto'] . "'");
+	while ($row2 = mysqli_fetch_array($query2)) {
+		$html.= "<td class=\"text-center\">" . $row2['descripcion'] . "</td>";
+	}
+	$query2 = mysqli_query($link, "SELECT * FROM TipoUsuario WHERE idTipoUsuario = '" . $row['idTipoUsuario'] . "'");
+	while ($row2 = mysqli_fetch_array($query2)) {
+		$html.= "<td class=\"text-center\">" . $row2['descripcion'] . "</td>";
+		$aux2 = 1;
+	}
+	if ($aux2 == 0) {
+		$html.= "<td class='text-center'>-</td>";
+	}
+	$html.= "<td class=\"text-center\">" . $row['email'] . "</td>";
+	$query2 = mysqli_query($link, "SELECT * FROM TelefonoColaboradores WHERE dni = '" . $row['dni'] . "' AND estado = 1");
+	while ($row2 = mysqli_fetch_array($query2)) {
+		if ($aux < 2) {
+			$html.= "<td class=\"text-center\">" . $row2['numero'] . "</td>";
+			$aux++;
+		}
+	}
+	$html.= "</tr>";
+}
+
+$html.='
+</tbody>
 	        </table>
         </div>
 	</div>
 </section>
 
 <section class="container">
-    <form method="post" action="infoEmpresasPDF.php">
-        <input type="submit" value="Descargar PDF" class="btn btn-primary col-sm-2 col-sm-offset-5">
-        <input type="hidden" name="ruc" value="<?php echo $_POST['ruc'];?>">
+    <form method="post" action="#">
+        <input type="submit" value="Descargar PDF" class="btn btn-success col-sm-2 col-sm-offset-5">
     </form>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
-<footer class="panel-footer navbar-fixed-bottom">
-	<?php
-	include_once('footercio.php');
-	?>
-</footer>
 </body>
-
-<?php
-/*}else{
-    echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
-?>
-
 </html>
+';
+
+$htmlheader='
+        <header>
+            <div id="descripcionbrand">
+                <img style="margin-top: 20px" width="auto" height="60" src="image/Logo.png"/>
+            </div>
+            <div id="tituloreporte">
+                <div class="titulo">
+                    <h4>Ficha de Empresa</h4>
+                    <span class="desctitulo">'.$_POST['ruc'].'</span>
+                </div>
+            </div>
+        </header>
+    ';
+$htmlfooter='
+          <div class="footer"> 
+                <span style="font-size: 10px">© 2017 by Global Software Dynamics.Visítanos en <a target="GSD" href="http://www.gsdynamics.com/">GSDynamics.com</a></span>
+          </div>
+    ';
+$nombrearchivo='Ficha de Empresa '.$_POST['ruc'].'.pdf';
+$mpdf = new mPDF('','A4',0,'','15',15,35,35,6,6);
+
+// Write some HTML code:
+$mpdf->SetHTMLHeader($htmlheader);
+$mpdf->SetHTMLFooter($htmlfooter);
+$mpdf->WriteHTML($html);
+
+// Output a PDF file directly to the browser
+$mpdf->Output($nombrearchivo,'D');
+?>
