@@ -19,6 +19,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>             PLACEHOLDER         </title>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/Formatos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -65,72 +66,77 @@ while ($fila=mysqli_fetch_array($result)) {
     ?>
     <section class="container bordes">
         <div>
-            <h4>1. Datos de Ubicación</h4>
-        </div>
-        <div>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Planta</th>
-                    <th>Ubicación</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                    echo "
-                        <tr>
-                    ";
-                    $result1 = mysqli_query($link, "SELECT * FROM ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
-                    while ($fila1 = mysqli_fetch_array($result1)) {
-                        $result2 = mysqli_query($link, "SELECT * FROM planta WHERE idPlanta='" . $fila1['idPlanta'] . "'");
-                        while ($fila2 = mysqli_fetch_array($result2)) {
-                            echo "
-                            <td>" . $fila2['descripcion'] . "</td>
-                            <td>" . $fila1['descripcion'] . "</td>
-                        ";
-                        }
-                    }
-                    echo "
-                        </tr>
-                    ";
-                ?>
-                </tbody>
-            </table>
+            <h5>1. Datos de Ubicación</h5>
         </div>
     </section>
-    <section class="container">
-        <div>
-            <h4>2. Datos de Actividad</h4>
-        </div>
-        <div>
-            <p>Descripción: <?php  echo $fila['actividadObservada'];?></p>
-        </div>
-        <div>
-            <div>
-                <label for="persobs">Nro. Personas Observadas:</label>
+    <section class="container bordeslados">
+            <div class="col-sm-6">
+                <div class="col-sm-12">
+                    <label for="planta">Planta:</label>
+                    <span id="planta">
+                        <?php
+                        $result1 = mysqli_query($link, "SELECT * FROM ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
+                        while ($fila1 = mysqli_fetch_array($result1)) {
+                            $result2 = mysqli_query($link, "SELECT * FROM planta WHERE idPlanta='" . $fila1['idPlanta'] . "'");
+                            while ($fila2 = mysqli_fetch_array($result2)) {
+                                echo $fila2['descripcion'];
+                            }
+                        }
+                        ?>
+                    </span>
+                </div>
             </div>
-            <div>
+            <div class="col-sm-6">
+                <div class="col-sm-12">
+                    <label for='ubicacion'>Ubicación:</label>
+                    <span id="ubicacion">
+                        <?php
+                        $result1 = mysqli_query($link, "SELECT * FROM ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
+                        while ($fila1 = mysqli_fetch_array($result1)) {
+                            echo $fila1['descripcion'];
+                        }
+                        ?>
+                    </span>
+                </div>
+            </div>
+    </section>
+    <section class="container bordes">
+        <div>
+            <h5>2. Datos de Actividad</h5>
+        </div>
+    </section>
+    <section class="container bordeslados">
+        <br>
+        <div class="container descripcion col-sm-12">
+            <p><b>Descripción:</b><br><br>
+               <?php  echo $fila['actividadObservada'];?></p>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-12 text-center">
+                <br>
+                <label for="persobs">Nro. Personas Observadas:</label>
                 <span id="persobs"><?php  echo $fila['nropersobservadas'];?></span>
             </div>
         </div>
-        <div>
-            <div>
+        <div class="col-sm-6">
+            <div class="col-sm-12 text-center">
+                <br>
                 <label for="persret">Nro. Personas Retroalimentadas:</label>
-            </div>
-            <div>
                 <span id="persret"><?php  echo $fila['nropersretroalimentadas'];?></span>
             </div>
         </div>
     </section>
-    <section class="container">
+    <section class="container bordes">
         <div>
-            <h4>3. Equipo Observador</h4>
+            <h5>3. Equipo Observador</h5>
         </div>
-        <div>
-            <div>
-               <label for="lider">Líder del Equipo:</label>
+    </section>
+    <section class="container bordeslados">
+        <div class="col-sm-6">
+            <div class="middlealign text-center">
+                <label for="lider">Líder del Equipo:</label>
             </div>
-            <div>
+            <div class="middlealign text-center">
                 <span id="lider">
                     <?php
                     $result1=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='1'");
@@ -143,32 +149,35 @@ while ($fila=mysqli_fetch_array($result)) {
                     ?>
                 </span>
             </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="text-center middlealign">
+                <label for="observadores">Observadores:</label>
+            </div>
             <div>
-                <div>
-                    <label for="observadores">Observadores:</label>
-                </div>
-                <div>
-                    <ul>
-                        <?php
-                        $result1=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='2'");
-                        while ($fila1=mysqli_fetch_array($result1)){
-                            $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
-                            while ($fila2=mysqli_fetch_array($result2)){
-                                echo "<li>".$fila2['nombre']." ".$fila2['apellidos']."</li>";
-                            }
+                <ul class="margenizquierdo">
+                    <?php
+                    $result1=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='2'");
+                    while ($fila1=mysqli_fetch_array($result1)){
+                        $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
+                        while ($fila2=mysqli_fetch_array($result2)){
+                            echo "<li>".$fila2['nombre']." ".$fila2['apellidos']."</li>";
                         }
-                        ?>
-                    </ul>
-                </div>
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
     </section>
-    <section class="container">
+    <section class="container bordes">
         <div>
-            <h4>4. Resultados de la Observación</h4>
+            <h5>4. Resultados de la Observación</h5>
         </div>
-        <div>
-            <table class="table table-bordered">
+    </section>
+    <section class="container bordeslados">
+        <br>
+        <div class="col-sm-12">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Nro.</th>
@@ -180,16 +189,16 @@ while ($fila=mysqli_fetch_array($result)) {
                 </thead>
                 <tbody>
                 <?php
-                echo "
-                    <tr>
-                ";
                 $aux=0;
                 $result0=mysqli_query($link,"SELECT * FROM observacionesse WHERE idSafetyEyes='".$_POST['idSE']."'");
                 while ($fila0=mysqli_fetch_array($result0)) {
+                    echo "
+                        <tr>
+                    ";
                     $aux++;
                     echo "
                         <td>" . $aux . "</td>
-                        <td>" . $fila0['descripcion'] . "</td>
+                        <td class='text-left'>" . $fila0['descripcion'] . "</td>
                     ";
                     $result1 = mysqli_query($link, "SELECT * FROM categoria WHERE idCategoria='" . $fila0['idCategoria'] . "'");
                     while ($fila1 = mysqli_fetch_array($result1)) {
@@ -217,8 +226,8 @@ while ($fila=mysqli_fetch_array($result)) {
                 </tbody>
             </table>
         </div>
-        <div>
-            <div>
+        <div class="col-sm-12">
+            <div class="col-sm-6">
                 <div>
                     <label>Categorías:</label>
                 </div>
@@ -235,7 +244,7 @@ while ($fila=mysqli_fetch_array($result)) {
                     </ul>
                 </div>
             </div>
-            <div>
+            <div class="col-sm-6">
                 <div>
                     <label>Clases</label>
                 </div>
@@ -254,12 +263,15 @@ while ($fila=mysqli_fetch_array($result)) {
             </div>
         </div>
     </section>
-    <section class="container">
+    <section class="container bordes">
         <div>
-            <h4>5. Acciones Inmediatas Tomadas</h4>
+            <h5>5. Acciones Inmediatas Tomadas</h5>
         </div>
-        <div>
-            <table class="table table-bordered">
+    </section>
+    <section class="container bordeslados">
+        <br>
+        <div class="col-sm-12">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Nro.</th>
@@ -269,18 +281,18 @@ while ($fila=mysqli_fetch_array($result)) {
                 </thead>
                 <tbody>
                 <?php
-                echo "
-                    <tr>
-                ";
                 $aux=0;
                 $result0=mysqli_query($link,"SELECT * FROM aise WHERE idSafetyEyes='".$_POST['idSE']."'");
                 while ($fila0=mysqli_fetch_array($result0)) {
+                    echo "
+                        <tr>
+                    ";
                     $aux++;
                     echo "<td>".$aux."</td>";
                     $result1=mysqli_query($link,"SELECT * FROM accionesinmediatas WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
                     while ($fila1=mysqli_fetch_array($result1)){
                         echo "
-                            <td>".$fila1['descripcion']."</td>
+                            <td class='text-left'>".$fila1['descripcion']."</td>
                         ";
                         $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
@@ -298,12 +310,15 @@ while ($fila=mysqli_fetch_array($result)) {
             </table>
         </div>
     </section>
-    <section class="container">
+    <section class="container bordes">
         <div>
-            <h4>6. Mejoras de Seguridad</h4>
+            <h5>6. Mejoras de Seguridad</h5>
         </div>
-        <div>
-            <table class="table table-bordered">
+    </section>
+    <section class="container bordeslados">
+        <br>
+        <div class="col-sm-12">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Nro.</th>
@@ -314,18 +329,18 @@ while ($fila=mysqli_fetch_array($result)) {
                 </thead>
                 <tbody>
                 <?php
-                echo "
-                    <tr>
-                ";
                 $aux=0;
                 $result0=mysqli_query($link,"SELECT * FROM mese WHERE idSafetyEyes='".$_POST['idSE']."'");
                 while ($fila0=mysqli_fetch_array($result0)) {
+                    echo "
+                        <tr>
+                    ";
                     $aux++;
                     echo "<td>" . $aux . "</td>";
                     $result1 = mysqli_query($link, "SELECT * FROM mejorasseguridad WHERE idMejoras='" . $fila0['idMejoras'] . "'");
                     while ($fila1 = mysqli_fetch_array($result1)) {
                         echo "
-                            <td>" . $fila1['descripcion'] . "</td>
+                            <td class='text-left'>" . $fila1['descripcion'] . "</td>
                         ";
                         $result2 = mysqli_query($link, "SELECT * FROM colaboradores WHERE dni ='" . $fila1['dni'] . "'");
                         while ($fila2 = mysqli_fetch_array($result2)) {
@@ -342,7 +357,6 @@ while ($fila=mysqli_fetch_array($result)) {
                     ";
                 }
                 ?>
-                }
                 </tbody>
             </table>
         </div>
@@ -352,11 +366,11 @@ while ($fila=mysqli_fetch_array($result)) {
             if($fila['estado']==="Pendiente"){
             }else{
                 echo "
-                    <div>
-                        <form method='post' class='form-horizontal' action='crearnuevaMS.php'>
+                    <div class='col-sm-12'>
+                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaMS.php'>
                             <div class='form-group'>
                                 <input type='hidden' name='idSE' value='".$_POST['idSE']."'>
-                                <input type='submit' name='provieneSEconidMS' value='Agregar Mejoras de Seguridad'>
+                                <input type='submit' class='btn btn-primary col-sm-4 col-sm-offset-4' name='provieneSEconidMS' value='Agregar Mejoras de Seguridad'>
                             </div>
                         </form>
                     </div>
@@ -365,12 +379,15 @@ while ($fila=mysqli_fetch_array($result)) {
         }
         ?>
     </section>
-    <section class="container">
+    <section class="container bordes">
         <div>
-            <h4>7. Acciones Correctivas</h4>
+            <h5>7. Acciones Correctivas</h5>
         </div>
-        <div>
-            <table class="table table-bordered">
+    </section>
+    <section class="container bordeslados">
+        <br>
+        <div class="col-sm-12">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Nro.</th>
@@ -383,20 +400,20 @@ while ($fila=mysqli_fetch_array($result)) {
                 </thead>
                 <tbody>
                 <?php
-                echo "
-                    <tr>
-                ";
                 $aux=0;
                 $result0=mysqli_query($link,"SELECT * FROM observacionesse WHERE idSafetyEyes='".$_POST['idSE']."'");
                 while ($fila0=mysqli_fetch_array($result0)) {
                     $result3=mysqli_query($link,"SELECT * FROM acse WHERE idObservacionesSE='".$fila0['idObservacionesSE']."'");
                     while ($fila3=mysqli_fetch_array($result3)){
+                        echo "
+                            <tr>
+                        ";
                         $aux++;
                         echo "<td>".$aux."</td>";
                         $result1=mysqli_query($link,"SELECT * FROM accionescorrectivas WHERE idAccionesCorrectivas='".$fila3['idAccionesCorrectivas']."'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
-                            <td>".$fila1['descripcion']."</td>
+                            <td class='text-left'>".$fila1['descripcion']."</td>
                         ";
                             $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
@@ -425,11 +442,11 @@ while ($fila=mysqli_fetch_array($result)) {
             if($fila['estado']==="Pendiente"){
             }else{
                 echo "
-                    <div>
-                        <form method='post' class='form-horizontal' action='crearnuevaAC.php'>
+                    <div class='col-sm-12'>
+                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaAC.php'>
                             <div class='form-group'>
                                 <input type='hidden' name='idSE' value='".$_POST['idSE']."'>
-                                <input type='submit' name='provieneSEconidAC' value='Agregar Acciones Correctivas'>
+                                <input type='submit' class='btn btn-primary col-sm-4 col-sm-offset-4' name='provieneSEconidAC' value='Agregar Acciones Correctivas'>
                             </div>
                         </form>
                     </div>
@@ -438,11 +455,9 @@ while ($fila=mysqli_fetch_array($result)) {
         }
         ?>
     </section>
-    <section class="container">
-        <div>
+    <section class="container bordes">
+        <div class="col-sm-12">
             <label for="revisor">Nombre del Revisor:</label>
-        </div>
-        <div>
             <span id="revisor">
                 <?php
                 $result1=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='3'");
@@ -466,22 +481,32 @@ while ($fila=mysqli_fetch_array($result)) {
     while ($fila=mysqli_fetch_array($result)){
         if($fila['estado']==="Pendiente"){
             echo "
-                <form method='post' action='registrosSE.php' class='form-horizontal'>
+                <form method='post' action='registrosSE.php' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
-                        <input type='submit' value='Regresar' name='Regresar'>
-                        <input type='submit' value='Aprobar' name='aprobar' formaction='detallesafetyeyes.php'>
-                        <input type='submit' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php'>
+                        <div class='col-sm-4'>
+                            <input type='submit' class='btn btn-default col-sm-10 col-sm-offset-1' value='Regresar' name='Regresar'>
+                        </div>
+                        <div class='col-sm-4'>
+                            <input type='submit' class='btn btn-success col-sm-10 col-sm-offset-1' value='Aprobar' name='aprobar' formaction='detallesafetyeyes.php'>
+                        </div>
+                        <div class='col-sm-4'>
+                            <input type='submit' class='btn btn-primary col-sm-10 col-sm-offset-1' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php'>
+                        </div>
                     </div>
                 </form>
             ";
         }else{
             echo "
-                <form method='post' action='registrosSE.php' class='form-horizontal'>
+                <form method='post' action='registrosSE.php' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
-                        <input type='submit' value='Regresar' name='Regresar'>
-                        <input type='submit' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php'>
+                        <div class='col-sm-6'>
+                            <input type='submit' class='btn btn-default col-sm-8 col-sm-offset-2' value='Regresar' name='Regresar'>
+                        </div>
+                        <div class='col-sm-6'>
+                            <input type='submit' class='btn btn-primary col-sm-8 col-sm-offset-2' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php'>
+                        </div>
                     </div>
                 </form>
             ";
