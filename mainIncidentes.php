@@ -31,7 +31,7 @@ if(isset($_SESSION['login'])){
         </div>
         <br>
         <div class="form-group">
-            <input type="submit" class="btn btn-default col-sm-8 col-sm-offset-2" name="regresar" value="Regresar" formaction="mainAdmin.php?user=<?php echo $_GET['user'];?>">
+            <input type="submit" class="btn btn-default col-sm-8 col-sm-offset-2" value="Regresar" formaction="mainAdmin.php?user=<?php echo $_GET['user'];?>">
         </div>
     </form>
 </section>

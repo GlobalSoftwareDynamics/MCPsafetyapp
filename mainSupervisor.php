@@ -34,13 +34,13 @@ if(isset($_SESSION['login'])){
     <div>
         <form class="form-horizontal jumbotron col-xs-12">
             <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" name="safetyeyes" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php?user=<?php echo $_GET['user'];?>">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php?user=<?php echo $_GET['user'];?>">
             </div>
             <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" name="safetyeyes" value="Registrar Ocurrencia" formaction="regocurrencia1.php?user=<?php echo $_GET['user'];?>">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" value="Registrar Ocurrencia" formaction="regocurrencia1.php?user=<?php echo $_GET['user'];?>">
             </div>
             <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" name="safetyeyes" value="Registrar CAP" formaction="regcap1.php?user=<?php echo $_GET['user'];?>">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" value="Registrar CAP" formaction="regcap1.php?user=<?php echo $_GET['user'];?>">
             </div>
         </form>
     </div>

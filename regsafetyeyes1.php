@@ -43,8 +43,8 @@ if(isset($_SESSION['login'])){
 
 <section class="container">
     <div>
-        <form action="regsafetyeyes2.php?user=<? echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-xs-12">
-            <div class="col-xs-12">
+        <form action="regsafetyeyes2.php?user=<? echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-xs-12 col-sm-6 col-sm-offset-3">
+            <div class="col-xs-12 col-sm-12">
                 <h4 class="text-left">Paso 1: Datos Generales</h4>
             </div>
             <br>
@@ -69,11 +69,11 @@ if(isset($_SESSION['login'])){
             ";
             ?>
             <div class="form-group">
-                <div class="col-xs-12">
-                    <label for="plant" class="col-xs-12">Planta:</label>
+                <div class="col-xs-12 col-sm-12">
+                    <label for="plant" class="col-xs-12 col-sm-12">Planta:</label>
                 </div>
-                <div class="col-xs-12">
-                    <select id="plant" name="planta" class="form-control col-xs-12" onchange="getubicaciones(this.value)">
+                <div class="col-xs-12 col-sm-12">
+                    <select id="plant" name="planta" class="form-control col-xs-12 col-sm-12" onchange="getubicaciones(this.value)">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM Planta WHERE estado='1'");
@@ -87,26 +87,26 @@ if(isset($_SESSION['login'])){
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-xs-12">
-                    <label for="ubica" class="col-xs-12">Ubicación:</label>
+                <div class="col-xs-12 col-sm-12">
+                    <label for="ubica" class="col-xs-12 col-sm-12">Ubicación:</label>
                 </div>
-                <div class="col-xs-12">
-                    <select id="ubica" class="form-control col-xs-12" name="ubicacion">
+                <div class="col-xs-12 col-sm-12">
+                    <select id="ubica" class="form-control col-xs-12 col-sm-12" name="ubicacion">
                         <option>Seleccionar</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-xs-12">
-                    <label for="activ" class="col-xs-12">Actividad:</label>
+                <div class="col-xs-12 col-sm-12">
+                    <label for="activ" class="col-xs-12 col-sm-12">Actividad:</label>
                 </div>
-                <div class="col-xs-12">
-                    <textarea name="actividad" class="form-control col-xs-12" rows="3" id="activ"></textarea>
+                <div class="col-xs-12 col-sm-12">
+                    <textarea name="actividad" class="form-control col-xs-12 col-sm-12" rows="3" id="activ"></textarea>
                 </div>
             </div>
             <hr>
             <div class="form-group">
-                <input type="submit" name="siguiente" value="Siguiente" class="btn btn-primary col-xs-12" style="font-weight: bold; font-size: 15px">
+                <input type="submit" name="siguiente" value="Siguiente" class="btn btn-primary col-xs-12 col-sm-6 col-sm-offset-3" style="font-weight: bold; font-size: 15px">
             </div>
         </form>
     </div>

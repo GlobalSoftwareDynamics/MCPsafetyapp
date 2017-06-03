@@ -55,7 +55,7 @@ if (isset($_POST['agregar'])){
 ?>
 <section class="container">
     <div>
-        <form method="post" class="form-horizontal jumbotron col-xs-12">
+        <form method="post" class="form-horizontal jumbotron col-xs-12 col-sm-offset-3 col-sm-6">
             <div class="col-xs-12">
                 <h4 class="text-left">Paso 2: Observadores</h4>
             </div>
@@ -90,11 +90,11 @@ if (isset($_POST['agregar'])){
             <hr>
             <div class="form-group">
                 <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
-                <div class="col-xs-12">
-                    <input type="submit" class="btn btn-success col-xs-12" formaction="regsafetyeyes2.php?user=<?php echo $_GET['user'];?>" name="agregar" value="Agregar">
+                <div class="col-xs-12 col-sm-6">
+                    <input type="submit" class="btn btn-success col-xs-12 col-sm-10 col-sm-offset-1" formaction="regsafetyeyes2.php?user=<?php echo $_GET['user'];?>" name="agregar" value="Agregar">
                 </div>
-                <div class="col-xs-12">
-                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes3.php?user=<?php echo $_GET['user'];?>" name="siguiente" value="Siguiente">
+                <div class="col-xs-12 col-sm-6">
+                    <input type="submit" class="btn btn-primary col-xs-12 col-sm-10 col-sm-offset-1" formaction="regsafetyeyes3.php?user=<?php echo $_GET['user'];?>" name="siguiente" value="Siguiente">
                 </div>
             </div>
         </form>

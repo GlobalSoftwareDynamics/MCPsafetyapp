@@ -50,9 +50,9 @@ if(isset($_POST['finalizar'])){
 
 <br>
 <section class="container">
-    <form action="mainSupervisor.php?user=<?php echo $_GET['user'];?>" class="form-horizontal jumbotron col-xs-12">
+    <form method="post" action="mainSupervisor.php?user=<?php echo $_GET['user'];?>" class="form-horizontal jumbotron col-xs-12 col-sm-6 col-sm-offset-3">
         <div class="form-group">
-            <input class="btn btn-success col-xs-12" type="submit" value="Regresar al Men&uacute;">
+            <input class="btn btn-success col-xs-12 col-sm-12" type="submit" value="Regresar al Men&uacute;">
         </div>
     </form>
 </section>

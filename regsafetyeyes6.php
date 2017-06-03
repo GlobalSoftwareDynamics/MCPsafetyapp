@@ -27,7 +27,7 @@ if(isset($_SESSION['login'])){
 </header>
 <section class="container">
     <div>
-        <form method="post" class="form-horizontal jumbotron col-xs-12">
+        <form method="post" class="form-horizontal jumbotron col-xs-12 col-sm-6 col-sm-offset-3">
             <div class="col-xs-12">
                 <h4 class="text-left">Paso 6: Personas y Duración</h4>
             </div>
@@ -60,7 +60,7 @@ if(isset($_SESSION['login'])){
             <div class="form-group">
                 <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
                 <div class="col-xs-12">
-                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes7.php?user=<?php echo $_GET['user'];?>" name="finalizar" value="Siguiente">
+                    <input type="submit" class="btn btn-primary col-xs-12 col-sm-6 col-sm-offset-3" formaction="regsafetyeyes7.php?user=<?php echo $_GET['user'];?>" name="finalizar" value="Siguiente">
                 </div>
             </div>
         </form>
