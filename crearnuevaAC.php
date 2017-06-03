@@ -150,7 +150,7 @@ if (isset($_POST['provieneSE'])){
                         <select id="puesto" class="col-sm-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
-                            $result=mysqli_query($link,"SELECT * FROM puesto WHERE estado='1'");
+                            $result=mysqli_query($link,"SELECT * FROM Puesto WHERE estado='1'");
                             while ($fila=mysqli_fetch_array($result)){
                                 echo "
                                     <option value='".$fila['idPuesto']."'>".$fila['descripcion']."</option>
@@ -229,7 +229,7 @@ if (isset($_POST['provieneSE'])){
                         <select id="obsse" class="col-sm-12 form-control" name="observaciones" onchange="getdescobservaciones(this.value)">
                             <option>Seleccionar</option>
                             <?php
-                            $result=mysqli_query($link,"SELECT * FROM observacionesse WHERE idSafetyEyes='".$_POST['idSE']."'");
+                            $result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes='".$_POST['idSE']."'");
                             while ($fila=mysqli_fetch_array($result)){
                                 echo "
                                     <option value='".$fila['idObservacionesSE']."'>".$fila['idObservacionesSE']."</option>
@@ -258,7 +258,7 @@ if (isset($_POST['provieneSE'])){
                         <select id="puesto" class="col-sm-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
-                            $result=mysqli_query($link,"SELECT * FROM puesto WHERE estado='1'");
+                            $result=mysqli_query($link,"SELECT * FROM Puesto WHERE estado='1'");
                             while ($fila=mysqli_fetch_array($result)){
                                 echo "
                                     <option value='".$fila['idPuesto']."'>".$fila['descripcion']."</option>

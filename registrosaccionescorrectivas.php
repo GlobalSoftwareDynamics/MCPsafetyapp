@@ -41,44 +41,44 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 <?php
 if (isset($_POST['crearacse'])){
-    $agregar="INSERT INTO accionescorrectivas(idAccionesCorrectivas, dni, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
+    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
     '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-','En Proceso'
     )";
     $query=mysqli_query($link,$agregar);
-    $agregar="INSERT INTO acse(idObservacionesse, idAccionesCorrectivas) VALUES (
+    $agregar="INSERT INTO ACSE(idObservacionesse, idAccionesCorrectivas) VALUES (
     '".$_POST['observaciones']."','".$_POST['idaccioncorrectiva']."'
     )";
     $query=mysqli_query($link,$agregar);
 }
 if (isset($_POST['crearacseconidse'])){
-    $agregar="INSERT INTO accionescorrectivas(idAccionesCorrectivas, dni, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
+    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
     '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-','En Proceso'
     )";
     $query=mysqli_query($link,$agregar);
-    $agregar="INSERT INTO acse(idObservacionesse, idAccionesCorrectivas) VALUES (
+    $agregar="INSERT INTO ACSE(idObservacionesse, idAccionesCorrectivas) VALUES (
     '".$_POST['observaciones']."','".$_POST['idaccioncorrectiva']."'
     )";
     $query=mysqli_query($link,$agregar);
 }
 if (isset($_POST['actualizarestado'])){
     $fechaplaneada="";
-    $result=mysqli_query($link,"SELECT * FROM accionescorrectivas WHERE idAccionesCorrectivas= '".$_POST['idAC']."'");
+    $result=mysqli_query($link,"SELECT * FROM AccionesCorrectivas WHERE idAccionesCorrectivas= '".$_POST['idAC']."'");
     while ($fila=mysqli_fetch_array($result)){
         $fechaplaneada=$fila['fechaPlan'];
     }
     if ($fechaplaneada>$_POST['fechaReal']||$fechaplaneada===$_POST['fechaReal']){
-        $actualizar="UPDATE accionescorrectivas SET estado = 'Completa' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
+        $actualizar="UPDATE AccionesCorrectivas SET estado = 'Completa' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
-        $actualizar="UPDATE accionescorrectivas SET fechaReal = '".$_POST['fechaReal']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
+        $actualizar="UPDATE AccionesCorrectivas SET fechaReal = '".$_POST['fechaReal']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
-        $actualizar="UPDATE accionescorrectivas SET fechaactualizacion = '".$_POST['fecha']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
+        $actualizar="UPDATE AccionesCorrectivas SET fechaactualizacion = '".$_POST['fecha']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
     }elseif ($_POST['fechaReal']>$fechaplaneada){
-        $actualizar="UPDATE accionescorrectivas SET estado = 'Vencida' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
+        $actualizar="UPDATE AccionesCorrectivas SET estado = 'Vencida' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
-        $actualizar="UPDATE accionescorrectivas SET fechaReal = '".$_POST['fechaReal']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
+        $actualizar="UPDATE AccionesCorrectivas SET fechaReal = '".$_POST['fechaReal']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
-        $actualizar="UPDATE accionescorrectivas SET fechaactualizacion = '".$_POST['fecha']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
+        $actualizar="UPDATE AccionesCorrectivas SET fechaactualizacion = '".$_POST['fecha']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
     }
 }
@@ -151,17 +151,17 @@ if (isset($_POST['actualizarestado'])){
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM Colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
-                        $result=mysqli_query($link,"SELECT * FROM accionescorrectivas WHERE dni='".$fila0['dni']."'");
+                        $result=mysqli_query($link,"SELECT * FROM AccionesCorrectivas WHERE dni='".$fila0['dni']."'");
                         while ($fila=mysqli_fetch_array($result)){
                             echo "
                                 <td>".$fila['fecharegistro']."</td>
                             ";
                             if ($fila0['fuente']==="SE"){
-                                $result2=mysqli_query($link,"SELECT * FROM acse WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM ACSE WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
-                                    $result3=mysqli_query($link,"SELECT * FROM observacionesse WHERE idObservacionesSE ='".$fila2['idObservacionesSE']."'");
+                                    $result3=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idObservacionesSE ='".$fila2['idObservacionesSE']."'");
                                     while ($fila3=mysqli_fetch_array($result3)){
                                         echo "
                                         <td>
@@ -175,7 +175,7 @@ if (isset($_POST['actualizarestado'])){
                                 }
                             }
                             if ($fila['fuente']==="OC"){
-                                $result2=mysqli_query($link,"SELECT * FROM acocur WHERE idAccionesCorrectivas='".$fila['idAccionesCorrectivas']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM ACOCUR WHERE idAccionesCorrectivas='".$fila['idAccionesCorrectivas']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
@@ -188,7 +188,7 @@ if (isset($_POST['actualizarestado'])){
                                 }
                             }
                             if ($fila['fuente']==="INC"){
-                                $result2=mysqli_query($link,"SELECT * FROM acinc WHERE idAccionesCorrectivas='".$fila['idAccionesCorrectivas']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM ACINC WHERE idAccionesCorrectivas='".$fila['idAccionesCorrectivas']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
@@ -225,15 +225,15 @@ if (isset($_POST['actualizarestado'])){
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM accionescorrectivas WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM AccionesCorrectivas WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         echo "
                             <td>".$fila0['fecharegistro']."</td>
                         ";
                         if ($fila0['fuente']==="SE"){
-                            $result2=mysqli_query($link,"SELECT * FROM acse WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM ACSE WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
-                                $result3=mysqli_query($link,"SELECT * FROM observacionesse WHERE idObservacionesSE ='".$fila2['idObservacionesSE']."'");
+                                $result3=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idObservacionesSE ='".$fila2['idObservacionesSE']."'");
                                 while ($fila3=mysqli_fetch_array($result3)){
                                     echo "
                                         <td>
@@ -247,7 +247,7 @@ if (isset($_POST['actualizarestado'])){
                             }
                         }
                         if ($fila0['fuente']==="OC"){
-                            $result2=mysqli_query($link,"SELECT * FROM acocur WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM ACOCUR WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
@@ -260,7 +260,7 @@ if (isset($_POST['actualizarestado'])){
                             }
                         }
                         if ($fila0['fuente']==="INC"){
-                            $result2=mysqli_query($link,"SELECT * FROM acinc WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM ACINC WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
@@ -275,7 +275,7 @@ if (isset($_POST['actualizarestado'])){
                         echo "
                             <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
-                        $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
+                        $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila0['dni']."'");
                         while ($fila3=mysqli_fetch_array($result3)){
                             echo "
                             <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
@@ -304,15 +304,15 @@ if (isset($_POST['actualizarestado'])){
                 echo "
                         <tr>
                     ";
-                $result0=mysqli_query($link,"SELECT * FROM accionescorrectivas");
+                $result0=mysqli_query($link,"SELECT * FROM AccionesCorrectivas");
                 while ($fila0=mysqli_fetch_array($result0)){
                     echo "
                             <td>".$fila0['fecharegistro']."</td>
                     ";
                     if ($fila0['fuente']==="SE"){
-                        $result2=mysqli_query($link,"SELECT * FROM acse WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM ACSE WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
-                            $result3=mysqli_query($link,"SELECT * FROM observacionesse WHERE idObservacionesSE ='".$fila2['idObservacionesSE']."'");
+                            $result3=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idObservacionesSE ='".$fila2['idObservacionesSE']."'");
                             while ($fila3=mysqli_fetch_array($result3)){
                                 echo "
                                         <td>
@@ -326,7 +326,7 @@ if (isset($_POST['actualizarestado'])){
                         }
                     }
                     if ($fila0['fuente']==="OC"){
-                        $result2=mysqli_query($link,"SELECT * FROM acocur WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM ACOCUR WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
@@ -339,7 +339,7 @@ if (isset($_POST['actualizarestado'])){
                         }
                     }
                     if ($fila0['fuente']==="INC"){
-                        $result2=mysqli_query($link,"SELECT * FROM acinc WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM ACINC WHERE idAccionesCorrectivas='".$fila0['idAccionesCorrectivas']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
@@ -354,7 +354,7 @@ if (isset($_POST['actualizarestado'])){
                     echo "
                             <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
-                    $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
+                    $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila0['dni']."'");
                     while ($fila3=mysqli_fetch_array($result3)){
                         echo "
                             <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>

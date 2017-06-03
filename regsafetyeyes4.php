@@ -26,11 +26,11 @@ require ('funcionesApp.php');
 <?php
 if (isset($_POST['agregar'])){
     /*echo $_POST['idAI'];*/
-    $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSafetyEyes='".$_POST['idSE']."'");
+    $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSafetyEyes='".$_POST['idSE']."'");
     while ($fila=mysqli_fetch_array($result)){
         $fecharegistro=$fila['fecha'];
     }
-    $agregar="INSERT INTO accionesinmediatas(idAccionesInmediatas, dni, fecharegistro, descripcion, fuente) VALUES (
+    $agregar="INSERT INTO AccionesInmediatas(idAccionesInmediatas, dni, fecharegistro, descripcion, fuente) VALUES (
     '".$_POST['idAI']."','".$_POST['responsable']."','".$fecharegistro."','".$_POST['descripcion']."','SE'
     )";
     /*echo $agregar;*/
@@ -71,7 +71,7 @@ if (isset($_POST['agregar'])){
                 <select id="resp" class="form-control col-xs-12" name="responsable">
                     <option>Seleccionar</option>
                     <?php
-                    $result1=mysqli_query($link,"SELECT * FROM colaboradores WHERE ruc='20100192064'");
+                    $result1=mysqli_query($link,"SELECT * FROM Colaboradores WHERE ruc='20100192064'");
                     while ($fila1=mysqli_fetch_array($result1)){
                         echo "
                             <option value=".$fila1['dni'].">".$fila1['nombre']."-".$fila1['apellidos']."</option>                            ";

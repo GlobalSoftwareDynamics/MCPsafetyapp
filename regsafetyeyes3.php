@@ -26,14 +26,14 @@ require ('funcionesApp.php');
 <?php
 if (isset($_POST['agregar'])){
     $aux = 0;
-    $result = mysqli_query($link,"SELECT * FROM observacionesse WHERE idSafetyEyes='".$_POST['idSE']."'");
+    $result = mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes='".$_POST['idSE']."'");
     while($fila = mysqli_fetch_array($result)){
         $aux++;
     }
     $aux++;
     $idObs="OBS".$aux.$_POST['idSE'];
     /*echo $idObs;*/
-    $agregar="INSERT INTO observacionesse(idObservacionesSE, idSafetyEyes, idCategoria, idClase, idCOPs, descripcion) VALUES
+    $agregar="INSERT INTO ObservacionesSE(idObservacionesSE, idSafetyEyes, idCategoria, idClase, idCOPs, descripcion) VALUES
     ('".$idObs."','".$_POST['idSE']."','".$_POST['categoria']."','".$_POST['clase']."','".$_POST['cop']."','".$_POST['descripcion']."'
     )";
     $query=mysqli_query($link,$agregar);
@@ -63,7 +63,7 @@ if (isset($_POST['agregar'])){
                     <select id="categ" class="col-xs-12 form-control" name="categoria">
                         <option>Seleccionar</option>
                         <?php
-                        $result1=mysqli_query($link,"SELECT * FROM categoria");
+                        $result1=mysqli_query($link,"SELECT * FROM Categoria");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                                 <option value=".$fila1['idCategoria'].">".$fila1['siglas']."-".$fila1['descripcion']."</option>                            ";
@@ -80,7 +80,7 @@ if (isset($_POST['agregar'])){
                     <select id="class" class="col-xs-12 form-control" name="clase">
                         <option>Seleccionar</option>
                         <?php
-                        $result1=mysqli_query($link,"SELECT * FROM clase WHERE categoria='SE'");
+                        $result1=mysqli_query($link,"SELECT * FROM Clase WHERE categoria='SE'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                                 <option value=".$fila1['idClase'].">".$fila1['siglas']."-".$fila1['descripcion']."</option>                            ";

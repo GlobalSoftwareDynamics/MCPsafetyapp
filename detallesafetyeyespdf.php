@@ -16,7 +16,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
     </head>
     <body class="portrait">
     ';
-    $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSafetyEyes='".$_POST['idSE']."'");
+    $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSafetyEyes='".$_POST['idSE']."'");
     while ($fila=mysqli_fetch_array($result)) {
         $html .= '
             <section class="contenedor bordes">
@@ -28,9 +28,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     <div class="descladoizquierdo">
                         <div class="col-sm-12">
                             <span class="label">Planta:</span>';
-        $result1 = mysqli_query($link, "SELECT * FROM ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
+        $result1 = mysqli_query($link, "SELECT * FROM Ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
         while ($fila1 = mysqli_fetch_array($result1)) {
-            $result2 = mysqli_query($link, "SELECT * FROM planta WHERE idPlanta='" . $fila1['idPlanta'] . "'");
+            $result2 = mysqli_query($link, "SELECT * FROM Planta WHERE idPlanta='" . $fila1['idPlanta'] . "'");
             while ($fila2 = mysqli_fetch_array($result2)) {
                 $html .='<span id="planta"> '.$fila2['descripcion'].'</span>';
             }
@@ -41,7 +41,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 <div class="descladoderecho">
                     <div class="col-sm-12">
                         <span class="label">Ubicación:</span>';
-        $result1 = mysqli_query($link, "SELECT * FROM ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
+        $result1 = mysqli_query($link, "SELECT * FROM Ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
         while ($fila1 = mysqli_fetch_array($result1)) {
             $html .='<span id="ubicacion"> '.$fila1['descripcion'].'</span>';
         }
@@ -86,9 +86,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     <span class="label">Líder del Equipo:</span>
                 </div>
                 <div class="middlealign text-center">';
-        $result1 = mysqli_query($link, "SELECT * FROM participantesse WHERE idSafetyEyes='" . $_POST['idSE'] . "' AND idTipoParticipante='1'");
+        $result1 = mysqli_query($link, "SELECT * FROM ParticipantesSE WHERE idSafetyEyes='" . $_POST['idSE'] . "' AND idTipoParticipante='1'");
         while ($fila1 = mysqli_fetch_array($result1)) {
-            $result2 = mysqli_query($link, "SELECT * FROM colaboradores WHERE dni ='" . $fila1['dni'] . "'");
+            $result2 = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni ='" . $fila1['dni'] . "'");
             while ($fila2 = mysqli_fetch_array($result2)) {
                 $html .='<span id="lider">'.$fila2['nombre'] . ' ' . $fila2['apellidos'].'</span>';
             }
@@ -102,9 +102,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 </div>
                 <div>
                     <ul>';
-        $result1 = mysqli_query($link, "SELECT * FROM participantesse WHERE idSafetyEyes='" . $_POST['idSE'] . "' AND idTipoParticipante='2'");
+        $result1 = mysqli_query($link, "SELECT * FROM ParticipantesSE WHERE idSafetyEyes='" . $_POST['idSE'] . "' AND idTipoParticipante='2'");
         while ($fila1 = mysqli_fetch_array($result1)) {
-            $result2 = mysqli_query($link, "SELECT * FROM colaboradores WHERE dni ='" . $fila1['dni'] . "'");
+            $result2 = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni ='" . $fila1['dni'] . "'");
             while ($fila2 = mysqli_fetch_array($result2)) {
                 $html .= '<li>' . $fila2['nombre'] . ' ' . $fila2['apellidos'] . '</li>';
             }
@@ -135,7 +135,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     <tbody>';
 
         $aux = 0;
-        $result0 = mysqli_query($link, "SELECT * FROM observacionesse WHERE idSafetyEyes='" . $_POST['idSE'] . "'");
+        $result0 = mysqli_query($link, "SELECT * FROM ObservacionesSE WHERE idSafetyEyes='" . $_POST['idSE'] . "'");
         while ($fila0 = mysqli_fetch_array($result0)) {
             $html .= '
                         <tr class="trborder">
@@ -145,13 +145,13 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             <td>' . $aux . '</td>
                             <td class="text-left">' . $fila0['descripcion'] . '</td>
                         ';
-            $result1 = mysqli_query($link, "SELECT * FROM categoria WHERE idCategoria='" . $fila0['idCategoria'] . "'");
+            $result1 = mysqli_query($link, "SELECT * FROM Categoria WHERE idCategoria='" . $fila0['idCategoria'] . "'");
             while ($fila1 = mysqli_fetch_array($result1)) {
                 $html .= '
                                 <td>' . $fila1['siglas'] . '</td>
                             ';
             }
-            $result3 = mysqli_query($link, "SELECT * FROM clase WHERE idClase='" . $fila0['idClase'] . "'");
+            $result3 = mysqli_query($link, "SELECT * FROM Clase WHERE idClase='" . $fila0['idClase'] . "'");
             while ($fila3 = mysqli_fetch_array($result3)) {
                 $html .= '
                                 <td>' . $fila3['siglas'] . '</td>
@@ -178,7 +178,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     </div>
                     <div>
                         <ul class="ulleft">';
-        $result1 = mysqli_query($link, "SELECT * FROM categoria");
+        $result1 = mysqli_query($link, "SELECT * FROM Categoria");
         while ($fila1 = mysqli_fetch_array($result1)) {
             $html .= '
                                 <li>' . $fila1['siglas'] . ' - ' . $fila1['descripcion'] . '</li>
@@ -194,7 +194,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     </div>
                     <div>
                         <ul class="ulleft">';
-        $result1 = mysqli_query($link, "SELECT * FROM clase WHERE categoria='SE'");
+        $result1 = mysqli_query($link, "SELECT * FROM Clase WHERE categoria='SE'");
         while ($fila1 = mysqli_fetch_array($result1)) {
             $html .= '
                                 <li>' . $fila1['siglas'] . ' - ' . $fila1['descripcion'] . '</li>
@@ -224,19 +224,19 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     </thead>
                     <tbody>';
         $aux = 0;
-        $result0 = mysqli_query($link, "SELECT * FROM aise WHERE idSafetyEyes='" . $_POST['idSE'] . "'");
+        $result0 = mysqli_query($link, "SELECT * FROM AISE WHERE idSafetyEyes='" . $_POST['idSE'] . "'");
         while ($fila0 = mysqli_fetch_array($result0)) {
             $html .= '
                         <tr class="trborder">
                     ';
             $aux++;
             $html .= '<td>' . $aux . '</td>';
-            $result1 = mysqli_query($link, "SELECT * FROM accionesinmediatas WHERE idAccionesInmediatas='" . $fila0['idAccionesInmediatas'] . "'");
+            $result1 = mysqli_query($link, "SELECT * FROM AccionesInmediatas WHERE idAccionesInmediatas='" . $fila0['idAccionesInmediatas'] . "'");
             while ($fila1 = mysqli_fetch_array($result1)) {
                 $html .= '
                                 <td class="text-left">' . $fila1['descripcion'] . '</td>
                             ';
-                $result2 = mysqli_query($link, "SELECT * FROM colaboradores WHERE dni ='" . $fila1['dni'] . "'");
+                $result2 = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni ='" . $fila1['dni'] . "'");
                 while ($fila2 = mysqli_fetch_array($result2)) {
                     $html .= '
                                     <td>' . $fila2['nombre'] . ' ' . $fila2['apellidos'] . '</td>
@@ -271,19 +271,19 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     </thead>
                     <tbody>';
         $aux = 0;
-        $result0 = mysqli_query($link, "SELECT * FROM mese WHERE idSafetyEyes='" . $_POST['idSE'] . "'");
+        $result0 = mysqli_query($link, "SELECT * FROM MESE WHERE idSafetyEyes='" . $_POST['idSE'] . "'");
         while ($fila0 = mysqli_fetch_array($result0)) {
             $html .= '
                         <tr class="trborder">
                     ';
             $aux++;
             $html .= '<td>' . $aux . '</td>';
-            $result1 = mysqli_query($link, "SELECT * FROM mejorasseguridad WHERE idMejoras='" . $fila0['idMejoras'] . "'");
+            $result1 = mysqli_query($link, "SELECT * FROM MejorasSeguridad WHERE idMejoras='" . $fila0['idMejoras'] . "'");
             while ($fila1 = mysqli_fetch_array($result1)) {
                 $html .= '
                                 <td class="text-left">' . $fila1['descripcion'] . '</td>
                             ';
-                $result2 = mysqli_query($link, "SELECT * FROM colaboradores WHERE dni ='" . $fila1['dni'] . "'");
+                $result2 = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni ='" . $fila1['dni'] . "'");
                 while ($fila2 = mysqli_fetch_array($result2)) {
                     $html .= '
                                     <td>' . $fila2['nombre'] . ' ' . $fila2['apellidos'] . '</td>
@@ -323,21 +323,21 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     </thead>
                     <tbody>';
         $aux = 0;
-        $result0 = mysqli_query($link, "SELECT * FROM observacionesse WHERE idSafetyEyes='" . $_POST['idSE'] . "'");
+        $result0 = mysqli_query($link, "SELECT * FROM ObservacionesSE WHERE idSafetyEyes='" . $_POST['idSE'] . "'");
         while ($fila0 = mysqli_fetch_array($result0)) {
-            $result3 = mysqli_query($link, "SELECT * FROM acse WHERE idObservacionesSE='" . $fila0['idObservacionesSE'] . "'");
+            $result3 = mysqli_query($link, "SELECT * FROM ACSE WHERE idObservacionesSE='" . $fila0['idObservacionesSE'] . "'");
             while ($fila3 = mysqli_fetch_array($result3)) {
                 $html .= '
                         <tr class="trborder">
                     ';
                 $aux++;
                 $html .= '<td>' . $aux . '</td>';
-                $result1 = mysqli_query($link, "SELECT * FROM accionescorrectivas WHERE idAccionesCorrectivas='" . $fila3['idAccionesCorrectivas'] . "'");
+                $result1 = mysqli_query($link, "SELECT * FROM AccionesCorrectivas WHERE idAccionesCorrectivas='" . $fila3['idAccionesCorrectivas'] . "'");
                 while ($fila1 = mysqli_fetch_array($result1)) {
                     $html .= '
                                     <td class="text-left">' . $fila1['descripcion'] . '</td>
                                 ';
-                    $result2 = mysqli_query($link, "SELECT * FROM colaboradores WHERE dni ='" . $fila1['dni'] . "'");
+                    $result2 = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni ='" . $fila1['dni'] . "'");
                     while ($fila2 = mysqli_fetch_array($result2)) {
                         $html .= '
                                         <td>' . $fila2['nombre'] . ' ' . $fila2['apellidos'] . '</td>
@@ -362,9 +362,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
         <section class="contenedor bordes">
             <div class="col-sm-12" style="padding-bottom: 0.1cm; padding-top: 0.1cm;">
                 <span class="label">Nombre del Revisor:</span>';
-        $result1 = mysqli_query($link, "SELECT * FROM participantesse WHERE idSafetyEyes='" . $_POST['idSE'] . "' AND idTipoParticipante='3'");
+        $result1 = mysqli_query($link, "SELECT * FROM ParticipantesSE WHERE idSafetyEyes='" . $_POST['idSE'] . "' AND idTipoParticipante='3'");
         while ($fila1 = mysqli_fetch_array($result1)) {
-            $result2 = mysqli_query($link, "SELECT * FROM colaboradores WHERE dni ='" . $fila1['dni'] . "'");
+            $result2 = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni ='" . $fila1['dni'] . "'");
             while ($fila2 = mysqli_fetch_array($result2)) {
                 $html .='<span id="revisor" style="font-size: 12px;"> '.$fila2['nombre'] . ' ' . $fila2['apellidos'].'</span>';
             }

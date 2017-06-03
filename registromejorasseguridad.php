@@ -41,21 +41,21 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 <?php
 if (isset($_POST['crearms'])){
-    $agregar="INSERT INTO mejorasseguridad(idMejoras, dni, fecharegistro, descripcion, fuente, fechaactualizacion, estado) VALUES (
+    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, fecharegistro, descripcion, fuente, fechaactualizacion, estado) VALUES (
     '".$_POST['idmejora']."','".$_POST['responsable']."','".$_POST['fecharegistro']."','".$_POST['descripcionms']."','SE','-','Pendiente'
     )";
     $query=mysqli_query($link,$agregar);
-    $agregar="INSERT INTO mese(idSafetyEyes, idMejoras) VALUES (
+    $agregar="INSERT INTO MESE(idSafetyEyes, idMejoras) VALUES (
     '".$_POST['idreporte']."','".$_POST['idmejora']."'
     )";
     $query=mysqli_query($link,$agregar);
 }
 if (isset($_POST['crearmsconid'])){
-    $agregar="INSERT INTO mejorasseguridad(idMejoras, dni, fecharegistro, descripcion, fuente, fechaactualizacion, estado) VALUES (
+    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, fecharegistro, descripcion, fuente, fechaactualizacion, estado) VALUES (
     '".$_POST['idmejora']."','".$_POST['responsable']."','".$_POST['fecharegistro']."','".$_POST['descripcionms']."','SE','-','Pendiente'
     )";
     $query=mysqli_query($link,$agregar);
-    $agregar="INSERT INTO mese(idSafetyEyes, idMejoras) VALUES (
+    $agregar="INSERT INTO MESE(idSafetyEyes, idMejoras) VALUES (
     '".$_POST['idreporte']."','".$_POST['idmejora']."'
     )";
     $query=mysqli_query($link,$agregar);
@@ -63,9 +63,9 @@ if (isset($_POST['crearmsconid'])){
 if (isset($_POST['completar'])){
     date_default_timezone_set('America/Lima');
     $fecha = date('d/m/Y');
-    $actualizar="UPDATE mejorasseguridad SET estado = 'Completa' WHERE idMejoras = '".$_POST['idME']."'";
+    $actualizar="UPDATE MejorasSeguridad SET estado = 'Completa' WHERE idMejoras = '".$_POST['idME']."'";
     $query=mysqli_query($link,$actualizar);
-    $actualizar="UPDATE mejorasseguridad SET fechaactualizacion = '".$fecha."' WHERE idMejoras = '".$_POST['idME']."'";
+    $actualizar="UPDATE MejorasSeguridad SET fechaactualizacion = '".$fecha."' WHERE idMejoras = '".$_POST['idME']."'";
     $query=mysqli_query($link,$actualizar);
 }
 ?>
@@ -134,15 +134,15 @@ if (isset($_POST['completar'])){
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM Colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
-                        $result=mysqli_query($link,"SELECT * FROM mejorasseguridad WHERE dni='".$fila0['dni']."'");
+                        $result=mysqli_query($link,"SELECT * FROM MejorasSeguridad WHERE dni='".$fila0['dni']."'");
                         while ($fila=mysqli_fetch_array($result)){
                             echo "
                                 <td>".$fila['fecharegistro']."</td>
                             ";
                             if ($fila['fuente']==="SE"){
-                                $result2=mysqli_query($link,"SELECT * FROM mese WHERE idMejoras='".$fila['idMejoras']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM MESE WHERE idMejoras='".$fila['idMejoras']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
@@ -155,7 +155,7 @@ if (isset($_POST['completar'])){
                                 }
                             }
                             if ($fila['fuente']==="OC"){
-                                $result2=mysqli_query($link,"SELECT * FROM meocur WHERE idMejoras='".$fila['idMejoras']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM MEOCUR WHERE idMejoras='".$fila['idMejoras']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
@@ -189,13 +189,13 @@ if (isset($_POST['completar'])){
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM mejorasseguridad WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM MejorasSeguridad WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         echo "
                             <td>".$fila0['fecharegistro']."</td>
                         ";
                         if ($fila0['fuente']==="SE"){
-                            $result2=mysqli_query($link,"SELECT * FROM ,mese WHERE idMejoras='".$fila0['idMejoras']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM MESE WHERE idMejoras='".$fila0['idMejoras']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
@@ -208,7 +208,7 @@ if (isset($_POST['completar'])){
                             }
                         }
                         if ($fila0['fuente']==="OC"){
-                            $result2=mysqli_query($link,"SELECT * FROM meocur WHERE idMejoras='".$fila0['idMejoras']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM MEOCUR WHERE idMejoras='".$fila0['idMejoras']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
@@ -223,7 +223,7 @@ if (isset($_POST['completar'])){
                         echo "
                             <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
-                        $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
+                        $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila0['dni']."'");
                         while ($fila3=mysqli_fetch_array($result3)){
                             echo "
                             <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
@@ -249,13 +249,13 @@ if (isset($_POST['completar'])){
                 echo "
                         <tr>
                     ";
-                $result0=mysqli_query($link,"SELECT * FROM mejorasseguridad");
+                $result0=mysqli_query($link,"SELECT * FROM MejorasSeguridad");
                 while ($fila0=mysqli_fetch_array($result0)){
                     echo "
                             <td>".$fila0['fecharegistro']."</td>
                     ";
                     if ($fila0['fuente']==="SE"){
-                        $result2=mysqli_query($link,"SELECT * FROM mese WHERE idMejoras='".$fila0['idMejoras']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM MESE WHERE idMejoras='".$fila0['idMejoras']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
@@ -268,7 +268,7 @@ if (isset($_POST['completar'])){
                         }
                     }
                     if ($fila0['fuente']==="OC"){
-                        $result2=mysqli_query($link,"SELECT * FROM meocur WHERE idMejoras='".$fila0['idMejoras']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM MEOCUR WHERE idMejoras='".$fila0['idMejoras']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
@@ -283,7 +283,7 @@ if (isset($_POST['completar'])){
                     echo "
                             <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
-                    $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
+                    $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila0['dni']."'");
                     while ($fila3=mysqli_fetch_array($result3)){
                         echo "
                             <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>

@@ -93,7 +93,7 @@ if(isset($_POST['provieneSEconidMS'])){
                         <select id="puesto" class="col-sm-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
-                            $result=mysqli_query($link,"SELECT * FROM puesto WHERE estado='1'");
+                            $result=mysqli_query($link,"SELECT * FROM Puesto WHERE estado='1'");
                             while ($fila=mysqli_fetch_array($result)){
                                 echo "
                                     <option value='".$fila['idPuesto']."'>".$fila['descripcion']."</option>
@@ -189,7 +189,7 @@ if(isset($_POST['provieneSEconidMS'])){
                         <select id="puesto" class="col-sm-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
-                            $result=mysqli_query($link,"SELECT * FROM puesto WHERE estado='1'");
+                            $result=mysqli_query($link,"SELECT * FROM Puesto WHERE estado='1'");
                             while ($fila=mysqli_fetch_array($result)){
                                 echo "
                                     <option value='".$fila['idPuesto']."'>".$fila['descripcion']."</option>

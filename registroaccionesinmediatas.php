@@ -96,15 +96,15 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM Colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
-                        $result=mysqli_query($link,"SELECT * FROM accionesinmediatas WHERE dni='".$fila0['dni']."'");
+                        $result=mysqli_query($link,"SELECT * FROM AccionesInmediatas WHERE dni='".$fila0['dni']."'");
                         while ($fila=mysqli_fetch_array($result)){
                             echo "
                                 <td>".$fila['fecharegistro']."</td>
                             ";
                             if ($fila['fuente']==="SE"){
-                                $result2=mysqli_query($link,"SELECT * FROM aise WHERE idAccionesInmediatas='".$fila['idAccionesInmediatas']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM AISE WHERE idAccionesInmediatas='".$fila['idAccionesInmediatas']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
@@ -117,7 +117,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                                 }
                             }
                             if ($fila['fuente']==="OC"){
-                                $result2=mysqli_query($link,"SELECT * FROM aiocur WHERE idAccionesInmediatas='".$fila['idAccionesInmediatas']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM AIOCUR WHERE idAccionesInmediatas='".$fila['idAccionesInmediatas']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
@@ -130,7 +130,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                                 }
                             }
                             if ($fila['fuente']==="INC"){
-                                $result2=mysqli_query($link,"SELECT * FROM aiinc WHERE idAccionesInmediatas='".$fila['idAccionesInmediatas']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM AIINC WHERE idAccionesInmediatas='".$fila['idAccionesInmediatas']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
@@ -155,13 +155,13 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM accionesinmediatas WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM AccionesInmediatas WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         echo "
                             <td>".$fila0['fecharegistro']."</td>
                         ";
                         if ($fila0['fuente']==="SE"){
-                            $result2=mysqli_query($link,"SELECT * FROM aise WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM AISE WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
@@ -174,7 +174,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             }
                         }
                         if ($fila0['fuente']==="OC"){
-                            $result2=mysqli_query($link,"SELECT * FROM aiocur WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM AIOCUR WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
@@ -187,7 +187,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             }
                         }
                         if ($fila0['fuente']==="INC"){
-                            $result2=mysqli_query($link,"SELECT * FROM aiinc WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM AIINC WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
@@ -202,7 +202,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                         echo "
                             <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
-                        $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
+                        $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila0['dni']."'");
                         while ($fila3=mysqli_fetch_array($result3)){
                             echo "
                             <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
@@ -217,13 +217,13 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 echo "
                         <tr>
                     ";
-                $result0=mysqli_query($link,"SELECT * FROM accionesinmediatas");
+                $result0=mysqli_query($link,"SELECT * FROM AccionesInmediatas");
                 while ($fila0=mysqli_fetch_array($result0)){
                     echo "
                             <td>".$fila0['fecharegistro']."</td>
                     ";
                     if ($fila0['fuente']==="SE"){
-                        $result2=mysqli_query($link,"SELECT * FROM aise WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM AISE WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
@@ -236,7 +236,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                         }
                     }
                     if ($fila0['fuente']==="OC"){
-                        $result2=mysqli_query($link,"SELECT * FROM aiocur WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM AIOCUR WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
@@ -249,7 +249,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                         }
                     }
                     if ($fila0['fuente']==="INC"){
-                        $result2=mysqli_query($link,"SELECT * FROM aiinc WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM AIINC WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
@@ -264,7 +264,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                             <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
-                    $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
+                    $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila0['dni']."'");
                     while ($fila3=mysqli_fetch_array($result3)){
                         echo "
                             <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>

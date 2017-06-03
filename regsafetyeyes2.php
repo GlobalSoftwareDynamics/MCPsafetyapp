@@ -37,17 +37,17 @@ require ('funcionesApp.php');
 </header>
 <?php
 if (isset($_POST['siguiente'])){
-    $agregar="INSERT INTO safetyeyes(idSafetyEyes, idUbicacion, fecha, anoFiscal, hora, duracion, actividadObservada, nropersobservadas, nropersretroalimentadas, estado) VALUES(
+    $agregar="INSERT INTO SafetyEyes(idSafetyEyes, idUbicacion, fecha, anoFiscal, hora, duracion, actividadObservada, nropersobservadas, nropersretroalimentadas, estado) VALUES(
     '".$_POST['idSE']."','".$_POST['ubicacion']."','".$_POST['fecha']."','".$_POST['fy']."','".$_POST['hora']."','0','".$_POST['actividad']."','0','0','Pendiente'
     )";
     /*echo $agregar;*/
     $query=mysqli_query($link,$agregar);
-    $lider="INSERT INTO participantesse(dni, idSafetyEyes, idTipoParticipante) VALUES('".$_POST['lider']."','".$_POST['idSE']."','1')";
+    $lider="INSERT INTO ParticipantesSE(dni, idSafetyEyes, idTipoParticipante) VALUES('".$_POST['lider']."','".$_POST['idSE']."','1')";
     $query=mysqli_query($link,$lider);
     /*echo $lider;*/
 }
 if (isset($_POST['agregar'])){
-    $agregar="INSERT INTO participantesse(dni, idSafetyEyes, idTipoParticipante) VALUES('".$_POST['observador']."','".$_POST['idSE']."','2')";
+    $agregar="INSERT INTO ParticipantesSE(dni, idSafetyEyes, idTipoParticipante) VALUES('".$_POST['observador']."','".$_POST['idSE']."','2')";
     /*echo $agregar;*/
     $query=mysqli_query($link,$agregar);
 }

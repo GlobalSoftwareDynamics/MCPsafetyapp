@@ -39,11 +39,11 @@ require ('funcionesApp.php');
 <?php
 if (isset($_POST['agregar'])){
     /*echo $_POST['idMS'];*/
-    $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSafetyEyes='".$_POST['idSE']."'");
+    $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSafetyEyes='".$_POST['idSE']."'");
     while ($fila=mysqli_fetch_array($result)){
         $fecharegistro=$fila['fecha'];
     }
-    $agregar="INSERT INTO mejorasseguridad(idMejoras, dni, fecharegistro ,descripcion, fuente, estado) VALUES (
+    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, fecharegistro ,descripcion, fuente, estado) VALUES (
     '".$_POST['idMS']."','".$_POST['proponente']."','".$fecharegistro."','".$_POST['descripcion']."','SE','En Proceso'
     )";
     /*echo $agregar;*/

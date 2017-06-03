@@ -107,19 +107,19 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM observacionesse WHERE ".$_POST['columna']." ='".$_POST['busqueda']."'");
+                    $result0=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE ".$_POST['columna']." ='".$_POST['busqueda']."'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         echo "
                             <td>".$fila0['idObservacionesSE']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
                         ";
-                        $result1=mysqli_query($link,"SELECT * FROM categoria WHERE idCategoria='".$fila0['idCategoria']."'");
+                        $result1=mysqli_query($link,"SELECT * FROM Categoria WHERE idCategoria='".$fila0['idCategoria']."'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                                 <td>".$fila1['siglas']."</td>
                             ";
                         }
-                        $result3=mysqli_query($link,"SELECT * FROM clase WHERE idClase='".$fila0['idClase']."'");
+                        $result3=mysqli_query($link,"SELECT * FROM Clase WHERE idClase='".$fila0['idClase']."'");
                         while ($fila3=mysqli_fetch_array($result3)){
                             echo "
                                 <td>".$fila3['siglas']."</td>
@@ -150,19 +150,19 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM observacionesse WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         echo "
                             <td>".$fila0['idObservacionesSE']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
                         ";
-                        $result1=mysqli_query($link,"SELECT * FROM categoria WHERE idCategoria='".$fila0['idCategoria']."'");
+                        $result1=mysqli_query($link,"SELECT * FROM Categoria WHERE idCategoria='".$fila0['idCategoria']."'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                                 <td>".$fila1['siglas']."</td>
                             ";
                         }
-                        $result3=mysqli_query($link,"SELECT * FROM clase WHERE idClase='".$fila0['idClase']."'");
+                        $result3=mysqli_query($link,"SELECT * FROM Clase WHERE idClase='".$fila0['idClase']."'");
                         while ($fila3=mysqli_fetch_array($result3)){
                             echo "
                                 <td>".$fila3['siglas']."</td>
@@ -194,19 +194,19 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 echo "
                         <tr>
                     ";
-                $result0=mysqli_query($link,"SELECT * FROM observacionesse");
+                $result0=mysqli_query($link,"SELECT * FROM ObservacionesSE");
                 while ($fila0=mysqli_fetch_array($result0)){
                     echo "
                             <td>".$fila0['idObservacionesSE']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
                         ";
-                    $result1=mysqli_query($link,"SELECT * FROM categoria WHERE idCategoria='".$fila0['idCategoria']."'");
+                    $result1=mysqli_query($link,"SELECT * FROM Categoria WHERE idCategoria='".$fila0['idCategoria']."'");
                     while ($fila1=mysqli_fetch_array($result1)){
                         echo "
                                 <td>".$fila1['siglas']."</td>
                             ";
                     }
-                    $result3=mysqli_query($link,"SELECT * FROM clase WHERE idClase='".$fila0['idClase']."'");
+                    $result3=mysqli_query($link,"SELECT * FROM Clase WHERE idClase='".$fila0['idClase']."'");
                     while ($fila3=mysqli_fetch_array($result3)){
                         echo "
                                 <td>".$fila3['siglas']."</td>

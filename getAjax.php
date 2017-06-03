@@ -6,7 +6,7 @@ require('funcionesApp.php')*/
 
 if(!empty($_POST["regsafetyeyes1planta"])) {
     echo "<option>Seleccionar</option>";
-    $planta =mysqli_query($link,"SELECT * FROM ubicacion WHERE idPlanta = '" . $_POST["regsafetyeyes1planta"] . "' AND estado='1'");
+    $planta =mysqli_query($link,"SELECT * FROM Ubicacion WHERE idPlanta = '" . $_POST["regsafetyeyes1planta"] . "' AND estado='1'");
     while($result2=mysqli_fetch_array($planta)){
         echo "<option value=".$result2['idUbicacion'].">".$result2['descripcion']."</option>";
     }
@@ -14,7 +14,7 @@ if(!empty($_POST["regsafetyeyes1planta"])) {
 
 if(!empty($_POST["regsafetyeyes2empresa"])) {
     echo "<option>Seleccionar</option>";
-    $persona =mysqli_query($link,"SELECT * FROM colaboradores WHERE ruc = '" . $_POST["regsafetyeyes2empresa"] . "'  AND estado='1'");
+    $persona =mysqli_query($link,"SELECT * FROM Colaboradores WHERE ruc = '" . $_POST["regsafetyeyes2empresa"] . "'  AND estado='1'");
     while($result2=mysqli_fetch_array($persona)){
         echo "<option value=".$result2['dni'].">".$result2['dni']."-".$result2['nombre']." ".$result2['apellidos']."</option>";
     }
@@ -51,7 +51,7 @@ if(!empty($_POST["registrosSEcolumna"])) {
             <select name='busqueda' id='detalle' class='col-sm-12 form-control' >
                 <option>Seleccionar</option> 
         ";
-        $planta =mysqli_query($link,"SELECT * FROM planta WHERE estado='1'");
+        $planta =mysqli_query($link,"SELECT * FROM Planta WHERE estado='1'");
         while($result2=mysqli_fetch_array($planta)){
             echo "
                 <option value=".$result2['idPlanta'].">".$result2['descripcion']."</option>
@@ -79,7 +79,7 @@ if(!empty($_POST["registrosobservSEcolumna"])) {
             <select name='busqueda' id='detalle' class='col-sm-12 form-control' >
                 <option>Seleccionar</option> 
         ";
-        $planta =mysqli_query($link,"SELECT * FROM categoria");
+        $planta =mysqli_query($link,"SELECT * FROM Categoria");
         while($result2=mysqli_fetch_array($planta)){
             echo "
                 <option value=".$result2['idCategoria'].">".$result2['siglas']."-".$result2['descripcion']."</option>
@@ -94,7 +94,7 @@ if(!empty($_POST["registrosobservSEcolumna"])) {
             <select name='busqueda' id='detalle' class='col-sm-12 form-control' >
                 <option>Seleccionar</option> 
         ";
-        $planta =mysqli_query($link,"SELECT * FROM clase WHERE categoria='SE'");
+        $planta =mysqli_query($link,"SELECT * FROM Clase WHERE categoria='SE'");
         while($result2=mysqli_fetch_array($planta)){
             echo "
                 <option value=".$result2['idClase'].">".$result2['siglas']."-".$result2['descripcion']."</option>
@@ -114,7 +114,7 @@ if(!empty($_POST["registrosobservSEcolumna"])) {
             <select name='busqueda' id='detalle' class='col-sm-12 form-control' >
                 <option>Seleccionar</option> 
         ";
-        $planta =mysqli_query($link,"SELECT * FROM cops");
+        $planta =mysqli_query($link,"SELECT * FROM COPs");
         while($result2=mysqli_fetch_array($planta)){
             echo "
                 <option value=".$result2['idCOPs'].">".$result2['descripcion']."</option>
@@ -262,7 +262,7 @@ if(!empty($_POST["crearnuevaACtiporeporte"])) {
 
 if(!empty($_POST["crearnuevaACsafetyeyes"])) {
     echo "<option>Seleccionar</option>";
-    $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE fecha='".$_POST['crearnuevaACsafetyeyes']."' AND estado='Aprobado'");
+    $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE fecha='".$_POST['crearnuevaACsafetyeyes']."' AND estado='Aprobado'");
     while ($fila=mysqli_fetch_array($result)){
         echo "
             <option value='".$fila['idSafetyEyes']."'>".$fila['idSafetyEyes']."</option>
@@ -272,7 +272,7 @@ if(!empty($_POST["crearnuevaACsafetyeyes"])) {
 
 if(!empty($_POST["crearnuevaACobservaciones"])) {
     echo "<option>Seleccionar</option>";
-    $result=mysqli_query($link,"SELECT * FROM observacionesse WHERE idSafetyEyes='".$_POST['crearnuevaACobservaciones']."'");
+    $result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes='".$_POST['crearnuevaACobservaciones']."'");
     while ($fila=mysqli_fetch_array($result)){
         echo "
             <option value='".$fila['idObservacionesSE']."'>".$fila['idObservacionesSE']."</option>
@@ -281,7 +281,7 @@ if(!empty($_POST["crearnuevaACobservaciones"])) {
 }
 
 if(!empty($_POST["crearnuevaACdescobservaciones"])) {
-    $result=mysqli_query($link,"SELECT * FROM observacionesse WHERE idObservacionesSE='".$_POST['crearnuevaACdescobservaciones']."'");
+    $result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idObservacionesSE='".$_POST['crearnuevaACdescobservaciones']."'");
     while ($fila=mysqli_fetch_array($result)){
         echo "
             <div class='col-sm-12'>
@@ -295,7 +295,7 @@ if(!empty($_POST["crearnuevaACdescobservaciones"])) {
 
 if(!empty($_POST["crearnuevaACcolaboradores"])) {
     echo "<option>Seleccionar</option>";
-    $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE idPuesto='".$_POST['crearnuevaACcolaboradores']."' AND estado='1'");
+    $result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE idPuesto='".$_POST['crearnuevaACcolaboradores']."' AND estado='1'");
     while ($fila=mysqli_fetch_array($result)){
         echo "
             <option value='".$fila['dni']."'>".$fila['nombre']." ".$fila['apellidos']."</option>
@@ -306,7 +306,7 @@ if(!empty($_POST["crearnuevaACcolaboradores"])) {
 if(!empty($_POST["crearnuevaMStiporeporte"])&&!empty($_POST["crearnuevaMSfechatiporeporte"])) {
     if ($_POST['crearnuevaMStiporeporte']==="SE") {
         echo "<option>Seleccionar</option>";
-        $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE fecha ='".$_POST['crearnuevaMSfechatiporeporte']."'");
+        $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE fecha ='".$_POST['crearnuevaMSfechatiporeporte']."'");
         while ($fila=mysqli_fetch_array($result)){
             echo "
                 <option value='".$fila['idSafetyEyes']."'>".$fila['idSafetyEyes']."</option>
@@ -315,7 +315,7 @@ if(!empty($_POST["crearnuevaMStiporeporte"])&&!empty($_POST["crearnuevaMSfechati
     }
     if ($_POST['crearnuevaMStiporeporte']==="OC"){
         echo "<option>Seleccionar</option>";
-        $result=mysqli_query($link,"SELECT * FROM ocurrencias WHERE fecha ='".$_POST['crearnuevaMSfechatiporeporte']."'");
+        $result=mysqli_query($link,"SELECT * FROM Ocurrencias WHERE fecha ='".$_POST['crearnuevaMSfechatiporeporte']."'");
         while ($fila=mysqli_fetch_array($result)){
             echo "
                 <option value='".$fila['idOcurrencias']."'>".$fila['idOcurrencias']."</option>

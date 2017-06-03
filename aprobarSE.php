@@ -99,17 +99,17 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM Colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
-                        $result=mysqli_query($link,"SELECT * FROM participantesse WHERE dni='".$fila0['dni']."' AND idTipoParticipante = '1'");
+                        $result=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE dni='".$fila0['dni']."' AND idTipoParticipante = '1'");
                         while ($fila=mysqli_fetch_array($result)){
-                            $result1=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSafetyEyes ='".$fila['idSafetyEyes']."' AND estado='Pendiente' ORDER BY fecha DESC");
+                            $result1=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSafetyEyes ='".$fila['idSafetyEyes']."' AND estado='Pendiente' ORDER BY fecha DESC");
                             while ($fila1=mysqli_fetch_array($result1)){
                                 echo "
                                     <td>".$fila1['fecha']."</td>
                                     <td>".$fila1['idSafetyEyes']."</td>
                                 ";
-                                $result2=mysqli_query($link,"SELECT * FROM ubicacion WHERE idUbicacion='".$fila1['idUbicacion']."'");
+                                $result2=mysqli_query($link,"SELECT * FROM Ubicacion WHERE idUbicacion='".$fila1['idUbicacion']."'");
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                     <td>".$fila2['descripcion']."</td>
@@ -141,20 +141,20 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM planta WHERE idPlanta ='".$_POST['busqueda']."'");
+                    $result0=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta ='".$_POST['busqueda']."'");
                     while ($fila0=mysqli_fetch_array($result0)){
-                        $result1=mysqli_query($link,"SELECT * FROM ubicacion WHERE idPlanta='".$fila0['idPlanta']."'");
+                        $result1=mysqli_query($link,"SELECT * FROM Ubicacion WHERE idPlanta='".$fila0['idPlanta']."'");
                         while ($fila1=mysqli_fetch_array($result1)){
-                            $result2=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idUbicacion ='".$fila1['idUbicacion']."'  AND estado='Pendiente' ORDER BY fecha DESC");
+                            $result2=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idUbicacion ='".$fila1['idUbicacion']."'  AND estado='Pendiente' ORDER BY fecha DESC");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                     <td>".$fila2['fecha']."</td>
                                     <td>".$fila2['idSafetyEyes']."</td>
                                     <td>".$fila1['descripcion']."</td>
                                 ";
-                                $result3=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$fila2['idSafetyEyes']."' AND idTipoParticipante ='1'");
+                                $result3=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE idSafetyEyes='".$fila2['idSafetyEyes']."' AND idTipoParticipante ='1'");
                                 while ($fila3=mysqli_fetch_array($result3)){
-                                    $result4=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila3['dni']."'");
+                                    $result4=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila3['dni']."'");
                                     while ($fila4=mysqli_fetch_array($result4)){
                                         echo "
                                             <td>".$fila4['nombre']." ".$fila4['apellidos']."</td>
@@ -185,18 +185,18 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM ubicacion WHERE descripcion LIKE '%".$_POST['busqueda']."%'");
+                    $result0=mysqli_query($link,"SELECT * FROM Ubicacion WHERE descripcion LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
-                        $result1=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idUbicacion ='".$fila0['idUbicacion']."'  AND estado='Pendiente' ORDER BY fecha DESC");
+                        $result1=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idUbicacion ='".$fila0['idUbicacion']."'  AND estado='Pendiente' ORDER BY fecha DESC");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                                 <td>".$fila1['fecha']."</td>
                                 <td>".$fila1['idSafetyEyes']."</td>
                                 <td>".$fila0['descripcion']."</td>
                             ";
-                            $result2=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$fila1['idSafetyEyes']."' AND idTipoParticipante ='1'");
+                            $result2=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE idSafetyEyes='".$fila1['idSafetyEyes']."' AND idTipoParticipante ='1'");
                             while ($fila2=mysqli_fetch_array($result2)){
-                                $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila2['dni']."'");
+                                $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila2['dni']."'");
                                 while ($fila3=mysqli_fetch_array($result3)){
                                     echo "
                                         <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
@@ -225,21 +225,21 @@ mysqli_query($link,"SET NAMES 'utf8'");
                     echo "
                         <tr>
                     ";
-                    $result0=mysqli_query($link,"SELECT * FROM safetyeyes WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'  AND estado='Pendiente' ORDER BY fecha DESC");
+                    $result0=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'  AND estado='Pendiente' ORDER BY fecha DESC");
                     while ($fila0=mysqli_fetch_array($result0)){
                         echo "
                             <td>".$fila0['fecha']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
                         ";
-                        $result1=mysqli_query($link,"SELECT * FROM ubicacion WHERE idUbicacion='".$fila0['idUbicacion']."'");
+                        $result1=mysqli_query($link,"SELECT * FROM Ubicacion WHERE idUbicacion='".$fila0['idUbicacion']."'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                                 <td>".$fila1['descripcion']."</td>
                             ";
                         }
-                        $result2=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$fila0['idSafetyEyes']."' AND idTipoParticipante ='1'");
+                        $result2=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE idSafetyEyes='".$fila0['idSafetyEyes']."' AND idTipoParticipante ='1'");
                         while ($fila2=mysqli_fetch_array($result2)){
-                            $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila2['dni']."'");
+                            $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila2['dni']."'");
                             while ($fila3=mysqli_fetch_array($result3)){
                                 echo "
                                     <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
@@ -268,21 +268,21 @@ mysqli_query($link,"SET NAMES 'utf8'");
                 echo "
                         <tr>
                     ";
-                $result0=mysqli_query($link,"SELECT * FROM safetyeyes WHERE estado='Pendiente' ORDER BY fecha DESC");
+                $result0=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE estado='Pendiente' ORDER BY fecha DESC");
                 while ($fila0=mysqli_fetch_array($result0)){
                     echo "
                             <td>".$fila0['fecha']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
                         ";
-                    $result1=mysqli_query($link,"SELECT * FROM ubicacion WHERE idUbicacion='".$fila0['idUbicacion']."'");
+                    $result1=mysqli_query($link,"SELECT * FROM Ubicacion WHERE idUbicacion='".$fila0['idUbicacion']."'");
                     while ($fila1=mysqli_fetch_array($result1)){
                         echo "
                                 <td>".$fila1['descripcion']."</td>
                             ";
                     }
-                    $result2=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$fila0['idSafetyEyes']."' AND idTipoParticipante ='1'");
+                    $result2=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE idSafetyEyes='".$fila0['idSafetyEyes']."' AND idTipoParticipante ='1'");
                     while ($fila2=mysqli_fetch_array($result2)){
-                        $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila2['dni']."'");
+                        $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila2['dni']."'");
                         while ($fila3=mysqli_fetch_array($result3)){
                             echo "
                                     <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>

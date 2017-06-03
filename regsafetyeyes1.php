@@ -49,7 +49,7 @@ require ('funcionesApp.php');
             <br>
             <?php
             $nombre ="Supervisor";/*$_SESSION['login'];*/
-            $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE usuario ='".$nombre."'");
+            $result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE usuario ='".$nombre."'");
             while ($fila=mysqli_fetch_array($result)){
                 $persona=$fila['dni'];
                 echo "
@@ -78,10 +78,11 @@ require ('funcionesApp.php');
                     <select id="plant" name="planta" class="form-control col-xs-12" onchange="getubicaciones(this.value)">
                         <option>Seleccionar</option>
                         <?php
-                        $result1=mysqli_query($link,"SELECT * FROM planta WHERE estado='1'");
+                        $result1=mysqli_query($link,"SELECT * FROM Planta WHERE estado='1'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
-                                <option value=".$fila1['idPlanta'].">".$fila1['descripcion']."</option>                            ";
+                                <option value=".$fila1['idPlanta'].">".$fila1['descripcion']."</option>
+                            ";
                         }
                         ?>
                     </select>

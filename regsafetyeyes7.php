@@ -25,11 +25,11 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 <?php
 if(isset($_POST['finalizar'])){
-    $actualziar="UPDATE safetyeyes SET nropersobservadas = '".$_POST['persobs']."' WHERE idSafetyEyes = '".$_POST['idSE']."'";
+    $actualziar="UPDATE SafetyEyes SET nropersobservadas = '".$_POST['persobs']."' WHERE idSafetyEyes = '".$_POST['idSE']."'";
     $query=mysqli_query($link,$actualziar);
-    $actualziar="UPDATE safetyeyes SET nropersretroalimentadas = '".$_POST['persretroalimentadas']."' WHERE idSafetyEyes = '".$_POST['idSE']."'";
+    $actualziar="UPDATE SafetyEyes SET nropersretroalimentadas = '".$_POST['persretroalimentadas']."' WHERE idSafetyEyes = '".$_POST['idSE']."'";
     $query=mysqli_query($link,$actualziar);
-    $actualziar="UPDATE safetyeyes SET duracion = '".$_POST['duracion']."' WHERE idSafetyEyes = '".$_POST['idSE']."'";
+    $actualziar="UPDATE SafetyEyes SET duracion = '".$_POST['duracion']."' WHERE idSafetyEyes = '".$_POST['idSE']."'";
     $query=mysqli_query($link,$actualziar);
     if ( !empty( $error = mysql_error() ) ) {
         echo "

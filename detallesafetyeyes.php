@@ -26,13 +26,13 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <?php
 if (isset($_POST['aprobar'])){
     $nombre ="Supervisor";/*$_SESSION['login'];*/
-    $result=mysqli_query($link,"SELECT * FROM colaboradores WHERE usuario ='".$nombre."'");
+    $result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE usuario ='".$nombre."'");
     while ($fila=mysqli_fetch_array($result)){
         $persona=$fila['dni'];
     }
-    $aprobar="UPDATE safetyeyes SET estado = 'Aprobado' WHERE idSafetyEyes = '".$_POST['idSE']."'";
+    $aprobar="UPDATE SafetyEyes SET estado = 'Aprobado' WHERE idSafetyEyes = '".$_POST['idSE']."'";
     $query=mysqli_query($link,$aprobar);
-    $revisor="INSERT INTO participantesse(dni, idSafetyEyes, idTipoParticipante) VALUES (
+    $revisor="INSERT INTO ParticipantesSE(dni, idSafetyEyes, idTipoParticipante) VALUES (
     '".$persona."','".$_POST['idSE']."','3'
     )";
     $query=mysqli_query($link,$revisor);
@@ -55,7 +55,7 @@ if (isset($_POST['aprobar'])){
 </section>
 <hr>
 <?php
-$result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSafetyEyes='".$_POST['idSE']."'");
+$result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSafetyEyes='".$_POST['idSE']."'");
 while ($fila=mysqli_fetch_array($result)) {
     ?>
     <section class="container bordes">
@@ -69,9 +69,9 @@ while ($fila=mysqli_fetch_array($result)) {
                     <label for="planta">Planta:</label>
                     <span id="planta">
                         <?php
-                        $result1 = mysqli_query($link, "SELECT * FROM ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
+                        $result1 = mysqli_query($link, "SELECT * FROM Ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
                         while ($fila1 = mysqli_fetch_array($result1)) {
-                            $result2 = mysqli_query($link, "SELECT * FROM planta WHERE idPlanta='" . $fila1['idPlanta'] . "'");
+                            $result2 = mysqli_query($link, "SELECT * FROM Planta WHERE idPlanta='" . $fila1['idPlanta'] . "'");
                             while ($fila2 = mysqli_fetch_array($result2)) {
                                 echo $fila2['descripcion'];
                             }
@@ -85,7 +85,7 @@ while ($fila=mysqli_fetch_array($result)) {
                     <label for='ubicacion'>Ubicación:</label>
                     <span id="ubicacion">
                         <?php
-                        $result1 = mysqli_query($link, "SELECT * FROM ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
+                        $result1 = mysqli_query($link, "SELECT * FROM Ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
                         while ($fila1 = mysqli_fetch_array($result1)) {
                             echo $fila1['descripcion'];
                         }
@@ -133,9 +133,9 @@ while ($fila=mysqli_fetch_array($result)) {
             <div class="middlealign text-center">
                 <span id="lider">
                     <?php
-                    $result1=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='1'");
+                    $result1=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='1'");
                     while ($fila1=mysqli_fetch_array($result1)){
-                        $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni ='".$fila1['dni']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo $fila2['nombre']." ".$fila2['apellidos'];
                         }
@@ -151,9 +151,9 @@ while ($fila=mysqli_fetch_array($result)) {
             <div>
                 <ul class="margenizquierdo">
                     <?php
-                    $result1=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='2'");
+                    $result1=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='2'");
                     while ($fila1=mysqli_fetch_array($result1)){
-                        $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni ='".$fila1['dni']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "<li>".$fila2['nombre']." ".$fila2['apellidos']."</li>";
                         }
@@ -184,7 +184,7 @@ while ($fila=mysqli_fetch_array($result)) {
                 <tbody>
                 <?php
                 $aux=0;
-                $result0=mysqli_query($link,"SELECT * FROM observacionesse WHERE idSafetyEyes='".$_POST['idSE']."'");
+                $result0=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes='".$_POST['idSE']."'");
                 while ($fila0=mysqli_fetch_array($result0)) {
                     echo "
                         <tr>
@@ -194,13 +194,13 @@ while ($fila=mysqli_fetch_array($result)) {
                         <td>" . $aux . "</td>
                         <td class='text-left'>" . $fila0['descripcion'] . "</td>
                     ";
-                    $result1 = mysqli_query($link, "SELECT * FROM categoria WHERE idCategoria='" . $fila0['idCategoria'] . "'");
+                    $result1 = mysqli_query($link, "SELECT * FROM Categoria WHERE idCategoria='" . $fila0['idCategoria'] . "'");
                     while ($fila1 = mysqli_fetch_array($result1)) {
                         echo "
                             <td>" . $fila1['siglas'] . "</td>
                         ";
                     }
-                    $result3 = mysqli_query($link, "SELECT * FROM clase WHERE idClase='" . $fila0['idClase'] . "'");
+                    $result3 = mysqli_query($link, "SELECT * FROM Clase WHERE idClase='" . $fila0['idClase'] . "'");
                     while ($fila3 = mysqli_fetch_array($result3)) {
                         echo "
                             <td>" . $fila3['siglas'] . "</td>
@@ -228,7 +228,7 @@ while ($fila=mysqli_fetch_array($result)) {
                 <div>
                     <ul>
                         <?php
-                        $result1=mysqli_query($link,"SELECT * FROM categoria");
+                        $result1=mysqli_query($link,"SELECT * FROM Categoria");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                             <li>".$fila1['siglas']." - ".$fila1['descripcion']."</li>
@@ -245,7 +245,7 @@ while ($fila=mysqli_fetch_array($result)) {
                 <div>
                     <ul>
                         <?php
-                        $result1=mysqli_query($link,"SELECT * FROM clase WHERE categoria='SE'");
+                        $result1=mysqli_query($link,"SELECT * FROM Clase WHERE categoria='SE'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                             <li>".$fila1['siglas']." - ".$fila1['descripcion']."</li>
@@ -276,19 +276,19 @@ while ($fila=mysqli_fetch_array($result)) {
                 <tbody>
                 <?php
                 $aux=0;
-                $result0=mysqli_query($link,"SELECT * FROM aise WHERE idSafetyEyes='".$_POST['idSE']."'");
+                $result0=mysqli_query($link,"SELECT * FROM AISE WHERE idSafetyEyes='".$_POST['idSE']."'");
                 while ($fila0=mysqli_fetch_array($result0)) {
                     echo "
                         <tr>
                     ";
                     $aux++;
                     echo "<td>".$aux."</td>";
-                    $result1=mysqli_query($link,"SELECT * FROM accionesinmediatas WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
+                    $result1=mysqli_query($link,"SELECT * FROM AccionesInmediatas WHERE idAccionesInmediatas='".$fila0['idAccionesInmediatas']."'");
                     while ($fila1=mysqli_fetch_array($result1)){
                         echo "
                             <td class='text-left'>".$fila1['descripcion']."</td>
                         ";
-                        $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
+                        $result2=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni ='".$fila1['dni']."'");
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                 <td>".$fila2['nombre']." ".$fila2['apellidos']."</td>
@@ -324,19 +324,19 @@ while ($fila=mysqli_fetch_array($result)) {
                 <tbody>
                 <?php
                 $aux=0;
-                $result0=mysqli_query($link,"SELECT * FROM mese WHERE idSafetyEyes='".$_POST['idSE']."'");
+                $result0=mysqli_query($link,"SELECT * FROM MESE WHERE idSafetyEyes='".$_POST['idSE']."'");
                 while ($fila0=mysqli_fetch_array($result0)) {
                     echo "
                         <tr>
                     ";
                     $aux++;
                     echo "<td>" . $aux . "</td>";
-                    $result1 = mysqli_query($link, "SELECT * FROM mejorasseguridad WHERE idMejoras='" . $fila0['idMejoras'] . "'");
+                    $result1 = mysqli_query($link, "SELECT * FROM MejorasSeguridad WHERE idMejoras='" . $fila0['idMejoras'] . "'");
                     while ($fila1 = mysqli_fetch_array($result1)) {
                         echo "
                             <td class='text-left'>" . $fila1['descripcion'] . "</td>
                         ";
-                        $result2 = mysqli_query($link, "SELECT * FROM colaboradores WHERE dni ='" . $fila1['dni'] . "'");
+                        $result2 = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni ='" . $fila1['dni'] . "'");
                         while ($fila2 = mysqli_fetch_array($result2)) {
                             echo "
                                 <td>" . $fila2['nombre'] . " " . $fila2['apellidos'] . "</td>
@@ -355,7 +355,7 @@ while ($fila=mysqli_fetch_array($result)) {
             </table>
         </div>
         <?php
-        $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSAfetyEyes='".$_POST['idSE']."'");
+        $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSAfetyEyes='".$_POST['idSE']."'");
         while ($fila=mysqli_fetch_array($result)){
             if($fila['estado']==="Pendiente"){
             }else{
@@ -395,21 +395,21 @@ while ($fila=mysqli_fetch_array($result)) {
                 <tbody>
                 <?php
                 $aux=0;
-                $result0=mysqli_query($link,"SELECT * FROM observacionesse WHERE idSafetyEyes='".$_POST['idSE']."'");
+                $result0=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes='".$_POST['idSE']."'");
                 while ($fila0=mysqli_fetch_array($result0)) {
-                    $result3=mysqli_query($link,"SELECT * FROM acse WHERE idObservacionesSE='".$fila0['idObservacionesSE']."'");
+                    $result3=mysqli_query($link,"SELECT * FROM ACSE WHERE idObservacionesSE='".$fila0['idObservacionesSE']."'");
                     while ($fila3=mysqli_fetch_array($result3)){
                         echo "
                             <tr>
                         ";
                         $aux++;
                         echo "<td>".$aux."</td>";
-                        $result1=mysqli_query($link,"SELECT * FROM accionescorrectivas WHERE idAccionesCorrectivas='".$fila3['idAccionesCorrectivas']."'");
+                        $result1=mysqli_query($link,"SELECT * FROM AccionesCorrectivas WHERE idAccionesCorrectivas='".$fila3['idAccionesCorrectivas']."'");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
                             <td class='text-left'>".$fila1['descripcion']."</td>
                         ";
-                            $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
+                            $result2=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni ='".$fila1['dni']."'");
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                 <td>".$fila2['nombre']." ".$fila2['apellidos']."</td>
@@ -431,7 +431,7 @@ while ($fila=mysqli_fetch_array($result)) {
             </table>
         </div>
         <?php
-        $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSAfetyEyes='".$_POST['idSE']."'");
+        $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSAfetyEyes='".$_POST['idSE']."'");
         while ($fila=mysqli_fetch_array($result)){
             if($fila['estado']==="Pendiente"){
             }else{
@@ -454,9 +454,9 @@ while ($fila=mysqli_fetch_array($result)) {
             <label for="revisor">Nombre del Revisor:</label>
             <span id="revisor">
                 <?php
-                $result1=mysqli_query($link,"SELECT * FROM participantesse WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='3'");
+                $result1=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='3'");
                 while ($fila1=mysqli_fetch_array($result1)){
-                    $result2=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni ='".$fila1['dni']."'");
+                    $result2=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni ='".$fila1['dni']."'");
                     while ($fila2=mysqli_fetch_array($result2)){
                         echo $fila2['nombre']." ".$fila2['apellidos'];
                     }
@@ -471,7 +471,7 @@ while ($fila=mysqli_fetch_array($result)) {
 <hr>
 <section class="container">
     <?php
-    $result=mysqli_query($link,"SELECT * FROM safetyeyes WHERE idSAfetyEyes='".$_POST['idSE']."'");
+    $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSAfetyEyes='".$_POST['idSE']."'");
     while ($fila=mysqli_fetch_array($result)){
         if($fila['estado']==="Pendiente"){
             echo "
