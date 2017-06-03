@@ -25,22 +25,22 @@ if(isset($_SESSION['login'])){
 </header>
 
 <section class="container">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         <h3 class="text-center">Bienvenido a GSD-Safe@Work Reportes</h3>
     </div>
 </section>
 <br>
 <section class="container">
     <div>
-        <form class="form-horizontal jumbotron col-xs-12">
+        <form method="post" class="form-horizontal jumbotron col-xs-12 col-sm-6 col-sm-offset-3">
             <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php?user=<?php echo $_GET['user'];?>">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-sm-8 col-sm-offset-2" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php?user=<?php echo $_GET['user'];?>">
             </div>
             <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" value="Registrar Ocurrencia" formaction="regocurrencia1.php?user=<?php echo $_GET['user'];?>">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-sm-8 col-sm-offset-2" value="Registrar Ocurrencia" formaction="regocurrencia1.php?user=<?php echo $_GET['user'];?>">
             </div>
             <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12" value="Registrar CAP" formaction="regcap1.php?user=<?php echo $_GET['user'];?>">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-sm-8 col-sm-offset-2" value="Registrar CAP" formaction="regcap1.php?user=<?php echo $_GET['user'];?>">
             </div>
         </form>
     </div>

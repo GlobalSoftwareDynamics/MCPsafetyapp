@@ -72,7 +72,7 @@ if (isset($_POST['completar'])){
 ?>
 <section class="container">
     <div>
-        <form action="registromejorasseguridad.php?=user<? echo$_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
+        <form action="registromejorasseguridad.php?user=<? echo$_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
                     <label for="columna" class="col-sm-12">Columna:</label>
