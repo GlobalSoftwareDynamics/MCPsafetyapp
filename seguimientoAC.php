@@ -5,7 +5,8 @@
 session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -32,7 +33,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <div>
-        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+        <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
             <?php
             date_default_timezone_set('America/Lima');
             $fecha = date('d/m/Y');
@@ -59,7 +60,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
             <br>
             <div class="form-group">
                 <div class="col-sm-6">
-                    <input type="submit" formaction="registrosaccionescorrectivas.php" name="regresar" value="Regresar" class="btn btn-default col-sm-10 col-sm-offset-1">
+                    <input type="submit" formaction="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" name="regresar" value="Regresar" class="btn btn-default col-sm-10 col-sm-offset-1">
                 </div>
                 <div class="col-sm-6">
                     <input type="submit" name="actualizarestado" value="Registrar Cumplimiento" class="btn btn-success col-sm-10 col-sm-offset-1">
@@ -79,9 +80,9 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </body>
 
     <?php
-/*}else{
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

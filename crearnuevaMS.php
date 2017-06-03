@@ -7,7 +7,8 @@ session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
 require('funcionesApp.php');
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -58,7 +59,7 @@ if(isset($_POST['provieneSEconidMS'])){
 ?>
     <section class="container">
         <div>
-            <form action="registromejorasseguridad.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registromejorasseguridad.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <?php
                 $fecha = date('d/m/Y');
                 $clase="MS";
@@ -117,7 +118,7 @@ if(isset($_POST['provieneSEconidMS'])){
                 <div class="form-group">
                     <input type="hidden" name="idSE" value="<?php echo $_POST['idSE']?>">
                     <div class="col-sm-6">
-                        <input type="submit" formaction="detallesafetyeyes.php" class="btn btn-default col-sm-10 col-sm-offset-1" name="regresar" value="Regresar">
+                        <input type="submit" formaction="detallesafetyeyes.php?user=<?php echo $_GET['user'];?>" class="btn btn-default col-sm-10 col-sm-offset-1" name="regresar" value="Regresar">
                     </div>
                     <div class="col-sm-6">
                         <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearmsconid" value="Registrar">
@@ -133,7 +134,7 @@ if(isset($_POST['provieneSEconidMS'])){
     ?>
     <section class="container">
         <div>
-            <form action="registromejorasseguridad.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registromejorasseguridad.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <?php
                     $fecha = date('d/m/Y');
@@ -212,7 +213,7 @@ if(isset($_POST['provieneSEconidMS'])){
                 <br>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="registromejorasseguridad.php" name="regresar" value="Regresar">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="registromejorasseguridad.php?user=<?php echo $_GET['user'];?>" name="regresar" value="Regresar">
                     </div>
                     <div class="col-sm-6">
                         <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearms" value="Registrar">
@@ -235,10 +236,10 @@ if(isset($_POST['provieneSEconidMS'])){
 </footer>
 </body>
 
-    <?php
-/*}else{
+<?php
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

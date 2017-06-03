@@ -6,7 +6,8 @@
 session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -41,7 +42,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 <section class="container">
     <div>
-        <form action="registrosSE.php" method="post" class="form-horizontal jumbotron col-sm-12">
+        <form action="registrosSE.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
                     <label for="columna" class="col-sm-12">Columna:</label>
@@ -80,7 +81,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 <section class="container">
     <form method="post" class="form-horizontal col-sm-12">
         <div class="form-group">
-            <input type="submit" formaction="registroobservacionesSE.php" value="Ver Listado de Observaciones" class="btn btn-primary col-sm-4 col-sm-offset-4">
+            <input type="submit" formaction="registroobservacionesSE.php?user=<?php echo $_GET['user'];?>" value="Ver Listado de Observaciones" class="btn btn-primary col-sm-4 col-sm-offset-4">
         </div>
     </form>
 </section>
@@ -135,7 +136,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                                     <td>
                                         <form method='post'>
                                             <input type='hidden' value='".$fila['idSafetyEyes']."' name='idSE'>
-                                            <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
+                                            <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
                                         </form>
                                     </td>
                                 ";
@@ -178,7 +179,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                                     <td>
                                         <form method='post'>
                                             <input type='hidden' value='".$fila2['idSafetyEyes']."' name='idSE'>
-                                            <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
+                                            <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
                                         </form>
                                     </td>
                                 ";
@@ -220,7 +221,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                                 <td>
                                     <form method='post'>
                                         <input type='hidden' value='".$fila1['idSafetyEyes']."' name='idSE'>
-                                        <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
+                                        <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
                                     </form>
                                 </td>
                             ";
@@ -263,7 +264,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idSafetyEyes']."' name='idSE'>
-                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
+                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -306,7 +307,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idSafetyEyes']."' name='idSE'>
-                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
+                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -330,10 +331,10 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </footer>
 </body>
 
-    <?php
-/*}else{
+<?php
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

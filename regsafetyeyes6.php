@@ -7,7 +7,8 @@ session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
 require ('funcionesApp.php');
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -59,7 +60,7 @@ require ('funcionesApp.php');
             <div class="form-group">
                 <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
                 <div class="col-xs-12">
-                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes7.php" name="finalizar" value="Siguiente">
+                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes7.php?user=<?php echo $_GET['user'];?>" name="finalizar" value="Siguiente">
                 </div>
             </div>
         </form>
@@ -76,10 +77,10 @@ require ('funcionesApp.php');
 </footer>
 </body>
 
-    <?php
-/*}else{
-    echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+<?php
+    }else{
+        echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
+    }
 ?>
 
 </html>

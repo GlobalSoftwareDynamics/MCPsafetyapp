@@ -7,7 +7,8 @@ session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
 require ('funcionesApp.php');
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -42,19 +43,16 @@ require ('funcionesApp.php');
 
 <section class="container">
     <div>
-        <form action="regsafetyeyes2.php" method="post" class="form-horizontal jumbotron col-xs-12">
+        <form action="regsafetyeyes2.php?user=<? echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-xs-12">
             <div class="col-xs-12">
                 <h4 class="text-left">Paso 1: Datos Generales</h4>
             </div>
             <br>
             <?php
-            $nombre ="Supervisor";/*$_SESSION['login'];*/
+            $nombre =$_SESSION['login'];
             $result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE usuario ='".$nombre."'");
             while ($fila=mysqli_fetch_array($result)){
                 $persona=$fila['dni'];
-                echo "
-                    <input type='text' name='lider' value='".$persona."' readonly>
-                ";
             }
             date_default_timezone_set('America/Lima');
             $hora = date('H:i:s');
@@ -125,9 +123,9 @@ require ('funcionesApp.php');
 </body>
 
     <?php
-/*}else{
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

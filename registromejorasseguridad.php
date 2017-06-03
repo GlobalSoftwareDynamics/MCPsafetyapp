@@ -6,7 +6,8 @@
 session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -71,7 +72,7 @@ if (isset($_POST['completar'])){
 ?>
 <section class="container">
     <div>
-        <form action="registromejorasseguridad.php" method="post" class="form-horizontal jumbotron col-sm-12">
+        <form action="registromejorasseguridad.php?=user<? echo$_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
                     <label for="columna" class="col-sm-12">Columna:</label>
@@ -109,7 +110,7 @@ if (isset($_POST['completar'])){
 <section class="container">
     <form method="post" class="form-horizontal col-sm-12">
         <div class="form-group">
-            <input type="submit" formaction="crearnuevaMS.php" value="Registrar Nueva Mejora de Seguridad" class="btn btn-primary col-sm-4 col-sm-offset-4">
+            <input type="submit" formaction="crearnuevaMS.php?=user".$_GET['user']."" value="Registrar Nueva Mejora de Seguridad" class="btn btn-primary col-sm-4 col-sm-offset-4">
         </div>
     </form>
 </section>
@@ -146,7 +147,7 @@ if (isset($_POST['completar'])){
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php'>
+                                            <form method='post' action='detallesafetyeyes.php?=user".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -176,7 +177,7 @@ if (isset($_POST['completar'])){
                                 <td>
                                     <form method='post'>
                                         <input type='hidden' value='".$fila['idMejoras']."' name='idME'>
-                                        <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php'>
+                                        <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?=user".$_GET['user']."'>
                                     </form>
                                 </td>
                             ";
@@ -199,7 +200,7 @@ if (isset($_POST['completar'])){
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php'>
+                                            <form method='post' action='detallesafetyeyes.php?=user".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -236,7 +237,7 @@ if (isset($_POST['completar'])){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idMejoras']."' name='idME'>
-                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php'>
+                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?=user".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -259,7 +260,7 @@ if (isset($_POST['completar'])){
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php'>
+                                            <form method='post' action='detallesafetyeyes.php?=user".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -296,7 +297,7 @@ if (isset($_POST['completar'])){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idMejoras']."' name='idME'>
-                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php'>
+                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?=user".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -320,10 +321,10 @@ if (isset($_POST['completar'])){
 </footer>
 </body>
 
-    <?php
-/*}else{
+<?php
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

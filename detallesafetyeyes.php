@@ -6,7 +6,8 @@
 session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -25,7 +26,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 </header>
 <?php
 if (isset($_POST['aprobar'])){
-    $nombre ="Supervisor";/*$_SESSION['login'];*/
+    $nombre =$_SESSION['login'];
     $result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE usuario ='".$nombre."'");
     while ($fila=mysqli_fetch_array($result)){
         $persona=$fila['dni'];
@@ -361,7 +362,7 @@ while ($fila=mysqli_fetch_array($result)) {
             }else{
                 echo "
                     <div class='col-sm-12'>
-                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaMS.php'>
+                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaMS.php?user=".$_GET['user']."'>
                             <div class='form-group'>
                                 <input type='hidden' name='idSE' value='".$_POST['idSE']."'>
                                 <input type='submit' class='btn btn-primary col-sm-4 col-sm-offset-4' name='provieneSEconidMS' value='Agregar Mejoras de Seguridad'>
@@ -437,7 +438,7 @@ while ($fila=mysqli_fetch_array($result)) {
             }else{
                 echo "
                     <div class='col-sm-12'>
-                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaAC.php'>
+                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaAC.php?user=".$_GET['user']."'>
                             <div class='form-group'>
                                 <input type='hidden' name='idSE' value='".$_POST['idSE']."'>
                                 <input type='submit' class='btn btn-primary col-sm-4 col-sm-offset-4' name='provieneSEconidAC' value='Agregar Acciones Correctivas'>
@@ -475,31 +476,31 @@ while ($fila=mysqli_fetch_array($result)) {
     while ($fila=mysqli_fetch_array($result)){
         if($fila['estado']==="Pendiente"){
             echo "
-                <form method='post' action='registrosSE.php' class='form-horizontal col-sm-12'>
+                <form method='post' action='registrosSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
                         <div class='col-sm-4'>
                             <input type='submit' class='btn btn-default col-sm-10 col-sm-offset-1' value='Regresar' name='Regresar'>
                         </div>
                         <div class='col-sm-4'>
-                            <input type='submit' class='btn btn-success col-sm-10 col-sm-offset-1' value='Aprobar' name='aprobar' formaction='detallesafetyeyes.php'>
+                            <input type='submit' class='btn btn-success col-sm-10 col-sm-offset-1' value='Aprobar' name='aprobar' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
                         </div>
                         <div class='col-sm-4'>
-                            <input type='submit' class='btn btn-primary col-sm-10 col-sm-offset-1' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php'>
+                            <input type='submit' class='btn btn-primary col-sm-10 col-sm-offset-1' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php?user=".$_GET['user']."'>
                         </div>
                     </div>
                 </form>
             ";
         }else{
             echo "
-                <form method='post' action='registrosSE.php' class='form-horizontal col-sm-12'>
+                <form method='post' action='registrosSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
                         <div class='col-sm-6'>
                             <input type='submit' class='btn btn-default col-sm-8 col-sm-offset-2' value='Regresar' name='Regresar'>
                         </div>
                         <div class='col-sm-6'>
-                            <input type='submit' class='btn btn-primary col-sm-8 col-sm-offset-2' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php'>
+                            <input type='submit' class='btn btn-primary col-sm-8 col-sm-offset-2' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php?user=".$_GET['user']."'>
                         </div>
                     </div>
                 </form>
@@ -519,9 +520,9 @@ while ($fila=mysqli_fetch_array($result)) {
 </body>
 
 <?php
-/*}else{
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

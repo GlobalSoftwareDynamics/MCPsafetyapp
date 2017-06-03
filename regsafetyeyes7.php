@@ -6,7 +6,8 @@
 session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -49,7 +50,7 @@ if(isset($_POST['finalizar'])){
 
 <br>
 <section class="container">
-    <form action="mainSupervisor.php" class="form-horizontal jumbotron col-xs-12">
+    <form action="mainSupervisor.php?user=<?php echo $_GET['user'];?>" class="form-horizontal jumbotron col-xs-12">
         <div class="form-group">
             <input class="btn btn-success col-xs-12" type="submit" value="Regresar al Men&uacute;">
         </div>
@@ -67,9 +68,9 @@ if(isset($_POST['finalizar'])){
 </body>
 
     <?php
-/*}else{
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

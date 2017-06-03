@@ -6,8 +6,8 @@
 session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-/*$_SESSION['login'] = $_GET['user'];
-if(isset($_SESSION['login'])){*/
+$_SESSION['login'] = $_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -47,8 +47,8 @@ if(isset($_SESSION['login'])){*/
 </body>
 
 <?php
-/*}else{
-    echo "Usted no está autorizado para ingresar a esta sección, por favor vuelva a la página de incio e intente de nuevo.";
-}*/
+}else{
+    echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
+}
 ?>
 </html>

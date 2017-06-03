@@ -7,7 +7,8 @@ session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
 require ('funcionesApp.php');
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -90,10 +91,10 @@ if (isset($_POST['agregar'])){
             <div class="form-group">
                 <input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>" readonly>
                 <div class="col-xs-12">
-                    <input type="submit" class="btn btn-success col-xs-12" formaction="regsafetyeyes2.php"name="agregar" value="Agregar">
+                    <input type="submit" class="btn btn-success col-xs-12" formaction="regsafetyeyes2.php?user=<?php echo $_GET['user'];?>" name="agregar" value="Agregar">
                 </div>
                 <div class="col-xs-12">
-                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes3.php" name="siguiente" value="Siguiente">
+                    <input type="submit" class="btn btn-primary col-xs-12" formaction="regsafetyeyes3.php?user=<?php echo $_GET['user'];?>" name="siguiente" value="Siguiente">
                 </div>
             </div>
         </form>
@@ -111,9 +112,9 @@ if (isset($_POST['agregar'])){
 </body>
 
     <?php
-/*}else{
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

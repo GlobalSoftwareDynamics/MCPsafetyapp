@@ -7,7 +7,8 @@ session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
 require('funcionesApp.php');
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -85,7 +86,7 @@ if (isset($_POST['provieneSE'])){
 ?>
     <section class="container">
         <div>
-            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <script>
                     $(function() {
                         $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -181,7 +182,7 @@ if (isset($_POST['provieneSE'])){
                 <br>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="crearnuevaAC.php" value="Regresar">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="crearnuevaAC.php?user=<?php echo $_GET['user'];?>" value="Regresar">
                     </div>
                     <div class="col-sm-6">
                         <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearacse" value="Registrar">
@@ -195,7 +196,7 @@ if (isset($_POST['provieneSE'])){
 ?>
     <section class="container">
         <div>
-            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <script>
                     $(function() {
                         $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -290,7 +291,7 @@ if (isset($_POST['provieneSE'])){
                 <div class="form-group">
                     <input type="hidden" name="idSE" value="<?php echo $_POST['idSE']?>" readonly>
                     <div class="col-sm-6">
-                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="detallesafetyeyes.php" value="Regresar">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="detallesafetyeyes.php?user=<?php echo $_GET['user'];?>" value="Regresar">
                     </div>
                     <div class="col-sm-6">
                         <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearacseconidse" value="Registrar">
@@ -314,7 +315,7 @@ if (isset($_POST['provieneSE'])){
     <br>
     <section class="container">
         <div>
-            <form action="crearnuevaAC.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="crearnuevaAC.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <div class="col-sm-12">
                         <label for="tipo" class="col-sm-12">Seleccione Proveniencia de la Acción Correctiva:</label>
@@ -334,7 +335,7 @@ if (isset($_POST['provieneSE'])){
     </section>
     <br>
     <section class="container">
-        <form action="registrosaccionescorrectivas.php" class="form-horizontal">
+        <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" class="form-horizontal">
             <input type="submit" class="btn btn-default col-sm-4 col-sm-offset-4" name="regresar" value="Regresar">
         </form>
     </section>
@@ -352,9 +353,9 @@ if (isset($_POST['provieneSE'])){
 </body>
 
     <?php
-/*}else{
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
 
 </html>

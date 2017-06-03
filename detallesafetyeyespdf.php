@@ -4,7 +4,8 @@ require_once __DIR__ . '/lib/mpdf/mpdf.php';
 session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-/*if(isset($_SESSION['login'])){*/
+$_SESSION['login']=$_GET['user'];
+if(isset($_SESSION['login'])){
 
     $html='
     <html lang="es">
@@ -410,7 +411,7 @@ mysqli_query($link,"SET NAMES 'utf8'");
 
 // Output a PDF file directly to the browser
     $mpdf->Output($nombrearchivo,'D');
-/*}else{
+}else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
-}*/
+}
 ?>
