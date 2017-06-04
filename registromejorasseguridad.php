@@ -147,7 +147,7 @@ if (isset($_POST['completar'])){
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php?=user".$_GET['user']."'>
+                                            <form method='post' action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -177,7 +177,7 @@ if (isset($_POST['completar'])){
                                 <td>
                                     <form method='post'>
                                         <input type='hidden' value='".$fila['idMejoras']."' name='idME'>
-                                        <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?=user".$_GET['user']."'>
+                                        <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?user=".$_GET['user']."'>
                                     </form>
                                 </td>
                             ";
@@ -200,7 +200,7 @@ if (isset($_POST['completar'])){
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php?=user".$_GET['user']."'>
+                                            <form method='post' action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -237,7 +237,7 @@ if (isset($_POST['completar'])){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idMejoras']."' name='idME'>
-                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?=user".$_GET['user']."'>
+                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?user=".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -260,7 +260,7 @@ if (isset($_POST['completar'])){
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php?=user".$_GET['user']."'>
+                                            <form method='post' action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -297,7 +297,7 @@ if (isset($_POST['completar'])){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idMejoras']."' name='idME'>
-                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?=user".$_GET['user']."'>
+                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?user=".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
