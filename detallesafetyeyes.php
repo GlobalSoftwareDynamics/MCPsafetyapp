@@ -496,7 +496,7 @@ while ($fila=mysqli_fetch_array($result)) {
             ";
         }else{
             echo "
-                <form method='post' action='aprobarSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
+                <form method='post' action='registrosSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
                         <div class='col-sm-6'>
