@@ -110,7 +110,7 @@ if (isset($_POST['completar'])){
 <section class="container">
     <form method="post" class="form-horizontal col-sm-12">
         <div class="form-group">
-            <input type="submit" formaction="crearnuevaMS.php?=user<?php echo $_GET['user'];?>" value="Registrar Nueva Mejora de Seguridad" class="btn btn-primary col-sm-4 col-sm-offset-4">
+            <input type="submit" formaction="crearnuevaMS.php?user=<?php echo $_GET['user'];?>" value="Registrar Nueva Mejora de Seguridad" class="btn btn-primary col-sm-4 col-sm-offset-4">
         </div>
     </form>
 </section>
