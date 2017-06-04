@@ -25,7 +25,7 @@ if(isset($_SESSION['login'])){
 </header>
 
 <section class="container">
-    <form class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+    <form method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
         <div class="form-group">
             <h3 class="text-center">Contenido en desarrollo</h3>
         </div>

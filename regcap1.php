@@ -32,7 +32,7 @@ if(isset($_SESSION['login'])){
 <br>
 <section class="container">
     <div>
-        <form class="form-horizontal jumbotron col-xs-12 col-sm-4 col-sm-offset-4">
+        <form method="post" class="form-horizontal jumbotron col-xs-12 col-sm-4 col-sm-offset-4">
             <div class="form-group">
                 <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-default col-xs-12 col-sm-12" value="Regresar" formaction="mainSupervisor.php?user=<?php echo $_GET['user'];?>">
             </div>
