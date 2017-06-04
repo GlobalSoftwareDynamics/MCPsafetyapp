@@ -476,24 +476,27 @@ while ($fila=mysqli_fetch_array($result)) {
     while ($fila=mysqli_fetch_array($result)){
         if($fila['estado']==="Pendiente"){
             echo "
-                <form method='post' action='registrosSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
+                <form method='post' action='aprobarSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
-                        <div class='col-sm-4'>
-                            <input type='submit' class='btn btn-default col-sm-10 col-sm-offset-1' value='Regresar' name='Regresar'>
+                        <div class='col-sm-3'>
+                            <input type='submit' class='btn btn-default col-sm-12' value='Regresar' name='Regresar'>
                         </div>
-                        <div class='col-sm-4'>
-                            <input type='submit' class='btn btn-success col-sm-10 col-sm-offset-1' value='Aprobar' name='aprobar' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
+                        <div class='col-sm-3'>
+                            <input type='submit' class='btn btn-default col-sm-12' value='Rechazar' name='rechazar'>
                         </div>
-                        <div class='col-sm-4'>
-                            <input type='submit' class='btn btn-primary col-sm-10 col-sm-offset-1' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php?user=".$_GET['user']."'>
+                        <div class='col-sm-3'>
+                            <input type='submit' class='btn btn-success col-sm-12' value='Aprobar' name='aprobar' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
+                        </div>
+                        <div class='col-sm-3'>
+                            <input type='submit' class='btn btn-primary col-sm-12' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php?user=".$_GET['user']."'>
                         </div>
                     </div>
                 </form>
             ";
         }else{
             echo "
-                <form method='post' action='registrosSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
+                <form method='post' action='aprobarSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
                         <div class='col-sm-6'>

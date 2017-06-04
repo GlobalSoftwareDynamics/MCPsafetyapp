@@ -40,7 +40,35 @@ if(isset($_SESSION['login'])){
     include_once('navbarmainAdmin.php');
     ?>
 </header>
-
+<?php
+if (isset($_POST['rechazar'])){
+    $result=mysqli_query($link,"SELECT * FROM AISE WHERE idSafetyEyes= '".$_POST['idSE']."'");
+    while ($fila=mysqli_fetch_array($result)){
+        $idAI=$fila['idAccionesInmediatas'];
+        $borar=mysqli_query($link,"DELETE FROM AISE WHERE idSafetyEyes= '".$_POST['idSE']."' AND idAccionesInmediatas='".$idAI."'");
+        $borar=mysqli_query($link,"DELETE FROM AccionesInmediatas WHERE idAccionesInmediatas= '".$idAI."'");
+    }
+    $result=mysqli_query($link,"SELECT * FROM MESE WHERE idSafetyEyes= '".$_POST['idSE']."'");
+    while ($fila=mysqli_fetch_array($result)){
+        $idME=$fila['idMejoras'];
+        $borar=mysqli_query($link,"DELETE FROM MESE WHERE idSafetyEyes= '".$_POST['idSE']."' AND idMejoras='".$idME."'");
+        $borar=mysqli_query($link,"DELETE FROM MejorasSeguridad WHERE idMejoras= '".$idME."'");
+    }
+    $result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes= '".$_POST['idSE']."'");
+    while ($fila=mysqli_fetch_array($result)){
+        $idOBS=$fila['idObservacionesSE'];
+        $result1=mysqli_query($link,"SELECT * FROM ACSE WHERE idObservacionesSE ='".$idOBS."'");
+        while ($fila1=mysqli_fetch_array($result1)){
+            $idAC=$fila1['idAccionesCorrectivas'];
+            $borar=mysqli_query($link,"DELETE FROM ACSE WHERE idSafetyEyes= '".$_POST['idSE']."' AND idAccionesCorrectivas='".$idAC."'");
+            $borar=mysqli_query($link,"DELETE FROM AccionesCorrectivas WHERE idAccionesCorrectivas= '".$idAC."'");
+        }
+        $borrar=mysqli_query($link,"DELETE FROM ObservacionesSE WHERE idObservacionesSE= '".$idOBS."'");
+    }
+    $borrar=mysqli_query($link,"DELETE FROM ParticipantesSE WHERE idSafetyEyes= '".$_POST['idSE']."'");
+    $borrar=mysqli_query($link,"DELETE FROM SafetyEyes WHERE idSafetyEyes= '".$_POST['idSE']."'");
+}
+?>
 <section class="container">
         <form action="aprobarSE.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
