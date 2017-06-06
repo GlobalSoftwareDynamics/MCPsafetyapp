@@ -3,11 +3,7 @@
 <html lang="es">
 
 <?php
-session_start();
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
-require('funcionesApp.php');
-$_SESSION['login']=$_GET['user'];
+include('session.php');
 if(isset($_SESSION['login'])){
 ?>
 <head>
@@ -15,6 +11,15 @@ if(isset($_SESSION['login'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="smartphone-icon-144-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="smartphone-icon-120-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="smartphone-icon-114-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="smartphone-icon-72-185337.png">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
+    <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -59,7 +64,7 @@ if(isset($_POST['provieneSEconidMS'])){
 ?>
     <section class="container">
         <div>
-            <form action="registromejorasseguridad.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registromejorasseguridad.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <?php
                 $fecha = date('d/m/Y');
                 $clase="MS";
@@ -118,7 +123,7 @@ if(isset($_POST['provieneSEconidMS'])){
                 <div class="form-group">
                     <input type="hidden" name="idSE" value="<?php echo $_POST['idSE']?>">
                     <div class="col-sm-6">
-                        <input type="submit" formaction="detallesafetyeyes.php?user=<?php echo $_GET['user'];?>" class="btn btn-default col-sm-10 col-sm-offset-1" name="regresar" value="Regresar">
+                        <input type="submit" formaction="detallesafetyeyes.php" class="btn btn-default col-sm-10 col-sm-offset-1" name="regresar" value="Regresar">
                     </div>
                     <div class="col-sm-6">
                         <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearmsconid" value="Registrar">
@@ -134,7 +139,7 @@ if(isset($_POST['provieneSEconidMS'])){
     ?>
     <section class="container">
         <div>
-            <form action="registromejorasseguridad.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registromejorasseguridad.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <?php
                     $fecha = date('d/m/Y');
@@ -213,7 +218,7 @@ if(isset($_POST['provieneSEconidMS'])){
                 <br>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="registromejorasseguridad.php?user=<?php echo $_GET['user'];?>" name="regresar" value="Regresar">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="registromejorasseguridad.php" name="regresar" value="Regresar">
                     </div>
                     <div class="col-sm-6">
                         <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearms" value="Registrar">
@@ -231,7 +236,7 @@ if(isset($_POST['provieneSEconidMS'])){
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footercio.php');
+    include_once('footer.php');
     ?>
 </footer>
 </body>

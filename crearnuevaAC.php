@@ -3,11 +3,7 @@
 <html lang="es">
 
 <?php
-session_start();
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
-require('funcionesApp.php');
-$_SESSION['login']=$_GET['user'];
+include('session.php');
 if(isset($_SESSION['login'])){
 ?>
 <head>
@@ -15,6 +11,15 @@ if(isset($_SESSION['login'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="smartphone-icon-144-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="smartphone-icon-120-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="smartphone-icon-114-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="smartphone-icon-72-185337.png">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
+    <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -86,7 +91,7 @@ if (isset($_POST['provieneSE'])){
 ?>
     <section class="container">
         <div>
-            <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <script>
                     $(function() {
                         $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -182,7 +187,7 @@ if (isset($_POST['provieneSE'])){
                 <br>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="crearnuevaAC.php?user=<?php echo $_GET['user'];?>" value="Regresar">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="crearnuevaAC.php" value="Regresar">
                     </div>
                     <div class="col-sm-6">
                         <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearacse" value="Registrar">
@@ -196,7 +201,7 @@ if (isset($_POST['provieneSE'])){
 ?>
     <section class="container">
         <div>
-            <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <script>
                     $(function() {
                         $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -291,7 +296,7 @@ if (isset($_POST['provieneSE'])){
                 <div class="form-group">
                     <input type="hidden" name="idSE" value="<?php echo $_POST['idSE']?>" readonly>
                     <div class="col-sm-6">
-                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="detallesafetyeyes.php?user=<?php echo $_GET['user'];?>" value="Regresar">
+                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="detallesafetyeyes.php" value="Regresar">
                     </div>
                     <div class="col-sm-6">
                         <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearacseconidse" value="Registrar">
@@ -315,7 +320,7 @@ if (isset($_POST['provieneSE'])){
     <br>
     <section class="container">
         <div>
-            <form action="crearnuevaAC.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="crearnuevaAC.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <div class="col-sm-12">
                         <label for="tipo" class="col-sm-12">Seleccione Proveniencia de la Acción Correctiva:</label>
@@ -335,7 +340,7 @@ if (isset($_POST['provieneSE'])){
     </section>
     <br>
     <section class="container">
-        <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" class="form-horizontal">
+        <form action="registrosaccionescorrectivas.php" class="form-horizontal">
             <input type="submit" class="btn btn-default col-sm-4 col-sm-offset-4" name="regresar" value="Regresar">
         </form>
     </section>
@@ -347,7 +352,7 @@ if (isset($_POST['provieneSE'])){
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footercio.php');
+    include_once('footer.php');
     ?>
 </footer>
 </body>

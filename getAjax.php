@@ -1,28 +1,66 @@
 <?php
+session_start();
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
-/*require('funciones.php');
-require('funcionesApp.php')*/
+//if(isset($_SESSION['login'])) {
+	if (!empty($_POST["gestionUsuarios_usuario"])) {
+		echo "<input type='text' class='form-control' name='Usuario' id='Usuario' value='" . $_POST['gestionUsuarios_usuario'] . "' readonly></td>";
+		$dniselect = $_POST['gestionUsuarios_usuario'];
+	}
+
+	if (!empty($_POST["gestionUsuarios_password"])) {
+		echo "<td><input type='text' class='form-control' name='Contraseña' id='Contraseña' value='" . rand(1111111, 9999999) . "' readonly></td>";
+	}
+
+	if (!empty($_POST["gestionUsuarios_tipoUsuario"])) {
+		$query = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni =" . $_POST['gestionUsuarios_tipoUsuario']);
+		while ($row = mysqli_fetch_array($query)) {
+			$query2 = mysqli_query($link, "SELECT * FROM Puesto WHERE idPuesto = '" . $row['idPuesto'] . "'");
+			while ($row2 = mysqli_fetch_array($query2)) {
+				$query3 = mysqli_query($link, "SELECT * FROM TipoUsuario WHERE idTipoUsuario = '" . $row2['idTipoUsuario'] . "'");
+				while ($row3 = mysqli_fetch_array($query3)) {
+					echo "<option selected='selected' value='" . $row3['idTipoUsuario'] . "'>" . $row3['descripcion'] . "</option>";
+					$default = $row3['idTipoUsuario'];
+				}
+			}
+		}
+		mysqli_data_seek($query, 0);
+		$query = mysqli_query($link, "SELECT * FROM TipoUsuario ORDER BY descripcion");
+		while ($row = mysqli_fetch_array($query)) {
+			if ($row['idTipoUsuario'] == $default) {
+			} else {
+				echo "<option value='" . $row['idTipoUsuario'] . "'>" . $row['descripcion'] . "</option>";
+			}
+		}
+	}
+
+	if (!empty($_POST['infoEmpresas_pais'])) {
+		echo "<option>Seleccionar</option>";
+		$query = mysqli_query($link, "SELECT * FROM Ciudad WHERE idPais = '" . $_POST['infoEmpresas_pais'] . "'");
+		while ($row = mysqli_fetch_array($query)) {
+			echo "<option value='" . $row['idCiudad'] . "'>" . $row['nombre'] . "</option>";
+		}
+	}
 
 if(!empty($_POST["regsafetyeyes1planta"])) {
-    echo "<option>Seleccionar</option>";
-    $planta =mysqli_query($link,"SELECT * FROM Ubicacion WHERE idPlanta = '" . $_POST["regsafetyeyes1planta"] . "' AND estado='1'");
-    while($result2=mysqli_fetch_array($planta)){
-        echo "<option value=".$result2['idUbicacion'].">".$result2['descripcion']."</option>";
-    }
+	echo "<option>Seleccionar</option>";
+	$planta =mysqli_query($link,"SELECT * FROM Ubicacion WHERE idPlanta = '" . $_POST["regsafetyeyes1planta"] . "' AND estado='1'");
+	while($result2=mysqli_fetch_array($planta)){
+		echo "<option value=".$result2['idUbicacion'].">".$result2['descripcion']."</option>";
+	}
 }
 
 if(!empty($_POST["regsafetyeyes2empresa"])) {
-    echo "<option>Seleccionar</option>";
-    $persona =mysqli_query($link,"SELECT * FROM Colaboradores WHERE ruc = '" . $_POST["regsafetyeyes2empresa"] . "'  AND estado='1'");
-    while($result2=mysqli_fetch_array($persona)){
-        echo "<option value=".$result2['dni'].">".$result2['dni']."-".$result2['nombre']." ".$result2['apellidos']."</option>";
-    }
+	echo "<option>Seleccionar</option>";
+	$persona =mysqli_query($link,"SELECT * FROM Colaboradores WHERE ruc = '" . $_POST["regsafetyeyes2empresa"] . "'  AND estado='1'");
+	while($result2=mysqli_fetch_array($persona)){
+		echo "<option value=".$result2['dni'].">".$result2['dni']."-".$result2['nombre']." ".$result2['apellidos']."</option>";
+	}
 }
 
 if(!empty($_POST["registrosSEcolumna"])) {
-    if ($_POST["registrosSEcolumna"]==="fecha"){
-        echo "
+	if ($_POST["registrosSEcolumna"]==="fecha"){
+		echo "
             <script type='text/javascript'>
                 $(function() {
                      $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -30,106 +68,106 @@ if(!empty($_POST["registrosSEcolumna"])) {
             </script>
             <input type='text' class='col-sm-12 form-control' placeholder='dd/mm/yyyy' id='datepicker' name='busqueda'>
         ";
-    }
-    if ($_POST["registrosSEcolumna"]==="anoFiscal"){
-        echo "
+	}
+	if ($_POST["registrosSEcolumna"]==="anoFiscal"){
+		echo "
             <input type='text' class='col-sm-12 form-control' placeholder='FYxx' id='detalle' name='busqueda'>
         ";
-    }
-    if ($_POST["registrosSEcolumna"]==="idSafetyEyes"){
-        echo "
+	}
+	if ($_POST["registrosSEcolumna"]==="idSafetyEyes"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda'>
         ";
-    }
-    if ($_POST["registrosSEcolumna"]==="lider"){
-        echo "
+	}
+	if ($_POST["registrosSEcolumna"]==="lider"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Apellido'>
         ";
-    }
-    if ($_POST["registrosSEcolumna"]==="planta"){
-        echo "
+	}
+	if ($_POST["registrosSEcolumna"]==="planta"){
+		echo "
             <select name='busqueda' id='detalle' class='col-sm-12 form-control' >
                 <option>Seleccionar</option> 
         ";
-        $planta =mysqli_query($link,"SELECT * FROM Planta WHERE estado='1'");
-        while($result2=mysqli_fetch_array($planta)){
-            echo "
+		$planta =mysqli_query($link,"SELECT * FROM Planta WHERE estado='1'");
+		while($result2=mysqli_fetch_array($planta)){
+			echo "
                 <option value=".$result2['idPlanta'].">".$result2['descripcion']."</option>
             ";
-        }
-        echo "
+		}
+		echo "
             </select>
         ";
-    }
-    if ($_POST["registrosSEcolumna"]==="idUbicacion"){
-        echo "
+	}
+	if ($_POST["registrosSEcolumna"]==="idUbicacion"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Ubicación'>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["registrosobservSEcolumna"])) {
-    if ($_POST["registrosobservSEcolumna"]==="idObservacionesSE"||$_POST["registrosobservSEcolumna"]==="idSafetyEyes"){
-        echo "
+	if ($_POST["registrosobservSEcolumna"]==="idObservacionesSE"||$_POST["registrosobservSEcolumna"]==="idSafetyEyes"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda'>
         ";
-    }
-    if ($_POST["registrosobservSEcolumna"]==="idCategoria"){
-        echo "
+	}
+	if ($_POST["registrosobservSEcolumna"]==="idCategoria"){
+		echo "
             <select name='busqueda' id='detalle' class='col-sm-12 form-control' >
                 <option>Seleccionar</option> 
         ";
-        $planta =mysqli_query($link,"SELECT * FROM Categoria");
-        while($result2=mysqli_fetch_array($planta)){
-            echo "
+		$planta =mysqli_query($link,"SELECT * FROM Categoria");
+		while($result2=mysqli_fetch_array($planta)){
+			echo "
                 <option value=".$result2['idCategoria'].">".$result2['siglas']."-".$result2['descripcion']."</option>
             ";
-        }
-        echo "
+		}
+		echo "
             </select>
         ";
-    }
-    if ($_POST["registrosobservSEcolumna"]==="idClase"){
-        echo "
+	}
+	if ($_POST["registrosobservSEcolumna"]==="idClase"){
+		echo "
             <select name='busqueda' id='detalle' class='col-sm-12 form-control' >
                 <option>Seleccionar</option> 
         ";
-        $planta =mysqli_query($link,"SELECT * FROM Clase WHERE categoria='SE'");
-        while($result2=mysqli_fetch_array($planta)){
-            echo "
+		$planta =mysqli_query($link,"SELECT * FROM Clase WHERE categoria='SE'");
+		while($result2=mysqli_fetch_array($planta)){
+			echo "
                 <option value=".$result2['idClase'].">".$result2['siglas']."-".$result2['descripcion']."</option>
             ";
-        }
-        echo "
+		}
+		echo "
             </select>
         ";
-    }
-    if ($_POST["registrosobservSEcolumna"]==="descripcion"){
-        echo "
+	}
+	if ($_POST["registrosobservSEcolumna"]==="descripcion"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Descripción o Fragmento'>
         ";
-    }
-    if ($_POST["registrosobservSEcolumna"]==="idCOPs"){
-        echo "
+	}
+	if ($_POST["registrosobservSEcolumna"]==="idCOPs"){
+		echo "
             <select name='busqueda' id='detalle' class='col-sm-12 form-control' >
                 <option>Seleccionar</option> 
         ";
-        $planta =mysqli_query($link,"SELECT * FROM COPs");
-        while($result2=mysqli_fetch_array($planta)){
-            echo "
+		$planta =mysqli_query($link,"SELECT * FROM COPs");
+		while($result2=mysqli_fetch_array($planta)){
+			echo "
                 <option value=".$result2['idCOPs'].">".$result2['descripcion']."</option>
             ";
-        }
-        echo "
+		}
+		echo "
             </select>
         ";
-    }
+	}
 
 }
 
 if(!empty($_POST["registrosACcolumna"])) {
-    if ($_POST["registrosACcolumna"]==="fecharegistro"){
-        echo "
+	if ($_POST["registrosACcolumna"]==="fecharegistro"){
+		echo "
             <script type='text/javascript'>
                 $(function() {
                      $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -137,9 +175,9 @@ if(!empty($_POST["registrosACcolumna"])) {
             </script>
             <input type='text' class='col-sm-12 form-control' placeholder='dd/mm/yyyy' id='datepicker' name='busqueda'>
         ";
-    }
-    if ($_POST["registrosACcolumna"]==="fuente"){
-        echo "
+	}
+	if ($_POST["registrosACcolumna"]==="fuente"){
+		echo "
             <select id='detalle' name='busqueda' class='col-sm-12 form-control' >
                 <option>Seleccionar</option>
                 <option value='SE'>Safety Eyes</option>
@@ -147,19 +185,19 @@ if(!empty($_POST["registrosACcolumna"])) {
                 <option value='INC'>Incidente</option>
             </select>
         ";
-    }
-    if ($_POST["registrosACcolumna"]==="dni"){
-        echo "
+	}
+	if ($_POST["registrosACcolumna"]==="dni"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Apellido'>
         ";
-    }
-    if ($_POST["registrosACcolumna"]==="descripcion"){
-        echo "
+	}
+	if ($_POST["registrosACcolumna"]==="descripcion"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Descripción o Fragmento'>
         ";
-    }
-    if ($_POST["registrosACcolumna"]==="estado"){
-        echo "
+	}
+	if ($_POST["registrosACcolumna"]==="estado"){
+		echo "
             <select id='detalle' name='busqueda' class='col-sm-12 form-control' >
                 <option>Seleccionar</option>
                 <option>En Proceso</option>
@@ -167,12 +205,12 @@ if(!empty($_POST["registrosACcolumna"])) {
                 <option>Vencida</option>
             </select>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["registrosAIcolumna"])) {
-    if ($_POST["registrosAIcolumna"]==="fecharegistro"){
-        echo "
+	if ($_POST["registrosAIcolumna"]==="fecharegistro"){
+		echo "
             <script type='text/javascript'>
                 $(function() {
                      $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -180,9 +218,9 @@ if(!empty($_POST["registrosAIcolumna"])) {
             </script>
             <input type='text' class='col-sm-12 form-control' placeholder='dd/mm/yyyy' id='datepicker' name='busqueda'>
         ";
-    }
-    if ($_POST["registrosAIcolumna"]==="fuente"){
-        echo "
+	}
+	if ($_POST["registrosAIcolumna"]==="fuente"){
+		echo "
             <select id='detalle' name='busqueda' class='col-sm-12 form-control' >
                 <option>Seleccionar</option>
                 <option value='SE'>Safety Eyes</option>
@@ -190,22 +228,22 @@ if(!empty($_POST["registrosAIcolumna"])) {
                 <option value='INC'>Incidente</option>
             </select>
         ";
-    }
-    if ($_POST["registrosAIcolumna"]==="dni"){
-        echo "
+	}
+	if ($_POST["registrosAIcolumna"]==="dni"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Apellido'>
         ";
-    }
-    if ($_POST["registrosAIcolumna"]==="descripcion"){
-        echo "
+	}
+	if ($_POST["registrosAIcolumna"]==="descripcion"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Descripción o Fragmento'>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["registrosMScolumna"])) {
-    if ($_POST["registrosMScolumna"]==="fecharegistro"){
-        echo "
+	if ($_POST["registrosMScolumna"]==="fecharegistro"){
+		echo "
             <script type='text/javascript'>
                 $(function() {
                      $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -213,28 +251,28 @@ if(!empty($_POST["registrosMScolumna"])) {
             </script>
             <input type='text' class='col-sm-12 form-control' placeholder='dd/mm/yyyy' id='datepicker' name='busqueda'>
         ";
-    }
-    if ($_POST["registrosMScolumna"]==="fuente"){
-        echo "
+	}
+	if ($_POST["registrosMScolumna"]==="fuente"){
+		echo "
             <select id='detalle' name='busqueda' class='col-sm-12 form-control' >
                 <option>Seleccionar</option>
                 <option value='SE'>Safety Eyes</option>
                 <option value='OC'>Reporte de Ocurrencia</option>
             </select>
         ";
-    }
-    if ($_POST["registrosMScolumna"]==="dni"){
-        echo "
+	}
+	if ($_POST["registrosMScolumna"]==="dni"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Apellido'>
         ";
-    }
-    if ($_POST["registrosMScolumna"]==="descripcion"){
-        echo "
+	}
+	if ($_POST["registrosMScolumna"]==="descripcion"){
+		echo "
             <input type='text' class='col-sm-12 form-control' id='detalle' name='busqueda' placeholder='Descripción o Fragmento'>
         ";
-    }
-    if ($_POST["registrosMScolumna"]==="estado"){
-        echo "
+	}
+	if ($_POST["registrosMScolumna"]==="estado"){
+		echo "
             <select id='detalle' name='busqueda' class='col-sm-12 form-control' >
                 <option>Seleccionar</option>
                 <option>Pendiente</option>
@@ -242,85 +280,85 @@ if(!empty($_POST["registrosMScolumna"])) {
                 <option>Completa</option>
             </select>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["crearnuevaACtiporeporte"])) {
-    if ($_POST['crearnuevaACtiporeporte']==="SE"){
-        echo "
+	if ($_POST['crearnuevaACtiporeporte']==="SE"){
+		echo "
             <br>
             <input type='submit' class='btn btn-primary col-sm-6 col-sm-offset-3' name='provieneSE' value='Siguiente'>
         ";
-    }
-    if ($_POST['crearnuevaACtiporeporte']==="OC"){
-        echo "
+	}
+	if ($_POST['crearnuevaACtiporeporte']==="OC"){
+		echo "
             <br>
             <input type='submit' class='btn btn-primary col-sm-6 col-sm-offset-3' name='provieneOC' value='Siguiente'>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["crearnuevaACsafetyeyes"])) {
-    echo "<option>Seleccionar</option>";
-    $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE fecha='".$_POST['crearnuevaACsafetyeyes']."' AND estado='Aprobado'");
-    while ($fila=mysqli_fetch_array($result)){
-        echo "
+	echo "<option>Seleccionar</option>";
+	$result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE fecha='".$_POST['crearnuevaACsafetyeyes']."' AND estado='Aprobado'");
+	while ($fila=mysqli_fetch_array($result)){
+		echo "
             <option value='".$fila['idSafetyEyes']."'>".$fila['idSafetyEyes']."</option>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["crearnuevaACobservaciones"])) {
-    echo "<option>Seleccionar</option>";
-    $result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes='".$_POST['crearnuevaACobservaciones']."'");
-    while ($fila=mysqli_fetch_array($result)){
-        echo "
+	echo "<option>Seleccionar</option>";
+	$result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes='".$_POST['crearnuevaACobservaciones']."'");
+	while ($fila=mysqli_fetch_array($result)){
+		echo "
             <option value='".$fila['idObservacionesSE']."'>".$fila['idObservacionesSE']."</option>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["crearnuevaACdescobservaciones"])) {
-    $result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idObservacionesSE='".$_POST['crearnuevaACdescobservaciones']."'");
-    while ($fila=mysqli_fetch_array($result)){
-        echo "
+	$result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idObservacionesSE='".$_POST['crearnuevaACdescobservaciones']."'");
+	while ($fila=mysqli_fetch_array($result)){
+		echo "
             <div class='col-sm-12'>
                 <div class='col-sm-12 descripcionobs'>
                     <p style='font-size: 15px'>" .$fila['descripcion']."</p>
                 </div>
             </div>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["crearnuevaACcolaboradores"])) {
-    echo "<option>Seleccionar</option>";
-    $result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE idPuesto='".$_POST['crearnuevaACcolaboradores']."' AND estado='1'");
-    while ($fila=mysqli_fetch_array($result)){
-        echo "
+	echo "<option>Seleccionar</option>";
+	$result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE idPuesto='".$_POST['crearnuevaACcolaboradores']."' AND estado='1'");
+	while ($fila=mysqli_fetch_array($result)){
+		echo "
             <option value='".$fila['dni']."'>".$fila['nombre']." ".$fila['apellidos']."</option>
         ";
-    }
+	}
 }
 
 if(!empty($_POST["crearnuevaMStiporeporte"])&&!empty($_POST["crearnuevaMSfechatiporeporte"])) {
-    if ($_POST['crearnuevaMStiporeporte']==="SE") {
-        echo "<option>Seleccionar</option>";
-        $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE fecha ='".$_POST['crearnuevaMSfechatiporeporte']."'");
-        while ($fila=mysqli_fetch_array($result)){
-            echo "
+	if ($_POST['crearnuevaMStiporeporte']==="SE") {
+		echo "<option>Seleccionar</option>";
+		$result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE fecha ='".$_POST['crearnuevaMSfechatiporeporte']."'");
+		while ($fila=mysqli_fetch_array($result)){
+			echo "
                 <option value='".$fila['idSafetyEyes']."'>".$fila['idSafetyEyes']."</option>
             ";
-        }
-    }
-    if ($_POST['crearnuevaMStiporeporte']==="OC"){
-        echo "<option>Seleccionar</option>";
-        $result=mysqli_query($link,"SELECT * FROM Ocurrencias WHERE fecha ='".$_POST['crearnuevaMSfechatiporeporte']."'");
-        while ($fila=mysqli_fetch_array($result)){
-            echo "
+		}
+	}
+	if ($_POST['crearnuevaMStiporeporte']==="OC"){
+		echo "<option>Seleccionar</option>";
+		$result=mysqli_query($link,"SELECT * FROM Ocurrencias WHERE fecha ='".$_POST['crearnuevaMSfechatiporeporte']."'");
+		while ($fila=mysqli_fetch_array($result)){
+			echo "
                 <option value='".$fila['idOcurrencias']."'>".$fila['idOcurrencias']."</option>
             ";
-        }
-    }else{}
+		}
+	}else{}
 }
 ?>

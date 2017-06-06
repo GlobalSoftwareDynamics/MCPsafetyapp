@@ -3,10 +3,7 @@
 <html lang="es">
 
 <?php
-session_start();
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
-$_SESSION['login']=$_GET['user'];
+include('session.php');
 if(isset($_SESSION['login'])){
 ?>
 <head>
@@ -14,6 +11,15 @@ if(isset($_SESSION['login'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="smartphone-icon-144-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="smartphone-icon-120-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="smartphone-icon-114-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="smartphone-icon-72-185337.png">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
+    <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -86,7 +92,7 @@ if (isset($_POST['actualizarestado'])){
 ?>
 <section class="container">
     <div>
-        <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
+        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
                     <label for="columna" class="col-sm-12">Columna:</label>
@@ -124,7 +130,7 @@ if (isset($_POST['actualizarestado'])){
 <section class="container">
     <form method="post" class="form-horizontal col-sm-12">
         <div class="form-group">
-            <input type="submit" formaction="crearnuevaAC.php?user=<?php echo $_GET['user'];?>" value="Registrar Nueva Acción Correctiva" class="btn btn-primary col-sm-4 col-sm-offset-4">
+            <input type="submit" formaction="crearnuevaAC.php" value="Registrar Nueva Acción Correctiva" class="btn btn-primary col-sm-4 col-sm-offset-4">
         </div>
     </form>
 </section>
@@ -166,7 +172,7 @@ if (isset($_POST['actualizarestado'])){
                                     while ($fila3=mysqli_fetch_array($result3)){
                                         echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php?user=".$_GET['user']."'>
+                                            <form method='post' action='detallesafetyeyes.php'>
                                                 <input type='hidden' name='idSE' value='".$fila3['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila3['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -213,7 +219,7 @@ if (isset($_POST['actualizarestado'])){
                                 <td>
                                     <form method='post'>
                                         <input type='hidden' value='".$fila['idAccionesCorrectivas']."' name='idAC'>
-                                        <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php?user=".$_GET['user']."'>
+                                        <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
                                     </form>
                                 </td>
                             ";
@@ -238,7 +244,7 @@ if (isset($_POST['actualizarestado'])){
                                 while ($fila3=mysqli_fetch_array($result3)){
                                     echo "
                                         <td>
-                                            <form method='post'  action='detallesafetyeyes.php?user=".$_GET['user']."'>
+                                            <form method='post'  action='detallesafetyeyes.php'>
                                                 <input type='hidden' name='idSE' value='".$fila3['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila3['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -292,7 +298,7 @@ if (isset($_POST['actualizarestado'])){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idAccionesCorrectivas']."' name='idAC'>
-                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php?user=".$_GET['user']."'>
+                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
                                 </form>
                             </td>
                         ";
@@ -317,7 +323,7 @@ if (isset($_POST['actualizarestado'])){
                             while ($fila3=mysqli_fetch_array($result3)){
                                 echo "
                                         <td>
-                                            <form method='post'  action='detallesafetyeyes.php?user=".$_GET['user']."'>
+                                            <form method='post'  action='detallesafetyeyes.php'>
                                                 <input type='hidden' name='idSE' value='".$fila3['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila3['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -371,7 +377,7 @@ if (isset($_POST['actualizarestado'])){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idAccionesCorrectivas']."' name='idAC'>
-                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php?user=".$_GET['user']."'>
+                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
                                 </form>
                             </td>
                         ";
@@ -390,7 +396,7 @@ if (isset($_POST['actualizarestado'])){
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footercio.php');
+    include_once('footer.php');
     ?>
 </footer>
 </body>

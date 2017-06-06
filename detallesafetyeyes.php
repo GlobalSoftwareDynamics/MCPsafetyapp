@@ -3,10 +3,7 @@
 <html lang="es">
 
 <?php
-session_start();
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
-$_SESSION['login']=$_GET['user'];
+include('session.php');
 if(isset($_SESSION['login'])){
 ?>
 <head>
@@ -14,6 +11,15 @@ if(isset($_SESSION['login'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="smartphone-icon-144-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="smartphone-icon-120-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="smartphone-icon-114-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="smartphone-icon-72-185337.png">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
+    <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/Formatos.css" rel="stylesheet">
 </head>
@@ -362,7 +368,7 @@ while ($fila=mysqli_fetch_array($result)) {
             }else{
                 echo "
                     <div class='col-sm-12'>
-                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaMS.php?user=".$_GET['user']."'>
+                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaMS.php'>
                             <div class='form-group'>
                                 <input type='hidden' name='idSE' value='".$_POST['idSE']."'>
                                 <input type='submit' class='btn btn-primary col-sm-4 col-sm-offset-4' name='provieneSEconidMS' value='Agregar Mejoras de Seguridad'>
@@ -438,7 +444,7 @@ while ($fila=mysqli_fetch_array($result)) {
             }else{
                 echo "
                     <div class='col-sm-12'>
-                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaAC.php?user=".$_GET['user']."'>
+                        <form method='post' class='form-horizontal col-sm-12' action='crearnuevaAC.php'>
                             <div class='form-group'>
                                 <input type='hidden' name='idSE' value='".$_POST['idSE']."'>
                                 <input type='submit' class='btn btn-primary col-sm-4 col-sm-offset-4' name='provieneSEconidAC' value='Agregar Acciones Correctivas'>
@@ -476,7 +482,7 @@ while ($fila=mysqli_fetch_array($result)) {
     while ($fila=mysqli_fetch_array($result)){
         if($fila['estado']==="Pendiente"){
             echo "
-                <form method='post' action='aprobarSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
+                <form method='post' action='aprobarSE.php' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
                         <div class='col-sm-3'>
@@ -486,24 +492,24 @@ while ($fila=mysqli_fetch_array($result)) {
                             <input type='submit' class='btn btn-default col-sm-12' value='Rechazar' name='rechazar'>
                         </div>
                         <div class='col-sm-3'>
-                            <input type='submit' class='btn btn-success col-sm-12' value='Aprobar' name='aprobar' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
+                            <input type='submit' class='btn btn-success col-sm-12' value='Aprobar' name='aprobar' formaction='detallesafetyeyes.php'>
                         </div>
                         <div class='col-sm-3'>
-                            <input type='submit' class='btn btn-primary col-sm-12' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php?user=".$_GET['user']."'>
+                            <input type='submit' class='btn btn-primary col-sm-12' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php'>
                         </div>
                     </div>
                 </form>
             ";
         }else{
             echo "
-                <form method='post' action='registrosSE.php?user=".$_GET['user']."' class='form-horizontal col-sm-12'>
+                <form method='post' action='registrosSE.php' class='form-horizontal col-sm-12'>
                     <div class='form-group'>
                         <input type='hidden' name='idSE' value=".$_POST['idSE'].">
                         <div class='col-sm-6'>
                             <input type='submit' class='btn btn-default col-sm-8 col-sm-offset-2' value='Regresar' name='Regresar'>
                         </div>
                         <div class='col-sm-6'>
-                            <input type='submit' class='btn btn-primary col-sm-8 col-sm-offset-2' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php?user=".$_GET['user']."'>
+                            <input type='submit' class='btn btn-primary col-sm-8 col-sm-offset-2' value='Generar PDF' name='pdf' formaction='detallesafetyeyespdf.php'>
                         </div>
                     </div>
                 </form>
@@ -517,7 +523,7 @@ while ($fila=mysqli_fetch_array($result)) {
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footercio.php');
+    include_once('footer.php');
     ?>
 </footer>
 </body>

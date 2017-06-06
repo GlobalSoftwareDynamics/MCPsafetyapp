@@ -3,11 +3,7 @@
 <html lang="es">
 
 <?php
-session_start();
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
-require ('funcionesApp.php');
-$_SESSION['login']=$_GET['user'];
+include('session.php');
 if(isset($_SESSION['login'])){
 ?>
 <head>
@@ -15,6 +11,15 @@ if(isset($_SESSION['login'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="smartphone-icon-144-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="smartphone-icon-120-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="smartphone-icon-114-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="smartphone-icon-72-185337.png">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
+    <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
     <script>
         function getubicaciones(val) {
@@ -43,7 +48,7 @@ if(isset($_SESSION['login'])){
 
 <section class="container">
     <div>
-        <form action="regsafetyeyes2.php?user=<? echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-xs-12 col-sm-6 col-sm-offset-3">
+        <form action="regsafetyeyes2.php" method="post" class="form-horizontal jumbotron col-xs-12 col-sm-6 col-sm-offset-3">
             <div class="col-xs-12 col-sm-12">
                 <h4 class="text-left">Paso 1: Datos Generales</h4>
             </div>
@@ -117,7 +122,7 @@ if(isset($_SESSION['login'])){
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footercio.php');
+    include_once('footer.php');
     ?>
 </footer>
 </body>
