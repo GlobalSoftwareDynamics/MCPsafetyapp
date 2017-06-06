@@ -55,10 +55,12 @@ if(isset($_SESSION['login'])){
             <br>
             <?php
             $nombre =$_SESSION['login'];
+            echo $nombre." ";
             $result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE usuario ='".$nombre."'");
             while ($fila=mysqli_fetch_array($result)){
                 $persona=$fila['dni'];
             }
+            echo $persona." ";    
             date_default_timezone_set('America/Lima');
             $hora = date('H:i:s');
             $fecha = date('d/m/Y');
