@@ -4,6 +4,7 @@
 
 <?php
 include('session.php');
+require ('funcionesApp.php');
 if(isset($_SESSION['login'])){
 ?>
 <head>
