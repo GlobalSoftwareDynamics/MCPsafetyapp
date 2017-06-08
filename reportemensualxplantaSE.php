@@ -228,7 +228,7 @@ while ($fila=mysqli_fetch_array($result)){
                 echo "
                             <td class='text-left'>".$fila0['descripcion']."</td>
                         ";
-                $result3=mysqli_query($link,"SELECT * FROM colaboradores WHERE dni='".$fila0['dni']."'");
+                $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila0['dni']."'");
                 while ($fila3=mysqli_fetch_array($result3)){
                     echo "
                      <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
