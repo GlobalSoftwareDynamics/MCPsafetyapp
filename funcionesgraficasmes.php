@@ -161,7 +161,7 @@ function NumTotalPlantaMes($mes){
 }
 
 function NumTotalPlantaUnicaMes($mes,$planta){
-    $link = mysqli_connect("localhost", "root", "", "seapp");
+    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
     mysqli_query($link,"SET NAMES 'utf8'");
     $fragmento1="";
     $numero=0;
