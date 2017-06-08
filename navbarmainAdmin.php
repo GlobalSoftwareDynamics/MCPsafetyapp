@@ -14,7 +14,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ESTADÍSTICAS DE SEGURIDAD<span class="caret"></span></a>
+                    <a href="generaciondereportes.php">ESTADÍSTICAS DE SEGURIDAD</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GESTIÓN DE REPORTES<span class="caret"></span></a>
