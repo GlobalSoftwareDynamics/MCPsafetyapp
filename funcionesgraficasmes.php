@@ -161,14 +161,16 @@ function NumTotalPlantaMes($mes){
 }
 
 function NumTotalPlantaUnicaMes($mes,$planta){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
+    $link = mysqli_connect("localhost", "root", "", "seapp");
     mysqli_query($link,"SET NAMES 'utf8'");
     $fragmento1="";
-    $result1 = mysqli_query($link, "SELECT idPlanta, COUNT(*) AS numero FROM Ubicacion WHERE idUbicacion IN (SELECT idUbicacion FROM SafetyEyes WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado') AND idPlanta = '".$planta."' GROUP BY idUbicacion) GROUP BY idPlanta");
+    $numero=0;
+    $result1 = mysqli_query($link, "SELECT idUbicacion, COUNT(*) AS numero FROM SafetyEyes WHERE idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta = '".$planta."') AND idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado'");
     while ($fila1 = mysqli_fetch_array($result1)) {
-        $result2=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta ='".$fila1['idPlanta']."'");
+        $numero=$numero+$fila1['numero'];
+        $result2=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta ='".$planta."'");
         while ($fila2=mysqli_fetch_array($result2)){
-            $fragmento = ",['" . $fila2['descripcion'] . "', " . $fila1['numero'] . "]";
+            $fragmento = ",['" . $fila2['descripcion'] . "', " . $numero . "]";
             $fragmento1 = $fragmento . $fragmento1;
         }
     }
