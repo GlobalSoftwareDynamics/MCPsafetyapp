@@ -361,4 +361,167 @@ if(!empty($_POST["crearnuevaMStiporeporte"])&&!empty($_POST["crearnuevaMSfechati
 		}
 	}else{}
 }
+if(!empty($_POST["generaciondereportesTipo"])) {
+    if($_POST["generaciondereportesTipo"]==="rmensplant"){
+        echo "
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                   <label for='plant' class='col-sm-12'>Seleccione la Planta:</label> 
+                </div>
+                <div class='col-sm-12'>
+                   <select id='plant' class='form-control col-sm-12' name='planta'>
+                        <option>Seleccionar</option>";
+        $result=mysqli_query($link, "SELECT * FROM Planta WHERE estado='1'");
+        while ($fila=mysqli_fetch_array($result)){
+            echo "
+                <option value='".$fila['idPlanta']."'>".$fila['descripcion']."</option>
+            ";
+        }
+                    echo "
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                    <label class='col-sm-12' for='mens'>Seleccione el Mes:</label>
+                </div>
+                <div class='col-sm-12'>
+                    <select name='mes' class='form-control col-sm-12' id='mens'>
+                        <option value='A'>Enero</option>
+                        <option value='B'>Febrero</option>
+                        <option value='C'>Marzo</option>
+                        <option value='D'>Abril</option>
+                        <option value='E'>Mayo</option>
+                        <option value='F'>Junio</option>
+                        <option value='G'>Julio</option>
+                        <option value='H'>Agosto</option>
+                        <option value='I'>Septiembre</option>
+                        <option value='J'>Octubre</option>
+                        <option value='K'>Noviembre</option>
+                        <option value='L'>Diciembre</option>
+                    </select>           
+                </div>
+            </div>
+        ";
+    }
+    if($_POST["generaciondereportesTipo"]==="rmens"){
+        echo "
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                    <label class='col-sm-12' for='mens'>Seleccione el Mes:</label>
+                </div>
+                <div class='col-sm-12'>
+                    <select name='mes' class='form-control col-sm-12' id='mens'>
+                        <option value='A'>Enero</option>
+                        <option value='B'>Febrero</option>
+                        <option value='C'>Marzo</option>
+                        <option value='D'>Abril</option>
+                        <option value='E'>Mayo</option>
+                        <option value='F'>Junio</option>
+                        <option value='G'>Julio</option>
+                        <option value='H'>Agosto</option>
+                        <option value='I'>Septiembre</option>
+                        <option value='J'>Octubre</option>
+                        <option value='K'>Noviembre</option>
+                        <option value='L'>Diciembre</option>
+                    </select>           
+                </div>
+            </div>
+        ";
+    }
+    if($_POST["generaciondereportesTipo"]==="ranplant"){
+        echo "
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                   <label for='plant' class='col-sm-12'>Seleccione la Planta:</label> 
+                </div>
+                <div class='col-sm-12'>
+                   <select id='plant' class='form-control col-sm-12' name='planta'>
+                        <option>Seleccionar</option>";
+        $result=mysqli_query($link, "SELECT * FROM Planta WHERE estado='1'");
+        while ($fila=mysqli_fetch_array($result)){
+            echo "
+                <option value='".$fila['idPlanta']."'>".$fila['descripcion']."</option>
+            ";
+        }
+        echo "
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                    <label class='col-sm-12' for='anio'>Especifique el Año:</label>
+                </div>
+                <div class='col-sm-12'>
+                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XX'>          
+                </div>
+            </div>
+        ";
+    }
+    if($_POST["generaciondereportesTipo"]==="ran"){
+        echo "
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                    <label class='col-sm-12' for='anio'>Especifique el Año:</label>
+                </div>
+                <div class='col-sm-12'>
+                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XX'>          
+                </div>
+            </div>
+        ";
+    }
+    if($_POST["generaciondereportesTipo"]==="rendpersmen"){
+        echo "
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                   <label for='idcol' class='col-sm-12'>Especifique los Apellidos:</label> 
+                </div>
+                <div class='col-sm-12'>
+                   <input type='text' id='idcol' class='form-control col-sm-12' name='dni' placeholder='Apellidos'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                    <label class='col-sm-12' for='mens'>Seleccione el Mes:</label>
+                </div>
+                <div class='col-sm-12'>
+                    <select name='mes' class='form-control col-sm-12' id='mens'>
+                        <option value='A'>Enero</option>
+                        <option value='B'>Febrero</option>
+                        <option value='C'>Marzo</option>
+                        <option value='D'>Abril</option>
+                        <option value='E'>Mayo</option>
+                        <option value='F'>Junio</option>
+                        <option value='G'>Julio</option>
+                        <option value='H'>Agosto</option>
+                        <option value='I'>Septiembre</option>
+                        <option value='J'>Octubre</option>
+                        <option value='K'>Noviembre</option>
+                        <option value='L'>Diciembre</option>
+                    </select>           
+                </div>
+            </div>
+        ";
+    }
+    if($_POST["generaciondereportesTipo"]==="rendpersan"){
+        echo "
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                   <label for='idcol' class='col-sm-12'>Especifique los Apellidos:</label> 
+                </div>
+                <div class='col-sm-12'>
+                   <input type='text' id='idcol' class='form-control col-sm-12' name='dni' placeholder='Apellidos'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <div class='col-sm-12'>
+                    <label class='col-sm-12' for='anio'>Especifique el Año:</label>
+                </div>
+                <div class='col-sm-12'>
+                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XX'>          
+                </div>
+            </div>
+        ";
+    }
+}
 ?>
