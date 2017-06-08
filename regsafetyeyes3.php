@@ -4,7 +4,8 @@
 
 <?php
 include('session.php');
-if(isset($_SESSION['login'])){
+include('funcionesApp.php');
+if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['usertype']=='2')){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -43,7 +44,13 @@ if (isset($_POST['agregar'])){
     ('".$idObs."','".$_POST['idSE']."','".$_POST['categoria']."','".$_POST['clase']."','".$_POST['cop']."','".$_POST['descripcion']."'
     )";
     $query=mysqli_query($link,$agregar);
-    /*echo $agregar;*/
+	echo "
+    <section class='container'>
+    <div class=\"alert alert-success\">
+      <strong>Información ingresada exitosamente</strong>
+    </div>
+    </section>
+    ";
 }
 ?>
 <section class="container">
@@ -106,7 +113,7 @@ if (isset($_POST['agregar'])){
                         $result1=mysqli_query($link,"SELECT * FROM COPs");
                         while ($fila1=mysqli_fetch_array($result1)){
                             echo "
-                                <option value=".$fila1['idCOPs'].">".$fila1['siglas']."</option>                            ";
+                                <option value=".$fila1['idCOPs'].">".$fila1['siglas']."-".$fila1['descripcion']."</option>                            ";
                         }
                         ?>
                     </select>
@@ -120,6 +127,9 @@ if (isset($_POST['agregar'])){
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <input type="submit" class="btn btn-primary col-xs-12 col-sm-10 col-sm-offset-1" formaction="regsafetyeyes4.php" name="siguiente" value="Siguiente">
+                </div>
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                    <input type="submit" class="btn btn-default col-xs-12 col-sm-10 col-sm-offset-1" formaction="verregsafetyeyes3.php" name="revisar" value="Revisar Datos Ingresados">
                 </div>
             </div>
         </form>

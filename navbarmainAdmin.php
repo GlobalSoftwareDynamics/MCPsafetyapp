@@ -33,6 +33,9 @@
                         <li><a href="registromejorasseguridad.php">Mejoras de Seguridad</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="mainSupervisor.php">REPORTAR</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="logout.php">CERRAR SESIÓN</a></li>

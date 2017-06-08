@@ -2,7 +2,7 @@
 <html lang="es">
 <?php
 include('session.php');
-if(isset($_SESSION['login'])){
+if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
 ?>
 <head>
     <meta charset="UTF-8">

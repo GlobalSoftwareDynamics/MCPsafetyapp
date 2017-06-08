@@ -32,7 +32,8 @@ include('login.php'); // Includes Login Script
                     <input type="text" placeholder="Usuario" name="username"/>
                     <input type="password" placeholder="Contraseña" name="password"/>
                     <input type="submit" value="Iniciar Sesión" class="btn btn-success btn-sm" name="submit"/>
-                    <span><?php echo $error; ?></span>
+                    <br>
+                    <span style="color: red"><?php echo $error; ?></span>
                 </form>
             </div>
         </div>

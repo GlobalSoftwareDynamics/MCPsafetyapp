@@ -4,7 +4,7 @@
 
 <?php
 include('session.php');
-if(isset($_SESSION['login'])){
+if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
 ?>
 <head>
     <meta charset="UTF-8">

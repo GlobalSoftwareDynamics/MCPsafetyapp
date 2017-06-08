@@ -3,7 +3,8 @@
 <html lang="es">
 <?php
 include('session.php');
-if(isset($_SESSION['login'])){
+include('funcionesApp.php');
+if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 ?>
 <head>
     <meta charset="UTF-8">

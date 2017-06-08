@@ -4,7 +4,8 @@
 
 <?php
 include('session.php');
-if(isset($_SESSION['login'])){
+include('funcionesApp.php');
+if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['usertype']=='2')){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -56,6 +57,13 @@ if (isset($_POST['agregar'])){
     $agregar="INSERT INTO ParticipantesSE(dni, idSafetyEyes, idTipoParticipante) VALUES('".$_POST['observador']."','".$_POST['idSE']."','2')";
     /*echo $agregar;*/
     $query=mysqli_query($link,$agregar);
+    echo "
+    <section class='container'>
+    <div class=\"alert alert-success\">
+      <strong>Información ingresada exitosamente</strong>
+    </div>
+    </section>
+    ";
 }
 ?>
 <section class="container">
@@ -100,6 +108,9 @@ if (isset($_POST['agregar'])){
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <input type="submit" class="btn btn-primary col-xs-12 col-sm-10 col-sm-offset-1" formaction="regsafetyeyes3.php" name="siguiente" value="Siguiente">
+                </div>
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                    <input type="submit" class="btn btn-default col-xs-12 col-sm-10 col-sm-offset-1" formaction="verregsafetyeyes2.php" name="revisar" value="Revisar Datos Ingresados">
                 </div>
             </div>
         </form>

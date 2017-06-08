@@ -14,6 +14,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="mainSupervisor.php">Inicio</a></li>
+                    <li><a href="mainAdmin.php">Interfaz de Gerencia</a></li>
                     <li><a href="logout.php">Cerrar Sesión</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

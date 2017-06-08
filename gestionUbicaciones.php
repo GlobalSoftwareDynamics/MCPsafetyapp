@@ -4,7 +4,7 @@
 
 <?php
 include('session.php');
-if(isset($_SESSION['login'])){
+if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
 ?>
 <head>
 	<meta charset="UTF-8">
@@ -92,13 +92,13 @@ if(isset($_POST['modify'])){
 <section class="container">
     <form method="post" action="gestionPlantas.php">
         <input type="submit" class="btn btn-default col-sm-2 col-sm-offset-3" value="Regresar">
-        <button type="button" class="btn btn-success col-sm-2 col-sm-offset-2" data-toggle="modal" data-target="#myModal">Agregar Planta</button>
+        <button type="button" class="btn btn-success col-sm-2 col-sm-offset-2" data-toggle="modal" data-target="#myModal">Agregar Ubicación</button>
     </form>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Puesto" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="titulo">Nueva Planta</h5>
+                    <h5 class="modal-title" id="titulo">Nueva Ubicación</h5>
                 </div>
                 <div class="modal-body">
                     <form method="post" action="gestionUbicaciones.php">

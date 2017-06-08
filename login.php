@@ -27,18 +27,22 @@ if (isset($_POST['submit'])) {
 				switch($search['idTipoUsuario']){
 					case 1:
 						$_SESSION['login']=$username; // Initializing Session
+						$_SESSION['usertype']=$search['idTipoUsuario'];
 						header('Location:http://gsdynamics.com/gsdsafeatwork/mainAdmin.php');
 						break;
 					case 2:
 						$_SESSION['login']=$username; // Initializing Session
+						$_SESSION['usertype']=$search['idTipoUsuario'];
 						header('Location:http://gsdynamics.com/gsdsafeatwork/mainSupervisor.php');
 						break;
 					case 3:
 						$_SESSION['login']=$username; // Initializing Session
+						$_SESSION['usertype']=$search['idTipoUsuario'];
 						header('Location:http://gsdynamics.com/gsdsafeatwork/mainSistemas.php');
 						break;
 					case 4:
 						$_SESSION['login']=$username; // Initializing Session
+						$_SESSION['usertype']=$search['idTipoUsuario'];
 						header('Location:http://gsdynamics.com/gsdsafeatwork/mainRRHH.php');
 						break;
 				}

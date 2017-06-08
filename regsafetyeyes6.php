@@ -4,7 +4,8 @@
 
 <?php
 include('session.php');
-if(isset($_SESSION['login'])){
+include('funcionesApp.php');
+if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['usertype']=='2')){
 ?>
 <head>
     <meta charset="UTF-8">
@@ -55,7 +56,7 @@ if(isset($_SESSION['login'])){
             </div>
             <div class="form-group">
                 <div class="col-xs-12">
-                    <label for="dura" class="col-xs-12">Duración:</label>
+                    <label for="dura" class="col-xs-12">Duración (En minutos):</label>
                 </div>
                 <div class="col-xs-12">
                     <input type="text" class="form-control col-xs-12" name="duracion" id="dura">

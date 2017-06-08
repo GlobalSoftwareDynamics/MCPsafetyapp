@@ -1,11 +1,9 @@
 <?php
 require_once __DIR__ . '/lib/mpdf/mpdf.php';
 
-session_start();
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
-$_SESSION['login']=$_GET['user'];
-if(isset($_SESSION['login'])){
+include('session.php');
+include('funcionesApp.php');
+if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 
     $html='
     <html lang="es">
