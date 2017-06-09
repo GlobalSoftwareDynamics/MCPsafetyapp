@@ -148,13 +148,15 @@ function NumTotalPlantaMes($mes){
     $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
     mysqli_query($link,"SET NAMES 'utf8'");
     $fragmento1="";
-    $result1 = mysqli_query($link, "SELECT idPlanta, COUNT(*) AS numero FROM Ubicacion WHERE idUbicacion IN (SELECT idUbicacion FROM SafetyEyes WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado') GROUP BY idUbicacion) GROUP BY idPlanta");
-    while ($fila1 = mysqli_fetch_array($result1)) {
-        $result2=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta ='".$fila1['idPlanta']."'");
-        while ($fila2=mysqli_fetch_array($result2)){
-            $fragmento = ",['" . $fila2['descripcion'] . "', " . $fila1['numero'] . "]";
-            $fragmento1 = $fragmento . $fragmento1;
+    $result=mysqli_query($link,"SELECT * FROM Planta");
+    while ($fila=mysqli_fetch_array($result)){
+        $numero=0;
+        $result1 = mysqli_query($link, "SELECT idUbicacion, COUNT(*) AS numero FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$fila['idPlanta']."')");
+        while ($fila1 = mysqli_fetch_array($result1)) {
+            $numero=$numero+$fila1['numero'];
         }
+        $fragmento = ",['" . $fila['descripcion'] . "', " . $numero . "]";
+        $fragmento1 = $fragmento . $fragmento1;
     }
     $fragmento1="['Planta','Cantidad']".$fragmento1;
     return $fragmento1;
@@ -184,8 +186,8 @@ function NumTotalSafetyEyesMes($mes){
     $fragmento1="";
     $result=mysqli_query($link,"SELECT *, COUNT(*) AS numero FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado'");
     while ($fila=mysqli_fetch_array($result)){
-            $fragmento=",['Nro. de SafetyEyes', ".$fila['numero']."]";
-            $fragmento1=$fragmento.$fragmento1;
+        $fragmento=",['Nro. de SafetyEyes', ".$fila['numero']."]";
+        $fragmento1=$fragmento.$fragmento1;
     }
     $fragmento1="['Nro de Safety Eyes','Cantidad']".$fragmento1;
     return $fragmento1;
@@ -196,6 +198,19 @@ function NumAccionesCorrectivasxEstadoPlantaMes($mes,$planta) {
     mysqli_query($link,"SET NAMES 'utf8'");
     $fragmento1="";
     $result=mysqli_query($link,"SELECT estado, COUNT(*) AS numero FROM AccionesCorrectivas WHERE idAccionesCorrectivas IN (SELECT idAccionesCorrectivas FROM ACSE WHERE idObservacionesSE IN (SELECT idObservacionesSE FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$planta."')))) GROUP BY estado");
+    while ($fila=mysqli_fetch_array($result)){
+        $fragmento=",['".$fila['estado']."', ".$fila['numero']."]";
+        $fragmento1=$fragmento.$fragmento1;
+    }
+    $fragmento1="['Estado','Cantidad']".$fragmento1;
+    return $fragmento1;
+}
+
+function NumAccionesCorrectivasxEstadoMes($mes) {
+    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
+    mysqli_query($link,"SET NAMES 'utf8'");
+    $fragmento1="";
+    $result=mysqli_query($link,"SELECT estado, COUNT(*) AS numero FROM AccionesCorrectivas WHERE idAccionesCorrectivas IN (SELECT idAccionesCorrectivas FROM ACSE WHERE idObservacionesSE IN (SELECT idObservacionesSE FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado'))) GROUP BY estado");
     while ($fila=mysqli_fetch_array($result)){
         $fragmento=",['".$fila['estado']."', ".$fila['numero']."]";
         $fragmento1=$fragmento.$fragmento1;

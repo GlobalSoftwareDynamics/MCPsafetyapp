@@ -35,6 +35,9 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
 if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rmensplant"){
     include_once ('reportemensualxplantaSE.php');
 }
+if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rmens"){
+    include_once ('reportemensualgeneralSE.php');
+}
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
