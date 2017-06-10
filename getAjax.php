@@ -465,7 +465,7 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                     <label class='col-sm-12' for='anio'>Especifique el Año:</label>
                 </div>
                 <div class='col-sm-12'>
-                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XX'>          
+                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XXXX'>          
                 </div>
             </div>
         ";
@@ -518,7 +518,7 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                     <label class='col-sm-12' for='anio'>Especifique el Año:</label>
                 </div>
                 <div class='col-sm-12'>
-                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XX'>          
+                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XXXX'>          
                 </div>
             </div>
         ";
