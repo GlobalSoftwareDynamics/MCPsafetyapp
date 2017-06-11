@@ -172,7 +172,7 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
 </section>
 <?php
 $aux=7;
-$result=mysqli_query($link,"SELECT * FROM Planta");
+$result=mysqli_query($link,"SELECT * FROM Planta WHERE estado = '1'");
 while ($fila=mysqli_fetch_array($result)){
     $aux++;
     $datos7=NumTotalUbicacionMes($_POST['mes'],$fila['idPlanta'],$link);

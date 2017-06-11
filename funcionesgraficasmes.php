@@ -149,7 +149,7 @@ function NumTotalPlantaUnicaMes($mes,$planta,$link){
     $result1 = mysqli_query($link, "SELECT idUbicacion, COUNT(*) AS numero FROM SafetyEyes WHERE idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta = '".$planta."') AND idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado'");
     while ($fila1 = mysqli_fetch_array($result1)) {
         $numero=$numero+$fila1['numero'];
-        $result2=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta ='".$planta."' WHERE estado = '1'");
+        $result2=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta ='".$planta."' AND estado = '1'");
         while ($fila2=mysqli_fetch_array($result2)){
             $fragmento = ",['" . $fila2['descripcion'] . "', " . $numero . "]";
             $fragmento1 = $fragmento . $fragmento1;
