@@ -1,15 +1,15 @@
 <?php
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
+require('funcionesgraficasmes.php');
 
-mysqli_query($link,"SET NAMES 'utf8'");
-$datos=NumPersObsyPersRetTotalMes($_POST['mes']);
-$datos1=NumTotalClaseMes($_POST['mes']);
-$datos2=NumTotalCategoriaMes($_POST['mes']);
-$datos3=NumAccionesCorrectivasxEstadoMes($_POST['mes']);
-$datos4=NumTotalSafetyEyesMes($_POST['mes']);
-$datos5=NumTotalLiderMes($_POST['mes']);
-$datos6=NumTotalPlantaMes($_POST['mes']);
+$datos=NumPersObsyPersRetTotalMes($_POST['mes'],$link);
+$datos1=NumTotalClaseMes($_POST['mes'],$link);
+$datos2=NumTotalCategoriaMes($_POST['mes'],$link);
+$datos3=NumAccionesCorrectivasxEstadoMes($_POST['mes'],$link);
+$datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+$datos5=NumTotalLiderMes($_POST['mes'],$link);
+$datos6=NumTotalPlantaMes($_POST['mes'],$link);
 ?>
 <script type="text/javascript">
     // Load the Visualization API and the corechart package.
@@ -175,7 +175,7 @@ $aux=7;
 $result=mysqli_query($link,"SELECT * FROM Planta");
 while ($fila=mysqli_fetch_array($result)){
     $aux++;
-    $datos7=NumTotalUbicacionMes($_POST['mes'],$fila['idPlanta']);
+    $datos7=NumTotalUbicacionMes($_POST['mes'],$fila['idPlanta'],$link);
     echo "
         <script>
             google.charts.setOnLoadCallback(drawChart7);

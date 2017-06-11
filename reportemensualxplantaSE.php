@@ -1,15 +1,15 @@
 <?php
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-require('funcionesgraficasmes.php');
 mysqli_query($link,"SET NAMES 'utf8'");
+require('funcionesgraficasmes.php');
 
-$datos=NumPersObsyPersRetTotalPlantaUnicaMes($_POST['mes'],$_POST['planta']);
-$datos1=NumTotalClasePlantaUnicaMes($_POST['mes'],$_POST['planta']);
-$datos2=NumTotalCategoriaPlantaUnicaMes($_POST['mes'],$_POST['planta']);
-$datos3=NumAccionesCorrectivasxEstadoPlantaMes($_POST['mes'],$_POST['planta']);
-$datos4=NumTotalUbicacionMes($_POST['mes'],$_POST['planta']);
-$datos5=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta']);
-$datos6=NumTotalLiderPlantaUnicaMes($_POST['mes'],$_POST['planta']);
+$datos=NumPersObsyPersRetTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos1=NumTotalClasePlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos2=NumTotalCategoriaPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos3=NumAccionesCorrectivasxEstadoPlantaMes($_POST['mes'],$_POST['planta'],$link);
+$datos4=NumTotalUbicacionMes($_POST['mes'],$_POST['planta'],$link);
+$datos5=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos6=NumTotalLiderPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
 $result=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta='".$_POST['planta']."'");
 while ($fila=mysqli_fetch_array($result)){
     $planta=$fila['descripcion'];

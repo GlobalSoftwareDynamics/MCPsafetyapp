@@ -1,8 +1,7 @@
 <?php
 
-function NumPersObsyPersRetTotalMes($mes){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+
+function NumPersObsyPersRetTotalMes($mes,$link){
     $numpersobs=0;
     $numpersret=0;
     $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado'");
@@ -16,9 +15,7 @@ function NumPersObsyPersRetTotalMes($mes){
     return $fragmento;
 }
 
-function NumPersObsyPersRetTotalPlantaUnicaMes($mes,$planta){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumPersObsyPersRetTotalPlantaUnicaMes($mes,$planta,$link){
     $numpersobs=0;
     $numpersret=0;
     $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$planta."')");
@@ -32,9 +29,7 @@ function NumPersObsyPersRetTotalPlantaUnicaMes($mes,$planta){
     return $fragmento;
 }
 
-function NumTotalClaseMes($mes){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalClaseMes($mes,$link){
     $fragmento1="";
     $result=mysqli_query($link,"SELECT idClase, COUNT(*) AS numero FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado') GROUP BY idClase");
     while ($fila=mysqli_fetch_array($result)){
@@ -48,9 +43,7 @@ function NumTotalClaseMes($mes){
     return $fragmento1;
 }
 
-function NumTotalClasePlantaUnicaMes($mes,$planta){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalClasePlantaUnicaMes($mes,$planta,$link){
     $fragmento1="";
     $result=mysqli_query($link,"SELECT idClase, COUNT(*) AS numero FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$planta."')) GROUP BY idClase");
     while ($fila=mysqli_fetch_array($result)){
@@ -64,9 +57,7 @@ function NumTotalClasePlantaUnicaMes($mes,$planta){
     return $fragmento1;
 }
 
-function NumTotalCategoriaMes($mes){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalCategoriaMes($mes,$link){
     $fragmento1="";
     $result = mysqli_query($link, "SELECT idCategoria, COUNT(*) AS numero FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado') GROUP BY idCategoria");
     while ($fila = mysqli_fetch_array($result)) {
@@ -80,9 +71,7 @@ function NumTotalCategoriaMes($mes){
     return $fragmento1;
 }
 
-function NumTotalCategoriaPlantaUnicaMes($mes,$planta){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalCategoriaPlantaUnicaMes($mes,$planta,$link){
     $fragmento1="";
     $result = mysqli_query($link, "SELECT idCategoria, COUNT(*) AS numero FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$planta."')) GROUP BY idCategoria");
     while ($fila = mysqli_fetch_array($result)) {
@@ -96,9 +85,7 @@ function NumTotalCategoriaPlantaUnicaMes($mes,$planta){
     return $fragmento1;
 }
 
-function NumTotalUbicacionMes($mes, $planta){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalUbicacionMes($mes, $planta,$link){
     $fragmento1="";
     $result = mysqli_query($link, "SELECT idUbicacion, COUNT(*) AS numero FROM SafetyEyes WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$planta."')) GROUP BY idUbicacion");
     while ($fila = mysqli_fetch_array($result)) {
@@ -112,9 +99,7 @@ function NumTotalUbicacionMes($mes, $planta){
     return $fragmento1;
 }
 
-function NumTotalLiderMes($mes){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalLiderMes($mes,$link){
     $fragmento1="";
     $result = mysqli_query($link, "SELECT dni, COUNT(*) AS numero FROM ParticipantesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado') AND idTipoParticipante ='1' GROUP BY dni");
     while ($fila = mysqli_fetch_array($result)) {
@@ -128,9 +113,7 @@ function NumTotalLiderMes($mes){
     return $fragmento1;
 }
 
-function NumTotalLiderPlantaUnicaMes($mes,$planta){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalLiderPlantaUnicaMes($mes,$planta,$link){
     $fragmento1="";
     $result = mysqli_query($link, "SELECT dni, COUNT(*) AS numero FROM ParticipantesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$planta."')) AND idTipoParticipante ='1' GROUP BY dni");
     while ($fila = mysqli_fetch_array($result)) {
@@ -144,9 +127,7 @@ function NumTotalLiderPlantaUnicaMes($mes,$planta){
     return $fragmento1;
 }
 
-function NumTotalPlantaMes($mes){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalPlantaMes($mes,$link){
     $fragmento1="";
     $result=mysqli_query($link,"SELECT * FROM Planta");
     while ($fila=mysqli_fetch_array($result)){
@@ -162,9 +143,7 @@ function NumTotalPlantaMes($mes){
     return $fragmento1;
 }
 
-function NumTotalPlantaUnicaMes($mes,$planta){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalPlantaUnicaMes($mes,$planta,$link){
     $fragmento1="";
     $numero=0;
     $result1 = mysqli_query($link, "SELECT idUbicacion, COUNT(*) AS numero FROM SafetyEyes WHERE idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta = '".$planta."') AND idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado'");
@@ -180,9 +159,7 @@ function NumTotalPlantaUnicaMes($mes,$planta){
     return $fragmento1;
 }
 
-function NumTotalSafetyEyesMes($mes){
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumTotalSafetyEyesMes($mes,$link){
     $fragmento1="";
     $result=mysqli_query($link,"SELECT *, COUNT(*) AS numero FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado'");
     while ($fila=mysqli_fetch_array($result)){
@@ -193,9 +170,7 @@ function NumTotalSafetyEyesMes($mes){
     return $fragmento1;
 }
 
-function NumAccionesCorrectivasxEstadoPlantaMes($mes,$planta) {
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumAccionesCorrectivasxEstadoPlantaMes($mes,$planta,$link) {
     $fragmento1="";
     $result=mysqli_query($link,"SELECT estado, COUNT(*) AS numero FROM AccionesCorrectivas WHERE idAccionesCorrectivas IN (SELECT idAccionesCorrectivas FROM ACSE WHERE idObservacionesSE IN (SELECT idObservacionesSE FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$planta."')))) GROUP BY estado");
     while ($fila=mysqli_fetch_array($result)){
@@ -206,9 +181,7 @@ function NumAccionesCorrectivasxEstadoPlantaMes($mes,$planta) {
     return $fragmento1;
 }
 
-function NumAccionesCorrectivasxEstadoMes($mes) {
-    $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-    mysqli_query($link,"SET NAMES 'utf8'");
+function NumAccionesCorrectivasxEstadoMes($mes,$link) {
     $fragmento1="";
     $result=mysqli_query($link,"SELECT estado, COUNT(*) AS numero FROM AccionesCorrectivas WHERE idAccionesCorrectivas IN (SELECT idAccionesCorrectivas FROM ACSE WHERE idObservacionesSE IN (SELECT idObservacionesSE FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado'))) GROUP BY estado");
     while ($fila=mysqli_fetch_array($result)){
