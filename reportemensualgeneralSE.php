@@ -2,7 +2,7 @@
 $link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
 mysqli_query($link,"SET NAMES 'utf8'");
 require('funcionesgraficasmes.php');
-
+$datos0=NumTotalCOPMes($_POST['mes'],$link);
 $datos=NumPersObsyPersRetTotalMes($_POST['mes'],$link);
 $datos1=NumTotalClaseMes($_POST['mes'],$link);
 $datos2=NumTotalCategoriaMes($_POST['mes'],$link);
@@ -110,6 +110,20 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica7'));
+        chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChart7);
+    function drawChart7() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos0;?>
+        ]);
+        var options = {
+            width: '100%',
+            height: 300,
+            legend: 'none'
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica0'));
         chart.draw(data, options);
     }
 </script>
@@ -226,6 +240,18 @@ while ($fila=mysqli_fetch_array($result)){
         </div>
         <div class="col-sm-12">
             <div id="grafica3">
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container-fluid">
+    <div class="col-sm-12">
+        <div class="col-sm-12">
+            <h4 class="text-center">Número de Observaciones por COP </h4>
+        </div>
+        <div class="col-sm-12">
+            <div id="grafica0">
 
             </div>
         </div>

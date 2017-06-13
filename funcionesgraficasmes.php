@@ -57,6 +57,34 @@ function NumTotalClasePlantaUnicaMes($mes,$planta,$link){
     return $fragmento1;
 }
 
+function NumTotalCOPMes($mes,$link){
+    $fragmento1="";
+    $result=mysqli_query($link,"SELECT idCOPs, COUNT(*) AS numero FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado') GROUP BY idCOPs");
+    while ($fila=mysqli_fetch_array($result)){
+        $result1=mysqli_query($link,"SELECT * FROM COPs WHERE idCOPs ='".$fila['idCOPs']."'");
+        while ($fila1=mysqli_fetch_array($result1)){
+            $fragmento=",['".$fila1['siglas']."', ".$fila['numero']."]";
+            $fragmento1=$fragmento.$fragmento1;
+        }
+    }
+    $fragmento1="['Clase de Observación','Cantidad']".$fragmento1;
+    return $fragmento1;
+}
+
+function NumTotalCOPPlantaUnicaMes($mes,$planta,$link){
+    $fragmento1="";
+    $result=mysqli_query($link,"SELECT idCOPs, COUNT(*) AS numero FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta ='".$planta."')) GROUP BY idCOPs");
+    while ($fila=mysqli_fetch_array($result)){
+        $result1=mysqli_query($link,"SELECT * FROM COPs WHERE idCOPs ='".$fila['idCOPs']."'");
+        while ($fila1=mysqli_fetch_array($result1)){
+            $fragmento=",['".$fila1['siglas']."', ".$fila['numero']."]";
+            $fragmento1=$fragmento.$fragmento1;
+        }
+    }
+    $fragmento1="['Clase de Observación','Cantidad']".$fragmento1;
+    return $fragmento1;
+}
+
 function NumTotalCategoriaMes($mes,$link){
     $fragmento1="";
     $result = mysqli_query($link, "SELECT idCategoria, COUNT(*) AS numero FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE%".$mes."%' AND estado ='Aprobado') GROUP BY idCategoria");
