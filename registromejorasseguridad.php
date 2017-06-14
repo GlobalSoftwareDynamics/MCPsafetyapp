@@ -3,8 +3,8 @@
 <html lang="es">
 
 <?php
+require('funcionesApp.php');
 include('session.php');
-include('funcionesApp.php');
 if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 ?>
 <head>
@@ -12,15 +12,6 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-152-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="smartphone-icon-152-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="smartphone-icon-144-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="smartphone-icon-120-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="smartphone-icon-114-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="smartphone-icon-72-185337.png">
-    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
-    <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -49,8 +40,8 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 </header>
 <?php
 if (isset($_POST['crearms'])){
-    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, fecharegistro, descripcion, fuente, fechaactualizacion, estado) VALUES (
-    '".$_POST['idmejora']."','".$_POST['responsable']."','".$_POST['fecharegistro']."','".$_POST['descripcionms']."','SE','-','Pendiente'
+    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, idEstado, fecharegistro, descripcion, fuente, fechaactualizacion) VALUES (
+    '".$_POST['idmejora']."','".$_POST['responsable']."','5','".$_POST['fecharegistro']."','".$_POST['descripcionms']."','SE','-'
     )";
     $query=mysqli_query($link,$agregar);
     $agregar="INSERT INTO MESE(idSafetyEyes, idMejoras) VALUES (
@@ -59,8 +50,8 @@ if (isset($_POST['crearms'])){
     $query=mysqli_query($link,$agregar);
 }
 if (isset($_POST['crearmsconid'])){
-    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, fecharegistro, descripcion, fuente, fechaactualizacion, estado) VALUES (
-    '".$_POST['idmejora']."','".$_POST['responsable']."','".$_POST['fecharegistro']."','".$_POST['descripcionms']."','SE','-','Pendiente'
+    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, idEstado, fecharegistro, descripcion, fuente, fechaactualizacion) VALUES (
+    '".$_POST['idmejora']."','".$_POST['responsable']."','5','".$_POST['fecharegistro']."','".$_POST['descripcionms']."','SE','-'
     )";
     $query=mysqli_query($link,$agregar);
     $agregar="INSERT INTO MESE(idSafetyEyes, idMejoras) VALUES (
@@ -71,7 +62,7 @@ if (isset($_POST['crearmsconid'])){
 if (isset($_POST['completar'])){
     date_default_timezone_set('America/Lima');
     $fecha = date('d/m/Y');
-    $actualizar="UPDATE MejorasSeguridad SET estado = 'Completa' WHERE idMejoras = '".$_POST['idME']."'";
+    $actualizar="UPDATE MejorasSeguridad SET idEstado = '2' WHERE idMejoras = '".$_POST['idME']."'";
     $query=mysqli_query($link,$actualizar);
     $actualizar="UPDATE MejorasSeguridad SET fechaactualizacion = '".$fecha."' WHERE idMejoras = '".$_POST['idME']."'";
     $query=mysqli_query($link,$actualizar);
@@ -79,7 +70,7 @@ if (isset($_POST['completar'])){
 ?>
 <section class="container">
     <div>
-        <form action="registromejorasseguridad.php" method="post" class="form-horizontal jumbotron col-sm-12">
+        <form action="registromejorasseguridad.php?user=<? echo$_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
                     <label for="columna" class="col-sm-12">Columna:</label>
@@ -117,7 +108,7 @@ if (isset($_POST['completar'])){
 <section class="container">
     <form method="post" class="form-horizontal col-sm-12">
         <div class="form-group">
-            <input type="submit" formaction="crearnuevaMS.php" value="Registrar Nueva Mejora de Seguridad" class="btn btn-primary col-sm-4 col-sm-offset-4">
+            <input type="submit" formaction="crearnuevaMS.php?user=<?php echo $_GET['user'];?>" value="Registrar Nueva Mejora de Seguridad" class="btn btn-primary col-sm-4 col-sm-offset-4">
         </div>
     </form>
 </section>
@@ -154,7 +145,7 @@ if (isset($_POST['completar'])){
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php'>
+                                            <form method='post' action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -178,13 +169,18 @@ if (isset($_POST['completar'])){
                             echo "
                                 <td class='text-left'>".$fila['descripcion']."</td>
                                 <td>".$fila0['nombre']." ".$fila0['apellidos']."</td>
-                                <td>".$fila['estado']."</td>
                             ";
+                            $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila['idEstado']."'");
+                            while ($fila2=mysqli_fetch_array($result2)){
+                                echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                            }
                             echo "
                                 <td>
                                     <form method='post'>
                                         <input type='hidden' value='".$fila['idMejoras']."' name='idME'>
-                                        <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php'>
+                                        <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?user=".$_GET['user']."'>
                                     </form>
                                 </td>
                             ";
@@ -207,7 +203,7 @@ if (isset($_POST['completar'])){
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php'>
+                                            <form method='post' action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -237,14 +233,17 @@ if (isset($_POST['completar'])){
                             <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
                         ";
                         }
-                        echo "
-                            <td>".$fila0['estado']."</td>
-                        ";
+                        $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                        while ($fila2=mysqli_fetch_array($result2)){
+                            echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                        }
                         echo "
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idMejoras']."' name='idME'>
-                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php'>
+                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?user=".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -267,7 +266,7 @@ if (isset($_POST['completar'])){
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php'>
+                                            <form method='post' action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -297,14 +296,17 @@ if (isset($_POST['completar'])){
                             <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
                         ";
                     }
-                    echo "
-                            <td>".$fila0['estado']."</td>
-                        ";
+                    $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                    while ($fila2=mysqli_fetch_array($result2)){
+                        echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                    }
                     echo "
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idMejoras']."' name='idME'>
-                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php'>
+                                    <input type='submit' name='completar' class='btn-link' value='Completar' formaction='registromejorasseguridad.php?user=".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -323,7 +325,7 @@ if (isset($_POST['completar'])){
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footer.php');
+    include_once('footercio.php');
     ?>
 </footer>
 </body>

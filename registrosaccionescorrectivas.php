@@ -3,8 +3,8 @@
 <html lang="es">
 
 <?php
+require('funcionesApp.php');
 include('session.php');
-include('funcionesApp.php');
 if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 ?>
 <head>
@@ -12,15 +12,6 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-152-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="smartphone-icon-152-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="smartphone-icon-144-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="smartphone-icon-120-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="smartphone-icon-114-185337.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="smartphone-icon-72-185337.png">
-    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
-    <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -49,8 +40,8 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 </header>
 <?php
 if (isset($_POST['crearacse'])){
-    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
-    '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-','En Proceso'
+    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, idEstado, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
+    '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','1','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-','En Proceso'
     )";
     $query=mysqli_query($link,$agregar);
     $agregar="INSERT INTO ACSE(idObservacionesse, idAccionesCorrectivas) VALUES (
@@ -59,8 +50,8 @@ if (isset($_POST['crearacse'])){
     $query=mysqli_query($link,$agregar);
 }
 if (isset($_POST['crearacseconidse'])){
-    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
-    '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-','En Proceso'
+    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, idEstado, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
+    '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','1','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-','En Proceso'
     )";
     $query=mysqli_query($link,$agregar);
     $agregar="INSERT INTO ACSE(idObservacionesse, idAccionesCorrectivas) VALUES (
@@ -75,14 +66,14 @@ if (isset($_POST['actualizarestado'])){
         $fechaplaneada=$fila['fechaPlan'];
     }
     if ($fechaplaneada>$_POST['fechaReal']||$fechaplaneada===$_POST['fechaReal']){
-        $actualizar="UPDATE AccionesCorrectivas SET estado = 'Completa' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
+        $actualizar="UPDATE AccionesCorrectivas SET idEstado = '2' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
         $actualizar="UPDATE AccionesCorrectivas SET fechaReal = '".$_POST['fechaReal']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
         $actualizar="UPDATE AccionesCorrectivas SET fechaactualizacion = '".$_POST['fecha']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
     }elseif ($_POST['fechaReal']>$fechaplaneada){
-        $actualizar="UPDATE AccionesCorrectivas SET estado = 'Vencida' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
+        $actualizar="UPDATE AccionesCorrectivas SET idEstado = '3' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
         $actualizar="UPDATE AccionesCorrectivas SET fechaReal = '".$_POST['fechaReal']."' WHERE idAccionesCorrectivas = '".$_POST['idAC']."'";
         $query=mysqli_query($link,$actualizar);
@@ -93,7 +84,7 @@ if (isset($_POST['actualizarestado'])){
 ?>
 <section class="container">
     <div>
-        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-12">
+        <form action="registrosaccionescorrectivas.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
             <div class="form-group col-sm-4">
                 <div class="col-sm-4">
                     <label for="columna" class="col-sm-12">Columna:</label>
@@ -131,7 +122,7 @@ if (isset($_POST['actualizarestado'])){
 <section class="container">
     <form method="post" class="form-horizontal col-sm-12">
         <div class="form-group">
-            <input type="submit" formaction="crearnuevaAC.php" value="Registrar Nueva Acción Correctiva" class="btn btn-primary col-sm-4 col-sm-offset-4">
+            <input type="submit" formaction="crearnuevaAC.php?user=<?php echo $_GET['user'];?>" value="Registrar Nueva Acción Correctiva" class="btn btn-primary col-sm-4 col-sm-offset-4">
         </div>
     </form>
 </section>
@@ -173,7 +164,7 @@ if (isset($_POST['actualizarestado'])){
                                     while ($fila3=mysqli_fetch_array($result3)){
                                         echo "
                                         <td>
-                                            <form method='post' action='detallesafetyeyes.php'>
+                                            <form method='post' action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila3['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila3['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -214,13 +205,18 @@ if (isset($_POST['actualizarestado'])){
                                 <td>".$fila['fechaPlan']."</td>
                                 <td>".$fila['fechaReal']."</td>
                                 <td>".$fila['fechaactualizacion']."</td>
-                                <td>".$fila['estado']."</td>
                             ";
+                            $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila['idEstado']."'");
+                            while ($fila2=mysqli_fetch_array($result2)){
+                                echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                            }
                             echo "
                                 <td>
                                     <form method='post'>
                                         <input type='hidden' value='".$fila['idAccionesCorrectivas']."' name='idAC'>
-                                        <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
+                                        <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php?user=".$_GET['user']."'>
                                     </form>
                                 </td>
                             ";
@@ -245,7 +241,7 @@ if (isset($_POST['actualizarestado'])){
                                 while ($fila3=mysqli_fetch_array($result3)){
                                     echo "
                                         <td>
-                                            <form method='post'  action='detallesafetyeyes.php'>
+                                            <form method='post'  action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila3['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila3['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -293,13 +289,18 @@ if (isset($_POST['actualizarestado'])){
                             <td>".$fila0['fechaPlan']."</td>
                             <td>".$fila0['fechaReal']."</td>
                             <td>".$fila0['fechaactualizacion']."</td>
-                            <td>".$fila0['estado']."</td>
                         ";
+                        $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                        while ($fila2=mysqli_fetch_array($result2)){
+                            echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                        }
                         echo "
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idAccionesCorrectivas']."' name='idAC'>
-                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
+                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php?user=".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -324,7 +325,7 @@ if (isset($_POST['actualizarestado'])){
                             while ($fila3=mysqli_fetch_array($result3)){
                                 echo "
                                         <td>
-                                            <form method='post'  action='detallesafetyeyes.php'>
+                                            <form method='post'  action='detallesafetyeyes.php?user=".$_GET['user']."'>
                                                 <input type='hidden' name='idSE' value='".$fila3['idSafetyEyes']."'>
                                                 <input type='submit' name='detalle' value='".$fila3['idSafetyEyes']."' class='btn-link'>
                                             </form>
@@ -372,13 +373,18 @@ if (isset($_POST['actualizarestado'])){
                             <td>".$fila0['fechaPlan']."</td>
                             <td>".$fila0['fechaReal']."</td>
                             <td>".$fila0['fechaactualizacion']."</td>
-                            <td>".$fila0['estado']."</td>
                         ";
+                    $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                    while ($fila2=mysqli_fetch_array($result2)){
+                        echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                    }
                     echo "
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idAccionesCorrectivas']."' name='idAC'>
-                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php'>
+                                    <input type='submit' class='btn-link' value='Seguimiento' formaction='seguimientoAC.php?user=".$_GET['user']."'>
                                 </form>
                             </td>
                         ";
@@ -397,7 +403,7 @@ if (isset($_POST['actualizarestado'])){
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footer.php');
+    include_once('footercio.php');
     ?>
 </footer>
 </body>
