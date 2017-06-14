@@ -41,8 +41,8 @@ if (isset($_POST['agregar'])){
     while ($fila=mysqli_fetch_array($result)){
         $fecharegistro=$fila['fecha'];
     }
-    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, idEstado, fecharegistro ,descripcion, fuente, estado) VALUES (
-    '".$_POST['idMS']."','".$_POST['proponente']."','5','".$fecharegistro."','".$_POST['descripcion']."','SE','En Proceso'
+    $agregar="INSERT INTO MejorasSeguridad(idMejoras, dni, idEstado, fecharegistro ,descripcion, fuente) VALUES (
+    '".$_POST['idMS']."','".$_POST['proponente']."','5','".$fecharegistro."','".$_POST['descripcion']."','SE'
     )";
     /*echo $agregar;*/
     $query=mysqli_query($link,$agregar);

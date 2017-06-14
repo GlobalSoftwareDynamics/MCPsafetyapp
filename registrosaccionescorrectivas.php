@@ -40,8 +40,8 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 </header>
 <?php
 if (isset($_POST['crearacse'])){
-    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, idEstado, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
-    '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','1','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-','En Proceso'
+    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, idEstado, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion) VALUES (
+    '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','1','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-'
     )";
     $query=mysqli_query($link,$agregar);
     $agregar="INSERT INTO ACSE(idObservacionesse, idAccionesCorrectivas) VALUES (
@@ -50,8 +50,8 @@ if (isset($_POST['crearacse'])){
     $query=mysqli_query($link,$agregar);
 }
 if (isset($_POST['crearacseconidse'])){
-    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, idEstado, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion, estado) VALUES (
-    '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','1','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-','En Proceso'
+    $agregar="INSERT INTO AccionesCorrectivas(idAccionesCorrectivas, dni, idEstado, fecharegistro, descripcion, fechaPlan, fechaReal, fuente, fechaactualizacion) VALUES (
+    '".$_POST['idaccioncorrectiva']."','".$_POST['responsable']."','1','".$_POST['fecharegistro']."','".$_POST['descripcionac']."','".$_POST['fechaplaneada']."','-','SE','-'
     )";
     $query=mysqli_query($link,$agregar);
     $agregar="INSERT INTO ACSE(idObservacionesse, idAccionesCorrectivas) VALUES (
