@@ -1,6 +1,5 @@
 <?php
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
+include('session.php');
 require('funcionesgraficasmes.php');
 $datos0=NumTotalCOPPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
 $datos=NumPersObsyPersRetTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
@@ -36,13 +35,20 @@ while ($fila=mysqli_fetch_array($result)){
             var data = google.visualization.arrayToDataTable([
                 <?php echo $datos1;?>
             ]);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                { calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation" }
+            ]);
             var options = {
                 width: '100%',
                 height: 300
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.PieChart(document.getElementById('grafica2'));
-            chart.draw(data, options);
+            chart.draw(view, options);
         }
 
         google.charts.setOnLoadCallback(drawChart2);
@@ -50,13 +56,20 @@ while ($fila=mysqli_fetch_array($result)){
             var data = google.visualization.arrayToDataTable([
                 <?php echo $datos2;?>
             ]);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                { calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation" }
+            ]);
             var options = {
                 width: '100%',
                 height: 300
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.PieChart(document.getElementById('grafica3'));
-            chart.draw(data, options);
+            chart.draw(view, options);
         }
 
         google.charts.setOnLoadCallback(drawChart3);
@@ -64,13 +77,20 @@ while ($fila=mysqli_fetch_array($result)){
             var data = google.visualization.arrayToDataTable([
                 <?php echo $datos3;?>
             ]);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                { calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation" }
+            ]);
             var options = {
                 width: '100%',
                 height: 300
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.PieChart(document.getElementById('grafica4'));
-            chart.draw(data, options);
+            chart.draw(view, options);
         }
 
         google.charts.setOnLoadCallback(drawChart4);
@@ -78,14 +98,21 @@ while ($fila=mysqli_fetch_array($result)){
             var data = google.visualization.arrayToDataTable([
                 <?php echo $datos4;?>
             ]);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                { calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation" }
+            ]);
             var options = {
                 width: '100%',
                 height: 300,
-                legend: 'none'
+                legend: { position: 'top'}
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.ColumnChart(document.getElementById('grafica5'));
-            chart.draw(data, options);
+            chart.draw(view, options);
         }
 
         google.charts.setOnLoadCallback(drawChart5);
@@ -93,14 +120,21 @@ while ($fila=mysqli_fetch_array($result)){
             var data = google.visualization.arrayToDataTable([
                 <?php echo $datos5;?>
             ]);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                { calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation" }
+            ]);
             var options = {
                 width: '100%',
                 height: 300,
-                legend: 'none'
+                legend: { position: 'top'}
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.ColumnChart(document.getElementById('grafica6'));
-            chart.draw(data, options);
+            chart.draw(view, options);
         }
 
         google.charts.setOnLoadCallback(drawChart6);
@@ -108,28 +142,42 @@ while ($fila=mysqli_fetch_array($result)){
             var data = google.visualization.arrayToDataTable([
                 <?php echo $datos6;?>
             ]);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                { calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation" }
+            ]);
             var options = {
                 width: '100%',
                 height: 300,
-                legend: 'none'
+                legend: { position: 'top'}
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.ColumnChart(document.getElementById('grafica7'));
-            chart.draw(data, options);
+            chart.draw(view, options);
         }
         google.charts.setOnLoadCallback(drawChart7);
         function drawChart7() {
             var data = google.visualization.arrayToDataTable([
                 <?php echo $datos0;?>
             ]);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                { calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation" }
+            ]);
             var options = {
                 width: '100%',
                 height: 300,
-                legend: 'none'
+                legend: { position: 'top'}
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.ColumnChart(document.getElementById('grafica0'));
-            chart.draw(data, options);
+            chart.draw(view, options);
         }
     </script>
 
@@ -260,9 +308,12 @@ while ($fila=mysqli_fetch_array($result)){
                      <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
                 ";
                 }
-                echo "
-                <td>".$fila0['estado']."</td>
-            ";
+                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                while ($fila2=mysqli_fetch_array($result2)){
+                    echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                }
             }
             echo "
                 </tr>
@@ -319,8 +370,13 @@ while ($fila=mysqli_fetch_array($result)){
                 echo "
                 <td>".$fila0['fechaPlan']."</td>
                 <td>".$fila0['fechaReal']."</td>
-                <td>".$fila0['estado']."</td>
-            ";
+                ";
+                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                while ($fila2=mysqli_fetch_array($result2)){
+                    echo "
+                         <td>".$fila2['descripcion']."</td>
+                    ";
+                }
             }
             echo "
                 </tr>

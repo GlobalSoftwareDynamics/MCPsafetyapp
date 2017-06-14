@@ -1,6 +1,5 @@
 <?php
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
+include('session.php');
 require('funcionesgraficasmes.php');
 $datos0=NumTotalCOPMes($_POST['mes'],$link);
 $datos=NumPersObsyPersRetTotalMes($_POST['mes'],$link);
@@ -32,13 +31,20 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos1;?>
         ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
         var options = {
             width: '100%',
             height: 300
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('grafica2'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
 
     google.charts.setOnLoadCallback(drawChart2);
@@ -46,13 +52,20 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos2;?>
         ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
         var options = {
             width: '100%',
             height: 300
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('grafica3'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
 
     google.charts.setOnLoadCallback(drawChart3);
@@ -60,13 +73,20 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos3;?>
         ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
         var options = {
             width: '100%',
             height: 300
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('grafica4'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
 
     google.charts.setOnLoadCallback(drawChart4);
@@ -74,14 +94,21 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos4;?>
         ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
         var options = {
             width: '100%',
             height: 300,
-            legend: 'none'
+            legend: { position: 'top'}
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica5'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
 
     google.charts.setOnLoadCallback(drawChart5);
@@ -89,46 +116,67 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos5;?>
         ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
         var options = {
             width: '100%',
             height: 300,
-            legend: 'none'
+            legend: { position: 'top'}
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica6'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
     google.charts.setOnLoadCallback(drawChart6);
     function drawChart6() {
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos6;?>
         ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
         var options = {
             width: '100%',
             height: 300,
-            legend: 'none'
+            legend: { position: 'top'}
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica7'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
     google.charts.setOnLoadCallback(drawChart7);
     function drawChart7() {
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos0;?>
         ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
         var options = {
             width: '100%',
             height: 300,
-            legend: 'none'
+            legend: { position: 'top'}
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica0'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
 </script>
 
-<section class="container-fluid">
+<section class="container">
     <div class="col-sm-8">
         <div class="col-sm-12">
             <img width="auto" height="100" src="image/Logo.png"/>
@@ -144,13 +192,13 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
     </div>
 </section>
 <hr>
-<section class="container-fluid">
+<section class="container">
     <div class="col-sm-6 col-sm-offset-3">
         <h3 class="text-center">Todas las Plantas</h3>
     </div>
 </section>
 <br>
-<section class="container-fluid">
+<section class="container">
     <div class="col-sm-5">
         <div class="col-sm-12">
             <h4 class="text-center">Número de Safety Eyes Registrados</h4>
@@ -172,7 +220,7 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         </div>
     </div>
 </section>
-<section class="container-fluid">
+<section class="container">
     <div class="col-sm-10 col-sm-offset-1">
         <div class="col-sm-12">
             <h4 class="text-center">Número de Safety Eyes Registrados por Persona</h4>
@@ -184,46 +232,7 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         </div>
     </div>
 </section>
-<?php
-$aux=7;
-$result=mysqli_query($link,"SELECT * FROM Planta WHERE estado = '1'");
-while ($fila=mysqli_fetch_array($result)){
-    $aux++;
-    $datos7=NumTotalUbicacionMes($_POST['mes'],$fila['idPlanta'],$link);
-    echo "
-        <script>
-            google.charts.setOnLoadCallback(drawChart7);
-            function drawChart7() {
-                var data = google.visualization.arrayToDataTable([
-                    ".$datos7."
-                ]);
-                var options = {
-                    width: '100%',
-                    height: 300,
-                    legend: 'none'
-                };
-                var chart = new google.visualization.ColumnChart(document.getElementById('grafica".$aux."'));
-                chart.draw(data, options);
-            }
-        </script>
-    ";
-    echo "
-        <section class='container-fluid'>
-            <div class='col-sm-10 col-sm-offset-1'>
-                <div class='col-sm-12'>
-                    <h4 class='text-center'>Número de Safety Eyes en Planta ".$fila['descripcion']."</h4>
-                </div>
-                <div class='col-sm-12'>
-                    <div id='grafica".$aux."'>
-        
-                    </div>
-                </div>
-            </div>
-        </section>
-    ";
-}
-?>
-<section class="container-fluid">
+<section class="container">
     <div class="col-sm-6">
         <div class="col-sm-12">
             <h4 class="text-center">Número de Observaciones por Clase </h4>
@@ -245,7 +254,7 @@ while ($fila=mysqli_fetch_array($result)){
         </div>
     </div>
 </section>
-<section class="container-fluid">
+<section class="container">
     <div class="col-sm-12">
         <div class="col-sm-12">
             <h4 class="text-center">Número de Observaciones por COP </h4>
@@ -294,9 +303,12 @@ while ($fila=mysqli_fetch_array($result)){
                      <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
                 ";
                 }
-                echo "
-                <td>".$fila0['estado']."</td>
-            ";
+                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                while ($fila2=mysqli_fetch_array($result2)){
+                    echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                }
             }
             echo "
                 </tr>
@@ -353,8 +365,13 @@ while ($fila=mysqli_fetch_array($result)){
                 echo "
                 <td>".$fila0['fechaPlan']."</td>
                 <td>".$fila0['fechaReal']."</td>
-                <td>".$fila0['estado']."</td>
-            ";
+                ";
+                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                while ($fila2=mysqli_fetch_array($result2)){
+                    echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                }
             }
             echo "
                 </tr>
