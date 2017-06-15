@@ -1,6 +1,6 @@
 <?php
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^","seapp");
+$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "user_admin1", "6DQ~kTpyHPn+Zs$^","safeatwork");
 // Selecting Database
 //$db = mysqli_select_db($link,"seapp");
 session_start();// Starting Session

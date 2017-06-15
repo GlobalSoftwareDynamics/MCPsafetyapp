@@ -358,7 +358,28 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                 </table>
             </div>
         </section>
-        <section class="contenedor bordes">
+        
+<section class="contenedor bordes">
+        <div class="col-sm-12">
+            <h5>8. Evidencias Fotográficas:</h5>
+        </div>
+</section>
+    <section class="container bordeslados">
+        <br>';
+        $i = 0;
+        $dir = "Fotografias/SafetyEyes/{$_POST['idSE']}/";
+        if ($handle = opendir($dir)) {
+	        while (($file = readdir($handle)) !== false){
+		        if (!in_array($file, array('.', '..')) && !is_dir($dir.$file))
+			        $i++;
+	        }
+        }
+        for($j=0;$j<$i;$j++){
+	        $html .= "<img src='Fotografias/SafetyEyes/{$_POST['idSE']}/{$_POST['idSE']}-{$j}.jpg' alt='Evidencia{$j}' style='width:304px;height:228px;margin-bottom:20px;margin-left: 10px;margin-right: 20px;'>";
+        }
+        $html.='
+</section>
+<section class="contenedor bordes">
             <div class="col-sm-12" style="padding-bottom: 0.1cm; padding-top: 0.1cm;">
                 <span class="label">Nombre del Revisor:</span>';
         $result1 = mysqli_query($link, "SELECT * FROM ParticipantesSE WHERE idSafetyEyes='" . $_POST['idSE'] . "' AND idTipoParticipante='3'");

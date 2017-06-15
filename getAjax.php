@@ -1,46 +1,44 @@
 <?php
-session_start();
-$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^", "seapp");
-mysqli_query($link,"SET NAMES 'utf8'");
+include('session.php');
 //if(isset($_SESSION['login'])) {
-	if (!empty($_POST["gestionUsuarios_usuario"])) {
-		echo "<input type='text' class='form-control' name='Usuario' id='Usuario' value='" . $_POST['gestionUsuarios_usuario'] . "' readonly></td>";
-		$dniselect = $_POST['gestionUsuarios_usuario'];
-	}
+if (!empty($_POST["gestionUsuarios_usuario"])) {
+	echo "<input type='text' class='form-control' name='Usuario' id='Usuario' value='" . $_POST['gestionUsuarios_usuario'] . "' readonly></td>";
+	$dniselect = $_POST['gestionUsuarios_usuario'];
+}
 
-	if (!empty($_POST["gestionUsuarios_password"])) {
-		echo "<td><input type='text' class='form-control' name='Contraseña' id='Contraseña' value='" . rand(1111111, 9999999) . "' readonly></td>";
-	}
+if (!empty($_POST["gestionUsuarios_password"])) {
+	echo "<td><input type='text' class='form-control' name='Contraseña' id='Contraseña' value='" . rand(1111111, 9999999) . "' readonly></td>";
+}
 
-	if (!empty($_POST["gestionUsuarios_tipoUsuario"])) {
-		$query = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni =" . $_POST['gestionUsuarios_tipoUsuario']);
-		while ($row = mysqli_fetch_array($query)) {
-			$query2 = mysqli_query($link, "SELECT * FROM Puesto WHERE idPuesto = '" . $row['idPuesto'] . "'");
-			while ($row2 = mysqli_fetch_array($query2)) {
-				$query3 = mysqli_query($link, "SELECT * FROM TipoUsuario WHERE idTipoUsuario = '" . $row2['idTipoUsuario'] . "'");
-				while ($row3 = mysqli_fetch_array($query3)) {
-					echo "<option selected='selected' value='" . $row3['idTipoUsuario'] . "'>" . $row3['descripcion'] . "</option>";
-					$default = $row3['idTipoUsuario'];
-				}
-			}
-		}
-		mysqli_data_seek($query, 0);
-		$query = mysqli_query($link, "SELECT * FROM TipoUsuario ORDER BY descripcion");
-		while ($row = mysqli_fetch_array($query)) {
-			if ($row['idTipoUsuario'] == $default) {
-			} else {
-				echo "<option value='" . $row['idTipoUsuario'] . "'>" . $row['descripcion'] . "</option>";
+if (!empty($_POST["gestionUsuarios_tipoUsuario"])) {
+	$query = mysqli_query($link, "SELECT * FROM Colaboradores WHERE dni =" . $_POST['gestionUsuarios_tipoUsuario']);
+	while ($row = mysqli_fetch_array($query)) {
+		$query2 = mysqli_query($link, "SELECT * FROM Puesto WHERE idPuesto = '" . $row['idPuesto'] . "'");
+		while ($row2 = mysqli_fetch_array($query2)) {
+			$query3 = mysqli_query($link, "SELECT * FROM TipoUsuario WHERE idTipoUsuario = '" . $row2['idTipoUsuario'] . "'");
+			while ($row3 = mysqli_fetch_array($query3)) {
+				echo "<option selected='selected' value='" . $row3['idTipoUsuario'] . "'>" . $row3['descripcion'] . "</option>";
+				$default = $row3['idTipoUsuario'];
 			}
 		}
 	}
-
-	if (!empty($_POST['infoEmpresas_pais'])) {
-		echo "<option>Seleccionar</option>";
-		$query = mysqli_query($link, "SELECT * FROM Ciudad WHERE idPais = '" . $_POST['infoEmpresas_pais'] . "'");
-		while ($row = mysqli_fetch_array($query)) {
-			echo "<option value='" . $row['idCiudad'] . "'>" . $row['nombre'] . "</option>";
+	mysqli_data_seek($query, 0);
+	$query = mysqli_query($link, "SELECT * FROM TipoUsuario ORDER BY descripcion");
+	while ($row = mysqli_fetch_array($query)) {
+		if ($row['idTipoUsuario'] == $default) {
+		} else {
+			echo "<option value='" . $row['idTipoUsuario'] . "'>" . $row['descripcion'] . "</option>";
 		}
 	}
+}
+
+if (!empty($_POST['infoEmpresas_pais'])) {
+	echo "<option>Seleccionar</option>";
+	$query = mysqli_query($link, "SELECT * FROM Ciudad WHERE idPais = '" . $_POST['infoEmpresas_pais'] . "'");
+	while ($row = mysqli_fetch_array($query)) {
+		echo "<option value='" . $row['idCiudad'] . "'>" . $row['nombre'] . "</option>";
+	}
+}
 
 if(!empty($_POST["regsafetyeyes1planta"])) {
 	echo "<option>Seleccionar</option>";
@@ -362,8 +360,8 @@ if(!empty($_POST["crearnuevaMStiporeporte"])&&!empty($_POST["crearnuevaMSfechati
 	}else{}
 }
 if(!empty($_POST["generaciondereportesTipo"])) {
-    if($_POST["generaciondereportesTipo"]==="rmensplant"){
-        echo "
+	if($_POST["generaciondereportesTipo"]==="rmensplant"){
+		echo "
             <div class='form-group'>
                 <div class='col-sm-12'>
                    <label for='plant' class='col-sm-12'>Seleccione la Planta:</label> 
@@ -371,13 +369,13 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                 <div class='col-sm-12'>
                    <select id='plant' class='form-control col-sm-12' name='planta'>
                         <option>Seleccionar</option>";
-        $result=mysqli_query($link, "SELECT * FROM Planta WHERE estado='1'");
-        while ($fila=mysqli_fetch_array($result)){
-            echo "
+		$result=mysqli_query($link, "SELECT * FROM Planta WHERE estado='1'");
+		while ($fila=mysqli_fetch_array($result)){
+			echo "
                 <option value='".$fila['idPlanta']."'>".$fila['descripcion']."</option>
             ";
-        }
-                    echo "
+		}
+		echo "
                     </select>
                 </div>
             </div>
@@ -403,9 +401,9 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                 </div>
             </div>
         ";
-    }
-    if($_POST["generaciondereportesTipo"]==="rmens"){
-        echo "
+	}
+	if($_POST["generaciondereportesTipo"]==="rmens"){
+		echo "
             <div class='form-group'>
                 <div class='col-sm-12'>
                     <label class='col-sm-12' for='mens'>Seleccione el Mes:</label>
@@ -428,9 +426,9 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                 </div>
             </div>
         ";
-    }
-    if($_POST["generaciondereportesTipo"]==="ranplant"){
-        echo "
+	}
+	if($_POST["generaciondereportesTipo"]==="ranplant"){
+		echo "
             <div class='form-group'>
                 <div class='col-sm-12'>
                    <label for='plant' class='col-sm-12'>Seleccione la Planta:</label> 
@@ -438,13 +436,13 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                 <div class='col-sm-12'>
                    <select id='plant' class='form-control col-sm-12' name='planta'>
                         <option>Seleccionar</option>";
-        $result=mysqli_query($link, "SELECT * FROM Planta WHERE estado='1'");
-        while ($fila=mysqli_fetch_array($result)){
-            echo "
+		$result=mysqli_query($link, "SELECT * FROM Planta WHERE estado='1'");
+		while ($fila=mysqli_fetch_array($result)){
+			echo "
                 <option value='".$fila['idPlanta']."'>".$fila['descripcion']."</option>
             ";
-        }
-        echo "
+		}
+		echo "
                     </select>
                 </div>
             </div>
@@ -457,21 +455,21 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                 </div>
             </div>
         ";
-    }
-    if($_POST["generaciondereportesTipo"]==="ran"){
-        echo "
+	}
+	if($_POST["generaciondereportesTipo"]==="ran"){
+		echo "
             <div class='form-group'>
                 <div class='col-sm-12'>
                     <label class='col-sm-12' for='anio'>Especifique el Año:</label>
                 </div>
                 <div class='col-sm-12'>
-                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XXXX'>          
+                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XX'>          
                 </div>
             </div>
         ";
-    }
-    if($_POST["generaciondereportesTipo"]==="rendpersmen"){
-        echo "
+	}
+	if($_POST["generaciondereportesTipo"]==="rendpersmen"){
+		echo "
             <div class='form-group'>
                 <div class='col-sm-12'>
                    <label for='idcol' class='col-sm-12'>Especifique los Apellidos:</label> 
@@ -502,9 +500,9 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                 </div>
             </div>
         ";
-    }
-    if($_POST["generaciondereportesTipo"]==="rendpersan"){
-        echo "
+	}
+	if($_POST["generaciondereportesTipo"]==="rendpersan"){
+		echo "
             <div class='form-group'>
                 <div class='col-sm-12'>
                    <label for='idcol' class='col-sm-12'>Especifique los Apellidos:</label> 
@@ -518,10 +516,10 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                     <label class='col-sm-12' for='anio'>Especifique el Año:</label>
                 </div>
                 <div class='col-sm-12'>
-                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XXXX'>          
+                    <input type='text' name='anio' class='form-control col-sm-12' id='anio' placeholder='XX'>          
                 </div>
             </div>
         ";
-    }
+	}
 }
 ?>

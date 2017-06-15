@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 		$username=$_POST['username'];
 		$password=$_POST['password'];
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-		$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "gsdsafeatwork", "6DQ~kTpyHPn+Zs$^","seapp");
+		$link = mysqli_connect("gsdynamicscom.ipagemysql.com", "user_admin1", "6DQ~kTpyHPn+Zs$^","safeatwork");
 // To protect MySQL injection for Security purpose
 		$username = stripslashes($username);
 		$password = stripslashes($password);

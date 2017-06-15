@@ -457,29 +457,53 @@ while ($fila=mysqli_fetch_array($result)) {
         }
         ?>
     </section>
+
+
     <section class="container bordes">
-        <div class="col-sm-12">
-            <label for="revisor">Nombre del Revisor:</label>
+        <div>
+            <h5>8. Evidencias Fotográficas:</h5>
+        </div>
+    </section>
+    <section class="container bordeslados">
+        <br>
+        <?php
+        $i = 0;
+        $dir = "Fotografias/SafetyEyes/{$_POST['idSE']}/";
+        if ($handle = opendir($dir)) {
+	        while (($file = readdir($handle)) !== false){
+		        if (!in_array($file, array('.', '..')) && !is_dir($dir.$file))
+			        $i++;
+	        }
+        }
+        for($j=0;$j<$i;$j++){
+	        echo "<img src='Fotografias/SafetyEyes/{$_POST['idSE']}/{$_POST['idSE']}-{$j}.jpg' alt='Evidencia{$j}' style='width:304px;height:228px;margin-bottom:20px;margin-left: 10px;margin-right: 65px;'>";
+        }
+        ?>
+    </section>
+    <section class="container bordes">
+        <div>
+            <label for="revisor" style="color: #333333;font-size:14px;">Nombre del Revisor:</label>
             <span id="revisor">
                 <?php
                 $result1=mysqli_query($link,"SELECT * FROM ParticipantesSE WHERE idSafetyEyes='".$_POST['idSE']."' AND idTipoParticipante='3'");
                 while ($fila1=mysqli_fetch_array($result1)){
-                    $result2=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni ='".$fila1['dni']."'");
-                    while ($fila2=mysqli_fetch_array($result2)){
-                        echo $fila2['nombre']." ".$fila2['apellidos'];
-                    }
+	                $result2=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni ='".$fila1['dni']."'");
+	                while ($fila2=mysqli_fetch_array($result2)){
+		                echo $fila2['nombre']." ".$fila2['apellidos'];
+	                }
                 }
                 ?>
             </span>
         </div>
     </section>
-    <?php
+	<?php
 }
 ?>
+
 <hr>
 <section class="container">
     <?php
-    $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSAfetyEyes='".$_POST['idSE']."'");
+    $result=mysqli_query($link,"SELECT * FROM SafetyEyes WHERE idSafetyEyes='".$_POST['idSE']."'");
     while ($fila=mysqli_fetch_array($result)){
         if($fila['estado']==="Pendiente"){
             echo "
