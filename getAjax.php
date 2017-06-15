@@ -469,15 +469,16 @@ if(!empty($_POST["generaciondereportesTipo"])) {
         ";
 	}
 	if($_POST["generaciondereportesTipo"]==="rendpersmen"){
-		echo "
+        echo "
             <div class='form-group'>
                 <div class='col-sm-12'>
                    <label for='idcol' class='col-sm-12'>Especifique los Apellidos:</label> 
                 </div>
                 <div class='col-sm-12'>
-                   <input type='text' id='idcol' class='form-control col-sm-12' name='dni' placeholder='Apellidos'>
+                   <input type='text' id='idcol' class='form-control col-sm-12' name='dni' placeholder='Apellidos' oninput='getnombrecompleto(this.value)'>
                 </div>
             </div>
+            <div id='selecnombrecomp'></div>
             <div class='form-group'>
                 <div class='col-sm-12'>
                     <label class='col-sm-12' for='mens'>Seleccione el Mes:</label>
@@ -500,17 +501,18 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                 </div>
             </div>
         ";
-	}
-	if($_POST["generaciondereportesTipo"]==="rendpersan"){
-		echo "
+    }
+    if($_POST["generaciondereportesTipo"]==="rendpersan"){
+        echo "
             <div class='form-group'>
                 <div class='col-sm-12'>
                    <label for='idcol' class='col-sm-12'>Especifique los Apellidos:</label> 
                 </div>
                 <div class='col-sm-12'>
-                   <input type='text' id='idcol' class='form-control col-sm-12' name='dni' placeholder='Apellidos'>
+                   <input type='text' id='idcol' class='form-control col-sm-12' name='dni' placeholder='Apellidos' oninput='getnombrecompleto(this.value)'>
                 </div>
             </div>
+            <div id='selecnombrecomp'></div>
             <div class='form-group'>
                 <div class='col-sm-12'>
                     <label class='col-sm-12' for='anio'>Especifique el Año:</label>
@@ -520,7 +522,7 @@ if(!empty($_POST["generaciondereportesTipo"])) {
                 </div>
             </div>
         ";
-	}
+    }
 }
 if(!empty($_POST["generaciondereportesNombreCompleto"])){
     echo "
