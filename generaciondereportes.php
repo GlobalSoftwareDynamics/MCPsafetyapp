@@ -33,6 +33,16 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
                 }
             });
         }
+        function getnombrecompleto(val) {
+            $.ajax({
+                type: "POST",
+                url: "getAjax.php",
+                data:{'generaciondereportesNombreCompleto':val},
+                success: function(data){
+                    $("#selecnombrecomp").html(data);
+                }
+            });
+        }
     </script>
 </head>
 
