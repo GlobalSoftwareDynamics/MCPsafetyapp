@@ -288,9 +288,12 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                                     <td>' . $fila2['nombre'] . ' ' . $fila2['apellidos'] . '</td>
                                 ';
                 }
-                $html .= '
-                                <td>' . $fila1['estado'] . '</td>
+                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila1['idEstado']."'");
+                    while ($fila2=mysqli_fetch_array($result2)){
+                        $html .= '
+                                <td>' . $fila2['descripcion'] . '</td>
                             ';
+                    }
             }
             $html .= '
                             <tr>
@@ -345,8 +348,13 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                     $html .= '
                                 <td>' . $fila1['fechaPlan'] . '</td>
                                 <td>' . $fila1['fechaReal'] . '</td>
-                                <td>' . $fila1['estado'] . '</td>
                             ';
+			$result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila1['idEstado']."'");
+                    	while ($fila2=mysqli_fetch_array($result2)){
+				$html .= '
+					<td>' . $fila2['descripcion'] . '</td>
+				';
+                    	}
                 }
                 $html .= '
                             <tr>
