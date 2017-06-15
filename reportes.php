@@ -38,6 +38,12 @@ if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rmensplant"){
 if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rmens"){
     include_once ('reportemensualgeneralSE.php');
 }
+if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="ran"){
+    include_once ('reporteanualgeneral.php');
+}
+if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="ranplant"){
+    include_once ('reporteanualxplanta.php');
+}
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
