@@ -522,4 +522,26 @@ if(!empty($_POST["generaciondereportesTipo"])) {
         ";
 	}
 }
+if(!empty($_POST["generaciondereportesNombreCompleto"])){
+    echo "
+        <div class='form-group'>
+            <div class='col-sm-12'>
+                <label for='nombrecomp' class='col-sm-12'>Seleccione Nombre Completo:</label> 
+            </div>
+            <div class='col-sm-12'>
+                <select name='dni' class='form-control col-sm-12' id='nombrecomp'>
+                    <option>Seleccionar</option>
+    ";
+    $result=mysqli_query($link,"SELECT * FROM Colaboradores WHERE apellidos LIKE '%".$_POST["generaciondereportesNombreCompleto"]."%'");
+    while ($fila=mysqli_fetch_array($result)){
+        echo "
+            <option value='".$fila['dni']."'>".$fila['nombre']." ".$fila['apellidos']."</option>
+        ";
+    }
+    echo "
+                </select>
+            </div>
+        </div>
+    ";
+}
 ?>
