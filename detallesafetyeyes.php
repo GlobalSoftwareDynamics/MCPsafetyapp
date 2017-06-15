@@ -350,9 +350,12 @@ while ($fila=mysqli_fetch_array($result)) {
                                 <td>" . $fila2['nombre'] . " " . $fila2['apellidos'] . "</td>
                             ";
                         }
-                        echo "
-                            <td>" . $fila1['estado'] . "</td>
-                        ";
+                        $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila1['idEstado']."'");
+                        while ($fila2=mysqli_fetch_array($result2)){
+                            echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                        }
                     }
                     echo "
                         <tr>
@@ -426,8 +429,13 @@ while ($fila=mysqli_fetch_array($result)) {
                             echo "
                             <td>".$fila1['fechaPlan']."</td>
                             <td>".$fila1['fechaReal']."</td>
-                            <td>".$fila1['estado']."</td>
                         ";
+			$result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila1['idEstado']."'");
+                        while ($fila2=mysqli_fetch_array($result2)){
+                            echo "
+                                    <td>".$fila2['descripcion']."</td>
+                                ";
+                        }
                         }
                     echo "
                         <tr>
