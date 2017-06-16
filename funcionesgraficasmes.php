@@ -174,24 +174,100 @@ function NumTotalPlantaMes($mes,$link){
 function NumTotalPlantaUnicaMes($mes,$planta,$link){
     $fragmento1="";
     $numero=0;
+    switch ($mes) {
+        case "A":
+            $aux1 = "Enero";
+            break;
+        case "B":
+            $aux1 = "Febrero";
+            break;
+        case "C":
+            $aux1 = "Marzo";
+            break;
+        case "D":
+            $aux1 = "Abril";
+            break;
+        case "E":
+            $aux1 = "Mayo";
+            break;
+        case "F":
+            $aux1 = "Junio";
+            break;
+        case "G":
+            $aux1 = "Julio";
+            break;
+        case "H":
+            $aux1 = "Agosto";
+            break;
+        case "I":
+            $aux1 = "Septiembre";
+            break;
+        case "J":
+            $aux1 = "Octubre";
+            break;
+        case "K":
+            $aux1 = "Noviembre";
+            break;
+        case "L":
+            $aux1 = "Diciembre";
+            break;
+    }
     $result1 = mysqli_query($link, "SELECT idUbicacion, COUNT(*) AS numero FROM SafetyEyes WHERE idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta = '".$planta."') AND idSafetyEyes LIKE 'SE___%".$mes."%' AND estado ='Aprobado'");
     while ($fila1 = mysqli_fetch_array($result1)) {
         $numero=$numero+$fila1['numero'];
         $result2=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta ='".$planta."' AND estado = '1'");
         while ($fila2=mysqli_fetch_array($result2)){
-            $fragmento = ",['" . $fila2['descripcion'] . "', " . $numero . "]";
+            $fragmento = ",['".$aux1."', ".$numero."]";
             $fragmento1 = $fragmento . $fragmento1;
         }
     }
-    $fragmento1="['Planta','Cantidad']".$fragmento1;
+    $fragmento1="['Mes','Cantidad']".$fragmento1;
     return $fragmento1;
 }
 
 function NumTotalSafetyEyesMes($mes,$link){
     $fragmento1="";
+    switch ($mes) {
+        case "A":
+            $aux1 = "Enero";
+            break;
+        case "B":
+            $aux1 = "Febrero";
+            break;
+        case "C":
+            $aux1 = "Marzo";
+            break;
+        case "D":
+            $aux1 = "Abril";
+            break;
+        case "E":
+            $aux1 = "Mayo";
+            break;
+        case "F":
+            $aux1 = "Junio";
+            break;
+        case "G":
+            $aux1 = "Julio";
+            break;
+        case "H":
+            $aux1 = "Agosto";
+            break;
+        case "I":
+            $aux1 = "Septiembre";
+            break;
+        case "J":
+            $aux1 = "Octubre";
+            break;
+        case "K":
+            $aux1 = "Noviembre";
+            break;
+        case "L":
+            $aux1 = "Diciembre";
+            break;
+    }
     $result=mysqli_query($link,"SELECT *, COUNT(*) AS numero FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE___%".$mes."%' AND estado ='Aprobado'");
     while ($fila=mysqli_fetch_array($result)){
-        $fragmento=",['Nro. de SafetyEyes', ".$fila['numero']."]";
+        $fragmento=",['".$aux1."', ".$fila['numero']."]";
         $fragmento1=$fragmento.$fragmento1;
     }
     $fragmento1="['Nro de Safety Eyes','Cantidad']".$fragmento1;

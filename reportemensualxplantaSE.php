@@ -2,12 +2,108 @@
 include('session.php');
 require('funcionesgraficasmes.php');
 $datos0=NumTotalCOPPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-$datos=NumPersObsyPersRetTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
 $datos1=NumTotalClasePlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
 $datos2=NumTotalCategoriaPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
 $datos3=NumAccionesCorrectivasxEstadoPlantaMes($_POST['mes'],$_POST['planta'],$link);
 $datos4=NumTotalUbicacionMes($_POST['mes'],$_POST['planta'],$link);
-$datos5=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+switch ($_POST['mes']) {
+    case "A":
+        $datos7=NumTotalPlantaUnicaMes("K",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("L",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "B":
+        $datos7=NumTotalPlantaUnicaMes("L",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("A",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "C":
+        $datos7=NumTotalPlantaUnicaMes("A",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("B",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "D":
+        $datos7=NumTotalPlantaUnicaMes("B",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("C",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "E":
+        $datos7=NumTotalPlantaUnicaMes("C",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("D",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "F":
+        $datos7=NumTotalPlantaUnicaMes("D",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("E",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "G":
+        $datos7=NumTotalPlantaUnicaMes("E",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("F",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "H":
+        $datos7=NumTotalPlantaUnicaMes("F",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("G",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "I":
+        $datos7=NumTotalPlantaUnicaMes("G",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("H",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "J":
+        $datos7=NumTotalPlantaUnicaMes("H",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("I",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "K":
+        $datos7=NumTotalPlantaUnicaMes("I",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("J",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+    case "L":
+        $datos7=NumTotalPlantaUnicaMes("J",$_POST['planta'],$link);
+        $datos8=NumTotalPlantaUnicaMes("K",$_POST['planta'],$link);
+        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+        $datos=explode(",",$datos);
+        $datos8=explode(",",$datos8);
+        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        break;
+}
 $datos6=NumTotalLiderPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
 $result=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta='".$_POST['planta']."'");
 while ($fila=mysqli_fetch_array($result)){
@@ -18,17 +114,6 @@ while ($fila=mysqli_fetch_array($result)){
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
     // Set a callback to run when the Google Visualization API is loaded.
-
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            <?php echo $datos;?>
-        ]);
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('grafica'));
-        chart.draw(data, {width: 400, height: 240});
-    }
 
     google.charts.setOnLoadCallback(drawChart1);
     function drawChart1() {
@@ -83,6 +168,13 @@ while ($fila=mysqli_fetch_array($result)){
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos4;?>
         ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
         var options = {
             title: "Número de Safety Eyes por Ubicación",
             titleTextStyle: {fontSize: 18, bold: true},
@@ -92,13 +184,20 @@ while ($fila=mysqli_fetch_array($result)){
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica5'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
 
     google.charts.setOnLoadCallback(drawChart5);
     function drawChart5() {
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos5;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
         ]);
         var options = {
             title: "Número de Safety Eyes Registrados",
@@ -109,13 +208,20 @@ while ($fila=mysqli_fetch_array($result)){
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica6'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
 
     google.charts.setOnLoadCallback(drawChart6);
     function drawChart6() {
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos6;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
         ]);
         var options = {
             title: "Número de Safety Eyes Registrados por Persona",
@@ -126,12 +232,19 @@ while ($fila=mysqli_fetch_array($result)){
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica7'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
     google.charts.setOnLoadCallback(drawChart7);
     function drawChart7() {
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos0;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
         ]);
         var options = {
             title: "Número de Observaciones por COP",
@@ -142,7 +255,7 @@ while ($fila=mysqli_fetch_array($result)){
         };
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica0'));
-        chart.draw(data, options);
+        chart.draw(view, options);
     }
 </script>
 

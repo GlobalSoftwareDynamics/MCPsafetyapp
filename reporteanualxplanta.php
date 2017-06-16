@@ -1,6 +1,6 @@
 <?php
 include('session.php');
-
+require('funcionesgraficasyear.php');
 $año=explode('0',$_POST['anio']);
 $datos=NumSafetyEyesAnioxPlanta($_POST['anio'],$_POST['planta'],$link);
 $datos1=NumClasexAnioxPlanta($_POST['anio'],$_POST['planta'],$link);
@@ -35,6 +35,8 @@ while ($fila=mysqli_fetch_array($result)){
                 role: "annotation" }
         ]);
         var options = {
+            title: "Número de Safety Eyes Registrados por Año",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300,
             legend: { position: 'top'}
@@ -52,8 +54,10 @@ while ($fila=mysqli_fetch_array($result)){
         var view = new google.visualization.DataView(data);
         view.setColumns(<?php echo $labels1;?>);
         var options = {
+            title: "Número de Observaciones por Clase",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
-            height: 300,
+            height: 300
         };
 // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('grafica1'));
@@ -68,6 +72,8 @@ while ($fila=mysqli_fetch_array($result)){
         var view = new google.visualization.DataView(data);
         view.setColumns(<?php echo $labels2;?>);
         var options = {
+            title: "Número de Observaciones por Categoría",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300
         };
@@ -84,6 +90,8 @@ while ($fila=mysqli_fetch_array($result)){
         var view = new google.visualization.DataView(data);
         view.setColumns(<?php echo $labels3;?>);
         var options = {
+            title: "Número de Observaciones por COP",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 400,
             legend: { position: 'top', axLines: 3 },
@@ -102,6 +110,8 @@ while ($fila=mysqli_fetch_array($result)){
         var view = new google.visualization.DataView(data);
         view.setColumns(<?php echo $labels4;?>);
         var options = {
+            title: "Estado de las Acciones Correctivas",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300
         };
@@ -112,62 +122,44 @@ while ($fila=mysqli_fetch_array($result)){
 </script>
 
 <section class="container-fluid">
-    <div class="col-sm-8">
-        <div class="col-sm-12">
-            <img width="auto" height="100" src="image/Logo.png"/>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="col-sm-12">
-            <h3 class="titulo text-center">Reporte Anual por Planta</h3>
-        </div>
-        <div class="col-sm-12">
-            <h4 class="desctitulo text-center">Observaciones Safety Eyes</h4>
-        </div>
+    <div class="col-sm-6 col-sm-offset-3">
+        <h3 class="text-center">Reporte Anual por Planta <?php echo $planta;?> (SE)</h3>
     </div>
 </section>
 <hr>
-<section class="container-fluid">
-    <div class="col-sm-6 col-sm-offset-3">
-        <h3 class="text-center">Planta <?php echo $planta;?></h3>
-    </div>
-</section>
-<br>
-<section class="container-fluid">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Safety Eyes Registrados por Mes</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica">
-
-            </div>
-        </div>
-    </div>
-</section>
 <section class="container">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Observaciones por Clase </h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica1">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
+                <div id="grafica">
 
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Observaciones por Categoría</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica2">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica1">
 
-            </div>
-        </div>
-    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica2">
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica3">
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </section>
 <section class="container">
     <div class="col-sm-12">
@@ -175,9 +167,7 @@ while ($fila=mysqli_fetch_array($result)){
             <h4 class="text-center">Número de Observaciones por COP </h4>
         </div>
         <div class="col-sm-12">
-            <div id="grafica3">
 
-            </div>
         </div>
     </div>
 </section>
@@ -295,16 +285,15 @@ while ($fila=mysqli_fetch_array($result)){
         ?>
         </tbody>
     </table>
-    <div class="container">
-        <div class="col-sm-12">
-            <div class="col-sm-12">
-                <h4 class="text-center">Estado de las Acciones Correctivas</h4>
-            </div>
-            <div class="col-sm-12">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
                 <div id="grafica4">
 
                 </div>
-            </div>
-        </div>
-    </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </section>

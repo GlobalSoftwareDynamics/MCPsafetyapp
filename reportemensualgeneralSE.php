@@ -2,11 +2,107 @@
 include('session.php');
 require('funcionesgraficasmes.php');
 $datos0=NumTotalCOPMes($_POST['mes'],$link);
-$datos=NumPersObsyPersRetTotalMes($_POST['mes'],$link);
 $datos1=NumTotalClaseMes($_POST['mes'],$link);
 $datos2=NumTotalCategoriaMes($_POST['mes'],$link);
 $datos3=NumAccionesCorrectivasxEstadoMes($_POST['mes'],$link);
-$datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+switch ($_POST['mes']) {
+    case "A":
+        $datos7=NumTotalSafetyEyesMes("K",$link);
+        $datos8=NumTotalSafetyEyesMes("L",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "B":
+        $datos7=NumTotalSafetyEyesMes("L",$link);
+        $datos8=NumTotalSafetyEyesMes("A",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "C":
+        $datos7=NumTotalSafetyEyesMes("A",$link);
+        $datos8=NumTotalSafetyEyesMes("B",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "D":
+        $datos7=NumTotalSafetyEyesMes("B",$link);
+        $datos8=NumTotalSafetyEyesMes("C",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos5.",".$datos8[2].",".$datos8[3].",".$datos7[2].",".$datos7[3];
+        break;
+    case "E":
+        $datos7=NumTotalSafetyEyesMes("C",$link);
+        $datos8=NumTotalSafetyEyesMes("D",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "F":
+        $datos7=NumTotalSafetyEyesMes("D",$link);
+        $datos8=NumTotalSafetyEyesMes("E",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "G":
+        $datos7=NumTotalSafetyEyesMes("E",$link);
+        $datos8=NumTotalSafetyEyesMes("F",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "H":
+        $datos7=NumTotalSafetyEyesMes("F",$link);
+        $datos8=NumTotalSafetyEyesMes("G",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "I":
+        $datos7=NumTotalSafetyEyesMes("G",$link);
+        $datos8=NumTotalSafetyEyesMes("H",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "J":
+        $datos7=NumTotalSafetyEyesMes("H",$link);
+        $datos8=NumTotalSafetyEyesMes("I",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "K":
+        $datos7=NumTotalSafetyEyesMes("I",$link);
+        $datos8=NumTotalSafetyEyesMes("J",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+    case "L":
+        $datos7=NumTotalSafetyEyesMes("J",$link);
+        $datos8=NumTotalSafetyEyesMes("K",$link);
+        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+        $datos4=explode(",",$datos4);
+        $datos8=explode(",",$datos8);
+        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        break;
+}
 $datos5=NumTotalLiderMes($_POST['mes'],$link);
 $datos6=NumTotalPlantaMes($_POST['mes'],$link);
 ?>
@@ -14,17 +110,6 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
     // Set a callback to run when the Google Visualization API is loaded.
-
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            <?php echo $datos;?>
-        ]);
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('grafica'));
-        chart.draw(data, {width: 400, height: 240});
-    }
 
     google.charts.setOnLoadCallback(drawChart1);
     function drawChart1() {
@@ -98,7 +183,7 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
     google.charts.setOnLoadCallback(drawChart4);
     function drawChart4() {
         var data = google.visualization.arrayToDataTable([
-            <?php echo $datos4;?>
+            <?php echo $datos;?>
         ]);
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 1,

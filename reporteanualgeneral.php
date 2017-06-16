@@ -1,6 +1,6 @@
 <?php
 include('session.php');
-
+require('funcionesgraficasyear.php');
 $año=explode('0',$_POST['anio'],$link);
 $datos=NumSafetyEyesAnio($_POST['anio'],$link);
 $datos1=NumSafetyEyesAnioxPlantaComparacion($_POST['anio'],$link);
@@ -16,198 +16,175 @@ $labels5=multilabel('EstadoACMS',$link);
 ?>
 
 <script type="text/javascript">
-// Load the Visualization API and the corechart package.
-google.charts.load('current', {'packages':['corechart']});
-// Set a callback to run when the Google Visualization API is loaded.
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+    // Set a callback to run when the Google Visualization API is loaded.
 
-google.charts.setOnLoadCallback(drawChart);
-function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        <?php echo $datos;?>
-    ]);
-    var view = new google.visualization.DataView(data);
-    view.setColumns([0, 1,
-        { calc: "stringify",
-        sourceColumn: 1,
-        type: "string",
-        role: "annotation" }
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos;?>
         ]);
-    var options = {
-        width: '100%',
-        height: 300,
-        legend: { position: 'top'}
-    };
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
+        var options = {
+            title: "Número de Safety Eyes Registrados por Año",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300,
+            legend: { position: 'top'}
+        };
 // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.ColumnChart(document.getElementById('grafica'));
-    chart.draw(view, options);
-}
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica'));
+        chart.draw(view, options);
+    }
 
-google.charts.setOnLoadCallback(drawChart1);
-function drawChart1() {
-    var data = google.visualization.arrayToDataTable([
-        <?php echo $datos1;?>
-    ]);
-    var view = new google.visualization.DataView(data);
-    view.setColumns(<?php echo $labels1;?>);
-    var options = {
-        width: '100%',
-        height: 300,
-        legend: { position: 'top'}
-    };
+    google.charts.setOnLoadCallback(drawChart1);
+    function drawChart1() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos1;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns(<?php echo $labels1;?>);
+        var options = {
+            title: "Comparación del Número de SE Registrados por Planta",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300,
+            legend: { position: 'top'}
+        };
 // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.LineChart(document.getElementById('grafica1'));
-    chart.draw(view, options);
-}
+        var chart = new google.visualization.LineChart(document.getElementById('grafica1'));
+        chart.draw(view, options);
+    }
 
-google.charts.setOnLoadCallback(drawChart2);
-function drawChart2() {
-    var data = google.visualization.arrayToDataTable([
-        <?php echo $datos2;?>
-    ]);
-    var view = new google.visualization.DataView(data);
-    view.setColumns(<?php echo $labels2;?>);
-    var options = {
-        width: '100%',
-        height: 300
-    };
+    google.charts.setOnLoadCallback(drawChart2);
+    function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos2;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns(<?php echo $labels2;?>);
+        var options = {
+            title: "Número de Observaciones por Clase",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300
+        };
 // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.ColumnChart(document.getElementById('grafica2'));
-    chart.draw(view, options);
-}
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica2'));
+        chart.draw(view, options);
+    }
 
-google.charts.setOnLoadCallback(drawChart3);
-function drawChart3() {
-    var data = google.visualization.arrayToDataTable([
-        <?php echo $datos3;?>
-    ]);
-    var view = new google.visualization.DataView(data);
-    view.setColumns(<?php echo $labels3;?>);
-    var options = {
-        width: '100%',
-        height: 300
-    };
+    google.charts.setOnLoadCallback(drawChart3);
+    function drawChart3() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos3;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns(<?php echo $labels3;?>);
+        var options = {
+            title: "Número de Observaciones por Categoría",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300
+        };
 // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.ColumnChart(document.getElementById('grafica3'));
-    chart.draw(view, options);
-}
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica3'));
+        chart.draw(view, options);
+    }
 
-google.charts.setOnLoadCallback(drawChart4);
-function drawChart4() {
-    var data = google.visualization.arrayToDataTable([
-        <?php echo $datos4;?>
-    ]);
-    var view = new google.visualization.DataView(data);
-    view.setColumns(<?php echo $labels4;?>);
-    var options = {
-        width: '100%',
-        height: 400,
-        legend: { position: 'top', maxLines: 3 },
-        bar: { groupWidth: '75%' },
-        isStacked: true
-    };
+    google.charts.setOnLoadCallback(drawChart4);
+    function drawChart4() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos4;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns(<?php echo $labels4;?>);
+        var options = {
+            title: "Número de Observaciones por COP",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 400,
+            legend: { position: 'top', maxLines: 3 },
+            bar: { groupWidth: '75%' },
+            isStacked: true
+        };
 // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.ColumnChart(document.getElementById('grafica4'));
-    chart.draw(view, options);
-}
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica4'));
+        chart.draw(view, options);
+    }
 
-google.charts.setOnLoadCallback(drawChart5);
-function drawChart5() {
-    var data = google.visualization.arrayToDataTable([
-        <?php echo $datos5;?>
-    ]);
-    var view = new google.visualization.DataView(data);
-    view.setColumns(<?php echo $labels5;?>);
-    var options = {
-        width: '100%',
-        height: 300
-    };
+    google.charts.setOnLoadCallback(drawChart5);
+    function drawChart5() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos5;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns(<?php echo $labels5;?>);
+        var options = {
+            title: "Estado de las Acciones Correctivas",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300
+        };
 // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.ColumnChart(document.getElementById('grafica5'));
-    chart.draw(view, options);
-}
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica5'));
+        chart.draw(view, options);
+    }
 </script>
 
 <section class="container-fluid">
-    <div class="col-sm-8">
-        <div class="col-sm-12">
-            <img width="auto" height="100" src="image/Logo.png"/>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="col-sm-12">
-            <h3 class="titulo text-center">Reporte Anual General</h3>
-        </div>
-        <div class="col-sm-12">
-            <h4 class="desctitulo text-center">Observaciones Safety Eyes</h4>
-        </div>
+    <div class="col-sm-6 col-sm-offset-3">
+        <h3 class="text-center">Reporte Anual para Todas las Plantas (SE)</h3>
     </div>
 </section>
 <hr>
-<section class="container-fluid">
-    <div class="col-sm-6 col-sm-offset-3">
-        <h3 class="text-center">Todas las Plantas</h3>
-    </div>
-</section>
-<br>
-<section class="container-fluid">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Safety Eyes Registrados por Mes</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica">
-
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container-fluid">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Comparación del Número de SE Registrados por Planta</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica1">
-
-            </div>
-        </div>
-    </div>
-</section>
 <section class="container">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Observaciones por Clase </h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica2">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
+                <div id="grafica">
 
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Observaciones por Categoría</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica3">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica1">
 
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Observaciones por COP </h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica4">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica2">
 
-            </div>
-        </div>
-    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica3">
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica4">
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </section>
 <section class="container">
     <div class="col-sm-12">
@@ -323,16 +300,15 @@ function drawChart5() {
         ?>
         </tbody>
     </table>
-    <div class="container">
-        <div class="col-sm-12">
-            <div class="col-sm-12">
-                <h4 class="text-center">Estado de las Acciones Correctivas</h4>
-            </div>
-            <div class="col-sm-12">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
                 <div id="grafica5">
 
                 </div>
-            </div>
-        </div>
-    </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </section>
