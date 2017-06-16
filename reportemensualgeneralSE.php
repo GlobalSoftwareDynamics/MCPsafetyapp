@@ -39,6 +39,8 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
+            title: "Número de Observaciones por Clase",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300
         };
@@ -60,6 +62,8 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
+            title: "Número de Observaciones por Categoría",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300
         };
@@ -81,6 +85,8 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
+            title: "Estado de las Acciones Correctivas",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300
         };
@@ -102,6 +108,8 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
+            title: "Número de Safety Eyes Registrados",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300,
             legend: { position: 'top'}
@@ -124,6 +132,8 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
+            title: "Número de Safety Eyes Registrados por Persona",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300,
             legend: { position: 'top'}
@@ -145,6 +155,8 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
+            title: "Número de Safety Eyes Registrados por Planta",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300,
             legend: { position: 'top'}
@@ -166,6 +178,8 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
+            title: "Número de Observaciones por COP",
+            titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
             height: 300,
             legend: { position: 'top'}
@@ -177,94 +191,62 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
 </script>
 
 <section class="container">
-    <div class="col-sm-8">
-        <div class="col-sm-12">
-            <img width="auto" height="100" src="image/Logo.png"/>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="col-sm-12">
-            <h3 class="titulo text-center">Reporte Mensual General</h3>
-        </div>
-        <div class="col-sm-12">
-            <h4 class="desctitulo text-center">Observaciones Safety Eyes</h4>
-        </div>
+    <div class="col-sm-6 col-sm-offset-3">
+        <h3 class="text-center">Reporte Mensual General de Todas las Plantas (SE)</h3>
     </div>
 </section>
 <hr>
 <section class="container">
-    <div class="col-sm-6 col-sm-offset-3">
-        <h3 class="text-center">Todas las Plantas</h3>
-    </div>
-</section>
-<br>
-<section class="container">
-    <div class="col-sm-5">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Safety Eyes Registrados</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica5">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
+                <div id="grafica5">
 
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-7">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Safety Eyes Registrados por Planta</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica7">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica7">
 
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="col-sm-10 col-sm-offset-1">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Safety Eyes Registrados por Persona</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica6">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica6">
 
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="col-sm-6">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Observaciones por Clase </h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica2">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-7 col-sm-offset-3">
+                    <div id="grafica2">
 
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Observaciones por Categoría</h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica3">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-7 col-sm-offset-3">
+                    <div id="grafica3">
 
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="col-sm-12">
-        <div class="col-sm-12">
-            <h4 class="text-center">Número de Observaciones por COP </h4>
-        </div>
-        <div class="col-sm-12">
-            <div id="grafica0">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica0">
 
-            </div>
-        </div>
-    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </section>
 <section class="container">
     <div class="col-sm-12">
@@ -303,11 +285,11 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                      <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
                 ";
                 }
-                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila0['idEstado']."'");
                 while ($fila2=mysqli_fetch_array($result2)){
                     echo "
-                                    <td>".$fila2['descripcion']."</td>
-                                ";
+                        <td>".$fila2['descripcion']."</td>
+                    ";
                 }
             }
             echo "
@@ -318,6 +300,7 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         </tbody>
     </table>
 </section>
+<p></p>
 <section class="container">
     <div class="col-sm-12">
         <h4 class="text-center">Acciones Correctivas Provenientes de SE en el Mes</h4>
@@ -365,12 +348,12 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 echo "
                 <td>".$fila0['fechaPlan']."</td>
                 <td>".$fila0['fechaReal']."</td>
-                ";
-                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado='".$fila0['idEstado']."'");
+            ";
+                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila0['idEstado']."'");
                 while ($fila2=mysqli_fetch_array($result2)){
                     echo "
-                                    <td>".$fila2['descripcion']."</td>
-                                ";
+                        <td>".$fila2['descripcion']."</td>
+                    ";
                 }
             }
             echo "
@@ -380,16 +363,17 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         ?>
         </tbody>
     </table>
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <div class="col-sm-10 col-sm-offset-1">
-                <h4 class="text-center">Estado de las Acciones Correctivas</h4>
-            </div>
-            <div class="col-sm-10 col-sm-offset-1">
-                <div id="grafica4">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
+                <div class="col-sm-7 col-sm-offset-3">
+                    <div id="grafica4">
 
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </section>
