@@ -8,102 +8,60 @@ $datos3=NumAccionesCorrectivasxEstadoPlantaMes($_POST['mes'],$_POST['planta'],$l
 $datos4=NumTotalUbicacionMes($_POST['mes'],$_POST['planta'],$link);
 switch ($_POST['mes']) {
     case "A":
-        $datos7=NumTotalPlantaUnicaMes("K",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("L",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="K";
+        $mes2="L";
         break;
     case "B":
-        $datos7=NumTotalPlantaUnicaMes("L",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("A",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="L";
+        $mes2="A";
         break;
     case "C":
-        $datos7=NumTotalPlantaUnicaMes("A",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("B",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="A";
+        $mes2="B";
         break;
     case "D":
-        $datos7=NumTotalPlantaUnicaMes("B",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("C",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="B";
+        $mes2="C";
         break;
     case "E":
-        $datos7=NumTotalPlantaUnicaMes("C",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("D",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="C";
+        $mes2="D";
         break;
     case "F":
-        $datos7=NumTotalPlantaUnicaMes("D",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("E",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="D";
+        $mes2="E";
         break;
     case "G":
-        $datos7=NumTotalPlantaUnicaMes("E",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("F",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="E";
+        $mes2="F";
         break;
     case "H":
-        $datos7=NumTotalPlantaUnicaMes("F",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("G",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="F";
+        $mes2="G";
         break;
     case "I":
-        $datos7=NumTotalPlantaUnicaMes("G",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("H",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="G";
+        $mes2="H";
         break;
     case "J":
-        $datos7=NumTotalPlantaUnicaMes("H",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("I",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="H";
+        $mes2="I";
         break;
     case "K":
-        $datos7=NumTotalPlantaUnicaMes("I",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("J",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="I";
+        $mes2="J";
         break;
     case "L":
-        $datos7=NumTotalPlantaUnicaMes("J",$_POST['planta'],$link);
-        $datos8=NumTotalPlantaUnicaMes("K",$_POST['planta'],$link);
-        $datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
-        $datos=explode(",",$datos);
-        $datos8=explode(",",$datos8);
-        $datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
+        $mes1="J";
+        $mes2="K";
         break;
 }
+$datos7=NumTotalPlantaUnicaMes($mes1,$_POST['planta'],$link);
+$datos8=NumTotalPlantaUnicaMes($mes2,$_POST['planta'],$link);
+$datos=NumTotalPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos=explode(",",$datos);
+$datos8=explode(",",$datos8);
+$datos5=$datos7.",".$datos8[2].",".$datos8[3].",".$datos[2].",".$datos[3];
 $datos6=NumTotalLiderPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
 $result=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta='".$_POST['planta']."'");
 while ($fila=mysqli_fetch_array($result)){

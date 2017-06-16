@@ -301,4 +301,111 @@ function NumAccionesCorrectivasxEstadoMes($mes,$link) {
     $fragmento1="['Estado','Cantidad']".$fragmento1;
     return $fragmento1;
 }
+function NumSafetyEyesPersonalesLiderMes($dni,$mes,$link){
+    $frag="";
+    switch ($mes) {
+        case "A":
+            $aux1 = "Enero";
+            break;
+        case "B":
+            $aux1 = "Febrero";
+            break;
+        case "C":
+            $aux1 = "Marzo";
+            break;
+        case "D":
+            $aux1 = "Abril";
+            break;
+        case "E":
+            $aux1 = "Mayo";
+            break;
+        case "F":
+            $aux1 = "Junio";
+            break;
+        case "G":
+            $aux1 = "Julio";
+            break;
+        case "H":
+            $aux1 = "Agosto";
+            break;
+        case "I":
+            $aux1 = "Septiembre";
+            break;
+        case "J":
+            $aux1 = "Octubre";
+            break;
+        case "K":
+            $aux1 = "Noviembre";
+            break;
+        case "L":
+            $aux1 = "Diciembre";
+            break;
+    }
+    $result=mysqli_query($link, "SELECT dni, COUNT(*) AS numero FROM ParticipantesSE WHERE idSafetyEyes LIKE 'SE___%".$mes."%' AND dni = '".$dni."' AND idTipoParticipante ='1'");
+    while ($fila=mysqli_fetch_array($result)){
+        $frag=",['$aux1',".$fila['numero']."]";
+    }
+    $fragmento1="['Mes','Cantidad']".$frag;
+    return $fragmento1;
+}
+
+function NumSafetyEyesPersonalesParticipanteMes($dni,$mes,$link){
+    $frag="";
+    switch ($mes) {
+        case "A":
+            $aux1 = "Enero";
+            break;
+        case "B":
+            $aux1 = "Febrero";
+            break;
+        case "C":
+            $aux1 = "Marzo";
+            break;
+        case "D":
+            $aux1 = "Abril";
+            break;
+        case "E":
+            $aux1 = "Mayo";
+            break;
+        case "F":
+            $aux1 = "Junio";
+            break;
+        case "G":
+            $aux1 = "Julio";
+            break;
+        case "H":
+            $aux1 = "Agosto";
+            break;
+        case "I":
+            $aux1 = "Septiembre";
+            break;
+        case "J":
+            $aux1 = "Octubre";
+            break;
+        case "K":
+            $aux1 = "Noviembre";
+            break;
+        case "L":
+            $aux1 = "Diciembre";
+            break;
+    }
+    $result=mysqli_query($link, "SELECT dni, COUNT(*) AS numero FROM ParticipantesSE WHERE idSafetyEyes LIKE 'SE___%".$mes."%' AND dni = '".$dni."'");
+    while ($fila=mysqli_fetch_array($result)){
+        $frag=",['$aux1',".$fila['numero']."]";
+    }
+    $fragmento1="['Mes','Cantidad']".$frag;
+    return $fragmento1;
+}
+function NumAccionesCorrectivasPersonalesMes($dni,$mes,$link){
+    $frag="";
+    $result=mysqli_query($link, "SELECT idEstado, COUNT(*) AS numero FROM AccionesCorrectivas WHERE idAccionesCorrectivas IN (SELECT idAccionesCorrectivas FROM ACSE WHERE idObservacionesSE IN (SELECT idObservacionesSE FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE idSafetyEyes LIKE 'SE___%".$mes."%' AND dni = '".$dni."' AND estado ='Aprobado'))) GROUP BY idEstado");
+    while ($fila=mysqli_fetch_array($result)){
+        $result1=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila['idEstado']."'");
+        while ($fila1=mysqli_fetch_array($result1)){
+            $frag=",['".$fila1['descripcion']."',".$fila['numero']."]";
+        }
+        $fragmento1="['Estado','Cantidad']".$frag;
+    }
+    return $fragmento1;
+}
 ?>

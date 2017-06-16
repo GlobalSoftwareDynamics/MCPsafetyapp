@@ -44,6 +44,12 @@ if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="ran"){
 if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="ranplant"){
     include_once ('reporteanualxplanta.php');
 }
+if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rendpersmen"){
+    include_once ('reportepersonalmensual.php');
+}
+if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rendpersan"){
+    include_once ('reportepersonalanual.php');
+}
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

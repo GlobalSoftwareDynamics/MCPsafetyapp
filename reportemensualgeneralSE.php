@@ -7,102 +7,60 @@ $datos2=NumTotalCategoriaMes($_POST['mes'],$link);
 $datos3=NumAccionesCorrectivasxEstadoMes($_POST['mes'],$link);
 switch ($_POST['mes']) {
     case "A":
-        $datos7=NumTotalSafetyEyesMes("K",$link);
-        $datos8=NumTotalSafetyEyesMes("L",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="K";
+        $mes2="L";
         break;
     case "B":
-        $datos7=NumTotalSafetyEyesMes("L",$link);
-        $datos8=NumTotalSafetyEyesMes("A",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="L";
+        $mes2="A";
         break;
     case "C":
-        $datos7=NumTotalSafetyEyesMes("A",$link);
-        $datos8=NumTotalSafetyEyesMes("B",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="A";
+        $mes2="B";
         break;
     case "D":
-        $datos7=NumTotalSafetyEyesMes("B",$link);
-        $datos8=NumTotalSafetyEyesMes("C",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos5.",".$datos8[2].",".$datos8[3].",".$datos7[2].",".$datos7[3];
+        $mes1="B";
+        $mes2="C";
         break;
     case "E":
-        $datos7=NumTotalSafetyEyesMes("C",$link);
-        $datos8=NumTotalSafetyEyesMes("D",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="C";
+        $mes2="D";
         break;
     case "F":
-        $datos7=NumTotalSafetyEyesMes("D",$link);
-        $datos8=NumTotalSafetyEyesMes("E",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="D";
+        $mes2="E";
         break;
     case "G":
-        $datos7=NumTotalSafetyEyesMes("E",$link);
-        $datos8=NumTotalSafetyEyesMes("F",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="E";
+        $mes2="F";
         break;
     case "H":
-        $datos7=NumTotalSafetyEyesMes("F",$link);
-        $datos8=NumTotalSafetyEyesMes("G",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="F";
+        $mes2="G";
         break;
     case "I":
-        $datos7=NumTotalSafetyEyesMes("G",$link);
-        $datos8=NumTotalSafetyEyesMes("H",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="G";
+        $mes2="H";
         break;
     case "J":
-        $datos7=NumTotalSafetyEyesMes("H",$link);
-        $datos8=NumTotalSafetyEyesMes("I",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="H";
+        $mes2="I";
         break;
     case "K":
-        $datos7=NumTotalSafetyEyesMes("I",$link);
-        $datos8=NumTotalSafetyEyesMes("J",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="I";
+        $mes2="J";
         break;
     case "L":
-        $datos7=NumTotalSafetyEyesMes("J",$link);
-        $datos8=NumTotalSafetyEyesMes("K",$link);
-        $datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-        $datos4=explode(",",$datos4);
-        $datos8=explode(",",$datos8);
-        $datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
+        $mes1="J";
+        $mes2="K";
         break;
 }
+$datos7=NumTotalSafetyEyesMes($mes1,$link);
+$datos8=NumTotalSafetyEyesMes($mes2,$link);
+$datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
+$datos4=explode(",",$datos4);
+$datos8=explode(",",$datos8);
+$datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
 $datos5=NumTotalLiderMes($_POST['mes'],$link);
 $datos6=NumTotalPlantaMes($_POST['mes'],$link);
 ?>
