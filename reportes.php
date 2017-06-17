@@ -57,7 +57,7 @@ if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rendpersan"){
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footercio.php');
+    include_once('footer.php');
     ?>
 </footer>
 </body>
