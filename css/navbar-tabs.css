@@ -1,0 +1,11 @@
+.nav > li > a:hover{
+    background-color: transparent;
+}
+
+.nav-tabs > li.active > a{
+    color: rgb(206, 108, 0);
+}
+
+.nav-tabs > li.active > a:hover{
+    color: rgb(206, 108, 0);
+}
