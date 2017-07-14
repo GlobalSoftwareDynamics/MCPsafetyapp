@@ -65,34 +65,34 @@ function idgen($clase){
             $aux = "N";
             break;
         case 15:
-            $aux = "P";
+            $aux = "O";
             break;
         case 16:
-            $aux = "Q";
+            $aux = "P";
             break;
         case 17:
-            $aux = "R";
+            $aux = "Q";
             break;
         case 18:
-            $aux = "S";
+            $aux = "R";
             break;
         case 19:
-            $aux = "T";
+            $aux = "S";
             break;
         case 20:
-            $aux = "U";
+            $aux = "T";
             break;
         case 21:
-            $aux = "V";
+            $aux = "U";
             break;
         case 22:
-            $aux = "W";
+            $aux = "V";
             break;
         case 23:
-            $aux = "X";
+            $aux = "W";
             break;
-        case 24:
-            $aux = "Y";
+        case 0:
+            $aux = "X";
             break;
     }
     switch ($fecha[0]) {

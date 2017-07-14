@@ -25,7 +25,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
             </section>
             <section class="contenedor bordeslados">
                     <div class="descladoizquierdo">
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <span class="label">Planta:</span>';
         $result1 = mysqli_query($link, "SELECT * FROM Ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
         while ($fila1 = mysqli_fetch_array($result1)) {
@@ -38,7 +38,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                     </div>
                 </div>
                 <div class="descladoderecho">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <span class="label">Ubicación:</span>';
         $result1 = mysqli_query($link, "SELECT * FROM Ubicacion WHERE idUbicacion='" . $fila['idUbicacion'] . "'");
         while ($fila1 = mysqli_fetch_array($result1)) {
@@ -56,20 +56,20 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
         <section class="contenedor bordeslados">
             <br>
             <div class="descripcion">
-            <p><b>Descripción:</b><br><br>'.$fila['actividadObservada'].'</p>
+            <p><b>Descripción:</b><br><br>'.$fila['actividadObservada']. '</p>
             </div>
             <div class="descladoizquierdo">
-                <div class="col-sm-12 text-center">
+                <div class="col-md-12 text-center">
                     <br>
                     <span class="label">Nro. Personas Observadas:</span>
-                    <span id="persobs">'.$fila['nropersobservadas'].'</span>
+                    <span id="persobs">' .$fila['nropersobservadas']. '</span>
                 </div>
             </div>
             <div class="descladoderecho">
-                <div class="col-sm-12 text-center">
+                <div class="col-md-12 text-center">
                     <br>
                     <span class="label">Nro. Personas Retroalimentadas:</span>
-                    <span id="persret">'.$fila['nropersretroalimentadas'].'
+                    <span id="persret">' .$fila['nropersretroalimentadas'].'
                     </span>
                 </div>
             </div>
@@ -120,7 +120,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
         </section>
         <section class="contenedor bordeslados">
             <br>
-            <div class="col-sm-12">
+            <div class="col-md-12">
                 <table class="tabla text-center">
                     <thead>
                         <tr class="trborder">
@@ -212,7 +212,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
         </section>
         <section class="contenedor bordeslados">
             <br>
-            <div class="col-sm-12">
+            <div class="col-md-12">
                 <table class="tabla text-center">
                     <thead>
                         <tr class="trborder">
@@ -258,7 +258,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
         </section>
         <section class="contenedor bordeslados">
             <br>
-            <div class="col-sm-12">
+            <div class="col-md-12">
                 <table class="tabla text-center">
                     <thead>
                         <tr class="trborder">
@@ -289,11 +289,11 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                                 ';
                 }
                 $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila1['idEstado']."'");
-                    while ($fila2=mysqli_fetch_array($result2)){
-                        $html .= '
+                while ($fila2=mysqli_fetch_array($result2)){
+                    $html .= '
                                 <td>' . $fila2['descripcion'] . '</td>
                             ';
-                    }
+                }
             }
             $html .= '
                             <tr>
@@ -311,7 +311,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
         </section>
         <section class="contenedor bordeslados">
             <br>
-            <div class="col-sm-12">
+            <div class="col-md-12">
                 <table class="tabla text-center">
                     <thead>
                         <tr class="trborder">
@@ -349,12 +349,12 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                                 <td>' . $fila1['fechaPlan'] . '</td>
                                 <td>' . $fila1['fechaReal'] . '</td>
                             ';
-			$result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila1['idEstado']."'");
-                    	while ($fila2=mysqli_fetch_array($result2)){
-				$html .= '
-					<td>' . $fila2['descripcion'] . '</td>
-				';
-                    	}
+                    $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila1['idEstado']."'");
+                    while ($fila2=mysqli_fetch_array($result2)){
+                        $html .= '
+                            <td>' . $fila2['descripcion'] . '</td>
+                        ';
+                    }
                 }
                 $html .= '
                             <tr>
@@ -368,7 +368,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
         </section>
         
 <section class="contenedor bordes">
-        <div class="col-sm-12">
+        <div class="col-md-12">
             <h5>8. Evidencias Fotográficas:</h5>
         </div>
 </section>
@@ -377,18 +377,18 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
         $i = 0;
         $dir = "Fotografias/SafetyEyes/{$_POST['idSE']}/";
         if ($handle = opendir($dir)) {
-	        while (($file = readdir($handle)) !== false){
-		        if (!in_array($file, array('.', '..')) && !is_dir($dir.$file))
-			        $i++;
-	        }
+            while (($file = readdir($handle)) !== false){
+                if (!in_array($file, array('.', '..')) && !is_dir($dir.$file))
+                    $i++;
+            }
         }
         for($j=0;$j<$i;$j++){
-	        $html .= "<img src='Fotografias/SafetyEyes/{$_POST['idSE']}/{$_POST['idSE']}-{$j}.jpg' alt='Evidencia{$j}' style='width:304px;height:228px;margin-bottom:20px;margin-left: 10px;margin-right: 20px;'>";
+            $html .= "<img src='Fotografias/SafetyEyes/{$_POST['idSE']}/{$_POST['idSE']}-{$j}.jpg' alt='Evidencia{$j}' style='width:304px;height:228px;margin-bottom:20px;margin-left: 10px;margin-right: 20px;'>";
         }
-        $html.='
+        $html.= '
 </section>
 <section class="contenedor bordes">
-            <div class="col-sm-12" style="padding-bottom: 0.1cm; padding-top: 0.1cm;">
+            <div class="col-md-12" style="padding-bottom: 0.1cm; padding-top: 0.1cm;">
                 <span class="label">Nombre del Revisor:</span>';
         $result1 = mysqli_query($link, "SELECT * FROM ParticipantesSE WHERE idSafetyEyes='" . $_POST['idSE'] . "' AND idTipoParticipante='3'");
         while ($fila1 = mysqli_fetch_array($result1)) {

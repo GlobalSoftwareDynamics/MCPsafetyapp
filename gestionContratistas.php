@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
 	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,12 +33,12 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
 
 <section class="container">
 	<div>
-		<form method="post" action="gestionContratistas.php" class="form-horizontal jumbotron col-sm-12">
-			<div class="form-group col-sm-4">
-                <div class="col-sm-4">
+		<form method="post" action="gestionContratistas.php" class="form-horizontal jumbotron col-md-12">
+			<div class="form-group col-md-4">
+                <div class="col-md-4">
                     <label for="filtro">Columna:</label>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-md-8">
                     <select class="form-control" name="filtro" id="filtro">
                         <option>Seleccionar</option>
                         <option value="ruc">Por RUC:</option>
@@ -46,20 +47,20 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
                     </select>
                 </div>
 			</div>
-			<div class="form-group col-sm-4">
-                <div class="col-sm-4">
+			<div class="form-group col-md-4">
+                <div class="col-md-4">
                     <label for="valorFiltro">Búsqueda:</label>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-md-8">
 				    <input type="text" class="form-control" name="valorFiltro">
                 </div>
 			</div>
-			<div class="form-group col-sm-4">
-                <div class="col-sm-6">
-				    <input type="submit" name="submitFiltro" class="btn btn-success col-sm-12" value="Filtrar">
+			<div class="form-group col-md-4">
+                <div class="col-md-6">
+				    <input type="submit" name="submitFiltro" class="btn btn-success col-md-12" value="Filtrar">
                 </div>
-                <div class="col-sm-6">
-				    <input type="submit" name="reset" class="btn btn-default col-sm-12" value="Remover Filtros">
+                <div class="col-md-6">
+				    <input type="submit" name="reset" class="btn btn-default col-md-12" value="Remover Filtros">
                 </div>
 			</div>
 		</form>
@@ -266,8 +267,8 @@ if(isset($_POST['submitFiltro'])){
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
-                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-2">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-md-offset-4">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-md-offset-2">
                             <br>
                         </div>
                     </form>

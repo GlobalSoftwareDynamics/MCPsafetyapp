@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
 	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,7 +32,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
 </header>
 
 <section class="container">
-	<div class="col-sm-6 col-sm-offset-3">
+	<div class="col-md-6 col-md-offset-3">
 	<form method="post" action="gestionColaboradores.php">
 		<div class="form-group">
 			<div>
@@ -121,8 +122,8 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
 		</div>
 		<div class="form-group">
 			<div>
-				<input type="submit" value="Regresar" class="btn btn-default col-sm-offset-3">
-				<input type="submit" name="submit" value="Agregar" class="btn btn-success col-sm-offset-2">
+				<input type="submit" value="Regresar" class="btn btn-default col-md-offset-3">
+				<input type="submit" name="submit" value="Agregar" class="btn btn-success col-md-offset-2">
 			</div>
 		</div>
 	</form>

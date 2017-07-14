@@ -22,6 +22,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -47,6 +48,16 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                 }
             });
         }
+        function getocurrencias(val) {
+            $.ajax({
+                type: "POST",
+                url: "getAjax.php",
+                data:{'crearnuevaACocurrencia':val},
+                success: function(data){
+                    $("#codigooc").html(data);
+                }
+            });
+        }
         function getobservacionesse(val) {
             $.ajax({
                 type: "POST",
@@ -62,6 +73,16 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                 type: "POST",
                 url: "getAjax.php",
                 data:{'crearnuevaACdescobservaciones':val},
+                success: function(data){
+                    $("#descripcion").html(data);
+                }
+            });
+        }
+        function getdescripcion(val) {
+            $.ajax({
+                type: "POST",
+                url: "getAjax.php",
+                data:{'crearnuevaACdescripcion':val},
                 success: function(data){
                     $("#descripcion").html(data);
                 }
@@ -92,7 +113,7 @@ if (isset($_POST['provieneSE'])){
 ?>
     <section class="container">
         <div>
-            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-md-6 col-md-offset-3 col-xs-12">
                 <script>
                     $(function() {
                         $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -110,51 +131,51 @@ if (isset($_POST['provieneSE'])){
                     <input type='hidden' value='".$idAC."' name='idaccioncorrectiva'>
                 ";
                 ?>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="datepicker" class="col-sm-12">Fecha de Registro:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="datepicker">Fecha de Registro:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <input id="datepicker" class="col-sm-12 form-control" name="fecha" onchange="getsafetyeyes(this.value)">
+                    <div class=" col-xs-12 col-md-12">
+                        <input id="datepicker" class=" col-xs-12 col-md-12 form-control" name="fecha" onchange="getsafetyeyes(this.value)">
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="codigose" class="col-sm-12">Codigo del Safety Eyes:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="codigose">Codigo del Safety Eyes:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <select id="codigose" class="col-sm-12 form-control" name="idSE" onchange="getobservacionesse(this.value)">
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="codigose" class=" col-xs-12 col-md-12 form-control" name="idSE" onchange="getobservacionesse(this.value)">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="obsse" class="col-sm-12">Observaciones del Safety Eyes:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="obsse">Observaciones del Safety Eyes:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <select id="obsse" class="col-sm-12 form-control" name="observaciones" onchange="getdescobservaciones(this.value)">
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="obsse" class="col-md-12 form-control" name="observaciones" onchange="getdescobservaciones(this.value)">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group" id="descripcion">
+                <div class="form-group col-xs-12 col-md-12" id="descripcion">
 
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="desc" class="col-sm-12">Descripción:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="desc">Descripción:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <textarea rows="3" class="col-sm-12 form-control" name="descripcionac" id="desc"></textarea>
+                    <div class=" col-xs-12 col-md-12">
+                        <textarea rows="3" class=" col-xs-12 col-md-12 form-control" name="descripcionac" id="desc"></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="puesto" class="col-sm-12">Puesto del Responsable:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="puesto">Puesto del Responsable:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <select id="puesto" class="col-sm-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="puesto" class=" col-xs-12 col-md-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
                             $result=mysqli_query($link,"SELECT * FROM Puesto WHERE estado='1'");
@@ -167,31 +188,32 @@ if (isset($_POST['provieneSE'])){
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="resp" class="col-sm-12">Responsable:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="resp">Responsable:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <select id="resp" class="col-sm-12 form-control" name="responsable">
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="resp" class=" col-xs-12 col-md-12 form-control" name="responsable">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="datepicker1" class="col-sm-12">Fecha Planeada:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class="col-md-12 col-xs-12 col-md-12">
+                        <label for="datepicker1">Fecha Planeada:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <input id="datepicker1" class="col-sm-12 form-control" name="fechaplaneada">
+                    <div class="col-md-12 col-xs-12 col-md-12">
+                        <input id="datepicker1" class=" col-xs-12 col-md-12 form-control" name="fechaplaneada">
                     </div>
                 </div>
                 <br>
-                <div class="form-group">
-                    <div class="col-sm-6">
-                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="crearnuevaAC.php" value="Regresar">
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class="col-md-6 col-xs-12">
+                        <input type="submit" class="btn btn-default col-md-10 col-md-offset-1 col-xs-12" formaction="crearnuevaAC.php" value="Regresar">
                     </div>
-                    <div class="col-sm-6">
-                        <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearacse" value="Registrar">
+                    <div class="spacer5"></div>
+                    <div class="col-md-6 col-xs-12">
+                        <input type="submit" class="btn btn-success col-md-10 col-md-offset-1 col-xs-12" name="crearacse" value="Registrar">
                     </div>
                 </div>
             </form>
@@ -202,7 +224,7 @@ if (isset($_POST['provieneSE'])){
 ?>
     <section class="container">
         <div>
-            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-md-6 col-md-offset-3 col-xs-12">
                 <script>
                     $(function() {
                         $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
@@ -220,49 +242,49 @@ if (isset($_POST['provieneSE'])){
                     <input type='hidden' value='".$idAC."' name='idaccioncorrectiva'>
                 ";
                 ?>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="codigose" class="col-sm-12">Codigo del Safety Eyes:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="codigose">Codigo del Safety Eyes:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <input id="codigose" class="col-sm-12 form-control" type="text" name="idse" value="<?php echo $_POST['idSE']?>" readonly>
+                    <div class=" col-xs-12 col-md-12">
+                        <input id="codigose" class=" col-xs-12 col-md-12 form-control" type="text" name="idse" value="<?php echo $_POST['idSE']?>" readonly>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="obsse" class="col-sm-12">Observaciones del Safety Eyes:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="obsse" >Observaciones del Safety Eyes:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <select id="obsse" class="col-sm-12 form-control" name="observaciones" onchange="getdescobservaciones(this.value)">
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="obsse" class=" col-xs-12 col-md-12 form-control" name="observaciones" onchange="getdescobservaciones(this.value)">
                             <option>Seleccionar</option>
                             <?php
                             $result=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes='".$_POST['idSE']."'");
                             while ($fila=mysqli_fetch_array($result)){
                                 echo "
-                                    <option value='".$fila['idObservacionesSE']."'>".$fila['idObservacionesSE']."</option>
+                                    <option value='".$fila['idObservacionesSE']."'>".$fila['idObservacionesSE']."-".substr($fila['descripcion'],0,45)."...</option>
                                 ";
                             }
                             ?>
                         </select>
                     </div>
                 </div>
-                <div class="form-group" id="descripcion">
+                <div class="form-group col-xs-12 col-md-12" id="descripcion">
 
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="desc" class="col-sm-12">Descripción:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="desc">Descripción:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <textarea rows="3" class="col-sm-12 form-control"name="descripcionac" id="desc"></textarea>
+                    <div class=" col-xs-12 col-md-12">
+                        <textarea rows="3" class=" col-xs-12 col-md-12 form-control" name="descripcionac" id="desc"></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="puesto" class="col-sm-12">Puesto del Responsable:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="puesto">Puesto del Responsable:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <select id="puesto" class="col-sm-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="puesto" class=" col-xs-12 col-md-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
                             <option>Seleccionar</option>
                             <?php
                             $result=mysqli_query($link,"SELECT * FROM Puesto WHERE estado='1'");
@@ -275,74 +297,279 @@ if (isset($_POST['provieneSE'])){
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="resp" class="col-sm-12">Responsable:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="resp">Responsable:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <select id="resp" class="col-sm-12 form-control" name="responsable">
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="resp" class=" col-xs-12 col-md-12 form-control" name="responsable">
                             <option>Seleccionar</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="datepicker1" class="col-sm-12">Fecha Planeada:</label>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="datepicker1">Fecha Planeada:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <input id="datepicker1" class="col-sm-12 form-control" name="fechaplaneada">
+                    <div class=" col-xs-12 col-md-12">
+                        <input id="datepicker1" class=" col-xs-12 col-md-12 form-control" name="fechaplaneada">
                     </div>
                 </div>
                 <br>
-                <div class="form-group">
+                <div class="form-group col-xs-12 col-md-12">
                     <input type="hidden" name="idSE" value="<?php echo $_POST['idSE']?>" readonly>
-                    <div class="col-sm-6">
-                        <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" formaction="detallesafetyeyes.php" value="Regresar">
+                    <div class="col-md-6 col-xs-12">
+                        <input type="submit" name="detalleRegACconID" class="btn btn-default col-md-10 col-md-offset-1 col-xs-12" formaction="detallesafetyeyes.php" value="Regresar">
                     </div>
-                    <div class="col-sm-6">
-                        <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="crearacseconidse" value="Registrar">
+                    <div class="spacer5"></div>
+                    <div class="col-md-6 col-xs-12">
+                        <input type="submit" class="btn btn-success col-md-10 col-md-offset-1 col-xs-12" name="crearacseconidse" value="Registrar">
                     </div>
                 </div>
             </form>
         </div>
     </section>
-<?php
-}elseif(isset($_POST['provieneOC'])){
-?>
+    <?php
+}elseif(isset($_POST['provieneOC'])) {
+    ?>
+    <section class="container">
+        <div>
+            <form action="registrosaccionescorrectivas.php" method="post"
+                  class="form-horizontal jumbotron col-md-6 col-md-offset-3 col-xs-12">
+                <script>
+                    $(function () {
+                        $('#datepicker').datepicker({dateFormat: 'dd/mm/yy'}).val()
+                    });
+                    $(function () {
+                        $('#datepicker1').datepicker({dateFormat: 'dd/mm/yy'}).val()
+                    });
+                </script>
+                <?php
+                $fecha = date('d/m/Y');
+                $clase = "AC";
+                $idAC = idgen($clase);
+                echo "
+                    <input type='hidden' value='" . $fecha . "' name='fecharegistro'>
+                    <input type='hidden' value='" . $idAC . "' name='idaccioncorrectiva'>
+                ";
+                ?>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="datepicker">Fecha de Registro:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <input id="datepicker" class=" col-xs-12 col-md-12 form-control" name="fecha"
+                               onchange="getocurrencias(this.value)">
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="codigooc">Codigo de la Ocurrencia:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="codigooc" class=" col-xs-12 col-md-12 form-control" name="idOCUR"
+                                onchange="getdescripcion(this.value)">
+                            <option>Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12" id="descripcion">
 
-<?php
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="desc">Descripción:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <textarea rows="3" class=" col-xs-12 col-md-12 form-control" name="descripcionac" id="desc"></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="puesto">Puesto del Responsable:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="puesto" class=" col-xs-12 col-md-12 form-control" name="puesto"
+                                onchange="getcolaboradores(this.value)">
+                            <option>Seleccionar</option>
+                            <?php
+                            $result = mysqli_query($link, "SELECT * FROM Puesto WHERE estado='1'");
+                            while ($fila = mysqli_fetch_array($result)) {
+                                echo "
+                                    <option value='" . $fila['idPuesto'] . "'>" . $fila['descripcion'] . "</option>
+                                ";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="resp">Responsable:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="resp" class=" col-xs-12 col-md-12 form-control" name="responsable">
+                            <option>Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="datepicker1">Fecha Planeada:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <input id="datepicker1" class=" col-xs-12 col-md-12 form-control" name="fechaplaneada">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class="col-md-6 col-xs-12">
+                        <input type="submit" class="btn btn-default col-md-10 col-md-offset-1 col-xs-12" formaction="crearnuevaAC.php" value="Regresar">
+                    </div>
+                    <div class="spacer5"></div>
+                    <div class="col-md-6 col-xs-12">
+                        <input type="submit" class="btn btn-success col-md-10 col-md-offset-1 col-xs-12" name="crearacoc" value="Registrar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <?php
+}elseif(isset($_POST['provieneOCconID'])) {
+    ?>
+    <section class="container">
+        <div>
+            <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-md-6 col-md-offset-3 col-xs-12">
+                <script>
+                    $(function() {
+                        $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val()
+                    });
+                    $(function() {
+                        $('#datepicker1').datepicker({ dateFormat: 'dd/mm/yy' }).val()
+                    });
+                </script>
+                <?php
+                $fecha = date('d/m/Y');
+                $clase="AC";
+                $idAC=idgen($clase);
+                echo "
+                    <input type='hidden' value='".$fecha."' name='fecharegistro'>
+                    <input type='hidden' value='".$idAC."' name='idaccioncorrectiva'>
+                ";
+                ?>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="codigoOC">Codigo de la Ocurrencia:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <input id="codigoOC" class=" col-xs-12 col-md-12 form-control" type="text" name="idOCUR" value="<?php echo $_POST['idOCUR']?>" readonly>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12" id="descripcion">
+                    <?php
+                    $result=mysqli_query($link,"SELECT * FROM Ocurrencias WHERE idOcurrencias='".$_POST['idOCUR']."'");
+                    while ($fila=mysqli_fetch_array($result)){
+                        echo "
+                        <div class=' col-xs-12 col-md-12'>
+                            <div class='col-md-12 descripcionobs'>
+                                <p style='font-size: 15px'>" .$fila['descripcion']."</p>
+                            </div>
+                        </div>
+                    ";
+                    }
+                    ?>
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="desc">Descripción:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <textarea rows="3" class=" col-xs-12 col-md-12 form-control" name="descripcionac" id="desc"></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="puesto">Puesto del Responsable:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="puesto" class=" col-xs-12 col-md-12 form-control" name="puesto" onchange="getcolaboradores(this.value)">
+                            <option>Seleccionar</option>
+                            <?php
+                            $result=mysqli_query($link,"SELECT * FROM Puesto WHERE estado='1'");
+                            while ($fila=mysqli_fetch_array($result)){
+                                echo "
+                                    <option value='".$fila['idPuesto']."'>".$fila['descripcion']."</option>
+                                ";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="resp">Responsable:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="resp" class=" col-xs-12 col-md-12 form-control" name="responsable">
+                            <option>Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="datepicker1">Fecha Planeada:</label>
+                    </div>
+                    <div class=" col-xs-12 col-md-12">
+                        <input id="datepicker1" class=" col-xs-12 col-md-12 form-control" name="fechaplaneada">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group col-xs-12 col-md-12">
+                    <input type="hidden" name="idOCUR" value="<?php echo $_POST['idOCUR']?>" readonly>
+                    <div class="col-md-6 col-xs-12">
+                        <input type="submit" name="detalleRegACconID" class="btn btn-default col-md-10 col-md-offset-1 col-xs-12" formaction="detalleOcurrencia.php" value="Regresar">
+                    </div>
+                    <div class="spacer5"></div>
+                    <div class="col-md-6 col-xs-12">
+                        <input type="submit" class="btn btn-success col-md-10 col-md-offset-1 col-xs-12" name="crearacocconid" value="Registrar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <?php
 }else{
     ?>
     <section class="container">
-        <div class="col-sm-6 col-sm-offset-3">
+        <div class="col-md-6 col-md-offset-3 col-xs-12">
             <h4 class="text-center">Nueva Acción Correctiva</h4>
         </div>
     </section>
     <br>
     <section class="container">
         <div>
-            <form action="crearnuevaAC.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="tipo" class="col-sm-12">Seleccione Proveniencia de la Acción Correctiva:</label>
+            <form action="crearnuevaAC.php" method="post" class="form-horizontal jumbotron col-md-6 col-md-offset-3 col-xs-12">
+                <div class="form-group col-xs-12 col-md-12">
+                    <div class=" col-xs-12 col-md-12">
+                        <label for="tipo">Seleccione Proveniencia de la Acción Correctiva:</label>
                     </div>
-                    <div class="col-sm-12">
-                        <select id="tipo" class="form-control col-sm-12" name="provienede" onchange="gettiporeporte(this.value)">
+                    <div class=" col-xs-12 col-md-12">
+                        <select id="tipo" class="form-control col-md-12" name="provienede" onchange="gettiporeporte(this.value)">
                             <option>Seleccionar</option>
                             <option value="SE">Safety Eyes</option>
                             <option value="OC">Reporte de Ocurrencia</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group" id="botontipo">
+                <div class="form-group col-xs-12 col-md-12" id="botontipo">
                 </div>
             </form>
         </div>
     </section>
     <br>
     <section class="container">
-        <form action="registrosaccionescorrectivas.php" class="form-horizontal">
-            <input type="submit" class="btn btn-default col-sm-4 col-sm-offset-4" name="regresar" value="Regresar">
+        <form action="registrosaccionescorrectivas.php" class="form-horizontal col-xs-12 col-md-12">
+            <input type="submit" class="btn btn-default col-md-4 col-md-offset-4 col-xs-12" name="regresar" value="Regresar">
         </form>
     </section>
     <?php
@@ -351,7 +578,7 @@ if (isset($_POST['provieneSE'])){
 
 <script src="js/bootstrap.min.js"></script>
 
-<footer class="panel-footer navbar-fixed-bottom">
+<footer class="panel-footer navbar-fixed-bottom hidden-xs">
     <?php
     include_once('footer.php');
     ?>
