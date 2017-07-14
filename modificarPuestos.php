@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
 	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +38,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
 		$descripcion = $row['descripcion'];
 	}
 	?>
-	<form class="col-sm-6 col-sm-offset-3" method="post" action="gestionPuestos.php">
+	<form class="col-md-6 col-md-offset-3" method="post" action="gestionPuestos.php">
 		<div class="form-group">
 			<div>
 				<label for="descripcionPuesto">Nueva Descripción de Puesto</label>
@@ -64,8 +65,8 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
 		</div>
 		<div class="form-group">
 			<input type="hidden" value="<?php echo $_POST['Puesto']?>" name="Puesto">
-			<input type="submit" class="btn btn-default  col-sm-offset-3" value="Regresar">
-			<input type="submit" class="btn btn-success col-sm-offset-2" value="Aceptar" name="modifyPuesto">
+			<input type="submit" class="btn btn-default  col-md-offset-3" value="Regresar">
+			<input type="submit" class="btn btn-success col-md-offset-2" value="Aceptar" name="modifyPuesto">
 		</div>
 	</form>
 </section>

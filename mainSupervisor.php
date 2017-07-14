@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,23 +32,35 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 </header>
 
 <section class="container">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
         <h3 class="text-center">Bienvenido a GSD-Safe@Work Reportes</h3>
     </div>
 </section>
 <br>
 <section class="container">
     <div>
-        <form method="post" class="form-horizontal jumbotron col-xs-12 col-sm-6 col-sm-offset-3">
-            <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-sm-8 col-sm-offset-2" value="Registrar Safety Eyes" formaction="regsafetyeyes1.php">
+        <form method="post" class="form-horizontal jumbotron col-xs-12 col-md-6 col-md-offset-3">
+            <div class="form-group col-xs-12 col-md-12">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-md-8 col-md-offset-2" value="Registrar Safety Eyes" formaction="regSE_DatosGenerales.php">
             </div>
-            <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-sm-8 col-sm-offset-2" value="Registrar Ocurrencia" formaction="regocurrencia1.php">
+            <div class="form-group col-xs-12 col-md-12">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-md-8 col-md-offset-2" value="Registrar Ocurrencia" formaction="regOC_DatosGenerales.php">
             </div>
-            <div class="form-group">
-                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-sm-8 col-sm-offset-2" value="Registrar CAP" formaction="regcap1.php">
+            <div class="form-group col-xs-12 col-md-12">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-md-8 col-md-offset-2" value="Registrar CAP" formaction="regCAP.php">
             </div>
+            <div class="form-group col-xs-12 col-md-12">
+                <input type="submit" style="font-weight: bold; font-size: 15px" class="btn btn-success col-xs-12 col-md-8 col-md-offset-2" value="Realizar Checklists" formaction="regChecklists.php">
+            </div>
+            <?php
+            if($_SESSION['usertype']=='1'){
+                echo "
+                    <div class='form-group col-xs-12 col-md-12'>
+                        <input type='submit' style='font-weight: bold; font-size: 15px' class='btn btn-success col-xs-12 col-md-8 col-md-offset-2' value='Asignar Acciones Correctivas' formaction='asignarAC.php'>
+                    </div>
+                ";
+            }
+            ?>
         </form>
     </div>
 </section>
@@ -55,7 +68,7 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
-<footer class="panel-footer navbar-fixed-bottom">
+<footer class="panel-footer navbar-fixed-bottom hidden-xs">
     <?php
     include_once('footer.php');
     ?>

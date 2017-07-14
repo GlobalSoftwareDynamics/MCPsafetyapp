@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
 	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -91,8 +92,8 @@ if(isset($_POST['modify'])){
 
 <section class="container">
     <form method="post" action="gestionPlantas.php">
-        <input type="submit" class="btn btn-default col-sm-2 col-sm-offset-3" value="Regresar">
-        <button type="button" class="btn btn-success col-sm-2 col-sm-offset-2" data-toggle="modal" data-target="#myModal">Agregar Ubicación</button>
+        <input type="submit" class="btn btn-default col-sm-2 col-md-offset-3" value="Regresar">
+        <button type="button" class="btn btn-success col-sm-2 col-md-offset-2" data-toggle="modal" data-target="#myModal">Agregar Ubicación</button>
     </form>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Nuevo Puesto" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -116,7 +117,7 @@ if(isset($_POST['modify'])){
 					                <?php
 					                $query = mysqli_query($link,"SELECT * FROM Planta WHERE estado = '1' AND idPlanta = '".$_POST['planta']."'");
 					                while($row = mysqli_fetch_array($query)){
-						                echo "<td class='col-sm-4'><input type='text' class='form-control' value='".$row['descripcion']."' readonly></td>";
+						                echo "<td class='col-md-4'><input type='text' class='form-control' value='" .$row['descripcion']."' readonly></td>";
 					                }
 					                ?>
                                     <td><input type="text" class="form-control" name="descripcionUbicacion" id="descripcionUbicacion"></td>
@@ -126,8 +127,8 @@ if(isset($_POST['modify'])){
                         </div>
                         <input type="hidden" name="planta" value="<?php echo $_POST['planta']?>">
                         <div class="form-group">
-                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-4">
-                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-1">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-md-offset-4">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-md-offset-1">
                             <br>
                         </div>
                     </form>

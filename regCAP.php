@@ -5,14 +5,24 @@
 <?php
 include('session.php');
 include('funcionesApp.php');
-if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['usertype']=='2')){
+if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1')||($_SESSION['usertype']=='2')||($_SESSION['usertype']=='5'))){
 ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="smartphone-icon-152-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="smartphone-icon-144-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="smartphone-icon-120-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="smartphone-icon-114-185337.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="smartphone-icon-72-185337.png">
+    <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
+    <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <script>
         function gettrabajadores(val) {
             $.ajax({
@@ -30,7 +40,11 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 <body>
 <header>
     <?php
-    include_once('navbarmainSupervisor.php');
+    if($_SESSION['usertype']=='1'||$_SESSION['usertype']=='2'){
+        include_once('navbarmainSupervisor.php');
+    }elseif($_SESSION['usertype']=='5'){
+        include_once('navbarmainOperario.php');
+    }
     ?>
 </header>
 <?php
@@ -38,7 +52,6 @@ if (isset($_POST['registrar'])){
     $agregar="INSERT INTO CAP(idCAP, idComportamiento, fecha, hora, anoFiscal, descripcion, estado) VALUES ('".$_POST['idCAP']."','".$_POST['comportamiento']."'
     ,'".$_POST['fecha']."','".$_POST['hora']."','".$_POST['fy']."','".$_POST['descripcion']."','Pendiente'
     )";
-    echo $agregar;
     $agregar1=mysqli_query($link,$agregar);
     $agregar="INSERT INTO InvolucradosCAP(dni, idCAP, idTipoParticipante) VALUES('".$_POST['reportante']."','".$_POST['idCAP']."','4')";
     $agregar1=mysqli_query($link,$agregar);
@@ -55,8 +68,8 @@ if (isset($_POST['registrar'])){
 ?>
 <section class="container">
     <div>
-        <form class="form-horizontal jumbotron col-xs-12 col-sm-6 col-sm-offset-3" method="post" action="regCAP.php">
-            <div class="col-xs-12 col-sm-12">
+        <form class="form-horizontal jumbotron col-xs-12 col-md-6 col-md-offset-3" method="post" action="regCAP.php">
+            <div class="col-xs-12 col-md-12">
                 <h4>Reporte CAP</h4>
             </div>
             <br>
@@ -81,20 +94,20 @@ if (isset($_POST['registrar'])){
                 <input type='hidden' name='fy' value='".$fy."' readonly>
             ";
             ?>
-            <div class="form-group">
-                <div class="col-sm-12 col-xs-12">
+            <div class="form-group col-xs-12">
+                <div class="col-md-12 col-xs-12">
                     <label for="desc">Descripción del Comportamiento:</label>
                 </div>
-                <div class="col-xs-12 col-sm-12">
-                    <textarea name="descripcion" class="form-control col-xs-12 col-sm-12" rows="3" id="desc"></textarea>
+                <div class="col-xs-12 col-md-12">
+                    <textarea name="descripcion" class="form-control col-xs-12 col-md-12" rows="3" id="desc"></textarea>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-xs-12 col-sm-12">
-                    <label for="comp" class="col-xs-12">Comportamiento:</label>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12 col-md-12">
+                    <label for="comp">Comportamiento:</label>
                 </div>
-                <div class="col-xs-12 col-sm-12">
-                    <select id="comp" name="comportamiento" class="form-control col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-md-12">
+                    <select id="comp" name="comportamiento" class="form-control col-xs-12 col-md-12">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM Comportamiento");
@@ -106,16 +119,15 @@ if (isset($_POST['registrar'])){
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-xs-12 col-sm-12">
-                    <label class="col-xs-12 col-sm-12">Datos del Reportado:</label>
+            <div class="col-xs-12 col-md-12">
+                <label>Datos del Reportado:</label>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12 col-md-12">
+                    <label for="empre">Empresa:</label>
                 </div>
-                <br>
-                <div class="col-xs-12 col-sm-12">
-                    <label for="empre" class="col-xs-12">Empresa:</label>
-                </div>
-                <div class="col-xs-12 col-sm-12">
-                    <select id="empre" name="empresa" class="form-control col-xs-12 col-sm-12" onchange="gettrabajadores(this.value)">
+                <div class="col-xs-12 col-md-12">
+                    <select id="empre" name="empresa" class="form-control col-xs-12 col-md-12" onchange="gettrabajadores(this.value)">
                         <option>Seleccionar</option>
                         <?php
                         $result1=mysqli_query($link,"SELECT * FROM Empresa WHERE estado='1'");
@@ -126,24 +138,55 @@ if (isset($_POST['registrar'])){
                         ?>
                     </select>
                 </div>
-                <div class="col-xs-12 col-sm-12">
-                    <label for="trabaja" class="col-xs-12">Nombre:</label>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12 col-md-12">
+                    <label for="trabaja">Nombre:</label>
                 </div>
-                <div class="col-xs-12 col-sm-12">
-                    <select id="trabaja" class="col-xs-12 form-control col-sm-12" name="reportado">
+                <div class="col-xs-12 col-md-12">
+                    <select id="trabaja" class="col-xs-12 form-control col-md-12" name="reportado">
                         <option>Seleccionar</option>
                     </select>
                 </div>
             </div>
             <br>
-            <div class="form-group">
-                <div class="col-xs-12 col-sm-6">
-                    <input type="submit" name="registrar" value="Registrar" class="btn btn-success col-sm-10 col-sm-offset-1 col-xs-12">
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <input type="submit" name="regresar" formaction="mainSupervisor.php" value="Regresar" class="btn btn-default col-sm-10 col-sm-offset-1 col-xs-12">
-                </div>
-            </div>
+            <?php
+            if(isset($_POST['idSE'])){
+                echo "
+                    <div class='form-group col-xs-12'>
+                        <input type='hidden' value='{$_POST['idSE']}' name='idSE' readonly> 
+                        <div class='col-xs-12 col-md-6'>
+                            <input type='submit' name='registrar' value='Registrar' class='btn btn-success col-md-10 col-md-offset-1 col-xs-12'>
+                        </div>
+                        <div class='col-xs-12 col-md-6'>
+                            <input type='submit' name='siguiente' formaction='regSE_EquipoObservacion.php' value='Siguiente' class='btn btn-primary col-md-10 col-md-offset-1 col-xs-12'>
+                        </div>
+                    </div>
+                ";
+            }else{
+                echo "
+                    <div class='form-group col-xs-12'>
+                        <div class='col-xs-12 col-md-6'>
+                            <input type='submit' name='registrar' value='Registrar' class='btn btn-success col-md-10 col-md-offset-1 col-xs-12'>
+                        </div>";
+                        if($_SESSION['usertype']=='1'||$_SESSION['usertype']=='2'){
+                            echo "
+                                <div class='col-xs-12 col-md-6'>
+                                    <input type='submit' name='regresar' formaction='mainSupervisor.php' value='Regresar' class='btn btn-default col-md-10 col-md-offset-1 col-xs-12'>
+                                </div>
+                            ";
+                        }elseif($_SESSION['usertype']=='5'){
+                            echo "
+                                <div class='col-xs-12 col-md-6'>
+                                    <input type='submit' name='regresar' formaction='mainOperario.php' value='Regresar' class='btn btn-default col-md-10 col-md-offset-1 col-xs-12'>
+                                </div>
+                            ";
+                        }
+                echo "
+                    </div>
+                ";
+            }
+            ?>
         </form>
     </div>
 </section>
@@ -151,9 +194,9 @@ if (isset($_POST['registrar'])){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
-<footer class="panel-footer navbar-fixed-bottom">
+<footer class="panel-footer navbar-fixed-bottom hidden-xs">
     <?php
-    include_once('footercio.php');
+    include_once('footer.php');
     ?>
 </footer>
 </body>

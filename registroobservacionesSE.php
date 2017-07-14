@@ -12,6 +12,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GSD Safe@Work</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -40,13 +41,13 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 
 <section class="container">
     <div>
-        <form action="registroobservacionesSE.php?user=<?php echo $_GET['user'];?>" method="post" class="form-horizontal jumbotron col-sm-12">
-            <div class="form-group col-sm-4">
-                <div class="col-sm-4">
-                    <label for="columna" class="col-sm-12">Conlumna:</label>
+        <form action="registroobservacionesSE.php" method="post" class="form-horizontal jumbotron col-md-12 col-xs-12">
+            <div class="form-group col-md-4 col-xs-12">
+                <div class="col-md-4 col-xs-12">
+                    <label for="columna" class="control-label">Conlumna:</label>
                 </div>
-                <div class="col-sm-8">
-                    <select id="columna" class="col-sm-12 form-control" name="columna" onchange="getinputbusqueda(this.value)">
+                <div class="col-md-8 col-xs-12">
+                    <select id="columna" class="col-xs-12 form-control" name="columna" onchange="getinputbusqueda(this.value)">
                         <option>Seleccionar</option>
                         <option value="idObservacionesSE">Código Obs.</option>
                         <option value="idSafetyEyes">Código SE</option>
@@ -57,29 +58,29 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                     </select>
                 </div>
             </div>
-            <div class="form-group col-sm-4">
-                <div class="col-sm-4">
-                    <label for="detalle" class="col-sm-12">Busqueda:</label>
+            <div class="form-group col-md-4 col-xs-12">
+                <div class="col-md-4 col-xs-12">
+                    <label for="detalle" class="control-label">Busqueda:</label>
                 </div>
-                <div id="busqueda" class="col-sm-8">
-                    <input type="text" class="form-control col-sm-12" name="busqueda" id="detalle">
+                <div id="busqueda" class="col-md-8 col-xs-12">
+                    <input type="text" class="form-control col-xs-12" name="busqueda" id="detalle">
                 </div>
             </div>
-            <div class="form-group col-sm-4">
-                <div class="col-sm-6">
-                    <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="filtrar" value="Filtrar Tabla">
+            <div class="form-group col-md-4 col-xs-12">
+                <div class="col-md-6 col-xs-12">
+                    <input type="submit" class="btn btn-success col-md-12 col-xs-12" name="filtrar" value="Filtrar Tabla">
                 </div>
-                <div class="col-sm-6">
-                    <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" name="eliminarFiltro" value="Quitar Filtro">
+                <div class="col-md-6 col-xs-12">
+                    <input type="submit" class="btn btn-default col-md-12 col-xs-12" name="eliminarFiltro" value="Quitar Filtro">
                 </div>
             </div>
         </form>
     </div>
 </section>
 <section class="container">
-    <form method="post" class="form-horizontal col-sm-12">
-        <div class="form-group">
-            <input type="submit" class="btn btn-default col-sm-4 col-sm-offset-4" formaction="registrosSE.php?user=<?php echo $_GET['user'];?>" value="Regresar">
+    <form method="post" class="form-horizontal col-xs-12 col-md-12">
+        <div class="form-group col-xs-12 col-md-12">
+            <input type="submit" class="btn btn-default col-md-4 col-md-offset-4 col-xs-12" formaction="registrosSE.php" value="Regresar">
         </div>
     </form>
 </section>
@@ -93,7 +94,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                 <th>Código SE</th>
                 <th>Categoría</th>
                 <th>Clase</th>
-                <th style="width: 35%">Descripción</th>
+                <th style="width: 30%">Descripción</th>
                 <th>COP</th>
                 <th></th>
             </tr>
@@ -102,11 +103,11 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
             <?php
             if(isset($_POST['filtrar'])&&isset($_POST['columna'])&&isset($_POST['busqueda'])){
                 if ($_POST['columna']==="idCategoria"||$_POST['columna']==="idClase"||$_POST['columna']==="idCOPs"){
-                    echo "
-                        <tr>
-                    ";
                     $result0=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE ".$_POST['columna']." ='".$_POST['busqueda']."' AND idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado = 'Aprobado')");
                     while ($fila0=mysqli_fetch_array($result0)){
+                        echo "
+                            <tr>
+                        ";
                         echo "
                             <td>".$fila0['idObservacionesSE']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
@@ -136,7 +137,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idSafetyEyes']."' name='idSE'>
-                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
+                                    <input type='submit' name='detalleRegObs' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
                                 </form>
                             </td>
                         ";
@@ -145,11 +146,11 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                         ";
                     }
                 }else{
-                    echo "
-                        <tr>
-                    ";
                     $result0=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%' AND idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado = 'Aprobado')");
                     while ($fila0=mysqli_fetch_array($result0)){
+                        echo "
+                            <tr>
+                        ";
                         echo "
                             <td>".$fila0['idObservacionesSE']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
@@ -179,7 +180,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idSafetyEyes']."' name='idSE'>
-                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
+                                    <input type='submit' name='detalleRegObs' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
                                 </form>
                             </td>
                         ";
@@ -189,11 +190,11 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                     }
                 }
             }else{
-                echo "
-                        <tr>
-                    ";
                 $result0=mysqli_query($link,"SELECT * FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado = 'Aprobado')");
                 while ($fila0=mysqli_fetch_array($result0)){
+                    echo "
+                        <tr>
+                    ";
                     echo "
                             <td>".$fila0['idObservacionesSE']."</td>
                             <td>".$fila0['idSafetyEyes']."</td>
@@ -223,7 +224,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                             <td>
                                 <form method='post'>
                                     <input type='hidden' value='".$fila0['idSafetyEyes']."' name='idSE'>
-                                    <input type='submit' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php?user=".$_GET['user']."'>
+                                    <input type='submit' name='detalleRegObs' class='btn-link' value='Detalle' formaction='detallesafetyeyes.php'>
                                 </form>
                             </td>
                         ";
@@ -242,7 +243,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 
 <footer class="panel-footer navbar-fixed-bottom">
     <?php
-    include_once('footercio.php');
+    include_once('footer.php');
     ?>
 </footer>
 </body>

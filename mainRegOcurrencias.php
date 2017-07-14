@@ -3,6 +3,7 @@
 <html lang="es">
 
 <?php
+require('funcionesApp.php');
 include('session.php');
 if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 ?>
@@ -21,6 +22,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,13 +33,16 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 </header>
 
 <section class="container">
-    <form method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
-        <div class="form-group">
-            <h3 class="text-center">Contenido en desarrollo</h3>
+    <form method="post" class="form-horizontal jumbotron col-md-6 col-md-offset-3 col-xs-12">
+        <div class="form-group col-xs-12 col-md-12">
+            <h3 class="text-center">Seleccione la opción que desea</h3>
         </div>
         <br>
-        <div class="form-group">
-            <input type="submit" class="btn btn-default col-sm-8 col-sm-offset-2" value="Regresar" formaction="mainAdmin.php">
+        <div class="form-group col-xs-12 col-md-12">
+            <input type="submit" formaction="registrosOCUR.php" class="btn btn-success col-md-10 col-md-offset-1 col-xs-12" value="Listado de Ocurrencias">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <input type="submit" formaction="aprobarOCUR.php" class="btn btn-success col-md-10 col-md-offset-1 col-xs-12" value="Aprobación de Ocurrencias">
         </div>
     </form>
 </section>
@@ -45,14 +50,14 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
-<footer class="panel-footer navbar-fixed-bottom">
+<footer class="panel-footer navbar-fixed-bottom hidden-xs">
     <?php
     include_once('footer.php');
     ?>
 </footer>
 </body>
 
-    <?php
+<?php
 }else{
     echo "Usted no está autorizado para ingresar a esta sección. Por favor vuelva a la página de inicio de sesión e identifíquese.";
 }

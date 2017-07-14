@@ -9,12 +9,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="mainSupervisor.php" class="navbar-brand"><img src="image/Logo.png" height="60"></a>
+                <a href="mainSupervisor.php" class="navbar-brand"><img src="image/Logo.png" height="40"></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="mainSupervisor.php">Inicio</a></li>
-                    <li><a href="mainAdmin.php">Interfaz de Gerencia</a></li>
+                    <?php
+                    if($_SESSION['usertype']=='1'){
+                        echo "
+                            <li><a href=\"mainAdmin.php\">Interfaz de Gerencia</a></li>
+                        ";
+                    }
+                    ?>
                     <li><a href="logout.php">Cerrar Sesión</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

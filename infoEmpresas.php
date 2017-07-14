@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='4')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
 	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <script>
         function getCiudad(val) {
             $.ajax({
@@ -61,11 +62,11 @@ if(isset($_POST['modify'])){
 ?>
 
 <section class="container">
-    <div class="col-sm-4">
-        <div class="col-sm-8">
+    <div class="col-md-4">
+        <div class="col-md-8">
             <h3 class="text-center">Ficha de Empresa</h3>
         </div>
-        <div class="col-sm-12">
+        <div class="col-md-12">
 	        <?php
 	        $query = mysqli_query($link,"SELECT * FROM Empresa WHERE ruc = '".$_POST['ruc']."'");
 	        while($row = mysqli_fetch_array($query)){
@@ -86,7 +87,7 @@ if(isset($_POST['modify'])){
             </div>
         </div>
     </div>
-    <div class="col-sm-8">
+    <div class="col-md-8">
         <div class="col-sm-3 col-sm-offset-9">
             <br>
             <img width="auto" height="100" src="image/Logo.png"/>
@@ -191,8 +192,8 @@ if(isset($_POST['modify'])){
                             </table>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
-                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-2">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-md-offset-4">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-md-offset-2">
                             <br>
                         </div>
                     </form>

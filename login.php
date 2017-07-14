@@ -45,6 +45,11 @@ if (isset($_POST['submit'])) {
 						$_SESSION['usertype']=$search['idTipoUsuario'];
 						header('Location:http://gsdynamics.com/gsdsafeatwork/mainRRHH.php');
 						break;
+                    case 5:
+                        $_SESSION['login']=$username; // Initializing Session
+                        $_SESSION['usertype']=$search['idTipoUsuario'];
+                        header('Location:http://gsdynamics.com/gsdsafeatwork/mainOperario.php');
+                        break;
 				}
 			}
 		} else {

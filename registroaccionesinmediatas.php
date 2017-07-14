@@ -22,6 +22,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -50,13 +51,13 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 
 <section class="container">
     <div>
-        <form action="registroaccionesinmediatas.php" method="post" class="form-horizontal jumbotron col-sm-12">
-            <div class="form-group col-sm-4">
-                <div class="col-sm-4">
-                    <label for="columna" class="col-sm-12">Columna:</label>
+        <form action="registroaccionesinmediatas.php" method="post" class="form-horizontal jumbotron col-md-12 col-xs-12">
+            <div class="form-group col-md-4 col-xs-12">
+                <div class="col-md-4 col-xs-12">
+                    <label for="columna" class="control-label">Columna:</label>
                 </div>
-                <div class="col-sm-8">
-                    <select id="columna" class="col-sm-12 form-control" name="columna" onchange="getinputbusqueda(this.value)">
+                <div class="col-md-8 col-xs-12">
+                    <select id="columna" class="col-xs-12 form-control" name="columna" onchange="getinputbusqueda(this.value)">
                         <option>Seleccionar</option>
                         <option value="fecharegistro">Fecha</option>
                         <option value="fuente">Fuente</option>
@@ -65,20 +66,20 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                     </select>
                 </div>
             </div>
-            <div class="form-group col-sm-4">
-                <div class="col-sm-4">
-                    <label for="detalle" class="col-sm-12">Busqueda:</label>
+            <div class="form-group col-md-4 col-xs-12">
+                <div class="col-md-4 col-xs-12">
+                    <label for="detalle" class="control-label">Busqueda:</label>
                 </div>
-                <div id="busqueda" class="col-sm-8">
-                    <input type="text" class="form-control col-sm-12" name="busqueda" id="detalle">
+                <div id="busqueda" class="col-md-8 col-xs-12">
+                    <input type="text" class="form-control col-xs-12" name="busqueda" id="detalle">
                 </div>
             </div>
-            <div class="form-group col-sm-4">
-                <div class="col-sm-6">
-                    <input type="submit" class="btn btn-success col-sm-10 col-sm-offset-1" name="filtrar" value="Filtrar Tabla">
+            <div class="form-group col-md-4 col-xs-12">
+                <div class="col-md-6 col-xs-12">
+                    <input type="submit" class="btn btn-success col-md-12" name="filtrar" value="Filtrar Tabla">
                 </div>
-                <div class="col-sm-6">
-                    <input type="submit" class="btn btn-default col-sm-10 col-sm-offset-1" name="eliminarFiltro" value="Quitar Filtro">
+                <div class="col-md-6 col-xs-12">
+                    <input type="submit" class="btn btn-default col-md-12" name="eliminarFiltro" value="Quitar Filtro">
                 </div>
             </div>
         </form>
@@ -101,13 +102,13 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
             <?php
             if(isset($_POST['filtrar'])&&isset($_POST['columna'])&&isset($_POST['busqueda'])){
                 if ($_POST['columna']==="dni"){
-                    echo "
-                        <tr>
-                    ";
                     $result0=mysqli_query($link,"SELECT * FROM Colaboradores WHERE apellidos LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
                         $result=mysqli_query($link,"SELECT * FROM AccionesInmediatas WHERE dni='".$fila0['dni']."'");
                         while ($fila=mysqli_fetch_array($result)){
+                            echo "
+                                <tr>
+                            ";
                             echo "
                                 <td>".$fila['fecharegistro']."</td>
                             ";
@@ -118,7 +119,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                                         <td>
                                             <form method='post' action='detallesafetyeyes.php'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -129,9 +130,9 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
-                                            <form method='post' action=''>
-                                                <input type='hidden' name='idOC' value='".$fila2['idOcurrencias']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idOcurrencias']."' class='btn-link'>
+                                            <form method='post' action='detalleOcurrencia.php'>
+                                                <input type='hidden' name='idOCUR' value='".$fila2['idOcurrencias']."'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idOcurrencias']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -142,9 +143,9 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                                 while ($fila2=mysqli_fetch_array($result2)){
                                     echo "
                                         <td>
-                                            <form method='post' action=''>
+                                            <form method='post' action='detalleIncidente.php'>
                                                 <input type='hidden' name='idINC' value='".$fila2['idIncidentes']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idIncidentes']."' class='btn-link'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idIncidentes']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -160,11 +161,11 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                         }
                     }
                 }else{
-                    echo "
-                        <tr>
-                    ";
                     $result0=mysqli_query($link,"SELECT * FROM AccionesInmediatas WHERE ".$_POST['columna']." LIKE '%".$_POST['busqueda']."%'");
                     while ($fila0=mysqli_fetch_array($result0)){
+                        echo "
+                            <tr>
+                        ";
                         echo "
                             <td>".$fila0['fecharegistro']."</td>
                         ";
@@ -175,7 +176,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                                         <td>
                                             <form method='post' action='detallesafetyeyes.php'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -186,9 +187,9 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
-                                            <form method='post' action=''>
-                                                <input type='hidden' name='idOC' value='".$fila2['idOcurrencias']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idOcurrencias']."' class='btn-link'>
+                                            <form method='post' action='detalleOcurrencia.php'>
+                                                <input type='hidden' name='idOCUR' value='".$fila2['idOcurrencias']."'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idOcurrencias']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -199,9 +200,9 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                             while ($fila2=mysqli_fetch_array($result2)){
                                 echo "
                                         <td>
-                                            <form method='post' action=''>
+                                            <form method='post' action='detalleIncidente.php'>
                                                 <input type='hidden' name='idINC' value='".$fila2['idIncidentes']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idIncidentes']."' class='btn-link'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idIncidentes']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -222,11 +223,11 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                     }
                 }
             }else{
-                echo "
-                        <tr>
-                    ";
                 $result0=mysqli_query($link,"SELECT * FROM AccionesInmediatas");
                 while ($fila0=mysqli_fetch_array($result0)){
+                    echo "
+                        <tr>
+                    ";
                     echo "
                             <td>".$fila0['fecharegistro']."</td>
                     ";
@@ -237,7 +238,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                                         <td>
                                             <form method='post' action='detallesafetyeyes.php'>
                                                 <input type='hidden' name='idSE' value='".$fila2['idSafetyEyes']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idSafetyEyes']."' class='btn-link'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idSafetyEyes']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -248,9 +249,9 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
-                                            <form method='post' action=''>
-                                                <input type='hidden' name='idOC' value='".$fila2['idOcurrencias']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idOcurrencias']."' class='btn-link'>
+                                            <form method='post' action='detalleOcurrencia.php'>
+                                                <input type='hidden' name='idOCUR' value='".$fila2['idOcurrencias']."'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idOcurrencias']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -261,9 +262,9 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                         while ($fila2=mysqli_fetch_array($result2)){
                             echo "
                                         <td>
-                                            <form method='post' action=''>
+                                            <form method='post' action='detalleIncidente.php'>
                                                 <input type='hidden' name='idINC' value='".$fila2['idIncidentes']."'>
-                                                <input type='submit' name='detalle' value='".$fila2['idIncidentes']."' class='btn-link'>
+                                                <input type='submit' name='detalleRegAI' value='".$fila2['idIncidentes']."' class='btn-link'>
                                             </form>
                                         </td>
                                     ";
@@ -291,7 +292,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 
 <script src="js/bootstrap.min.js"></script>
 
-<footer class="panel-footer navbar-fixed-bottom">
+<footer class="panel-footer navbar-fixed-bottom hidden-xs">
     <?php
     include_once('footer.php');
     ?>

@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
 	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -125,8 +126,8 @@ if(isset($_POST['delete'])){
                                     </tbody>
                                 </table>
                                 <div class="form-group">
-                                    <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
-                                    <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-1">
+                                    <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-md-offset-4">
+                                    <input type="submit" value="Agregar" name="submit" class="btn btn-success col-md-offset-1">
                                     <br>
                                 </div>
                             </div>

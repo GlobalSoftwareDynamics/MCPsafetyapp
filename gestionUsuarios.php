@@ -19,6 +19,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <script>
         function getUsuario(val) {
             $.ajax({
@@ -62,12 +63,12 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
 
 <section class="container">
     <div>
-    <form method="post" action="gestionUsuarios.php" class="form-horizontal jumbotron col-sm-12">
-        <div class="form-group col-sm-4">
-            <div class="col-sm-4">
-                <label for="filtro" class="formlabels col-sm-12">Columna:</label>
+    <form method="post" action="gestionUsuarios.php" class="form-horizontal jumbotron col-md-12">
+        <div class="form-group col-md-4">
+            <div class="col-md-4">
+                <label for="filtro" class="formlabels col-md-12">Columna:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-md-8">
                 <select class="form-control" name="filtro" id="filtro">
                     <option>Seleccionar</option>
                     <option value="dni">Por DNI:</option>
@@ -76,20 +77,20 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
                 </select>
             </div>
         </div>
-        <div class="form-group col-sm-4">
-            <div class="col-sm-4">
-                <label for="valorFiltro" class="formlabels col-sm-12">Búsqueda:</label>
+        <div class="form-group col-md-4">
+            <div class="col-md-4">
+                <label for="valorFiltro" class="formlabels col-md-12">Búsqueda:</label>
             </div>
-            <div class="col-sm-8">
-                <input type="text" class="form-control col-sm-12" name="valorFiltro" id="valorFiltro">
+            <div class="col-md-8">
+                <input type="text" class="form-control col-md-12" name="valorFiltro" id="valorFiltro">
             </div>
         </div>
-        <div class="form-group col-sm-4">
-            <div class="col-sm-6">
-                <input type="submit" name="submitFiltro" class="btn btn-success col-sm-12" value="Filtrar">
+        <div class="form-group col-md-4">
+            <div class="col-md-6">
+                <input type="submit" name="submitFiltro" class="btn btn-success col-md-12" value="Filtrar">
             </div>
-            <div class="col-sm-6">
-                <input type="submit" name="reset" class="btn btn-default col-sm-12" value="Quitar Filtros">
+            <div class="col-md-6">
+                <input type="submit" name="reset" class="btn btn-default col-md-12" value="Quitar Filtros">
             </div>
         </div>
     </form>
@@ -256,8 +257,8 @@ if(isset($_POST['submitFiltro'])){
                             </table>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-sm-offset-4">
-                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-sm-offset-2">
+                            <input type="submit" value="Cerrar" name="close" data-dismiss="modal" class="btn btn-default col-md-offset-4">
+                            <input type="submit" value="Agregar" name="submit" class="btn btn-success col-md-offset-2">
                             <br>
                         </div>
                 </div>

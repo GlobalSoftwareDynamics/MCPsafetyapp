@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='3')){
         <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
         <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
         <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
     </head>
 
     <body>

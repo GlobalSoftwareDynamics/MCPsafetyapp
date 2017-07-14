@@ -25,7 +25,7 @@ include('login.php'); // Includes Login Script
 <body>
 <div class="container login">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-12">
             <div class="wrap">
                 <form class="login" method="post" action="#">
                     <img id="profile-img" class="profile-img-card" src="http://gsdynamics.com/gsdsafeatwork/image/Logo.png" />
