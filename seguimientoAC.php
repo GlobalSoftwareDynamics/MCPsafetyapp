@@ -21,6 +21,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -40,7 +41,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 
 <section class="container">
     <div>
-        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-sm-6 col-sm-offset-3">
+        <form action="registrosaccionescorrectivas.php" method="post" class="form-horizontal jumbotron col-md-6 col-md-offset-3 col-xs-12">
             <?php
             date_default_timezone_set('America/Lima');
             $fecha = date('d/m/Y');
@@ -48,29 +49,29 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
                 <input type='hidden' name='fecha' value='".$fecha."' readonly>
             ";
             ?>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <label for="idacc" class="col-sm-12">Código Acción Correctiva:</label>
+            <div class="form-group col-xs-12 col-md-12">
+                <div class="col-md-12">
+                    <label for="idacc">Código Acción Correctiva:</label>
                 </div>
-                <div class="col-sm-12">
-                    <input type="text" class="col-sm-12 form-control" value="<?php echo $_POST['idAC'];?>" id="idacc" name="idAC" readonly>
+                <div class="col-md-12">
+                    <input type="text" class="col-md-12 form-control" value="<?php echo $_POST['idAC'];?>" id="idacc" name="idAC" readonly>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <label for="datepicker" class="col-sm-12">Fecha de Cumplimiento:</label>
+            <div class="form-group col-xs-12 col-md-12">
+                <div class="col-md-12">
+                    <label for="datepicker">Fecha de Cumplimiento:</label>
                 </div>
-                <div class="col-sm-12">
-                    <input type="text" class="col-sm-12 form-control" id="datepicker" name="fechaReal">
+                <div class="col-md-12">
+                    <input type="text" class="col-md-12 form-control" id="datepicker" name="fechaReal">
                 </div>
             </div>
             <br>
-            <div class="form-group">
-                <div class="col-sm-6">
-                    <input type="submit" formaction="registrosaccionescorrectivas.php" name="regresar" value="Regresar" class="btn btn-default col-sm-10 col-sm-offset-1">
+            <div class="form-group col-xs-12 col-md-12">
+                <div class="col-md-6 col-xs-12">
+                    <input type="submit" formaction="registrosaccionescorrectivas.php" name="regresar" value="Regresar" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1">
                 </div>
-                <div class="col-sm-6">
-                    <input type="submit" name="actualizarestado" value="Registrar Cumplimiento" class="btn btn-success col-sm-10 col-sm-offset-1">
+                <div class="col-md-6 col-xs-12">
+                    <input type="submit" name="actualizarestado" value="Registrar Cumplimiento" class="btn btn-success col-md-10 col-md-offset-1 col-xs-12">
                 </div>
             </div>
         </form>
@@ -79,7 +80,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
 
 <script src="js/bootstrap.min.js"></script>
 
-<footer class="panel-footer navbar-fixed-bottom">
+<footer class="panel-footer navbar-fixed-bottom hidden-xs">
     <?php
     include_once('footer.php');
     ?>

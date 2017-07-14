@@ -22,6 +22,7 @@ if(isset($_SESSION['login'])&&($_SESSION['usertype']=='1')){
     <link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
     <link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
@@ -39,23 +40,65 @@ if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rmens"){
     include_once ('reportemensualgeneralSE.php');
 }
 if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="ran"){
-    include_once ('reporteanualgeneral.php');
+    include_once('reporteanualgeneralSE.php');
 }
 if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="ranplant"){
-    include_once ('reporteanualxplanta.php');
+    include_once ('reporteanualxplantaSE.php');
 }
 if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rendpersmen"){
-    include_once ('reportepersonalmensual.php');
+    include_once('reportepersonalmensualSE.php');
 }
 if ($_POST['tiporeporte']==="SE"&&$_POST['enfoque']==="rendpersan"){
-    include_once ('reportepersonalanual.php');
+    include_once('reportepersonalanualSE.php');
+}
+if ($_POST['tiporeporte']==="OC"&&$_POST['enfoque']==="rmensplant"){
+    include_once ('reportemensualxplantaOC.php');
+}
+if ($_POST['tiporeporte']==="OC"&&$_POST['enfoque']==="rmens"){
+    include_once ('reportemensualgeneralOC.php');
+}
+if ($_POST['tiporeporte']==="OC"&&$_POST['enfoque']==="ran"){
+    include_once ('reporteanualgeneralOC.php');
+}
+if ($_POST['tiporeporte']==="OC"&&$_POST['enfoque']==="ranplant"){
+    include_once ('reporteanualxplantaOC.php');
+}
+if ($_POST['tiporeporte']==="OC"&&$_POST['enfoque']==="rendpersmen"){
+    include_once('reportepersonalmensualOC.php');
+}
+if ($_POST['tiporeporte']==="OC"&&$_POST['enfoque']==="rendpersan"){
+    include_once('reportepersonalanualOC.php');
+}
+if ($_POST['tiporeporte']==="CAP"&&$_POST['enfoque']==="rmens"){
+    include_once ('reportemensualgeneralCAP.php');
+}
+if ($_POST['tiporeporte']==="CAP"&&$_POST['enfoque']==="ran"){
+    include_once('reporteanualgeneralCAP.php');
+}
+if ($_POST['tiporeporte']==="CAP"&&$_POST['enfoque']==="rendpersmen"){
+    include_once('reportepersonalmensualCAP.php');
+}
+if ($_POST['tiporeporte']==="CAP"&&$_POST['enfoque']==="rendpersan"){
+    include_once('reportepersonalanualCAP.php');
+}
+if ($_POST['tiporeporte']==="INC"&&$_POST['enfoque']==="rmensplant"){
+    include_once ('reportemensualxplantaINC.php');
+}
+if ($_POST['tiporeporte']==="INC"&&$_POST['enfoque']==="rmens"){
+    include_once ('reportemensualgeneralINC.php');
+}
+if ($_POST['tiporeporte']==="INC"&&$_POST['enfoque']==="ran"){
+    include_once ('reporteanualgeneralINC.php');
+}
+if ($_POST['tiporeporte']==="INC"&&$_POST['enfoque']==="ranplant"){
+    include_once ('reporteanualxplantaINC.php');
 }
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
-<footer class="panel-footer navbar-fixed-bottom">
+<footer class="panel-footer navbar-fixed-bottom hidden-xs">
     <?php
     include_once('footer.php');
     ?>

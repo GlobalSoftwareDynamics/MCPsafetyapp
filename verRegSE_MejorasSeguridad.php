@@ -34,7 +34,8 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 
 	<?php
 	if(isset($_POST['delete'])){
-		$delete = mysqli_query($link, "DELETE FROM ObservacionesSE WHERE idObservacionesSE = '".$_POST['idObservacionSE']."' AND idSafetyEyes = '".$_POST['idSE']."'");
+		$delete = mysqli_query($link, "DELETE FROM MejorasSeguridad WHERE idMejoras = '".$_POST['idME']."'");
+		$delete = mysqli_query($link, "DELETE FROM MESE WHERE idMejoras = '".$_POST['idME']."' AND idSafetyEyes = '".$_POST['idSE']."'");
 	}
 	?>
 
@@ -42,35 +43,35 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 		<div>
 			<table class="table">
 				<thead>
-				<th class="text-center">Categoria</th>
-				<th class="text-center">Clase</th>
-				<th class="text-center">COP</th>
-				<!--<th class="text-center">Detalle</th>-->
+				<th class="text-center">Propuesto por</th>
+				<th class="text-center">Empresa</th>
+				<th class="text-center">Descripcion</th>
 				<th></th>
 				</thead>
 				<tbody>
 				<?php
-				$query = mysqli_query($link, "SELECT * FROM ObservacionesSE WHERE idSafetyEyes = '".$_POST['idSE']."'");
+				$query = mysqli_query($link, "SELECT * FROM MESE WHERE idSafetyEyes = '".$_POST['idSE']."'");
 				while($row = mysqli_fetch_array($query)){
 					echo "<tr>";
-					$query2 = mysqli_query($link, "SELECT * FROM Categoria WHERE idCategoria = '".$row['idCategoria']."'");
+					$query2 = mysqli_query($link, "SELECT * FROM MejorasSeguridad WHERE idMejoras = '".$row['idMejoras']."'");
 					while($row2 = mysqli_fetch_array($query2)){
+						$query3 = mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni = '".$row2['dni']."'");
+						while($row3 = mysqli_fetch_array($query3)){
+							echo "<td class='text-center'>".$row3['dni']."-".$row3['nombre']." ".$row3['apellidos']."</td>";
+							$query4 = mysqli_query($link,"SELECT * FROM Empresa WHERE ruc = '".$row3['ruc']."'");
+							while($row4 = mysqli_fetch_array($query4)){
+								echo "<td class='text-center'>".$row4['razonSocial']."</td>";
+							}
+						}
 						echo "<td class='text-center'>".$row2['descripcion']."</td>";
 					}
-					$query2 = mysqli_query($link, "SELECT * FROM Clase WHERE idClase = '".$row['idClase']."'");
-					while($row2 = mysqli_fetch_array($query2)){
-						echo "<td class='text-center'>".$row2['descripcion']."</td>";
-					}
-					$query2 = mysqli_query($link, "SELECT * FROM COPs WHERE idCOPs = '".$row['idCOPs']."'");
-					while($row2 = mysqli_fetch_array($query2)){
-						echo "<td class='text-center'>".$row2['descripcion']."</td>";
-					}
-					/*echo "<td>".$row['descripcion']."</td>";*/
 					echo "<td class='text-center'>
-											<form method='post' action='verregsafetyeyes3.php'>
+											<form method='post' action='verRegSE_MejorasSeguridad.php'>";
+                                                if(isset($_POST['addFinal'])){ echo "<input type='hidden' value='" .$_POST['addFinal']."' name='addFinal'>";}
+                                            echo "
 												<input type='submit' class='btn-link' value='Eliminar' name='delete'>
-												<input type='hidden' value='".$_POST['idSE']."' name='idSE'>
-												<input type='hidden' value='".$row['idObservacionesSE']."' name='idObservacionSE'>
+												<input type='hidden' value='" .$_POST['idSE']."' name='idSE'>
+												<input type='hidden' value='".$row['idMejoras']."' name='idME'>	
 											</form>
 									  </td>";
 					echo "</tr>";
@@ -79,10 +80,15 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 				</tbody>
 			</table>
 			<form method="post">
+				<?php
+				if(isset($_POST['addFinal'])){
+					echo "<input type='hidden' name='addFinal' value='{$_POST['addFinal']}'>";
+				}
+				?>
 				<div class="form-group">
 					<input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>">
 					<div class="col-xs-12 col-md-6 col-md-offset-3">
-						<input type="submit" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1" formaction="regsafetyeyes3.php" name="back" value="Regresar">
+						<input type="submit" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1" formaction="regSE_MejorasSeguridad.php" name="back" value="Regresar">
 					</div>
 				</div>
 			</form>

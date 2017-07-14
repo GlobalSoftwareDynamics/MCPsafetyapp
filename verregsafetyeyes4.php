@@ -22,6 +22,7 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 		<link rel="apple-touch-icon-precomposed" href="smartphone-icon-57-185337.png">
 		<link rel="icon" href="smartphone-icon-32-185337.png" sizes="32x32">
 		<link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -74,8 +75,8 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 			<form method="post">
 				<div class="form-group">
 					<input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>">
-					<div class="col-xs-12 col-sm-6 col-sm-offset-3">
-						<input type="submit" class="btn btn-default col-xs-12 col-sm-10 col-sm-offset-1" formaction="regsafetyeyes4.php" name="back" value="Regresar">
+					<div class="col-xs-12 col-md-6 col-md-offset-3">
+						<input type="submit" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1" formaction="regsafetyeyes4.php" name="back" value="Regresar">
 					</div>
 				</div>
 			</form>
@@ -85,7 +86,7 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
-	<footer class="panel-footer navbar-fixed-bottom">
+	<footer class="panel-footer navbar-fixed-bottom hidden-xs">
 		<?php
 		include_once('footer.php');
 		?>

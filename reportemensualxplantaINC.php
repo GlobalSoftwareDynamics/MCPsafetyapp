@@ -1,10 +1,7 @@
 <?php
 include('session.php');
 require('funcionesgraficasmes.php');
-$datos0=NumTotalCOPMes($_POST['mes'],$link);
-$datos1=NumTotalClaseMes($_POST['mes'],$link);
-$datos2=NumTotalCategoriaMes($_POST['mes'],$link);
-$datos3=NumAccionesCorrectivasxEstadoMes($_POST['mes'],$link);
+
 switch ($_POST['mes']) {
     case "A":
         $mes1="K";
@@ -55,14 +52,26 @@ switch ($_POST['mes']) {
         $mes2="K";
         break;
 }
-$datos7=NumTotalSafetyEyesMes($mes1,$link);
-$datos8=NumTotalSafetyEyesMes($mes2,$link);
-$datos4=NumTotalSafetyEyesMes($_POST['mes'],$link);
-$datos4=explode(",",$datos4);
-$datos8=explode(",",$datos8);
-$datos=$datos7.",".$datos8[2].",".$datos8[3].",".$datos4[2].",".$datos4[3];
-$datos5=NumTotalLiderMes($_POST['mes'],$link);
-$datos6=NumTotalPlantaMes($_POST['mes'],$link);
+$dat1=NumTotalIncPlantaUnicaMes($mes1,$_POST['planta'],$link);
+$dat2=NumTotalIncPlantaUnicaMes($mes2,$_POST['planta'],$link);
+$dat3=NumTotalIncPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$dat3=explode(",",$dat3);
+$dat2=explode(",",$dat2);
+$datos1=$dat1.",".$dat2[2].",".$dat2[3].",".$dat3[2].",".$dat3[3];
+$datos2=NumTotalUbicacionIncMes($_POST['mes'],$_POST['planta'],$link);
+$datos3=NumTotalConsActIncPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos4=NumTotalConsPotIncPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos5=NumTotalLesionIncPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos6=NumTotalIncIntEnergPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos7=NumTotalIncRepeticionPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos8=NumTotalParteCuerpoIncPlantaUnicaMes($_POST['mes'],$_POST['planta'],$link);
+$datos9=NumIncidentesHorarioMesxPlanta($_POST['mes'],$_POST['planta'],$link);
+$datos10=NumAccionesCorrectivasxEstadoIncPlantaMes($_POST['mes'],$_POST['planta'],$link);
+
+$result=mysqli_query($link,"SELECT * FROM Planta WHERE idPlanta='".$_POST['planta']."'");
+while ($fila=mysqli_fetch_array($result)){
+    $planta=$fila['descripcion'];
+}
 ?>
 <script type="text/javascript">
     // Load the Visualization API and the corechart package.
@@ -82,13 +91,14 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
-            title: "Número de Observaciones por Clase",
+            title: "Número de Incidentes en el Mes",
             titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
-            height: 300
+            height: 300,
+            legend: 'none'
         };
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('grafica2'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica1'));
         chart.draw(view, options);
     }
 
@@ -105,13 +115,14 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
                 role: "annotation" }
         ]);
         var options = {
-            title: "Número de Observaciones por Categoría",
+            title: "Número de Incidentes por Ubicación",
             titleTextStyle: {fontSize: 18, bold: true},
             width: '100%',
-            height: 300
+            height: 300,
+            legend: 'none'
         };
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('grafica3'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica2'));
         chart.draw(view, options);
     }
 
@@ -120,12 +131,133 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         var data = google.visualization.arrayToDataTable([
             <?php echo $datos3;?>
         ]);
+        var options = {
+            title: "Número de Incidentes por Consecuencia Actual",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('grafica3'));
+        chart.draw(data, options);
+    }
+
+    google.charts.setOnLoadCallback(drawChart4);
+    function drawChart4() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos4;?>
+        ]);
+        var options = {
+            title: "Número de Incidentes por Consecuencia Potencial",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('grafica4'));
+        chart.draw(data, options);
+    }
+
+    google.charts.setOnLoadCallback(drawChart5);
+    function drawChart5() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos5;?>
+        ]);
+        var options = {
+            title: "Número de Incidentes por Clasificación de la Lesión",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('grafica5'));
+        chart.draw(data, options);
+    }
+
+    google.charts.setOnLoadCallback(drawChart6);
+    function drawChart6() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos6;?>
+        ]);
+        var options = {
+            title: "Intercambio de Energía en Incidentes",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('grafica6'));
+        chart.draw(data, options);
+    }
+
+    google.charts.setOnLoadCallback(drawChart7);
+    function drawChart7() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos7;?>
+        ]);
+        var options = {
+            title: "Repetición de Incidentes",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('grafica7'));
+        chart.draw(data, options);
+    }
+
+    google.charts.setOnLoadCallback(drawChart8);
+    function drawChart8() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos8;?>
+        ]);
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 1,
             { calc: "stringify",
                 sourceColumn: 1,
                 type: "string",
                 role: "annotation" }
+        ]);
+        var options = {
+            title: "Parte del Cuerpo Afectada",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300,
+            legend: 'none'
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica8'));
+        chart.draw(view, options);
+    }
+
+    google.charts.setOnLoadCallback(drawChart9);
+    function drawChart9() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos9;?>
+        ]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" }
+        ]);
+        var options = {
+            title: "Número de Incidentes por Horario",
+            titleTextStyle: {fontSize: 18, bold: true},
+            width: '100%',
+            height: 300,
+            legend: 'none'
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.getElementById('grafica9'));
+        chart.draw(view, options);
+    }
+
+    google.charts.setOnLoadCallback(drawChart10);
+    function drawChart10() {
+        var data = google.visualization.arrayToDataTable([
+            <?php echo $datos10;?>
         ]);
         var options = {
             title: "Estado de las Acciones Correctivas",
@@ -134,108 +266,16 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
             height: 300
         };
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('grafica4'));
-        chart.draw(view, options);
+        var chart = new google.visualization.PieChart(document.getElementById('grafica10'));
+        chart.draw(data, options);
     }
 
-    google.charts.setOnLoadCallback(drawChart4);
-    function drawChart4() {
-        var data = google.visualization.arrayToDataTable([
-            <?php echo $datos;?>
-        ]);
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-            { calc: "stringify",
-                sourceColumn: 1,
-                type: "string",
-                role: "annotation" }
-        ]);
-        var options = {
-            title: "Número de Safety Eyes Registrados",
-            titleTextStyle: {fontSize: 18, bold: true},
-            width: '100%',
-            height: 300,
-            legend: { position: 'top'}
-        };
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.ColumnChart(document.getElementById('grafica5'));
-        chart.draw(view, options);
-    }
-
-    google.charts.setOnLoadCallback(drawChart5);
-    function drawChart5() {
-        var data = google.visualization.arrayToDataTable([
-            <?php echo $datos5;?>
-        ]);
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-            { calc: "stringify",
-                sourceColumn: 1,
-                type: "string",
-                role: "annotation" }
-        ]);
-        var options = {
-            title: "Número de Safety Eyes Registrados por Persona",
-            titleTextStyle: {fontSize: 18, bold: true},
-            width: '100%',
-            height: 300,
-            legend: { position: 'top'}
-        };
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.ColumnChart(document.getElementById('grafica6'));
-        chart.draw(view, options);
-    }
-    google.charts.setOnLoadCallback(drawChart6);
-    function drawChart6() {
-        var data = google.visualization.arrayToDataTable([
-            <?php echo $datos6;?>
-        ]);
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-            { calc: "stringify",
-                sourceColumn: 1,
-                type: "string",
-                role: "annotation" }
-        ]);
-        var options = {
-            title: "Número de Safety Eyes Registrados por Planta",
-            titleTextStyle: {fontSize: 18, bold: true},
-            width: '100%',
-            height: 300,
-            legend: { position: 'top'}
-        };
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.ColumnChart(document.getElementById('grafica7'));
-        chart.draw(view, options);
-    }
-    google.charts.setOnLoadCallback(drawChart7);
-    function drawChart7() {
-        var data = google.visualization.arrayToDataTable([
-            <?php echo $datos0;?>
-        ]);
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-            { calc: "stringify",
-                sourceColumn: 1,
-                type: "string",
-                role: "annotation" }
-        ]);
-        var options = {
-            title: "Número de Observaciones por COP",
-            titleTextStyle: {fontSize: 18, bold: true},
-            width: '100%',
-            height: 300,
-            legend: { position: 'top'}
-        };
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.ColumnChart(document.getElementById('grafica0'));
-        chart.draw(view, options);
-    }
 </script>
 
-<section class="container">
+
+<section class="container-fluid">
     <div class="col-md-6 col-md-offset-3">
-        <h3 class="text-center">Reporte Mensual General de Todas las Plantas (SE)</h3>
+        <h3 class="text-center">Reporte Mensual para Planta <?php echo $planta?> (Incidentes)</h3>
     </div>
 </section>
 <hr>
@@ -244,31 +284,22 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         <tbody>
         <tr>
             <td>
-                <div id="grafica5">
+                <div id="grafica1">
 
                 </div>
             </td>
         </tr>
         <tr>
             <td>
-                <div id="grafica7">
+                <div id="grafica2">
 
                 </div>
             </td>
         </tr>
         <tr>
             <td>
-                <div id="grafica6">
+                <div id="grafica9">
 
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="col-sm-7 col-md-offset-3">
-                    <div id="grafica2">
-
-                    </div>
                 </div>
             </td>
         </tr>
@@ -283,8 +314,53 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         </tr>
         <tr>
             <td>
-                <div id="grafica0">
+                <div class="col-sm-7 col-md-offset-3">
+                    <div id="grafica4">
 
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-7 col-md-offset-3">
+                    <div id="grafica5">
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-7 col-md-offset-3">
+                    <div id="grafica6">
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-7 col-md-offset-3">
+                    <div id="grafica7">
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grafica8">
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-7 col-md-offset-3">
+                    <div id="grafica10">
+
+                    </div>
                 </div>
             </td>
         </tr>
@@ -293,60 +369,7 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
 </section>
 <section class="container">
     <div class="col-md-12">
-        <h4 class="text-center">Mejoras de Seguridad Provenientes de SE en el Mes</h4>
-    </div>
-    <br>
-    <table class="table table-bordered text-center">
-        <thead>
-        <tr>
-            <th>Fecha de Registro</th>
-            <th>Fuente</th>
-            <th style="width: 40%">Descripción</th>
-            <th>Proponente</th>
-            <th>Estado</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        echo "
-            <tr>
-        ";
-        $result0=mysqli_query($link,"SELECT * FROM MejorasSeguridad WHERE fuente = 'SE'");
-        while ($fila0=mysqli_fetch_array($result0)){
-            $result1=mysqli_query($link,"SELECT * FROM MESE WHERE idMejoras ='".$fila0['idMejoras']."' AND idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado ='Aprobado' AND idSafetyEyes LIKE 'SE___%".$_POST['mes']."%')");
-            while ($fila1=mysqli_fetch_array($result1)){
-                echo "
-                            <td>".$fila0['fecharegistro']."</td>
-                            <td>".$fila1['idSafetyEyes']."</td>
-                    ";
-                echo "
-                            <td class='text-left'>".$fila0['descripcion']."</td>
-                        ";
-                $result3=mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni='".$fila0['dni']."'");
-                while ($fila3=mysqli_fetch_array($result3)){
-                    echo "
-                     <td>".$fila3['nombre']." ".$fila3['apellidos']."</td>
-                ";
-                }
-                $result2=mysqli_query($link,"SELECT * FROM EstadoACMS WHERE idEstado ='".$fila0['idEstado']."'");
-                while ($fila2=mysqli_fetch_array($result2)){
-                    echo "
-                        <td>".$fila2['descripcion']."</td>
-                    ";
-                }
-            }
-            echo "
-                </tr>
-            ";
-        }
-        ?>
-        </tbody>
-    </table>
-</section>
-<p></p>
-<section class="container">
-    <div class="col-md-12">
-        <h4 class="text-center">Acciones Correctivas Provenientes de SE en el Mes</h4>
+        <h4 class="text-center">Acciones Correctivas Provenientes de Incidentes en el Mes</h4>
     </div>
     <br>
     <table class="table table-bordered text-center">
@@ -366,17 +389,17 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
         echo "
             <tr>
         ";
-        $result0=mysqli_query($link,"SELECT * FROM AccionesCorrectivas WHERE fuente = 'SE'");
+        $result0=mysqli_query($link,"SELECT * FROM AccionesCorrectivas WHERE fuente = 'INC'");
         while ($fila0=mysqli_fetch_array($result0)){
-            $result1=mysqli_query($link,"SELECT * FROM ACSE WHERE idAccionesCorrectivas ='".$fila0['idAccionesCorrectivas']."' AND idObservacionesSE IN (SELECT idObservacionesSE FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado ='Aprobado' AND idSafetyEyes LIKE 'SE___%".$_POST['mes']."%'))");
+            $result1=mysqli_query($link,"SELECT * FROM ACINC WHERE idAccionesCorrectivas ='".$fila0['idAccionesCorrectivas']."' AND idIncidentes IN (SELECT idIncidentes FROM Incidentes WHERE idIncidentes LIKE 'INC___%".$_POST['mes']."%' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta='".$_POST['planta']."'))");
             while ($fila1=mysqli_fetch_array($result1)){
                 echo "
                             <td>".$fila0['fecharegistro']."</td>
                 ";
-                $result=mysqli_query($link, "SELECT * FROM ObservacionesSE WHERE idObservacionesSE ='".$fila1['idObservacionesSE']."'");
+                $result=mysqli_query($link, "SELECT * FROM Incidentes WHERE idIncidentes ='".$fila1['idIncidentes']."'");
                 while ($fila=mysqli_fetch_array($result)){
                     echo "
-                        <td>".$fila['idSafetyEyes']."</td>
+                        <td>".$fila['idIncidentes']."</td>
                     ";
                 }
                 echo "
@@ -404,19 +427,6 @@ $datos6=NumTotalPlantaMes($_POST['mes'],$link);
             ";
         }
         ?>
-        </tbody>
-    </table>
-    <table class="table">
-        <tbody>
-        <tr>
-            <td>
-                <div class="col-sm-7 col-md-offset-3">
-                    <div id="grafica4">
-
-                    </div>
-                </div>
-            </td>
-        </tr>
         </tbody>
     </table>
 </section>

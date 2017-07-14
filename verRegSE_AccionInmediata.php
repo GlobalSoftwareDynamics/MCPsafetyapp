@@ -34,7 +34,8 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 
 	<?php
 	if(isset($_POST['delete'])){
-		$delete = mysqli_query($link, "DELETE FROM ObservacionesSE WHERE idObservacionesSE = '".$_POST['idObservacionSE']."' AND idSafetyEyes = '".$_POST['idSE']."'");
+		$delete = mysqli_query($link, "DELETE FROM AccionesInmediatas WHERE idAccionesInmediatas = '".$_POST['idAI']."'");
+		$delete = mysqli_query($link, "DELETE FROM AISE WHERE idAccionesInmediatas = '".$_POST['idAI']."' AND idSafetyEyes = '".$_POST['idSE']."'");
 	}
 	?>
 
@@ -42,35 +43,30 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 		<div>
 			<table class="table">
 				<thead>
-				<th class="text-center">Categoria</th>
-				<th class="text-center">Clase</th>
-				<th class="text-center">COP</th>
-				<!--<th class="text-center">Detalle</th>-->
+				<th class="text-center">Responsable</th>
+				<th class="text-center">Descripcion</th>
 				<th></th>
 				</thead>
 				<tbody>
 				<?php
-				$query = mysqli_query($link, "SELECT * FROM ObservacionesSE WHERE idSafetyEyes = '".$_POST['idSE']."'");
+				$query = mysqli_query($link, "SELECT * FROM AISE WHERE idSafetyEyes = '".$_POST['idSE']."'");
 				while($row = mysqli_fetch_array($query)){
 					echo "<tr>";
-					$query2 = mysqli_query($link, "SELECT * FROM Categoria WHERE idCategoria = '".$row['idCategoria']."'");
+					$query2 = mysqli_query($link, "SELECT * FROM AccionesInmediatas WHERE idAccionesInmediatas = '".$row['idAccionesInmediatas']."'");
 					while($row2 = mysqli_fetch_array($query2)){
+						$query3 = mysqli_query($link,"SELECT * FROM Colaboradores WHERE dni = '".$row2['dni']."'");
+						while($row3 = mysqli_fetch_array($query3)){
+							echo "<td class='text-center'>".$row3['dni']."-".$row3['nombre']." ".$row3['apellidos']."</td>";
+						}
 						echo "<td class='text-center'>".$row2['descripcion']."</td>";
 					}
-					$query2 = mysqli_query($link, "SELECT * FROM Clase WHERE idClase = '".$row['idClase']."'");
-					while($row2 = mysqli_fetch_array($query2)){
-						echo "<td class='text-center'>".$row2['descripcion']."</td>";
-					}
-					$query2 = mysqli_query($link, "SELECT * FROM COPs WHERE idCOPs = '".$row['idCOPs']."'");
-					while($row2 = mysqli_fetch_array($query2)){
-						echo "<td class='text-center'>".$row2['descripcion']."</td>";
-					}
-					/*echo "<td>".$row['descripcion']."</td>";*/
 					echo "<td class='text-center'>
-											<form method='post' action='verregsafetyeyes3.php'>
-												<input type='submit' class='btn-link' value='Eliminar' name='delete'>
-												<input type='hidden' value='".$_POST['idSE']."' name='idSE'>
-												<input type='hidden' value='".$row['idObservacionesSE']."' name='idObservacionSE'>
+											<form method='post' action='verRegSE_AccionInmediata.php'>";
+                                            if(isset($_POST['addFinal'])){ echo "<input type='hidden' value='".$_POST['addFinal']."' name='addFinal'>";}
+                                            echo "
+					                            <input type='submit' class='btn-link' value='Eliminar' name='delete'>
+												<input type='hidden' value='" .$_POST['idSE']."' name='idSE'>
+												<input type='hidden' value='".$row['idAccionesInmediatas']."' name='idAI'>
 											</form>
 									  </td>";
 					echo "</tr>";
@@ -79,10 +75,15 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 				</tbody>
 			</table>
 			<form method="post">
+				<?php
+				if(isset($_POST['addFinal'])){
+					echo "<input type='hidden' name='addFinal' value='{$_POST['addFinal']}'>";
+				}
+				?>
 				<div class="form-group">
 					<input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>">
 					<div class="col-xs-12 col-md-6 col-md-offset-3">
-						<input type="submit" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1" formaction="regsafetyeyes3.php" name="back" value="Regresar">
+						<input type="submit" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1" formaction="regSE_AccionInmediata.php" name="back" value="Regresar">
 					</div>
 				</div>
 			</form>
@@ -92,7 +93,7 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
-	<footer class="panel-footer navbar-fixed-bottom hidden-xs">
+	<footer class="panel-footer navbar-fixed-bottom">
 		<?php
 		include_once('footer.php');
 		?>

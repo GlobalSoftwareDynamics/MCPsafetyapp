@@ -42,6 +42,7 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 		<div>
 			<table class="table">
 				<thead>
+                <th class="text-center">Descripcion</th>
 				<th class="text-center">Categoria</th>
 				<th class="text-center">Clase</th>
 				<th class="text-center">COP</th>
@@ -53,25 +54,29 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 				$query = mysqli_query($link, "SELECT * FROM ObservacionesSE WHERE idSafetyEyes = '".$_POST['idSE']."'");
 				while($row = mysqli_fetch_array($query)){
 					echo "<tr>";
+					echo "<td class='text-center'>{$row['descripcion']}</td>";
 					$query2 = mysqli_query($link, "SELECT * FROM Categoria WHERE idCategoria = '".$row['idCategoria']."'");
 					while($row2 = mysqli_fetch_array($query2)){
-						echo "<td class='text-center'>".$row2['descripcion']."</td>";
+						echo "<td class='text-center'>".$row2['siglas']."</td>";
 					}
 					$query2 = mysqli_query($link, "SELECT * FROM Clase WHERE idClase = '".$row['idClase']."'");
 					while($row2 = mysqli_fetch_array($query2)){
-						echo "<td class='text-center'>".$row2['descripcion']."</td>";
+						echo "<td class='text-center'>".$row2['siglas']."</td>";
 					}
 					$query2 = mysqli_query($link, "SELECT * FROM COPs WHERE idCOPs = '".$row['idCOPs']."'");
 					while($row2 = mysqli_fetch_array($query2)){
-						echo "<td class='text-center'>".$row2['descripcion']."</td>";
+						echo "<td class='text-center'>".$row2['siglas']."</td>";
 					}
 					/*echo "<td>".$row['descripcion']."</td>";*/
 					echo "<td class='text-center'>
-											<form method='post' action='verregsafetyeyes3.php'>
+											<form method='post' action='verRegSE_Hallazgos.php'>
 												<input type='submit' class='btn-link' value='Eliminar' name='delete'>
-												<input type='hidden' value='".$_POST['idSE']."' name='idSE'>
-												<input type='hidden' value='".$row['idObservacionesSE']."' name='idObservacionSE'>
-											</form>
+												<input type='hidden' value='" .$_POST['idSE']."' name='idSE'>
+												<input type='hidden' value='".$row['idObservacionesSE']."' name='idObservacionSE'>";
+                                                if(isset($_POST['addFinal'])){
+                                                    echo "<input type='hidden' name='addFinal' value='{$_POST['addFinal']}'>";
+                                                }
+                                        echo "</form>
 									  </td>";
 					echo "</tr>";
 				}
@@ -79,10 +84,15 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 				</tbody>
 			</table>
 			<form method="post">
+				<?php
+				if(isset($_POST['addFinal'])){
+					echo "<input type='hidden' name='addFinal' value='{$_POST['addFinal']}'>";
+				}
+				?>
 				<div class="form-group">
 					<input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>">
 					<div class="col-xs-12 col-md-6 col-md-offset-3">
-						<input type="submit" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1" formaction="regsafetyeyes3.php" name="back" value="Regresar">
+						<input type="submit" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1" formaction="regSE_Hallazgos.php" name="back" value="Regresar">
 					</div>
 				</div>
 			</form>
@@ -92,7 +102,7 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
-	<footer class="panel-footer navbar-fixed-bottom hidden-xs">
+	<footer class="panel-footer navbar-fixed-bottom hidden-xs>
 		<?php
 		include_once('footer.php');
 		?>

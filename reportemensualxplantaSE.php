@@ -219,7 +219,7 @@ while ($fila=mysqli_fetch_array($result)){
 
 
 <section class="container-fluid">
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-md-6 col-md-offset-3">
         <h3 class="text-center">Reporte Mensual para Planta <?php echo $planta?> (SE)</h3>
     </div>
 </section>
@@ -250,7 +250,7 @@ while ($fila=mysqli_fetch_array($result)){
         </tr>
         <tr>
             <td>
-                <div class="col-sm-7 col-sm-offset-3">
+                <div class="col-sm-7 col-md-offset-3">
                     <div id="grafica2">
 
                     </div>
@@ -259,7 +259,7 @@ while ($fila=mysqli_fetch_array($result)){
         </tr>
         <tr>
             <td>
-                <div class="col-sm-7 col-sm-offset-3">
+                <div class="col-sm-7 col-md-offset-3">
                     <div id="grafica3">
 
                     </div>
@@ -277,7 +277,7 @@ while ($fila=mysqli_fetch_array($result)){
     </table>
 </section>
 <section class="container">
-    <div class="col-sm-12">
+    <div class="col-md-12">
         <h4 class="text-center">Mejoras de Seguridad Provenientes de SE en el Mes</h4>
     </div>
     <br>
@@ -298,7 +298,7 @@ while ($fila=mysqli_fetch_array($result)){
         ";
         $result0=mysqli_query($link,"SELECT * FROM MejorasSeguridad WHERE fuente = 'SE'");
         while ($fila0=mysqli_fetch_array($result0)){
-            $result1=mysqli_query($link,"SELECT * FROM MESE WHERE idMejoras ='".$fila0['idMejoras']."' AND idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado ='Aprobado' AND idSafetyEyes LIKE 'SE%".$_POST['mes']."%' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta='".$_POST['planta']."'))");
+            $result1=mysqli_query($link,"SELECT * FROM MESE WHERE idMejoras ='".$fila0['idMejoras']."' AND idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado ='Aprobado' AND idSafetyEyes LIKE 'SE___%".$_POST['mes']."%' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta='".$_POST['planta']."'))");
             while ($fila1=mysqli_fetch_array($result1)){
                 echo "
                             <td>".$fila0['fecharegistro']."</td>
@@ -329,7 +329,7 @@ while ($fila=mysqli_fetch_array($result)){
     </table>
 </section>
 <section class="container">
-    <div class="col-sm-12">
+    <div class="col-md-12">
         <h4 class="text-center">Acciones Correctivas Provenientes de SE en el Mes</h4>
     </div>
     <br>
@@ -352,7 +352,7 @@ while ($fila=mysqli_fetch_array($result)){
         ";
         $result0=mysqli_query($link,"SELECT * FROM AccionesCorrectivas WHERE fuente = 'SE'");
         while ($fila0=mysqli_fetch_array($result0)){
-            $result1=mysqli_query($link,"SELECT * FROM ACSE WHERE idAccionesCorrectivas ='".$fila0['idAccionesCorrectivas']."' AND idObservacionesSE IN (SELECT idObservacionesSE FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado ='Aprobado' AND idSafetyEyes LIKE 'SE%".$_POST['mes']."%' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta='".$_POST['planta']."')))");
+            $result1=mysqli_query($link,"SELECT * FROM ACSE WHERE idAccionesCorrectivas ='".$fila0['idAccionesCorrectivas']."' AND idObservacionesSE IN (SELECT idObservacionesSE FROM ObservacionesSE WHERE idSafetyEyes IN (SELECT idSafetyEyes FROM SafetyEyes WHERE estado ='Aprobado' AND idSafetyEyes LIKE 'SE___%".$_POST['mes']."%' AND idUbicacion IN (SELECT idUbicacion FROM Ubicacion WHERE idPlanta='".$_POST['planta']."')))");
             while ($fila1=mysqli_fetch_array($result1)){
                 echo "
                             <td>".$fila0['fecharegistro']."</td>
@@ -394,7 +394,7 @@ while ($fila=mysqli_fetch_array($result)){
         <tbody>
         <tr>
             <td>
-                <div class="col-sm-7 col-sm-offset-3">
+                <div class="col-sm-7 col-md-offset-3">
                     <div id="grafica4">
 
                     </div>

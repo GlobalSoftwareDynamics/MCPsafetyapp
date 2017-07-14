@@ -79,8 +79,8 @@ if(isset($_SESSION['login'])&&(($_SESSION['usertype']=='1'))||($_SESSION['userty
 			<form method="post">
 				<div class="form-group">
 					<input type="hidden" name="idSE" value="<?php echo $_POST['idSE'];?>">
-					<div class="col-xs-12 col-sm-6 col-sm-offset-3">
-						<input type="submit" class="btn btn-default col-xs-12 col-sm-10 col-sm-offset-1" formaction="regsafetyeyes5.php" name="back" value="Regresar">
+					<div class="col-xs-12 col-md-6 col-md-offset-3">
+						<input type="submit" class="btn btn-default col-xs-12 col-md-10 col-md-offset-1" formaction="regsafetyeyes5.php" name="back" value="Regresar">
 					</div>
 				</div>
 			</form>
